@@ -8,20 +8,38 @@ class Pessoa extends CI_Model{
 		parent::__construct();
 	}
 
-	public function salvar_pessoa($arrPessoa) {
-		$arrPessoa = $arrPessoa[0];
+	public function get_pessoas() {
+ 		return $this->db->get(
+ 			'pessoas'
+ 		);
+  	}
 
+	public function inserir_pessoa($arrPessoa) {
  		$this->db->insert(
  			'pessoas',
  			$arrPessoa
  		);
   	}
 
-	public function get_pessoas() {
- 		return $this->db->get(
- 			'pessoas'
- 		);
+	public function alterar_pessoa( $arrPessoaAlterar, $cd_pessoa ) {
+		$this->db->update(
+			'pessoas', // NOME DA TABELA QUE RECEBERÁ O UPDATE
+			$arrPessoaAlterar, // Array apenas com os dados que vao no SET do UPDATE
+			array(
+				'cd_pessoa' => $cd_pessoa // CONDICOES QUE IRÃO NO WHERE 
+			)
+		);
   	}
+
+	public function excluir_pessoa( $cd_pessoa ) {
+		$this->db->delete(
+			'pessoas', // NOME DA TABELA QUE RECEBERÁ O DELETE
+			array(
+				'cd_pessoa' => $cd_pessoa // CONDICOES QUE IRÃO NO WHERE 
+			)
+		);
+  	}
+
 
 }
 ?>
