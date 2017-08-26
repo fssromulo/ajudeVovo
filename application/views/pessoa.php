@@ -92,7 +92,7 @@
 						<div class="form-group">
 							<label for="estado">Estado:</label>
 							<select
-								ng-options="listaEstado.descricao for listaEstado in arrListaEstado"
+								ng-options="listaEstado.descricao for listaEstado in arrListaEstado track by listaEstado.id_estado"
 								ng-model="estadoSelected"
 								name="estado"
 								id="estado"

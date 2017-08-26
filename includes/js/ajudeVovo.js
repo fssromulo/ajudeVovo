@@ -12,7 +12,6 @@ app.controller("controllerAngular", function($scope, $http){
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
 		$scope.is_alterar = false;
-		$scope.arrListaPais = [];
 
 		// Define array com sexos para listagem
 		$scope.arrListaSexo = 
@@ -25,99 +24,10 @@ app.controller("controllerAngular", function($scope, $http){
 				'descricao' : 'Masculino',
 				'valor' : 'M'
 			}
-		];
-
-		$scope.sexoSelected = {		
-			'valor' : 'F'
-		};	
+		];	
 
 		// Chama metodos que vão preencher algo em tela
-		$scope.getListaPais();
 		$scope.getPessoasVovo();
-	};
-
-	$scope.getListaPais = function() {
-
-	    $http.post(
-	    		'../Gerais/Geral/getListaPais/'
-	    	).success(function (data) {
-	    		$scope.arrListaPais = data;
-		});
-	}
-
-	$scope.getListaEstado = function() {
-
-		$scope.estadoSelected = {
-			"id_estado" : 12
-
-		}
-
-	    $http.post(
-	    		'../Gerais/Geral/getListaEstado/',
-	    		$scope.paisSelected
-	    	).success(function (data) {
-	    		$scope.arrListaEstado = data;
-		});
-	}
-
-	$scope.getListaCidade = function() {
-
-	    $http.post(
-	    		'../Gerais/Geral/getListaCidade/',
-	    		$scope.estadoSelected
-	    	).success(function (data) {
-	    		$scope.arrListaCidade = data;
-		});
-	}
-
-
-
-	$scope.salvar = function() {
-
-		var sexo   = $scope.sexoSelected['valor'];
-		var pais   = $scope.paisSelected['id_pais'];
-		var estado = $scope.estadoSelected['id_estado'];
-		var cidade = $scope.cidadeSelected['id_cidade'];
-
-		var arrPessoaSalvar =
-		{
-			'nome'  : $scope.nome,
-			'dt_nascimento'      : $scope.dt_nascimento,
-			'cpf'       : $scope.cpf,
-			'rg' : $scope.rg,
-			'sexo' : sexo,
-			'pais' : pais,
-			'estado' : estado,
-			'cidade' : cidade,
-			'bairro' : $scope.bairro,
-			'rua' : $scope.rua,
-			'numero' : $scope.numero,
-			'complemento' : $scope.complemento,
-			'fone_residencial' : $scope.fone_residencial,
-			'fone_comercial' : $scope.fone_comercial,
-			'celular' : $scope.celular,
-			'email' : $scope.email,
-			'login' : $scope.login,
-			'senha' : $scope.senha1,
-			'is_alterar' : $scope.is_alterar
-		};
-
-		console.log( arrPessoaSalvar );
-
-		return false;
-
-		if ( $scope.is_alterar == true ) {
-			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
-		}
-
-	    $http.post(
-	    		'../teste/salvar',
-	    		arrPessoaSalvar
-	    	).success(function (data) {
-	    		// console.log(data);
-	    		$scope.arrPessoas = data;
-	    		$scope.cancelar();
-		});
 	};
 
 	$scope.cancelar = function () {
@@ -145,13 +55,13 @@ app.controller("controllerAngular", function($scope, $http){
 	$scope.excluir = function() {
 
 	    $http.post(
-	    		'../teste/excluir',
-	    		$scope.cd_pessoa
+	    		'../AjudeVovo/excluir',
+	    		$scope.id_pessoa_fisica
 	    	).success(function (data) {
+	    		$('#modal_excluir').modal('toggle');
 	    		$scope.arrPessoas = data;
 		});
 	};
-
 
 	$scope.getPessoasVovo = function() {
 		$http.post(
