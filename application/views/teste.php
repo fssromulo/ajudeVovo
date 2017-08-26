@@ -1,57 +1,55 @@
 <html lang="pt_BR">
 <head>
 	<title>CodeIgniter & AngularJS</title>
-
-
 	<!-- jQuery & Bootstrap -->
-  <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.min.js"></script>
-  <link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-  <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../includes/materialize/css/materialize.min.css"  type="text/css" rel="stylesheet" />
 
-	<!-- Angular JS -->
-  <script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-
-	<!-- MY App -->
-	<script type="text/javascript" src="../includes/js/app.js"></script>
 
 </head>
 
-<body ng-app="appAngular">
-	<div ng-controller="controllerAngular">
+<body ng-app="appAngular" ng-controller="controllerAngular">
+	<div >
+	<div class="container">
+  <div class="row">
+    <form method="POST" onsubmit="return false;" ng-init="listaPessoas()">
 
-		<div class="col-md-6 col-md-offset-3">	
-			<br/>
-			<form action="" method="POST" class="" onsubmit="return false;" ng-init="listaPessoas()">
-				<div class="form-group">
-					<input type="text" ng-model="nome_pessoa" class="form-control" name="nome_pessoa" placeholder="Nome..." />
-				</div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="fone" type="text" class="validate" ng-model="fone" >
+          <label class="campos-alterar active" for="fone">Last Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="Nome" ng-model="nome_pessoa" type="text" class="validate">
+          <label class="campos-alterar active" for="Nome">First Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" ng-model="email">
+          <label class="campos-alterar active" for="email">Email</label>
+        </div>
+      </div>
+
+
 				
-				
-				<div class="form-group">
-					<input type="text" ng-model="email" class="form-control" name="email" placeholder="Email..." />
-				</div>
-				
-				<div class="form-group">
-					<input type="text" ng-model="fone" class="form-control" name="fone" placeholder="Fone..." />
-				</div>
-				
-				<button type="button" ng-click="salvar()" class="btn btn-success" ng-show="!is_alterar">
-					Salvar
-				</button>
+		<button type="submit" ng-click="salvar()" class="btn btn-success" ng-show="!is_alterar">
+			Salvar
+		</button>
 
 
-				<button type="button" ng-click="salvar()" class="btn btn-success" ng-show="is_alterar">
-					Alterar
-				</button>
+		<button type="submit" ng-click="salvar()" class="btn btn-success" ng-show="is_alterar">
+			Alterar
+		</button>
 
-				<button type="button" ng-click="cancelar()" class="btn btn-danger">
-					Cancelar
-				</button>
-			</form>
+		<button type="button" ng-click="cancelar()" class="btn btn-danger">
+			Cancelar
+		</button>
 
-			<hr/>
+    </form>
+  
 
-			<table class="table table-hover">
+			<table class="responsive-table">
   				<tr>
 				  <th >Codigo</th>
 				  <th >Nome</th>
@@ -66,41 +64,46 @@
 				  <td>{{pessoa.email}}</td>
 				  <td>{{pessoa.fone}}</td>
 				  <td >
-				  		<span style="cursor:pointer;" class="glyphicon glyphicon-pencil" ng-click="carregarAlterar(pessoa)"></span>
+				  		<span style="cursor:pointer;" class="material-icons" ng-click="carregarAlterar(pessoa)">mode_edit</span>
 				  		<span
 				  			style="cursor:pointer;"
-				  			class="glyphicon glyphicon-remove"
-				  			data-toggle="modal"
-				  			data-target="#modal_excluir"
+				  			data-target="modal1" class="modal-trigger material-icons "
 				  			ng-click="carregaExcluir(pessoa)"
-				  		>				  			
+				  		>close			  			
 				  		</span>
 				  </td>
 				</tr>
 			</table>
 		</div>
+	</div>
+	</div>
 
-<div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-  <div class="modal-dialog" role="document">
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        
-          Deseja excluir este registro?
-         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
-        <button type="button" class="btn btn-success" ng-click="excluir()">Sim</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      <h4>Confirmação</h4>
+      <p>Deseja realmente excluir este registro?</p>
+    </div>
+    <div class="modal-footer">
+       <button  class="modal-action modal-close waves-effect waves-red btn-flat">Não</button>
+      <button ng-click="excluir()" type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Sim</button>
+    </div>
+  </div>
+
+	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
 
 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+	<!-- Angular JS -->
+	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
+
+		<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
+	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
+
+	<!-- MY App -->
+	<script type="text/javascript" src="../includes/js/app.js"></script>
 </body>
 
 </html>
