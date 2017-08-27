@@ -30,6 +30,8 @@ class Pessoa extends CI_Controller {
 		$this->load->view('pessoa');
 	}
 
+
+
 	/*
 	  Função que recebe os dados da View e salva no banco de dados
 	  Esta função chama o metodo da model inserir_pessoa 

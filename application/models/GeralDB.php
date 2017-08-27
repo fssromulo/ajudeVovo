@@ -17,6 +17,7 @@ class GeralDB extends CI_Model{
   	}
 
 	public function getListaEstado( $id_pais = null ) { 					
+		
 		$this->db->select('id_estado, descricao');
 		$this->db->from('estado');
 		$this->db->where('id_pais', $id_pais);
