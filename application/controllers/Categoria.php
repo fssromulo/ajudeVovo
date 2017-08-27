@@ -13,25 +13,26 @@ class Categoria extends CI_Controller {
     }
 
     public function getCategorias() {
-        $listar = $this->Categoria->get_categorias()->result_array();
+        $listar = $this->CategoriaDB->get_categorias()->result_array();
 
         echo json_encode($listar);
     }
 
     public function salvar() {
-        (array)$dados = json_decode(file_get_contents("php://inout"), true);
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
 
         $is_alterar = $dados['is_alterar'];
-        $cd_categoria = isset($dados['cd_categoria']) ? $dados['cd_pessoa'] : null;
-        unset($dados['cd_categoria']);
+        $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
+        
+        unset($dados['id_categoria']);
         unset($dados['is_alterar']);
 
         if (!$is_alterar) {
-            $this->Categoria->inserir_categoria($dados);
+            $this->CategoriaDB->inserir_categoria($dados);
         } else {
-            $this->Categoria->alterar_categoria(
+            $this->CategoriaDB->alterar_categoria(
                 $dados,
-                $cd_categoria
+                $id_categoria
             );
         }
 
@@ -41,11 +42,11 @@ class Categoria extends CI_Controller {
     public function excluir() {
         (array)$dados = json_encode(file_get_contents("php://input"), true);
 
-        $cd_categoria = $dados['cd_categoria'];
+        $id_categoria = $dados['id_categoria'];
 
-        $listar = $this->Categoria->excluir_categoria(
+        $this->CategoriaDB->excluir_categoria(
             $dados,
-            $cd_categoria
+            $id_categoria
         );
 
         $this->getCategorias();

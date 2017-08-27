@@ -9,43 +9,66 @@ app.controller("controllerCategoria", function($scope, $http) {
 
     $scope.__construct = function() {
 
-        $scope.cd_categoria = null;
+        $scope.id_categoria = null;
         $scope.is_alterar = false;
         $scope.arrListaCategoria = [];
+
+        $scope.getCategorias();
     };
 
-    $scope.salvar = function() {
+    $scope.getCategorias = function() {
+        $http.post(
+            '../Categoria/getCategorias'
+        ).success(function (data) {
+            $scope.arrCategorias = data;
+            $scope.cancelar;
+        });
+    };
 
-        console.log('Salvar');
-
-        var descricao = $scope.descricao;
-
+    $scope.salvarCategoria = function() {
         var arrCategoriaSalvar = {
-            'descricao' : $scope.descricao
-        };
-
-        console.log(arrCategoriaSalvar);
-
-        return false;
+            'descricao' : $scope.descricao,
+            'is_alterar' : $scope.is_alterar
+        }
 
         if ($scope.is_alterar == true) {
-            arrCategoriaSalvar['cd_categoria'] = $scope.cd_categoria;
+            arrCategoriaSalvar['id_categoria'] = $scope.id_categoria;
         }
 
         $http.post(
-            '../categoria/salvar',
+            '../Categoria/salvar',
             arrCategoriaSalvar
         ).success(function (data) {
-            $scope.arrCategoriaSalvar = data;
+            $scope.arrCategorias = data;
             $scope.cancelar();
         });
     };
 
+    $scope.excluirCategoria = function() {
+        $http.post(
+            '../Categoria/excluir',
+            $scope.id_categoria
+        ).success(function (data) {
+            $('#modal_excluir').modal('toggle');
+            $scope.arrCategorias = data;
+        });
+    }
+
     $scope.cancelar = function () {
         $scope.is_alterar = false;
-        $scope.cd_categoria = null;
+        $scope.id_categoria = null;
         $scope.descricao = null;
     }
+
+    $scope.carregarAlterar = function(categoria) {
+        $scope.is_alterar = true;
+        $scope.id_categoria = categoria.id_categoria;
+        $scope.descricao = categoria.descricao;
+    };
+
+    $scope.carregarExcluir = function(categoria) {
+        $scope.id_categoria = categoria.id_categoria;
+    };
 
     angular.element(document).ready(function () {
 		$scope.__construct();	

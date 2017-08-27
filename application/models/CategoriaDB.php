@@ -20,18 +20,18 @@ class CategoriaDB extends CI_Model {
         );
     }
 
-    public function alterar_categoria($arrCategoriaAlterar, $cd_categoria) {
+    public function alterar_categoria($arrCategoriaAlterar, $id_categoria) {
         $this->db->update(
             'categoria',
             $arrCategoriaAlterar,
-            array('cd_categoria' => $cd_categoria)
+            array('id_categoria' => $id_categoria)
         );
     }
 
-    public function excluir_categoria($cd_categoria) {
+    public function excluir_categoria($id_categoria) {
         $this->db->delete(
             'categoria',
-            array('cd_categoria' => $cd_categoria)
+            array('id_categoria' => $id_categoria)
         );
     }
 }
