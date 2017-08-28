@@ -51,11 +51,10 @@ class AjudeVovo extends CI_Controller {
 	public function excluir()
 	{
 		(array)$dados = json_decode(file_get_contents("php://input"), true);  
-
+		
 		$id_pessoa_fisica = $dados['id_pessoa_fisica'];
 
 	   $this->AjudeVovoDB->excluir_pessoa(
-			$dados,
 			$id_pessoa_fisica 
 		);
 

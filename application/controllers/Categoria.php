@@ -40,12 +40,11 @@ class Categoria extends CI_Controller {
     }
 
     public function excluir() {
-        (array)$dados = json_encode(file_get_contents("php://input"), true);
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
 
         $id_categoria = $dados['id_categoria'];
 
         $this->CategoriaDB->excluir_categoria(
-            $dados,
             $id_categoria
         );
 

@@ -57,7 +57,7 @@
 				  			class="glyphicon glyphicon-remove"
 				  			data-toggle="modal"
 				  			data-target="#modal_excluir"
-				  			ng-click="carregaExcluir(categoria)"
+				  			ng-click="carregarExcluir(categoria)"
 				  		>				  			
 				  		</span>
                 </td>

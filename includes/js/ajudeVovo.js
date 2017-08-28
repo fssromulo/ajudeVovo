@@ -53,10 +53,14 @@ app.controller("controllerAngular", function($scope, $http){
 	}
 
 	$scope.excluir = function() {
+		var arrPessoaExcluir = {
+			"id_pessoa_fisica" : $scope.id_pessoa_fisica
+		}
+
 
 	    $http.post(
 	    		'../AjudeVovo/excluir',
-	    		$scope.id_pessoa_fisica
+	    		arrPessoaExcluir
 	    	).success(function (data) {
 	    		$('#modal_excluir').modal('toggle');
 	    		$scope.arrPessoas = data;

@@ -45,9 +45,13 @@ app.controller("controllerCategoria", function($scope, $http) {
     };
 
     $scope.excluirCategoria = function() {
+        var arrCategoriaExcluir = {
+            "id_categoria" : $scope.id_categoria
+        }
+
         $http.post(
             '../Categoria/excluir',
-            $scope.id_categoria
+            arrCategoriaExcluir
         ).success(function (data) {
             $('#modal_excluir').modal('toggle');
             $scope.arrCategorias = data;
