@@ -46,12 +46,6 @@ app.controller("controllerAngular", function($scope, $http){
 	}
 
 	$scope.getListaEstado = function() {
-
-		$scope.estadoSelected = {
-			"id_estado" : 12
-
-		}
-
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/',
 	    		$scope.paisSelected
