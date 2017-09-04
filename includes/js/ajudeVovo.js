@@ -78,6 +78,8 @@ app.controller("controllerAngular", function($scope, $http){
 
 	}
 
+	
+
 	$scope.salvarAula = function( pessoa ) {
 
 		var arrPessoaSalvar	= {
@@ -100,6 +102,25 @@ app.controller("controllerAngular", function($scope, $http){
 		).success(function (data) {
 			console.log(data);
 			$scope.arrPessoas = data;
+			$scope.cancelar();
+		});
+
+	}
+
+
+	
+
+
+		if ( $scope.is_alterar == true ) {
+			arrCartaoSalvar['id_cartao_credito'] = $scope.id_cartao_credito;
+		}
+
+		$http.post(
+			'../AjudeVovo/salvar',
+			arrCartaoSalvar
+		).success(function (data) {
+			console.log(data);
+			$scope.arrCartao = data;
 			$scope.cancelar();
 		});
 
