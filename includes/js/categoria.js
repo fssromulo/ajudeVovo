@@ -13,12 +13,12 @@ app.controller("controllerCategoria", function($scope, $http) {
         $scope.is_alterar = false;
         $scope.arrListaCategoria = [];
 
-        $scope.getCategorias();
+        $scope.categorias();
     };
 
-    $scope.getCategorias = function() {
+    $scope.categorias = function() {
         $http.post(
-            '../Categoria/getCategorias'
+            '../Categoria/categorias'
         ).success(function (data) {
             $scope.arrCategorias = data;
             $scope.cancelar;
@@ -26,18 +26,34 @@ app.controller("controllerCategoria", function($scope, $http) {
     };
 
     $scope.salvarCategoria = function() {
-        var arrCategoriaSalvar = {
-            'descricao' : $scope.descricao,
-            'is_alterar' : $scope.is_alterar
+        if ($scope.form_categoria.$invalid) {
+            return;
         }
 
-        if ($scope.is_alterar == true) {
-            arrCategoriaSalvar['id_categoria'] = $scope.id_categoria;
-        }
+        var arrCategoriaSalvar = {
+            'descricao' : $scope.descricao,
+            'taxa' : $scope.taxa
+        }        
 
         $http.post(
             '../Categoria/salvar',
             arrCategoriaSalvar
+        ).success(function (data) {
+            $scope.arrCategorias = data;
+            $scope.cancelar();
+        });
+    };
+
+    $scope.alterarCategoria = function() {
+        var arrCategoriaAlterar = {
+            'id_categoria' : $scope.id_categoria,
+            'descricao' : $scope.descricao,
+            'taxa' : $scope.taxa
+        }
+
+        $http.post(
+            '../Categoria/alterar',
+            arrCategoriaAlterar
         ).success(function (data) {
             $scope.arrCategorias = data;
             $scope.cancelar();
@@ -62,12 +78,14 @@ app.controller("controllerCategoria", function($scope, $http) {
         $scope.is_alterar = false;
         $scope.id_categoria = null;
         $scope.descricao = null;
+        $scope.taxa = null;
     }
 
     $scope.carregarAlterar = function(categoria) {
         $scope.is_alterar = true;
         $scope.id_categoria = categoria.id_categoria;
         $scope.descricao = categoria.descricao;
+        $scope.taxa = categoria.taxa;
     };
 
     $scope.carregarExcluir = function(categoria) {

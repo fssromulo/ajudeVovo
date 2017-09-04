@@ -7,12 +7,12 @@ class CategoriaDB extends CI_Model {
         parent::__construct();
     }
 
-    public function get_categorias() {
+    public function buscar_categorias() {
         return $this->db->get(
             'categoria'
         );
     }
-
+    
     public function inserir_categoria($arrCategoria) {
         $this->db->insert(
             'categoria',

@@ -12,8 +12,8 @@ class Categoria extends CI_Controller {
         $this->load->view('categoria');
     }
 
-    public function getCategorias() {
-        $listar = $this->CategoriaDB->get_categorias()->result_array();
+    public function categorias() {
+        $listar = $this->CategoriaDB->buscar_categorias()->result_array();
 
         echo json_encode($listar);
     }
@@ -21,22 +21,25 @@ class Categoria extends CI_Controller {
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $is_alterar = $dados['is_alterar'];
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
         
         unset($dados['id_categoria']);
-        unset($dados['is_alterar']);
 
-        if (!$is_alterar) {
-            $this->CategoriaDB->inserir_categoria($dados);
-        } else {
-            $this->CategoriaDB->alterar_categoria(
-                $dados,
-                $id_categoria
-            );
-        }
+        $this->CategoriaDB->inserir_categoria($dados);
 
-        $this->getCategorias();
+        $this->categorias();
+    }
+
+    public function alterar() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
+        
+        unset($dados['id_categoria']);
+
+        $this->CategoriaDB->alterar_categoria($dados, $id_categoria);
+
+        $this->categorias();
     }
 
     public function excluir() {
@@ -48,6 +51,6 @@ class Categoria extends CI_Controller {
             $id_categoria
         );
 
-        $this->getCategorias();
+        $this->categorias();
     }
 }

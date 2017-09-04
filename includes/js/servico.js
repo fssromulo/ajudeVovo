@@ -48,6 +48,10 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.salvarServico = function() {
 
+        if ($scope.descricao) {
+
+        }
+        
         var arrServicoSalvar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
