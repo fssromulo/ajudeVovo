@@ -38,6 +38,5 @@ class Avaliacao extends CI_Controller {
 			$dados['id_contratante'] = $id_contratante;
 			$this->AvaliacaoDB->inserir_avaliacao_contratante($dados);
 		}
-
 	}
 }
