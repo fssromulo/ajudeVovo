@@ -8,25 +8,13 @@ var app =  angular.module(
 app.controller("controllerAvaliacao", function($scope, $http){
 
 	$scope.__construct = function() {
-
-		// Inicializa variaveis
-		/*$scope.cd_pessoa = null;
-		$scope.is_alterar = false;
-		$scope.arrListaPais = [];
-
-		// Chama metodos que vão preencher algo em tela
-		$scope.getListaPais();
-*/
-
 	};
-
-
 
 	$scope.salvar = function() {
 
 		let arrAvaliacao =
 		{
-			'nota'  : $scope.nota,
+			'nota'  : $scope.nota | 0,
 			'comentario'  : $scope.comentario,
 			'id_contratante'      : $scope.contratante,
 			'id_servico'	: $scope.servico
