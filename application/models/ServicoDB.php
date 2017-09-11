@@ -40,5 +40,23 @@ class ServicoDB extends CI_Model {
             array('id_servico' => $id_servico)
         );
     }
+
+    public function get_servicos_cliente() {
+        return $this->db->query("
+        select	d.descricao ds_categoria, 
+                d.url url_img_categoria,
+                a.nome nm_prestador, 
+                1 qt_estrela, 
+                1 qt_servico, 
+                RPAD(concat_ws(' - ', c.descricao, c.detalhe), 255, ' .') ds_detalhe, 
+                c.valor
+        from	pessoa_fisica a,
+                prestador b,
+                servico c,
+                categoria d
+        where	a.id_pessoa_fisica = b.id_pessoa
+        and		b.id_prestador = c.id_prestador
+        and		c.id_categoria = d.id_categoria ", FALSE);
+    }
 }
 ?>
