@@ -19,13 +19,6 @@ class ServicoDB extends CI_Model {
         );
     }
 
-    public function get_prestadores() {
-        $this->db->select('nome');    
-        $this->db->from('pessoa_fisica');
-        $this->db->join('prestador', 'pessoa_fisica.id_pessoa_fisica = prestador.id_pessoa');
-        return $this->db->get();
-    }
-
     public function inserir_servico($arrServico) {
         $this->db->insert(
             'servico',

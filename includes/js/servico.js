@@ -11,12 +11,10 @@ app.controller("controllerServico", function($scope, $http) {
 
         $scope.id_servico = null;
         $scope.id_categoria = null;
-        $scope.id_prestador = null;
         $scope.is_alterar = false;
 
         $scope.getServicos();
         $scope.getCategorias();
-        $scope.getPrestadores();
     };
 
     $scope.getServicos = function() {
@@ -37,26 +35,21 @@ app.controller("controllerServico", function($scope, $http) {
         });
     }
 
-    $scope.getPrestadores = function() {
-        $http.post(
-            '../Servico/getPrestadores'
-        ).success(function (data) {
-            $scope.arrListaPrestador = data;
-            $scope.cancelar();
-        });
-    };
+    $scope.salvarServico = function() { 
 
-    $scope.salvarServico = function() {
-
-        if ($scope.descricao) {
-
+        if ($scope.informacoesValidas()) {
+            alert("Válidas");
+        } else {
+            alert("Inválidas");
+            return;
         }
-        
+
         var arrServicoSalvar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
-            'id_categoria' : $scope.categoriaSelected['id_categoria'],
-            'id_prestador' : $scope.prestadorSelected['id_prestador'],
+            'id_categoria' : $scope.categoriaSelected['id_categoria']
+            // TODO: Pegar o id do prestador que vai estar logado
+            // 'id_prestador' : $scope.prestadorSelected['id_prestador'],
         }
 
         $http.post(
@@ -68,12 +61,21 @@ app.controller("controllerServico", function($scope, $http) {
         });
     };
 
+    $scope.informacoesValidas = function() {
+        
+        // TODO: Fazer verificação da categoria selecionada
+        if ($scope.descricao === null || $scope.valor === null ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.alterarServico = function() {
         var arrServicoAtualizar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
-            'id_categoria' : $scope.categoriaSelected['id_categoria'],
-            'id_prestador' : $scope.prestadorSelected['id_prestador']
+            'id_categoria' : $scope.categoriaSelected['id_categoria']
         }
 
         $http.post(
@@ -106,7 +108,7 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.descricao = null;
         $scope.valor = null;
         $scope.id_categoria = null;
-        $scope.id_prestador = null;
+        $scope.categoriaSelected = null;
     };
 
     $scope.carregarAlterar = function(servico) {
@@ -115,7 +117,6 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.descricao = servico.descricao;
         $scope.valor = servico.valor;
         $scope.categoriaSelected = {"id_categoria" : servico.id_categoria  };
-        $scope.prestadorSelected = {"id_prestador" : servico.id_prestador };
     };
 
     $scope.carregarExcluir = function(servico) {

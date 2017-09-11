@@ -24,12 +24,6 @@ class Servico extends CI_Controller {
         echo json_encode($listar);
     }
 
-    public function getPrestadores() {
-        $listar = $this->ServicoDB->get_prestadores()->result_array();
-
-        echo json_encode($listar);
-    }
-
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
@@ -37,13 +31,13 @@ class Servico extends CI_Controller {
         $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
+        // $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
         
         unset($dados['id_servico']);
         unset($dados['descricao']);
         unset($dados['valor']);
         unset($dados['id_categoria']);
-        unset($dados['id_prestador']);
+        // unset($dados['id_prestador']);
 
         $this->ServicoDB->inserir_servico($dados);        
     
@@ -57,13 +51,11 @@ class Servico extends CI_Controller {
         $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
         
         unset($dados['id_servico']);
         unset($dados['descricao']);
         unset($dados['valor']);
         unset($dados['id_categoria']);
-        unset($dados['id_prestador']);
 
         $this->ServicoDB->alterar_servico($dados, $id_servico);
 

@@ -10,86 +10,103 @@
     <body ng-app="appAngular" ng-controller="controllerServico" >
         
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" ng-model="descricao" class="form-control" id="descricao" placeholder="Descrição"/>
+
+            <form class="form-group" name="form_servico">
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                <input type="text" ng-model="descricao" class="form-control" id="descricao"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="valor">Valor:</label>
-                            <input type="text" ng-model="valor" class="form-control" id="valor" placeholder="Valor" />
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="categoria">Categoria:</label>
+                                <select 
+                                    ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
+                                    ng-model="categoriaSelected"
+                                    name="categoria"
+                                    id="categoria"
+                                    class="form-control"
+                                >
+                                    <option value="">Selecione uma categoria...</option>
+                                </select>
+
+                                <br>
+
+                                <button class="btn btn-link btn-xs"> Não encontrei minha categoria </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="categoria">Categoria:</label>
-                            <select 
-                                ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
-                                ng-model="categoriaSelected"
-                                name="categoria"
-                                id="categoria"
-                                class="form-control"
-                            >
-                                <<option value="">Selecione uma categoria...</option>
-                            </select>
+                <!-- <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="prestador">Prestador:</label>
+                                <select 
+                                    ng-options="listaPrestador.nome for listaPrestador in arrListaPrestador"
+                                    ng-model="prestadorSelected"
+                                    name="prestador"
+                                    id="prestador"
+                                    class="form-control"
+                                >
+                                    <<option value="">Selecione um prestador...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="valor">Valor (em %):</label>
+                                <input type="number" ng-model="valor" class="form-control" id="valor"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="prestador">Prestador:</label>
-                            <select 
-                                ng-options="listaPrestador.nome for listaPrestador in arrListaPrestador"
-                                ng-model="prestadorSelected"
-                                name="prestador"
-                                id="prestador"
-                                class="form-control"
-                            >
-                                <<option value="">Selecione um prestador...</option>
-                            </select>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="detalhe">Detalhes do Serviço:</label>
+                                <textarea style="resize: none;" class="form-control" ng-model="detalhe" name="detalhe" id="detalhe" cols="30" rows="10"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4 col-md-offset-5">
-                    <div class="col-sm-12 col-md-6">
-                        <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
-                            Salvar
-                        </button>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-5">
+                        <div class="col-sm-12 col-md-6">
+                            <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
+                                Salvar
+                            </button>
 
-                        <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
-                            Alterar
-                        </button>
+                            <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
+                                Alterar
+                            </button>
 
-                        <button type="button" ng-click="cancelar()" class="btn btn-danger">
-                            Cancelar
-                        </button>
+                            <button type="button" ng-click="cancelar()" class="btn btn-danger">
+                                Cancelar
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
             <br>
-        </div> <!-- Fim da container do princical do bootstrap -->
+        </div> <!-- Fim da container do principal do bootstrap -->
 
         <table class="table table-stripped">
             <tr>
