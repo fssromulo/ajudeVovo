@@ -7,9 +7,15 @@ var app =  angular.module(
 
 app.controller("controllerAngular", function($scope, $http){
 
-	$scope.__construct = function() {
+	$scope.__construct = () => {
 		$scope.getServicos();
 	};
+
+	$scope.goToDetail = () => {
+		$http.post(
+			'../ConsultaServicoCliente/goToDetail'
+		);
+	}
 
 	$scope.getServicos = function() {
 		$http.post(
@@ -19,7 +25,7 @@ app.controller("controllerAngular", function($scope, $http){
 		});
 	}
 
-	angular.element(document).ready(function () {
+	angular.element(document).ready(() => {
 		$scope.__construct();	
 	});
 });

@@ -8,9 +8,13 @@ class ConsultaServicoCliente extends CI_Controller {
 		$this->load->model('ServicoDB');		
 	}
 
-	public function index()
-	{
+	public function index(){
 		$this->load->view('ConsultaServicoCliente');
+	}
+
+	public function goToDetail() {
+		$this->load->helper('url');
+		redirect('localhost/ajudeVovo/DetalheServico');
 	}
 
 	public function getServicosCliente() {

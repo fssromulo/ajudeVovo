@@ -1,0 +1,85 @@
+/*
+* Start Bootstrap - Heroic Features (http://startbootstrap.com/)
+* Copyright 2013-2016 Start Bootstrap
+* Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+*/
+
+.hero-spacer {
+    margin-top: 50px;
+}
+
+.hero-feature {
+    margin-bottom: 30px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+header h1 {
+    font-size: 32px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.header-image {
+    display: block;
+    text-align: center;
+    background: url('../imagens/background.png') no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.headline {
+    padding: 120px 0;
+}
+
+.novas-cards {
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.novas-fotos {
+    object-fit: contain;
+    /*
+    border-radius: 100px;
+    */
+}
+
+.novo-botao_contratar {
+    border-radius: 7px;
+    background-color: #1889ff;
+    box-shadow: 0 5px 15px 0 rgba(24, 137, 255, 0.45);
+}
+
+.stars-5 {
+    width: 68px;
+    height: 9px;
+    object-fit: contain;
+}
+
+.pessoas-atendidas {
+    font-size: 10px;
+    text-align: right;
+    color: #a3a3a3;
+}
+
+.btn-contratar {
+    border-radius: 7px;
+    background-color: #1889ff;
+    box-shadow: 0 5px 15px 0 rgba(24, 137, 255, 0.45);
+}
+
+.price {
+    font-family: Roboto;
+    font-size: 28px;
+    color: #1889ff;
+}
+
+.navbar{
+    display:none !important;	
+}
