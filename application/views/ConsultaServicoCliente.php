@@ -10,95 +10,7 @@
 	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>
-	
-	<style>
-	/*
-	* Start Bootstrap - Heroic Features (http://startbootstrap.com/)
-	* Copyright 2013-2016 Start Bootstrap
-	* Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
-	*/
-
-	.hero-spacer {
-		margin-top: 50px;
-	}
-
-	.hero-feature {
-		margin-bottom: 30px;
-	}
-
-	footer {
-		margin: 50px 0;
-	}
-
-	header h1 {
-		font-size: 32px;
-		line-height: 1.5;
-		color: #000000;
-	}
-
-	.header-image {
-		display: block;
-		text-align: center;
-		background: url('../imagens/background.png') no-repeat center center scroll;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		background-size: cover;
-		-o-background-size: cover;
-	}
-
-	.headline {
-		padding: 120px 0;
-	}
-
-	.novas-cards {
-		border-radius: 10px;
-		background-color: #ffffff;
-		text-align: center;
-		box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
-	}
-
-	.novas-fotos {
-		object-fit: contain;
-		/*
-		border-radius: 100px;
-		*/
-	}
-
-	.novo-botao_contratar {
-		border-radius: 7px;
-		background-color: #1889ff;
-		box-shadow: 0 5px 15px 0 rgba(24, 137, 255, 0.45);
-	}
-
-	.stars-5 {
-		width: 68px;
-		height: 9px;
-		object-fit: contain;
-	}
-
-	.pessoas-atendidas {
-	font-size: 10px;
-	text-align: right;
-	color: #a3a3a3;
-	
-	}
-
-	.btn-contratar {
-	border-radius: 7px;
-	background-color: #1889ff;
-	box-shadow: 0 5px 15px 0 rgba(24, 137, 255, 0.45);
-	}
-
-	.price {
-	font-family: Roboto;
-	font-size: 28px;
-	color: #1889ff;
-	}
-
-	.navbar{
-	display:none !important;	
-	}
-	</style>
+	<link rel="stylesheet" href="../includes/css/hero.css">
 </head>
 
 <body ng-app="appAngular" ng-controller="controllerAngular">
@@ -129,6 +41,8 @@
 						<input
 							type="text" 
 							ng-model="pesquisa" 
+							id="pesquisa" 
+							name="pesquisa" 
 							class="form-control" 
 							id="contratante" 
 							placeholder="Insira o nome do serviço ou categoria desejada...">
@@ -147,15 +61,11 @@
 					<p>{{servico.nm_prestador}}</p>
 					<div>
 						<input
-								id="nota"
-								name="nota" 
-								class="kv-fa-heart rating-loading"
-								data-min="0" 
-								data-max="5" 
-								data-step="1" 
-								data-size="xs"
-								value="3"
-								ng-model="nota">
+							 class="kv-fa-heart rating-loading"
+							 data-min="0" 
+							 data-max="5" 
+							 data-step="1" 
+							 data-size="xs">
 						<p class="pessoas-atendidas pull-right">{{servico.qt_servico}} pessoas atendidas</p>
 					</div>
 					<br>
@@ -165,9 +75,10 @@
 					</p>
 					<p class="price">R$ {{servico.valor}}</p>
 					<p>
-						<a 
-						href="detalhe_servico.php" 
-						class="btn btn-primary btn-contratar">Mais informações</a>
+						<button 
+							ng-click="goToDetail()"
+							class="btn btn-primary btn-contratar">Mais informações
+						</button>
 					</p>
 				</div>
 			</div>
