@@ -17,7 +17,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="descricao">Descrição:</label>
-                                <input type="text" ng-model="descricao" class="form-control" id="descricao"/>
+                                <input type="text" ng-model="descricao" class="form-control" id="descricao" required/>
                             </div>
                         </div>
                     </div>
@@ -34,6 +34,7 @@
                                     name="categoria"
                                     id="categoria"
                                     class="form-control"
+                                    required
                                 >
                                     <option value="">Selecione uma categoria...</option>
                                 </select>
@@ -46,31 +47,50 @@
                     </div>
                 </div>
 
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-sm-12 col-md-10 col-md-offset-1">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label for="prestador">Prestador:</label>
-                                <select 
-                                    ng-options="listaPrestador.nome for listaPrestador in arrListaPrestador"
-                                    ng-model="prestadorSelected"
-                                    name="prestador"
-                                    id="prestador"
-                                    class="form-control"
-                                >
-                                    <<option value="">Selecione um prestador...</option>
-                                </select>
+                                <label for="valor">Valor:</label>
+                                <input type="number" ng-model="valor" class="form-control" id="valor" required/>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-10 col-md-offset-1">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label for="valor">Valor (em %):</label>
-                                <input type="number" ng-model="valor" class="form-control" id="valor"/>
+                                <label for="valor">Dia de Atendimento </label>
+                                <select 
+                                    ng-options="listaDiaAtendimento.descricao for listaDiaAtendimento in arrListaDiaHorarioAtendimento"
+                                    ng-model="horarioAtendimentoSelected"
+                                    name="horarioAtendimento"
+                                    id="horarioAtendimento"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option value="">Selecione o dia da semana...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="horaInicio">Horário de Início </label>
+                                <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+
+                                <br>
+
+                                <label for="horaFim">Horário de Fim </label> 
+                                <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
                             </div>
                         </div>
                     </div>
@@ -106,18 +126,20 @@
                 </div>
             </form>
             <br>
-        </div> <!-- Fim da container do principal do bootstrap -->
+        </div> <!-- Fim da container principal do bootstrap -->
 
         <table class="table table-stripped">
             <tr>
                 <th> Codigo </th>
-                <th> Descrição <th>
-                <th> Valor <th>
+                <th> Descrição </th>
+                <th> Valor </th>
+                <th> Detalhe </th>
             </tr>
             <tr ng-repeat="servico in arrListaServico">
                 <td>{{servico.id_servico}}</td>
                 <td>{{servico.descricao}}</td>
                 <td>{{servico.valor}}</td>
+                <td>{{servico.detalhe}}</td>
                 <td>
                     <span style="cursor:pointer;" class="glyphicon glyphicon-edit" ng-click="carregarAlterar(servico)"></span>
                     <span 
@@ -126,7 +148,7 @@
                         data-toggle="modal"
                         data-target="#modal_excluir"
                         ng-click="carregarExcluir(servico)"
-                    ><span>
+                    ></span>
                 </td>
             </tr>
         </table>
@@ -144,8 +166,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
-                        <button type="button" class="btn btn-success" ng-click="excluirServico()">Sim</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -164,6 +186,6 @@
 
         <!-- MY App -->
         <script type="text/javascript" src="../includes/js/servico.js"></script>
-
+    
     </body>
 </html>

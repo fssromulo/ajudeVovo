@@ -24,6 +24,8 @@ class ServicoDB extends CI_Model {
             'servico',
             $arrServico
         );
+
+        return $this->db->insert_id();
     }
 
     public function alterar_servico($arrServicoAlterar, $id_servico) {
@@ -38,6 +40,22 @@ class ServicoDB extends CI_Model {
         $this->db->delete(
             'servico',
             array('id_servico' => $id_servico)
+        );
+    }
+
+    public function inserir_dia_disponivel($arrDiaDisponivel) {
+        $this->db->insert(
+            'dia_disponivel',
+            $arrDiaDisponivel
+        );
+
+        return $this->db->insert_id();
+    }
+
+    public function inserir_horario_disponivel($arrHorarioDisponivel) {
+        $this->db->insert(
+            'horario_disponivel',
+            $arrHorarioDisponivel
         );
     }
 
