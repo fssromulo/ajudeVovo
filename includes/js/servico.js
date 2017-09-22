@@ -12,8 +12,9 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.id_servico = null;
         $scope.id_categoria = null;
         $scope.is_alterar = false;
+        $scope.arrListaAtendimento = [];
 
-        $scope.arrListaDiaHorarioAtendimento = 
+        $scope.arrListaDiaAtendimento = 
 		[
 			{
 				'descricao' : 'Segunda-feira',
@@ -69,8 +70,11 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.salvarServico = function() {
 
-        if (!$scope.informacoesValidas()) {
-            console.log("As informações são inválidas");
+        console.log($scope.temAtendimentoInserido());
+
+        return;
+
+        if ((!$scope.informacoesServicoValidas()) || (!$scope.temAtendimentoInserido())) {
             return;
         }
 
@@ -94,8 +98,8 @@ app.controller("controllerServico", function($scope, $http) {
     $scope.salvarDiaDisponivel = function(id_servico) {
         var arrDiaDisponivelSalvar = {
             'id_servico' : id_servico,
-            'descricao' : $scope.horarioAtendimentoSelected['descricao'],
-            'nr_dia' : $scope.horarioAtendimentoSelected['nr_dia']
+            'descricao' : $scope.diaAtendimentoSelected['descricao'],
+            'nr_dia' : $scope.diaAtendimentoSelected['nr_dia']
         }
 
         $http.post(
@@ -107,14 +111,10 @@ app.controller("controllerServico", function($scope, $http) {
     };
 
     $scope.salvarHorarioDisponivel = function (id_diaDisponivel) {
-        
-        var horarioInicio = $scope.horario_inicio.getHours() + ":" + $scope.horario_inicio.getMinutes();
-        var horarioFim = $scope.horario_fim.getHours() + ":" + $scope.horario_fim.getMinutes();
-
         var arrHorarioDisponivel = {
             'id_dia_disponivel' : id_diaDisponivel,
-            'horario_inicio' : horarioInicio,
-            'horario_fim' : horarioFim
+            'horario_inicio' : $scope.formatarHorario($scope.horario_inicio),
+            'horario_fim' : $scope.formatarHorario(horario_fim)
         }
 
         $http.post(
@@ -126,25 +126,13 @@ app.controller("controllerServico", function($scope, $http) {
         });
     };
 
-    $scope.informacoesValidas = function() {
-        
-        // TODO: Fazer a verificação de todos os campos
-        if ($scope.descricao === null || $scope.valor === null 
-            || $scope.horarioInicio === null || $scope.horarioFim === null 
-            || $scope.categoriaSelected == undefined
-            || $scope.hora_inicio === null || $scope.hora_fim === null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     $scope.alterarServico = function() {
         var arrServicoAtualizar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
-            'horarioInicio' : $scope.horarioInicio,
-            'horarioFim' : $scope.horarioFim,
+            //TODO Buscar no banco
+            // 'horarioInicio' : $scope.horarioInicio,
+            // 'horarioFim' : $scope.horarioFim,
             'id_categoria' : $scope.categoriaSelected['id_categoria']
         }
 
@@ -172,15 +160,76 @@ app.controller("controllerServico", function($scope, $http) {
         });
     };
 
+    $scope.adicionarDiaAtendimento = function() {
+
+        if (!$scope.informacoesAtendimentoValidas()) {
+            return false;
+        }
+
+        // TODO: Verificar se o horário de início é maior que o horário de fim
+
+        var arrDiaAtendimento = {
+            'dia': $scope.diaAtendimentoSelected['descricao'],
+            'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
+            'horario_fim': $scope.formatarHorario($scope.horario_fim),
+        }
+
+        $scope.arrListaAtendimento.push(arrDiaAtendimento);
+
+        $scope.limparCamposHorarioAtendimento();
+    };
+
+    $scope.limparCamposHorarioAtendimento = function() {
+        $scope.diaAtendimentoSelected = null;
+        $scope.horario_inicio = null;
+        $scope.horario_fim = null;
+    };
+
+    $scope.removerDiaAtendimento = function(index) {
+        $scope.arrListaAtendimento.splice(index, 1);
+    };
+
+    $scope.informacoesServicoValidas = function() {        
+        if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
+            console.log("As informações do serviço são inválidas");
+            return false;
+        }
+
+        return true;
+    };
+
+    $scope.informacoesAtendimentoValidas = function() {
+        if ($scope.diaAtendimentoSelected == undefined || $scope.horario_inicio == null || $scope.horario_fim == null) {
+            console.log("As informações de atendimento são inválidas");
+            return false;
+        }
+     
+        return true;
+    };
+
+      $scope.temAtendimentoInserido = function() {
+        if ($scope.arrListaAtendimento == 0) {
+            console.log("Nenhuma data de atendimento foi inserida");
+            return false;
+        }
+        
+        return true;
+    };
+
+    $scope.formatarHorario = function(horario) {
+        return (horario.getHours() + ":" + horario.getMinutes());
+    };
+
     $scope.cancelar = function () {
         $scope.is_alterar = false;
         $scope.id_servico = null;
         $scope.descricao = null;
         $scope.valor = null;
         $scope.id_categoria = null;
+        $scope.diaAtendimentoSelected = null;
         $scope.categoriaSelected = null;
-        $scope.horaInicio = null;
-        $scope.horaFim = null;
+        $scope.hora_inicio = null;
+        $scope.hora_fim = null;
         $scope.detalhe = null;
     };
 

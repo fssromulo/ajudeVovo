@@ -64,10 +64,10 @@
                             <div class="form-group">
                                 <label for="valor">Dia de Atendimento </label>
                                 <select 
-                                    ng-options="listaDiaAtendimento.descricao for listaDiaAtendimento in arrListaDiaHorarioAtendimento"
-                                    ng-model="horarioAtendimentoSelected"
-                                    name="horarioAtendimento"
-                                    id="horarioAtendimento"
+                                    ng-options="listaDiaAtendimento.descricao for listaDiaAtendimento in arrListaDiaAtendimento"
+                                    ng-model="diaAtendimentoSelected"
+                                    name="diaAtendimento"
+                                    id="diaAtendimento"
                                     class="form-control"
                                     required
                                 >
@@ -84,13 +84,64 @@
                     <div class="col-sm-12 col-md-10 col-md-offset-1">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <label for="horaInicio">Horário de Início </label>
-                                <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+                                <div class="col-sm-12 col-md-4">
+                                    <label for="horario_inicio">Horário de Início </label>
+                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+                                </div>
 
-                                <br>
+                                <div class="col-sm-12 col-md-4">
+                                    <label for="horario_fim">Horário de Fim </label> 
+                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
+                                </div>
 
-                                <label for="horaFim">Horário de Fim </label> 
-                                <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
+                                <div class="col-sm-12 col-md-4">
+                                    <button type="button" ng-click="adicionarDiaAtendimento()" class="btn btn-primary">
+                                        Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <table class="table table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Dia da Semana
+                                            </th>
+                                            <th>
+                                                Horário Início
+                                            </th>
+                                            <th>
+                                                Horário Fim
+                                            </th>
+                                            <th>
+                                                <!-- Ação para excluir o dia de atendimento -->
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="lista in arrListaAtendimento">
+                                            <td>
+                                                {{lista.dia}}
+                                            </td>
+                                            <td>
+                                                {{lista.horario_inicio}}
+                                            </td>
+                                            <td>
+                                                {{lista.horario_fim}}
+                                            </td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-remove" ng-click="removerDiaAtendimento($index)"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
