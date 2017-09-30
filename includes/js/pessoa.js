@@ -1,11 +1,4 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
-
-app.controller("controllerAngular", function($scope, $http){
+app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.__construct = function() {
 
@@ -13,6 +6,8 @@ app.controller("controllerAngular", function($scope, $http){
 		$scope.id_pessoa_fisica = null;
 		$scope.is_alterar = false;
 		$scope.arrListaPais = [];
+
+		PessoaCartao.setCartao(666);
 
 		// Define array com sexos para listagem
 		$scope.arrListaSexo = 
@@ -27,13 +22,12 @@ app.controller("controllerAngular", function($scope, $http){
 			}
 		];
 
-		$scope.sexoSelected = {		
-			'valor' : 'F'
-		};	
 
+		console.log('GET --- SERVICO --- GET ---');
+		console.log(PessoaCartao.getCartao());
+		console.log('GET --- SERVICO --- GET ---');
 		// Chama metodos que vão preencher algo em tela
 		$scope.getListaPais();
-		$scope.getPessoasVovo();
 	};
 
 	$scope.getListaPais = function() {
@@ -64,9 +58,20 @@ app.controller("controllerAngular", function($scope, $http){
 		});
 	}
 
-
+	$scope.comparaValores = function(valor1, valor2) {
+		return angular.equals(
+			valor1.trim(),
+			valor2.trim()
+		);
+	};
 
 	$scope.salvar = function() {
+
+		// Se as senhas não são iguais, então aborta o envio do formulário
+		if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
+			alert('Senhas não são iguais');
+			return false;
+		}
 
 		var sexo   = $scope.sexoSelected['valor'];
 		var pais   = $scope.paisSelected['id_pais'];
@@ -75,44 +80,88 @@ app.controller("controllerAngular", function($scope, $http){
 
 		var arrPessoaSalvar =
 		{
-			'nome'  : $scope.nome,
-			'dt_nascimento'      : $scope.dt_nascimento,
-			'cpf'       : $scope.cpf,
-			'rg' : $scope.rg,
-			'sexo' : sexo,
-			'pais' : pais,
-			'estado' : estado,
-			'cidade' : cidade,
-			'bairro' : $scope.bairro,
-			'rua' : $scope.rua,
-			'numero' : $scope.numero,
-			'complemento' : $scope.complemento,
-			'fone_residencial' : $scope.fone_residencial,
-			'fone_comercial' : $scope.fone_comercial,
-			'celular' : $scope.celular,
-			'email' : $scope.email,
-			'login' : $scope.login,
-			'senha' : $scope.senha1,
-			'is_alterar' : $scope.is_alterar
+			'is_alterar' : $scope.is_alterar,
+			'arrPessoa'  : {
+				'nome'   : $scope.nome,
+				'cpf'    : $scope.cpf,
+				'sexo' 	 : sexo,
+				'login'  : $scope.login,
+				'senha'  : $scope.senha1,
+				'dt_nascimento' : $scope.dt_nascimento
+			},
+			'arrEndereco' : {
+				'id_cidade'  : cidade,
+				'bairro'  : $scope.bairro,
+				'rua'     : $scope.rua,
+				'numero'  : $scope.nr_rua,
+				'complemento' : $scope.complemento
+			},
+			'arrContatos' : [
+				{
+					'descricao'        : $scope.fone_residencial,
+					'id_tipo_contato'  : 1
+				},
+				{
+					'descricao'        : $scope.fone_comercial,
+					'id_tipo_contato'  : 2
+				},
+				{
+					'descricao'        : $scope.celular,
+					'id_tipo_contato'  : 3
+				},
+				{
+					'descricao'        : $scope.email,
+					'id_tipo_contato'  : 4
+				}
+			],
 		};
 
-		console.log( arrPessoaSalvar );
+		if (($scope.is_ajudante == 1) && ( ($scope.is_contratante == 0) ||
+		  	($scope.is_contratante == undefined) ||
+		  	($scope.is_contratante == null)
+		))
+		{
+			arrPessoaSalvar['is_ajudante'] = true;
 
-		return false;
+		}
+		else
+		if (($scope.is_contratante == 1) && ( ($scope.is_ajudante == 0) ||
+		  	($scope.is_ajudante == undefined) ||
+		  	($scope.is_ajudante == null)
+		))
+		{
+			arrPessoaSalvar['is_contratante'] = true;
+		}
+		else {
+			return false;
+		}
+
 
 		if ( $scope.is_alterar == true ) {
 			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
 		}
 
 	    $http.post(
-	    		'../teste/salvar',
+	    		'../Pessoa/salvar',
 	    		arrPessoaSalvar
 	    	).success(function (data) {
-	    		// console.log(data);
 	    		$scope.arrPessoas = data;
 	    		$scope.cancelar();
 		});
 	};
+
+
+	$scope.verificaAcao = function () {
+	
+		if ($scope.is_contratante == 1)  {
+			$('#myModal').modal('show');
+		}
+
+		if ($scope.is_ajudante == 1) {
+			$scope.salvar();
+		}
+
+	}
 
 	$scope.cancelar = function () {
 		$scope.is_alterar = false;
@@ -145,45 +194,6 @@ app.controller("controllerAngular", function($scope, $http){
 	    		$scope.arrPessoas = data;
 		});
 	};
-
-
-	$scope.getPessoasVovo = function() {
-		$http.post(
-			'../AjudeVovo/getPessoasVovo'
-		).success(function (data) {
-			console.log(data);
-			$scope.arrPessoas = data;
-			$scope.cancelar();
-		});
-
-	}
-
-	$scope.salvarAula = function( pessoa ) {
-
-		var arrPessoaSalvar	= {
-			"nome" : $scope.nome,
-			"cpf" : $scope.cpf,
-			"rg" : $scope.rg,
-			"dt_nascimento" : $scope.dt_nascimento,
-			"sexo" : $scope.sexoSelected['valor'],
-			"is_alterar" : $scope.is_alterar
-		}
-
-
-		if ( $scope.is_alterar == true ) {
-			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
-		}
-
-		$http.post(
-			'../AjudeVovo/salvar',
-			arrPessoaSalvar
-		).success(function (data) {
-			console.log(data);
-			$scope.arrPessoas = data;
-			$scope.cancelar();
-		});
-
-	}
 
 	angular.element(document).ready(function () {
 		$scope.__construct();	
