@@ -13,8 +13,9 @@ class ConsultaServicoCliente extends CI_Controller {
 	}
 
 	public function goToDetail() {
-		$this->load->helper('url');
-		redirect('localhost/ajudeVovo/DetalheServico');
+		redirect(('././ajudeVovo/Avaliacao/'));
+		die('Redirecionando...');
+		$this->load->view('Avaliacao');
 	}
 
 	public function getServicosCliente() {

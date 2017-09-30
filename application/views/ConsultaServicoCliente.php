@@ -29,6 +29,12 @@
 							 data-size="xs"
 							 value="3"
 							 ng-model="nota">
+						<input
+							 class="kv-fa-heart rating-loading"
+							 data-min="0" 
+							 data-max="5" 
+							 data-step="1" 
+							 data-size="xs">
 					</div>
 				</div>
 			</div>
