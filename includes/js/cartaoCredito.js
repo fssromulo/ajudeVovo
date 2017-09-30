@@ -1,19 +1,11 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
-
-app.controller("controllerAngular", function($scope, $http){
+app.controller("ctrlCartaoCredito", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.__construct = function() {
 
 		// Inicializa variaveis
 		$scope.id_cartao = null;
 		$scope.is_alterar = false;
-
-		
+	
 		// Chama metodos que vão preencher algo em tela
 		$scope.getCartaoCredito();
 	};
@@ -24,6 +16,7 @@ app.controller("controllerAngular", function($scope, $http){
 		$scope.nome_titular = null;
 		$scope.numero_cartao = null;
 		$scope.data_validade = null;
+		$('#modalCartaoCredito').modal('toggle');
 	}
 
 	$scope.carregarAlterar = function( cartao ) {
@@ -49,7 +42,7 @@ app.controller("controllerAngular", function($scope, $http){
 	    		'../CartaoCredito/excluir',
 	    		arrCartaoExcluir
 	    	).success(function (data) {
-	    		$('#modal_excluir').modal('toggle');
+	    		$('#modal_excluir').modal('hide');
 	    		$scope.arrCartao = data;
 		});
 	};
@@ -70,27 +63,12 @@ app.controller("controllerAngular", function($scope, $http){
 		var arrCartaoSalvar	= {
 			"nome_titular" : $scope.nome_titular,
 			"numero_cartao" : $scope.numero_cartao,
-			"data_validade" : $scope.data_validade,
+			"dt_validade" : $scope.dt_validade,
 			"is_alterar" : $scope.is_alterar
 		}
 
-		
-
-		if ( $scope.is_alterar == true ) {
-			arrCartaoSalvar['id_cartao'] = $scope.id_cartao;
-		}
-
-		$http.post(
-			'../CartaoCredito/salvar',
-			arrCartaoSalvar
-		).success(function (data) {
-			console.log(data);
-			$scope.arrCartao = data;
-			$scope.cancelar();
-		});
-
+		PessoaCartao.setCartao( arrCartaoSalvar );
 	}
-
 
 	angular.element(document).ready(function () {
 		$scope.__construct();	

@@ -54,7 +54,7 @@
             </form>
 
             <br>
-        </div> <!-- Fim da container do princical do bootstrap -->
+        </div> <!-- Fim da container principal do bootstrap -->
 
         <table class="table table-stripped">
             <tr>

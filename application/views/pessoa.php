@@ -7,10 +7,16 @@
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
 </head>
 
-<body ng-app="appAngular" ng-controller="controllerAngular" >
-		<div class="container-fluid">
+<body ng-app="appAngular" ng-controller="ctrlPessoa" >
+		<!-- <div class="container-fluid"> -->
 		 	<div class="row">
-				<div class="col-sm-12 col-md-10 col-md-offset-1">
+		 		
+		 		<div >
+		   	</div>
+		 		<input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
+		 		<input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
+
+				<div class="col-sm-12 col-md-6 col-md-offset-1">
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="nome">Nome:</label>
@@ -26,25 +32,13 @@
 		   	</div>
 	   	</div>
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="col-sm-12 col-md-6">
-						<div class="form-group">
-							<label for="rg">RG:</label>
-							<input type="text" ng-model="rg" class="form-control" id="rg" placeholder="rg" />
-						</div>
-		   		</div>
-		   		
+				<div class="col-md-6 col-md-offset-1">		   		
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="cpf">CPF:</label>
 							<input type="text" ng-model="cpf" class="form-control" id="cpf" placeholder="cpf" />
 						</div>
 		   		</div>
-		   	</div>
-		   </div>
-
-			<div class="row">
-				<div class="row col-md-10 col-md-offset-1">
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="sexo">Sexo:</label>
@@ -55,10 +49,17 @@
 								id="sexo"
 								class="form-control"
 							>
-								<option value="">Selecione um sexo...</option>
+								<option value="" selected>Selecione um sexo...</option>
 							</select>
 						</div>
 		   		</div>
+		   		
+		   	</div>
+		   </div>
+
+			<div class="row">
+				<div class="row col-md-10 col-md-offset-1">
+
 		   	</div>
 	   	</div>
 
@@ -249,11 +250,11 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-5">
 					<div class="col-sm-12 col-md-6">
-						<button type="submit" ng-click="salvar()" class="btn btn-success" ng-show="!is_alterar">
+						<button type="submit" ng-click="verificaAcao()" class="btn btn-success" ng-show="!is_alterar">
 							Salvar
 						</button>
 
-						<button type="submit" ng-click="salvar()" class="btn btn-success" ng-show="is_alterar">
+						<button type="submit" ng-click="verificaAcao()" class="btn btn-success" ng-show="is_alterar">
 							Alterar
 						</button>
 
@@ -265,7 +266,31 @@
 			</div>
 
 			<br/>
-   	</div> <!-- Fim da container do princical do bootstrap -- >
+
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCartaoCredito">
+			  Cadastro dos dados do cartão
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="modalCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="modalCartaoCreditoLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="modalCartaoCreditoLabel">Cadastro dos dados do cartão</h4>
+			      </div>
+			      <div class="modal-body" >
+			      	<!-- <div ng-include="'../CartaoCredito/'" ></div> -->
+			      	<?php
+			      		$this->load->view('cartaoCredito.php');
+			      	?>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+   	<!-- </div> --> <!-- Fim da container do princical do bootstrap -- >
 <!-- 
 			<table class="responsive-table">
   				<tr>
@@ -319,6 +344,11 @@
 	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
 
 	<!-- MY App -->
-	<script type="text/javascript" src="../includes/js/app.js"></script>
+	<script type="text/javascript" src="../includes/js/PessoaCartaoCredito.js?<?php echo date('YmdHis');?>"></script>
+	<script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
+	<script type="text/javascript" src="../includes/js/pessoa.js?<?php echo date('YmdHis');?>"></script>
+	
+	<!-- MY App -->
+	<!-- <script type="text/javascript" src="../includes/js/PessoaCartaoCredito.js?<?php echo date('YmdHis');?>"></script> -->
 </body>
 </html>

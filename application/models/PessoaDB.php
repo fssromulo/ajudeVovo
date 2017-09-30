@@ -8,36 +8,59 @@ class PessoaDB extends CI_Model{
 		parent::__construct();
 	}
 
-	public function get_pessoas() {
+	public function getPessoasFisica() {
  		return $this->db->get(
- 			'pessoas'
+ 			'pessoa_fisica'
  		);
   	}
 
-	public function inserir_pessoa($arrPessoa) {
+	public function inserirPessoa($arrPessoa) {
  		$this->db->insert(
- 			'pessoas',
+ 			'pessoa_fisica',
  			$arrPessoa
  		);
+
+ 		return $this->db->insert_id();
   	}
 
-	public function alterar_pessoa( $arrPessoaAlterar, $cd_pessoa ) {
+	public function alterarPessoa( $arrPessoaAlterar, $id_pessoa_fisica ) {
 		$this->db->update(
-			'pessoas', // NOME DA TABELA QUE RECEBERÁ O UPDATE
+			'pessoa_fisica', // NOME DA TABELA QUE RECEBERÁ O UPDATE
 			$arrPessoaAlterar, // Array apenas com os dados que vao no SET do UPDATE
 			array(
-				'cd_pessoa' => $cd_pessoa // CONDICOES QUE IRÃO NO WHERE 
+				'id_pessoa_fisica' => $id_pessoa_fisica // CONDICOES QUE IRÃO NO WHERE 
+			)
+		);
+
+  	}
+
+	public function excluirPessoa( $id_pessoa_fisica ) {
+		$this->db->delete(
+			'pessoa_fisica', // NOME DA TABELA QUE RECEBERÁ O DELETE
+			array(
+				'id_pessoa_fisica' => $id_pessoa_fisica // CONDICOES QUE IRÃO NO WHERE 
 			)
 		);
   	}
 
-	public function excluir_pessoa( $cd_pessoa ) {
-		$this->db->delete(
-			'pessoas', // NOME DA TABELA QUE RECEBERÁ O DELETE
-			array(
-				'cd_pessoa' => $cd_pessoa // CONDICOES QUE IRÃO NO WHERE 
-			)
-		);
+	public function inserirPerfilPessoa($arrDados) {
+ 		
+ 		if (isset($arrDados['is_contratante']) == true) {
+ 			unset($arrDados['is_contratante']);
+	 		$this->db->insert(
+	 			'contratante',
+	 			$arrDados
+	 		);
+	 	} 		
+
+ 		if (isset($arrDados['is_ajudante']) == true) {
+ 			unset($arrDados['is_ajudante']);
+	 		$this->db->insert(
+	 			'prestador',
+	 			$arrDados
+	 		);
+	 	}
+
   	}
 
 

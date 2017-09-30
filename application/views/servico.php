@@ -10,97 +10,187 @@
     <body ng-app="appAngular" ng-controller="controllerServico" >
         
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" ng-model="descricao" class="form-control" id="descricao" placeholder="Descrição"/>
+
+            <form class="form-group" name="form_servico">
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="descricao">Descrição:</label>
+                                <input type="text" ng-model="descricao" class="form-control" id="descricao" required/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="valor">Valor:</label>
-                            <input type="text" ng-model="valor" class="form-control" id="valor" placeholder="Valor" />
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="categoria">Categoria:</label>
+                                <select 
+                                    ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
+                                    ng-model="categoriaSelected"
+                                    name="categoria"
+                                    id="categoria"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option value="">Selecione uma categoria...</option>
+                                </select>
+
+                                <br>
+
+                                <button class="btn btn-link btn-xs"> Não encontrei minha categoria </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="categoria">Categoria:</label>
-                            <select 
-                                ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
-                                ng-model="categoriaSelected"
-                                name="categoria"
-                                id="categoria"
-                                class="form-control"
-                            >
-                                <<option value="">Selecione uma categoria...</option>
-                            </select>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="valor">Valor:</label>
+                                <input type="number" ng-model="valor" class="form-control" id="valor" required/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="prestador">Prestador:</label>
-                            <select 
-                                ng-options="listaPrestador.nome for listaPrestador in arrListaPrestador"
-                                ng-model="prestadorSelected"
-                                name="prestador"
-                                id="prestador"
-                                class="form-control"
-                            >
-                                <<option value="">Selecione um prestador...</option>
-                            </select>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="valor">Dia de Atendimento </label>
+                                <select 
+                                    ng-options="listaDiaAtendimento.descricao for listaDiaAtendimento in arrListaDiaAtendimento"
+                                    ng-model="diaAtendimentoSelected"
+                                    name="diaAtendimento"
+                                    id="diaAtendimento"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option value="">Selecione o dia da semana...</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4 col-md-offset-5">
-                    <div class="col-sm-12 col-md-6">
-                        <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
-                            Salvar
-                        </button>
+                <div>
 
-                        <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
-                            Alterar
-                        </button>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-4">
+                                    <label for="horario_inicio">Horário de Início </label>
+                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+                                </div>
 
-                        <button type="button" ng-click="cancelar()" class="btn btn-danger">
-                            Cancelar
-                        </button>
+                                <div class="col-sm-12 col-md-4">
+                                    <label for="horario_fim">Horário de Fim </label> 
+                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
+                                </div>
+
+                                <div class="col-sm-12 col-md-4">
+                                    <button type="button" ng-click="adicionarDiaAtendimento()" class="btn btn-primary">
+                                        Adicionar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <table class="table table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Dia da Semana
+                                            </th>
+                                            <th>
+                                                Horário Início
+                                            </th>
+                                            <th>
+                                                Horário Fim
+                                            </th>
+                                            <th>
+                                                <!-- Ação para excluir o dia de atendimento -->
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="lista in arrListaAtendimento">
+                                            <td>
+                                                {{lista.dia}}
+                                            </td>
+                                            <td>
+                                                {{lista.horario_inicio}}
+                                            </td>
+                                            <td>
+                                                {{lista.horario_fim}}
+                                            </td>
+                                            <td>
+                                                <span class="glyphicon glyphicon-remove" ng-click="removerDiaAtendimento($index)"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="detalhe">Detalhes do Serviço:</label>
+                                <textarea style="resize: none;" class="form-control" ng-model="detalhe" name="detalhe" id="detalhe" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-5">
+                        <div class="col-sm-12 col-md-6">
+                            <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
+                                Salvar
+                            </button>
+
+                            <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
+                                Alterar
+                            </button>
+
+                            <button type="button" ng-click="cancelar()" class="btn btn-danger">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
             <br>
-        </div> <!-- Fim da container do princical do bootstrap -->
+        </div> <!-- Fim da container principal do bootstrap -->
 
         <table class="table table-stripped">
             <tr>
                 <th> Codigo </th>
-                <th> Descrição <th>
-                <th> Valor <th>
+                <th> Descrição </th>
+                <th> Valor </th>
+                <th> Detalhe </th>
             </tr>
             <tr ng-repeat="servico in arrListaServico">
                 <td>{{servico.id_servico}}</td>
                 <td>{{servico.descricao}}</td>
                 <td>{{servico.valor}}</td>
+                <td>{{servico.detalhe}}</td>
                 <td>
                     <span style="cursor:pointer;" class="glyphicon glyphicon-edit" ng-click="carregarAlterar(servico)"></span>
                     <span 
@@ -109,7 +199,7 @@
                         data-toggle="modal"
                         data-target="#modal_excluir"
                         ng-click="carregarExcluir(servico)"
-                    ><span>
+                    ></span>
                 </td>
             </tr>
         </table>
@@ -127,8 +217,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
-                        <button type="button" class="btn btn-success" ng-click="excluirServico()">Sim</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -147,6 +237,6 @@
 
         <!-- MY App -->
         <script type="text/javascript" src="../includes/js/servico.js"></script>
-
+    
     </body>
 </html>
