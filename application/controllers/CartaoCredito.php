@@ -6,10 +6,7 @@ class CartaoCredito extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('CartaoCreditoDB');
-
-		
-		
+		$this->load->model('CartaoCreditoDB');	
 	}
 
 	public function index()
