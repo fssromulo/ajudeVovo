@@ -59,6 +59,12 @@ class ServicoDB extends CI_Model {
         );
     }
 
+    public function buscarHorariosServico($id_servico) {
+        $this->db->select(
+            
+        );
+    }
+
     public function get_servicos_cliente() {
         return $this->db->query("
         select	d.descricao ds_categoria, 

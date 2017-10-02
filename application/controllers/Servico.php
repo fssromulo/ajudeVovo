@@ -87,4 +87,16 @@ class Servico extends CI_Controller {
 
         $this->getServicos();
     }
+
+    public function buscarHorariosServico() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $id_servico = $dados['id_servico'];
+
+        (array)$horariosDoServico = $this->ServicoDB->buscarHorariosServico(
+            $id_servico
+        );
+
+        echo($horariosDoServico);
+    }
 }

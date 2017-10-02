@@ -70,8 +70,6 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.salvarServico = function() {
 
-        console.log($scope.temAtendimentoInserido());
-
         return;
 
         if ((!$scope.informacoesServicoValidas()) || (!$scope.temAtendimentoInserido())) {
@@ -114,7 +112,7 @@ app.controller("controllerServico", function($scope, $http) {
         var arrHorarioDisponivel = {
             'id_dia_disponivel' : id_diaDisponivel,
             'horario_inicio' : $scope.formatarHorario($scope.horario_inicio),
-            'horario_fim' : $scope.formatarHorario(horario_fim)
+            'horario_fim' : $scope.formatarHorario($scope.horario_fim)
         }
 
         $http.post(
@@ -130,7 +128,7 @@ app.controller("controllerServico", function($scope, $http) {
         var arrServicoAtualizar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
-            //TODO Buscar no banco
+            //TODO 
             // 'horarioInicio' : $scope.horarioInicio,
             // 'horarioFim' : $scope.horarioFim,
             'id_categoria' : $scope.categoriaSelected['id_categoria']
@@ -160,13 +158,27 @@ app.controller("controllerServico", function($scope, $http) {
         });
     };
 
-    $scope.adicionarDiaAtendimento = function() {
+    $scope.informacoesServicoValidas = function() {        
+        if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
+            console.log("As informações do serviço são inválidas");
+            return false;
+        }
 
+        return true;
+    };
+
+    $scope.adicionarDiaAtendimento = function() {
         if (!$scope.informacoesAtendimentoValidas()) {
             return false;
         }
 
-        // TODO: Verificar se o horário de início é maior que o horário de fim
+        if (!$scope.horarioInicioMenorQueHorarioFim()) {
+            return false;
+        }
+
+        // if (!$scope.horarioConflitante()) {
+        //     return false;
+        // }
 
         var arrDiaAtendimento = {
             'dia': $scope.diaAtendimentoSelected['descricao'],
@@ -179,6 +191,31 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.limparCamposHorarioAtendimento();
     };
 
+    $scope.horarioConflitante = function(arrListaAtendimento) {
+        //TODO: Varrer a lista arrListaAtendimento e fazer a verificação do range de horários
+    };
+
+    $scope.horarioInicioMenorQueHorarioFim = function() {
+        var horaInicio = $scope.horario_inicio.getHours();
+        var minutoInicio = $scope.horario_inicio.getMinutes();
+
+        var horaFim = $scope.horario_fim.getHours();
+        var minutoFim = $scope.horario_fim.getMinutes();
+
+
+        if (horaInicio > horaFim) {
+            console.log("O horário de início é menor do que o horário de fim do atendimento");
+            return false;
+        }
+
+        if ((horaInicio == horaFim) && (minutoInicio > minutoFim)) {
+            console.log("O horário de início é menor do que o horário de fim do atendimento");
+            return false;
+        }
+
+        return true;
+    };
+
     $scope.limparCamposHorarioAtendimento = function() {
         $scope.diaAtendimentoSelected = null;
         $scope.horario_inicio = null;
@@ -187,15 +224,6 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.removerDiaAtendimento = function(index) {
         $scope.arrListaAtendimento.splice(index, 1);
-    };
-
-    $scope.informacoesServicoValidas = function() {        
-        if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
-            console.log("As informações do serviço são inválidas");
-            return false;
-        }
-
-        return true;
     };
 
     $scope.informacoesAtendimentoValidas = function() {
@@ -234,6 +262,7 @@ app.controller("controllerServico", function($scope, $http) {
     };
 
     $scope.carregarAlterar = function(servico) {
+        //TODO Buscar os horários do banco
         $scope.is_alterar = true;
         $scope.servico = servico.id_servico;
         $scope.descricao = servico.descricao;
