@@ -2,12 +2,14 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.__construct = function() {
 
+		$("#dt_nascimento").mask("99/99/9999",  {placeholder:"_"});
+		$("#cpf").mask("999.999.999-99",  {placeholder:"_"});
+		$(".cls-mascara-fone").mask("(99)9999-99999",  {placeholder:"_"});
+
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
 		$scope.is_alterar = false;
 		$scope.arrListaPais = [];
-
-		PessoaCartao.setCartao(666);
 
 		// Define array com sexos para listagem
 		$scope.arrListaSexo = 
@@ -23,9 +25,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		];
 
 
-		console.log('GET --- SERVICO --- GET ---');
-		console.log(PessoaCartao.getCartao());
-		console.log('GET --- SERVICO --- GET ---');
+
+
+
 		// Chama metodos que vão preencher algo em tela
 		$scope.getListaPais();
 	};
@@ -65,7 +67,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		);
 	};
 
-	$scope.salvar = function() {
+	$scope.prepareToSalvar = function() {
 
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
@@ -77,6 +79,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		var pais   = $scope.paisSelected['id_pais'];
 		var estado = $scope.estadoSelected['id_estado'];
 		var cidade = $scope.cidadeSelected['id_cidade'];
+
+		// var arrPessoaSalvar = { 
+		// 	'arrCartao' : PessoaCartao.getCartao()
+		// };
 
 		var arrPessoaSalvar =
 		{
@@ -122,6 +128,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		))
 		{
 			arrPessoaSalvar['is_ajudante'] = true;
+			PessoaCartao.isAjudante(true);
 
 		}
 		else
@@ -131,36 +138,40 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		))
 		{
 			arrPessoaSalvar['is_contratante'] = true;
+			PessoaCartao.setIsContratante(true);
 		}
 		else {
 			return false;
 		}
 
-
 		if ( $scope.is_alterar == true ) {
 			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
 		}
 
-	    $http.post(
-	    		'../Pessoa/salvar',
-	    		arrPessoaSalvar
-	    	).success(function (data) {
-	    		$scope.arrPessoas = data;
-	    		$scope.cancelar();
-		});
+		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
+		PessoaCartao.salvarPessoaCartao();
+
+
+	 //    $http.post(
+	 //    		'../Pessoa/salvar',
+	 //    		arrPessoaSalvar
+	 //    	).success(function (data) {
+	 //    		$scope.cancelar();
+	    		
+	 //  	// if ($scope.is_contratante == 1) {
+		// 		// 	$scope.salvar();
+		// 		// }	    		
+		// });
 	};
 
 
 	$scope.verificaAcao = function () {
-	
-		if ($scope.is_contratante == 1)  {
-			$('#myModal').modal('show');
+
+		if ($scope.is_ajudante == 1)  {
+			$('#modalCartaoCredito').modal('show');
 		}
 
-		if ($scope.is_ajudante == 1) {
-			$scope.salvar();
-		}
-
+		$scope.prepareToSalvar();
 	}
 
 	$scope.cancelar = function () {

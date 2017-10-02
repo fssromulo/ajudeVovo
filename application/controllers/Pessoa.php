@@ -6,11 +6,14 @@ class Pessoa extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('removeCaracteres');
+		$this->load->helper('formatarDatas');
 
 		$arrModelsImportar = array(
 			'PessoaDB',
 			'ContatoDB',
-			'EnderecoDB'
+			'EnderecoDB',
+			'CartaoCreditoDB'
 		);
 
 		foreach ( $arrModelsImportar as $chave => $modelImportar ) {
@@ -48,13 +51,23 @@ class Pessoa extends CI_Controller {
    	unset( $dados['cd_pessoa'] );
    	unset( $dados['is_alterar'] );
 
+   	// $dados
+
    	$arrPessoa   = $dados['arrPessoa'];
    	$arrPessoa['senha'] =  md5($arrPessoa['senha']);
    	$arrEndereco = $dados['arrEndereco'];
    	$arrContatos = $dados['arrContatos'];
+   	$arrCartaoCredito = $dados['cartaoCredito'];
+   	unset( $arrCartaoCredito['is_alterar'] );
 
+   	// Ajusta os valores para salvar no banco
+   	$arrPessoa['cpf'] = removeCaracteres($arrPessoa['cpf']);
+   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
 
+   	// var_dump($arrPessoa);
 
+   	// die;
+   	
    	if ( !$is_alterar ) {  			
       	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
 
@@ -65,8 +78,19 @@ class Pessoa extends CI_Controller {
 
       	$this->EnderecoDB->inserirEndereco($arrEndereco);
       	
+      	// Salvar dados do cartao da pessoa
+      	if ( !empty($arrCartaoCredito) ) {
+	      	$arrCartaoCredito['id_pessoa'] = $cd_pessoa;
+	      	$this->CartaoCreditoDB->inserir_cartao($arrCartaoCredito);      		
+      	}
+      	
       	foreach ( $arrContatos as $chave => $contato ) {
    			$contato['id_pessoa'] = $cd_pessoa;
+
+   			if ( $contato['id_tipo_contato'] != 4 ) {
+   				$contato['descricao'] = removeCaracteres($contato['descricao']);
+   			}
+
       		$this->ContatoDB->inserirContato($contato);
       	}
      	}

@@ -19,8 +19,6 @@ class CartaoCreditoDB extends CI_Model{
 		return $query = $this->db->get();
   	}
 
-
-
 	public function inserir_cartao($arrCartao) {
  		$this->db->insert(
  			'cartao_credito',
