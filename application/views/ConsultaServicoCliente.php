@@ -19,30 +19,6 @@
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
 				<div class="col-sm-12 col-md-12">
 					<div class="form-group">
-						<input
-							 id="nota"
-							 name="nota" 
-							 class="kv-fa-heart rating-loading"
-							 data-min="0" 
-							 data-max="5" 
-							 data-step="1" 
-							 data-size="xs"
-							 value="3"
-							 ng-model="nota">
-						<input
-							 class="kv-fa-heart rating-loading"
-							 data-min="0" 
-							 data-max="5" 
-							 data-step="1" 
-							 data-size="xs">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12 col-md-10 col-md-offset-1">
-				<div class="col-sm-12 col-md-12">
-					<div class="form-group">
 						<label for="pesquisa">Pesquise:</label>
 						<input
 							type="text" 
@@ -56,8 +32,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-6 hero-feature" ng-repeat="servico in arrServicos | filter:pesquisa ">
-			<div class="thumbnail text-center novas-cards">
+		<div 
+			class="col-md-3 col-sm-6 hero-feature" 
+			ng-repeat="servico in arrServicos | filter:pesquisa " 
+			after-load-services-directive>
+			<div class="thumbnail text-center novas-cards" style="height:600px;">
 				<img 
 					class="novas-fotos" 
 					ng-src="{{servico.url_img_categoria}}" 
@@ -70,7 +49,7 @@
 							 class="kv-fa-heart rating-loading"
 							 data-min="0" 
 							 data-max="5" 
-							 data-step="1" 
+							 value="{{servico.qt_estrela}}"
 							 data-size="xs">
 						<p class="pessoas-atendidas pull-right">{{servico.qt_servico}} pessoas atendidas</p>
 					</div>
@@ -90,20 +69,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script>
-		$(document).on('ready', function () {
-			$('.kv-fa-heart').rating({
-				theme: 'krajee-fa',
-				filledStar: '<i class="fa fa-heart"></i>',
-				emptyStar: '<i class="fa fa-heart-o"></i>',
-				clearCaption: '',
-				starCaptions: {1: ' ', 2: ' ', 3: ' ', 4: ' ', 5: ' '},
-				disabled: true, showClear: false,
-				starCaptionClasses: {1: 'text-info', 2: 'text-info', 3: 'text-info', 4: 'text-info', 5: 'text-info'}
-			});
-		});
-	</script>
 
 	<!-- Angular JS -->
 	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
