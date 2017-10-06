@@ -70,8 +70,6 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.salvarServico = function() {
 
-        return;
-
         if ((!$scope.informacoesServicoValidas()) || (!$scope.temAtendimentoInserido())) {
             return;
         }
@@ -81,43 +79,14 @@ app.controller("controllerServico", function($scope, $http) {
             'valor' : $scope.valor,
             'detalhe' : $scope.detalhe,
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
+            'listaAtendimento': $scope.arrListaAtendimento,
             // TODO: Pegar o id do prestador que vai estar logado
-            'id_prestador' : 1,
+            'id_prestador' : 1
         }
 
         $http.post(
             '../Servico/salvar',
             arrServicoSalvar
-        ).success(function (id_servico) {
-            $scope.salvarDiaDisponivel(id_servico);
-        });
-    };
-
-    $scope.salvarDiaDisponivel = function(id_servico) {
-        var arrDiaDisponivelSalvar = {
-            'id_servico' : id_servico,
-            'descricao' : $scope.diaAtendimentoSelected['descricao'],
-            'nr_dia' : $scope.diaAtendimentoSelected['nr_dia']
-        }
-
-        $http.post(
-            '../Servico/salvarDiaDisponivel', 
-            arrDiaDisponivelSalvar
-        ).success(function (id_diaDisponivel) {
-            $scope.salvarHorarioDisponivel(id_diaDisponivel);
-        });
-    };
-
-    $scope.salvarHorarioDisponivel = function (id_diaDisponivel) {
-        var arrHorarioDisponivel = {
-            'id_dia_disponivel' : id_diaDisponivel,
-            'horario_inicio' : $scope.formatarHorario($scope.horario_inicio),
-            'horario_fim' : $scope.formatarHorario($scope.horario_fim)
-        }
-
-        $http.post(
-            '../Servico/salvarHorarioDisponivel',
-            arrHorarioDisponivel
         ).success(function (data) {
             $scope.arrListaServico = data;
             $scope.cancelar();
@@ -184,6 +153,7 @@ app.controller("controllerServico", function($scope, $http) {
             'dia': $scope.diaAtendimentoSelected['descricao'],
             'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
             'horario_fim': $scope.formatarHorario($scope.horario_fim),
+            'nr_dia' : $scope.diaAtendimentoSelected['nr_dia']
         }
 
         $scope.arrListaAtendimento.push(arrDiaAtendimento);
@@ -259,6 +229,7 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.hora_inicio = null;
         $scope.hora_fim = null;
         $scope.detalhe = null;
+        $scope.arrListaAtendimento = [];
     };
 
     $scope.carregarAlterar = function(servico) {

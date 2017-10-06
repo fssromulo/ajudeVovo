@@ -69,7 +69,6 @@
                                     name="diaAtendimento"
                                     id="diaAtendimento"
                                     class="form-control"
-                                    required
                                 >
                                     <option value="">Selecione o dia da semana...</option>
                                 </select>
@@ -86,12 +85,12 @@
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-4">
                                     <label for="horario_inicio">Horário de Início </label>
-                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control"/>
                                 </div>
 
                                 <div class="col-sm-12 col-md-4">
                                     <label for="horario_fim">Horário de Fim </label> 
-                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
+                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control"/>
                                 </div>
 
                                 <div class="col-sm-12 col-md-4">
