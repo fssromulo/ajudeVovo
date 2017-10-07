@@ -1,9 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Servico extends CI_Controller {
-
-    public function __construct() {
+class ListarServico extends CI_Controller {
+	public function __construct() {
         parent::__construct();
         $this->load->model('ServicoDB');
     }
@@ -12,15 +11,9 @@ class Servico extends CI_Controller {
         $this->load->view('listarServico');
     }
 
-    public function getServicos() {
-        $listar = $this->ServicoDB->get_servicos()->result_array();
+    // public function getServicos() {
+    //     $listar = $this->ServicoDB->get_servicos()->result_array();
 
-        echo json_encode($listar);
-    }
-
-    public function getCategorias() {
-        $listar = $this->ServicoDB->get_categorias()->result_array();
-
-        echo json_encode($listar);
-    }
+    //     echo json_encode($listar);
+    // }
 }

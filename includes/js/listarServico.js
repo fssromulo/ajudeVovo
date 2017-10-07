@@ -7,34 +7,20 @@ var app =  angular.module(
 
 app.controller("controllerListarServico", function($scope, $http) {
 
-    $scope.__construct = function() {   
-        $scope.getServicos();
-        $scope.getCategorias();
-    };
+	$scope.__construct = function() {
+		$scope.getServicos();	
+	};
 
-    $scope.getServicos = function() {
-        $http.post(
-            '../ListarServico/getServicos'
-        ).success(function (data) {
-            $scope.arrListaServico = data;
-            $scope.cancelar();
-        });
-    };
+	// $scope.getServicos = function() {
+ //        $http.post(
+ //            '../ListarServico/getServicos'
+ //        ).success(function (data) {
+ //            $scope.arrListaServico = data;
+ //            $scope.cancelar();
+ //        });
+ //    };
 
-    $scope.getCategorias = function() {
-        $http.post(
-            '../ListarServico/getCategorias'
-        ).success(function (data){
-            $scope.arrListaCategoria = data;
-            $scope.cancelar();
-        });
-    };
-
-    $scope.carregarExcluir = function(servico) {
-        $scope.id_servico = servico.id_servico;
-    };
-
-    angular.element(document).ready(function () {
+	angular.element(document).ready(function () {
 		$scope.__construct();	
 	});
-});
+}
