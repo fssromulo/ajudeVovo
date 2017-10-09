@@ -93,39 +93,39 @@ app.controller("controllerServico", function($scope, $http) {
         });
     };
 
-    $scope.alterarServico = function() {
-        var arrServicoAtualizar = {
-            'descricao' : $scope.descricao,
-            'valor' : $scope.valor,
-            //TODO 
-            // 'horarioInicio' : $scope.horarioInicio,
-            // 'horarioFim' : $scope.horarioFim,
-            'id_categoria' : $scope.categoriaSelected['id_categoria']
-        }
+    // $scope.alterarServico = function() {
+    //     var arrServicoAtualizar = {
+    //         'descricao' : $scope.descricao,
+    //         'valor' : $scope.valor,
+    //         //TODO 
+    //         // 'horarioInicio' : $scope.horarioInicio,
+    //         // 'horarioFim' : $scope.horarioFim,
+    //         'id_categoria' : $scope.categoriaSelected['id_categoria']
+    //     }
 
-        $http.post(
-            '../Servico/alterar',
-            arrServicoAtualizar
-        ).success(function (data) {
-            $scope.arrListaServico = data;
-            $scope.cancelar();
-        });
+    //     $http.post(
+    //         '../Servico/alterar',
+    //         arrServicoAtualizar
+    //     ).success(function (data) {
+    //         $scope.arrListaServico = data;
+    //         $scope.cancelar();
+    //     });
 
-    };
+    // };
 
-    $scope.excluirServico = function() {
-        var arrServicoExcluir = {
-            "id_servico" : $scope.id_servico
-        }
+    // $scope.excluirServico = function() {
+    //     var arrServicoExcluir = {
+    //         "id_servico" : $scope.id_servico
+    //     }
 
-        $http.post(
-            '../Servico/excluir',
-            arrServicoExcluir
-        ).success(function (data) {
-            $('#modal_excluir').modal('toggle');
-            $scope.arrListaServico = data;
-        });
-    };
+    //     $http.post(
+    //         '../Servico/excluir',
+    //         arrServicoExcluir
+    //     ).success(function (data) {
+    //         $('#modal_excluir').modal('toggle');
+    //         $scope.arrListaServico = data;
+    //     });
+    // };
 
     $scope.informacoesServicoValidas = function() {        
         if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
@@ -162,7 +162,7 @@ app.controller("controllerServico", function($scope, $http) {
     };
 
     $scope.horarioConflitante = function(arrListaAtendimento) {
-        //TODO: Varrer a lista arrListaAtendimento e fazer a verificação do range de horários
+        //TODO: Varrer o array arrListaAtendimento e fazer a verificação do range de horários
     };
 
     $scope.horarioInicioMenorQueHorarioFim = function() {
@@ -241,9 +241,13 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.categoriaSelected = {"id_categoria" : servico.id_categoria  };
     };
 
-    $scope.carregarExcluir = function(servico) {
-        $scope.id_servico = servico.id_servico;
-    };
+    // $scope.carregarExcluir = function(servico) {
+    //     $scope.id_servico = servico.id_servico;
+    // };
+
+    $scope.sugerirCategoria = function() {
+        alert("Prioridade baixa: Implementar mais tarde");
+    }
 
     angular.element(document).ready(function () {
 		$scope.__construct();	

@@ -41,7 +41,10 @@
 
                                 <br>
 
-                                <button class="btn btn-link btn-xs"> Não encontrei minha categoria </button>
+                                <button 
+                                    type="button"
+                                    class="btn btn-link btn-xs"
+                                    ng-click="sugerirCategoria()"> Não encontrei minha categoria </button>
                             </div>
                         </div>
                     </div>
@@ -178,7 +181,7 @@
             <br>
         </div> <!-- Fim da container principal do bootstrap -->
 
-        <table class="table table-stripped">
+        <!-- <table class="table table-stripped">
             <tr>
                 <th> Codigo </th>
                 <th> Descrição </th>
@@ -201,7 +204,7 @@
                     ></span>
                 </td>
             </tr>
-        </table>
+        </table> -->
 
         <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
             <div class="modal-dialog" role="document">

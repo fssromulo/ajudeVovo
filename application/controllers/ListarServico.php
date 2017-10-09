@@ -11,9 +11,19 @@ class ListarServico extends CI_Controller {
         $this->load->view('listarServico');
     }
 
-    // public function getServicos() {
-    //     $listar = $this->ServicoDB->get_servicos()->result_array();
+    public function getServicos() {
+        $listar = $this->ServicoDB->get_servicos()->result_array();
 
-    //     echo json_encode($listar);
-    // }
+        echo json_encode($listar);
+    }
+
+    public function excluir() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $id_servico = $dados['id_servico'];
+
+        $this->ServicoDB->excluir_servico($id_servico);
+
+        $this->getServicos();
+    }
 }
