@@ -32,7 +32,8 @@ class Servico extends CI_Controller {
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $detalhe  = isset($dados['detalhe']) ? $dados['detalhe'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
+        // $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
+        $dados['id_prestador'] = $this->session->userdata('id_prestador');
         
         $servico = $this->ServicoDB->inserir_servico($dados);
 

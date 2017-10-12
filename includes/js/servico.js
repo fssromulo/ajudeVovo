@@ -70,10 +70,6 @@ app.controller("controllerServico", function($scope, $http) {
 
     $scope.salvarServico = function() {
 
-        console.log($scope.temAtendimentoInserido());
-
-        return;
-
         if ((!$scope.informacoesServicoValidas()) || (!$scope.temAtendimentoInserido())) {
             return;
         }
@@ -82,9 +78,7 @@ app.controller("controllerServico", function($scope, $http) {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
             'detalhe' : $scope.detalhe,
-            'id_categoria' : $scope.categoriaSelected['id_categoria'],
-            // TODO: Pegar o id do prestador que vai estar logado
-            'id_prestador' : 1,
+            'id_categoria' : $scope.categoriaSelected['id_categoria']
         }
 
         $http.post(

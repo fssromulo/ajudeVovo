@@ -63,10 +63,6 @@ class Pessoa extends CI_Controller {
    	// Ajusta os valores para salvar no banco
    	$arrPessoa['cpf'] = removeCaracteres($arrPessoa['cpf']);
    	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
-
-   	// var_dump($arrPessoa);
-
-   	// die;
    	
    	if ( !$is_alterar ) {  			
       	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
