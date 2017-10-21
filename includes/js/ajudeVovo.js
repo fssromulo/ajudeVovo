@@ -1,11 +1,11 @@
 var app =  angular.module(
-	"appAngular",
+	"fotoApp",
  	[
  		'angular-loading-bar'
  	]
 );
 
-app.controller("controllerAngular", function($scope, $http){
+app.controller("fotoCtrl", function($scope, $http){
 
 	$scope.__construct = function() {
 

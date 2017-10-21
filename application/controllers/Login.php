@@ -60,8 +60,8 @@ class Login extends CI_Controller {
 	   		$arrRetornoPessoa = $this->LoginDB->getLoginContratante( $arrPessoa )->result_array();
 				$arrRetornoPessoa = $arrRetornoPessoa[0];
 
-	   			var_dump( $arrRetornoPessoa );
-	   			die;
+	   			// var_dump( $arrRetornoPessoa );
+	   			// die;
 
 	   		if ( !empty($arrRetornoPessoa) ) {
 					$this->session->set_userdata($arrRetornoPessoa);
@@ -73,8 +73,8 @@ class Login extends CI_Controller {
 	   	break;
   		}
 
-	   var_dump( $arrRetornoPessoa );
-	   die;
+	   // var_dump( $arrRetornoPessoa );
+	   // die;
 
 
    }
