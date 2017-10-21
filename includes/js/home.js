@@ -33,10 +33,10 @@ app.controller("controllerHome", function($scope, $http){
 	    		arrDadosLogin
 	    	).success(function (data) {
 	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'ajudante') {
-	    			location.href = "../ConsultaServicoCliente/";
+	    			location.href = "../ListarServico/";
 	    		}
 	    		
-	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'ajudante') {
+	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'contratante') {
 	    			location.href = "../ConsultaServicoCliente/";
 	    		}
 		});				
