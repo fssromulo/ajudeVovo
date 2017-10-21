@@ -17,6 +17,7 @@ class LoginDB extends CI_Model{
        	return $this->db->query("
 				SELECT
 					pf.id_pessoa_fisica,
+					p.id_prestador,
 					pf.nome,
 					pf.imagem_pessoa,
 					pf.login
@@ -40,6 +41,7 @@ class LoginDB extends CI_Model{
        	return $this->db->query("
 				SELECT
 					pf.id_pessoa_fisica,
+					c.id_contratante,
 					pf.nome,
 					pf.imagem_pessoa,
 					pf.login
