@@ -27,40 +27,49 @@ class Servico extends CI_Controller {
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
+
         $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
         $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $detalhe  = isset($dados['detalhe']) ? $dados['detalhe'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
+        $dados['id_prestador'] = $this->session->userdata('id_prestador');
         
+        $listaAtendimento = isset($dados['listaAtendimento']) ? $dados['listaAtendimento'] : null;
+        unset($dados['listaAtendimento']);
+
         $servico = $this->ServicoDB->inserir_servico($dados);
 
-        echo json_encode($servico);
+        $this->salvarDiaDisponivel($servico, $listaAtendimento);
+
+        return $this->getServicos();
     }
 
-    public function salvarDiaDisponivel() {
-        (array)$dados = json_decode(file_get_contents("php://input"), true);
+    public function salvarDiaDisponivel($id_servico, $listaAtendimento) {
+        foreach ($listaAtendimento as $chave1 => $value) {
+           $arrDiasDisponiveis = array(
+                'id_servico' => $id_servico,
+                'nr_dia' => $value['nr_dia'],
+                'descricao' => $value['dia']
+            )
+            ;
 
-        $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
-        $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
-        $nr_dia = isset($dados['nr_dia']) ? $dados['nr_dia'] : null;
+            
+            $dia = $this->ServicoDB->inserir_dia_disponivel($arrDiasDisponiveis);
+            
+            $arrHorariosDisponiveis = array(
+                'id_dia_disponivel' => $dia ,
+                'horario_inicio' => $value['horario_inicio'], 
+                'horario_fim' => $value['horario_fim']
+            );
 
-        $dia = $this->ServicoDB->inserir_dia_disponivel($dados);
-
-        echo json_encode($dia);
+            $this->salvarHorarioDisponivel($arrHorariosDisponiveis);
+        }
     }
 
-    public function salvarHorarioDisponivel() {
-        (array)$dados = json_decode(file_get_contents("php://input"), true);
+    public function salvarHorarioDisponivel($arrHorariosDisponiveis) {
         
-        $id_dia_disponivel = isset($dados['id_dia_disponivel']) ? $dados['id_dia_disponivel'] : null;
-        $horarioInicio = isset($dados['horario_inicio']) ? $dados['horario_inicio'] : null;
-        $horarioFim = isset($dados['horario_fim']) ? $dados['horario_fim'] : null;
-
-        $this->ServicoDB->inserir_horario_disponivel($dados);
-
-        $this->getServicos();
+        $this->ServicoDB->inserir_horario_disponivel($arrHorariosDisponiveis);
     }
 
     public function alterar() {
@@ -86,5 +95,17 @@ class Servico extends CI_Controller {
         );
 
         $this->getServicos();
+    }
+
+    public function buscarHorariosServico() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $id_servico = $dados['id_servico'];
+
+        (array)$horariosDoServico = $this->ServicoDB->buscarHorariosServico(
+            $id_servico
+        );
+
+        echo($horariosDoServico);
     }
 }

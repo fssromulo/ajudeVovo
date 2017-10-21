@@ -43,7 +43,7 @@
 						<div class="form-group">
 							<label for="sexo">Sexo:</label>
 							<select
-								ng-options="listaSexo.descricao for listaSexo in arrListaSexo track by listaSexo.id"
+								ng-options="listaSexo.descricao for listaSexo in arrListaSexo"
 								ng-model="sexoSelected"
 								name="sexo"
 								id="sexo"
@@ -175,14 +175,14 @@
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="fone_residencial">Telefone residencial:</label>
-							<input type="text" ng-model="fone_residencial" class="form-control" id="fone_residencial" placeholder="fone_residencial" />
+							<input type="text" ng-model="fone_residencial" class="form-control cls-mascara-fone" id="fone_residencial" placeholder="fone_residencial" />
 						</div>
 		   		</div>
 		   		
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="fone_comercial">Telefone comercial:</label>
-							<input type="text" ng-model="fone_comercial" class="form-control" id="fone_comercial" placeholder="fone_comercial" />
+							<input type="text" ng-model="fone_comercial" class="form-control cls-mascara-fone" id="fone_comercial" placeholder="fone_comercial" />
 						</div>
 		   		</div>
 		   	</div>
@@ -193,7 +193,7 @@
 					<div class="col-sm-12 col-md-6">
 						<div class="form-group">
 							<label for="celular">Celular:</label>
-							<input type="text" ng-model="celular" class="form-control" id="celular" placeholder="celular" />
+							<input type="text" ng-model="celular" class="form-control cls-mascara-fone" id="celular" placeholder="celular" />
 						</div>
 		   		</div>
 		   		
@@ -267,18 +267,18 @@
 
 			<br/>
 
-			<!-- Button trigger modal -->
+	<!-- 		
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCartaoCredito">
 			  Cadastro dos dados do cartão
 			</button>
-
+ -->
 			<!-- Modal -->
 			<div class="modal fade" id="modalCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="modalCartaoCreditoLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="modalCartaoCreditoLabel">Cadastro dos dados do cartão</h4>
+			        <h4 class="modal-title" id="modalCartaoCreditoLabel">Cadastro dos dados financeiros</h4>
 			      </div>
 			      <div class="modal-body" >
 			      	<!-- <div ng-include="'../CartaoCredito/'" ></div> -->
@@ -337,6 +337,9 @@
 	<!-- Compiled and minified JavaScript -->
 	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
 
+	<!-- Include MASK INPUT-->
+	<script type="text/javascript" src="../includes/maskinput/jquery.maskedinput.js"></script>  
+	
 	<!-- Angular JS -->
 	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
 

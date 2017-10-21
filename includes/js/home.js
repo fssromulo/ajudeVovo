@@ -32,7 +32,13 @@ app.controller("controllerHome", function($scope, $http){
 	    		'../Login/fazerLogin/',
 	    		arrDadosLogin
 	    	).success(function (data) {
-	    		$scope.arrListaCidade = data;
+	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'ajudante') {
+	    			location.href = "../ListarServico/";
+	    		}
+	    		
+	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'contratante') {
+	    			location.href = "../ConsultaServicoCliente/";
+	    		}
 		});				
 
 	};

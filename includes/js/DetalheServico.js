@@ -81,9 +81,12 @@ app.controller("controllerDetalheServico", function($scope, $http){
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
             'horario_inicio': $scope.horario_inicio,
-            'horario_fim': $scope.horario_fim
+            'horario_fim': $scope.horario_fim,
+            'dia': $scope.dia
             
         }
+
+
 
         $http.post(
             '../DetalheServico/salvarSolicitacao',
@@ -98,4 +101,7 @@ app.controller("controllerDetalheServico", function($scope, $http){
 	angular.element(document).ready(function () {
 		$scope.__construct();	
 	});
+
+
 });
+

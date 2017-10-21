@@ -41,7 +41,10 @@
 
                                 <br>
 
-                                <button class="btn btn-link btn-xs"> Não encontrei minha categoria </button>
+                                <button 
+                                    type="button"
+                                    class="btn btn-link btn-xs"
+                                    ng-click="sugerirCategoria()"> Não encontrei minha categoria </button>
                             </div>
                         </div>
                     </div>
@@ -69,7 +72,6 @@
                                     name="diaAtendimento"
                                     id="diaAtendimento"
                                     class="form-control"
-                                    required
                                 >
                                     <option value="">Selecione o dia da semana...</option>
                                 </select>
@@ -86,12 +88,12 @@
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-4">
                                     <label for="horario_inicio">Horário de Início </label>
-                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control" required/>
+                                    <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control"/>
                                 </div>
 
                                 <div class="col-sm-12 col-md-4">
                                     <label for="horario_fim">Horário de Fim </label> 
-                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control" required/>
+                                    <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control"/>
                                 </div>
 
                                 <div class="col-sm-12 col-md-4">
@@ -179,7 +181,7 @@
             <br>
         </div> <!-- Fim da container principal do bootstrap -->
 
-        <table class="table table-stripped">
+        <!-- <table class="table table-stripped">
             <tr>
                 <th> Codigo </th>
                 <th> Descrição </th>
@@ -202,7 +204,7 @@
                     ></span>
                 </td>
             </tr>
-        </table>
+        </table> -->
 
         <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
             <div class="modal-dialog" role="document">
