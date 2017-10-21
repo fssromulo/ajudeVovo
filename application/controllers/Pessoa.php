@@ -69,7 +69,7 @@ class Pessoa extends CI_Controller {
    			$contato['id_pessoa'] = $cd_pessoa;
       		$this->ContatoDB->inserirContato($contato);
       	}
-     	}
+     }
 
    	if ( $is_alterar ) {
       	$this->PessoaDB->alterar_pessoa(

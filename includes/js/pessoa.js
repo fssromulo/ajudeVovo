@@ -66,6 +66,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	};
 
 	$scope.salvar = function() {
+	 var arrPessoaSalvar = [];
 
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
@@ -77,6 +78,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		var pais   = $scope.paisSelected['id_pais'];
 		var estado = $scope.estadoSelected['id_estado'];
 		var cidade = $scope.cidadeSelected['id_cidade'];
+
 
 		var arrPessoaSalvar =
 		{
@@ -145,8 +147,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	    		'../Pessoa/salvar',
 	    		arrPessoaSalvar
 	    	).success(function (data) {
-	    		$scope.arrPessoas = data;
+	    		// $scope.arrPessoas = data;
 	    		$scope.cancelar();
+	    		location.href= "../Servico/";
 		});
 	};
 

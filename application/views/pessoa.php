@@ -284,7 +284,7 @@
 			      	<!-- <div ng-include="'../CartaoCredito/'" ></div> -->
 			      	<?php
 			      		$this->load->view('cartaoCredito.php');
-			      	?>
+			      	?>	
 			      </div>
 			    </div>
 			  </div>
