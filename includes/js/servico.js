@@ -78,14 +78,9 @@ app.controller("controllerServico", function($scope, $http) {
             'descricao' : $scope.descricao,
             'valor' : $scope.valor,
             'detalhe' : $scope.detalhe,
-<<<<<<< HEAD
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'listaAtendimento': $scope.arrListaAtendimento,
-            // TODO: Pegar o id do prestador que vai estar logado
-            'id_prestador' : 1
-=======
             'id_categoria' : $scope.categoriaSelected['id_categoria']
->>>>>>> 6f2301fde75e4d3e8bcad5b2489c4f9d56db8f57
         }
 
         $http.post(

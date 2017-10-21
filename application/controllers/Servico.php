@@ -26,17 +26,14 @@ class Servico extends CI_Controller {
 
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
-<<<<<<< HEAD
-=======
+
 
         $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
         $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $detalhe  = isset($dados['detalhe']) ? $dados['detalhe'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        // $id_prestador = isset($dados['id_prestador']) ? $dados['id_prestador'] : null;
         $dados['id_prestador'] = $this->session->userdata('id_prestador');
->>>>>>> 6f2301fde75e4d3e8bcad5b2489c4f9d56db8f57
         
         $listaAtendimento = isset($dados['listaAtendimento']) ? $dados['listaAtendimento'] : null;
         unset($dados['listaAtendimento']);
