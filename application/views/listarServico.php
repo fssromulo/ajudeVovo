@@ -7,55 +7,60 @@
         <link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
     </head>
 
-    <body ng-app="appAngular" ng-controller="controllerListarServico">
+    <body>
 
-    	<div class="container-fluid">
-    		<table class="table table-stripped">
-            <tr>
-                <th> Codigo </th>
-                <th> Descrição </th>
-                <th> Valor </th>
-                <th> Detalhe </th>
-            </tr>
-            <tr ng-repeat="servico in arrListaServico">
-                <td>{{servico.id_servico}}</td>
-                <td>{{servico.descricao}}</td>
-                <td>{{servico.valor}}</td>
-                <td>{{servico.detalhe}}</td>
-                <td>
-                    <span style="cursor:pointer;" class="glyphicon glyphicon-edit" 
-                        ng-click="carregarAlterar(servico)"></span>
-                    <span 
-                        style="cursor:pointer;"
-                        class="glyphicon glyphicon-remove"
-                        data-toggle="modal"
-                        data-target="#modal_excluir"
-                        ng-click="carregarExcluir(servico)"
-                    ></span>
-                </td>
-            </tr>
-        </table>
-    	</div> <!-- Fim da container principal do bootstrap -->
+        <div
+            ng-app="appAngular"
+            ng-controller="controllerListarServico"
+        >
+    	   <div class="container-fluid">
+        		<table class="table table-stripped">
+                <tr>
+                    <th> Codigo </th>
+                    <th> Descrição </th>
+                    <th> Valor </th>
+                    <th> Detalhe </th>
+                </tr>
+                <tr ng-repeat="servico in arrListaServico">
+                    <td>{{servico.id_servico}}</td>
+                    <td>{{servico.descricao}}</td>
+                    <td>{{servico.valor}}</td>
+                    <td>{{servico.detalhe}}</td>
+                    <td>
+                        <span style="cursor:pointer;" class="glyphicon glyphicon-edit" 
+                            ng-click="carregarAlterar(servico)"></span>
+                        <span 
+                            style="cursor:pointer;"
+                            class="glyphicon glyphicon-remove"
+                            data-toggle="modal"
+                            data-target="#modal_excluir"
+                            ng-click="carregarExcluir(servico)"
+                        ></span>
+                    </td>
+                </tr>
+            </table>
+        	</div> <!-- Fim da container principal do bootstrap -->
 
-        <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!!</h4>
-                    </div>
-                    
-                    <div class="modal-body">
-                            Deseja excluir este registro?                            
-                    </div>
+            <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!!</h4>
+                        </div>
+                        
+                        <div class="modal-body">
+                                Deseja excluir este registro?                            
+                        </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
 
 		<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
 

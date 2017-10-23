@@ -1,20 +1,23 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
-
-app.controller("controllerAngular", function($scope, $http){
+app.controller(
+	"controllerAngular",
+	function(
+		$scope,
+		$rootScope,
+		$http,
+		ServicoClienteDetalhe
+	)
+{
 
 	$scope.__construct = () => {
 		$scope.getServicos();
 	};
 
-	$scope.goToDetail = () => {
-		$http.post(
-			'../ConsultaServicoCliente/goToDetail'
-		);
+	$scope.goToDetail = (id_servico) => {
+		ServicoClienteDetalhe.setIdServico(id_servico);
+
+		if ( ServicoClienteDetalhe.getIdServico() != null ) {
+			$('#modalDetalheServico').modal('show');	
+		}
 	}
 
 	$scope.getServicos = function() {

@@ -12,8 +12,12 @@
 	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>	
 </head>
 
-<body ng-app="appAngular" ng-controller="controllerAvaliacao" >
-	<div class="container">
+<body>
+	<div
+		class="container"
+		ng-app="appAngular"
+		ng-controller="controllerAvaliacao"
+	>
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
 				<div class="col-sm-12 col-md-12">
@@ -64,7 +68,7 @@
 				</div>
 			</div>
 		</div>   
-	</div>
+
 		<div class="row">
 			<div class="col-md-4 col-md-offset-5">
 				<div class="col-sm-12 col-md-6">

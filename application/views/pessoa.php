@@ -7,10 +7,12 @@
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
 </head>
 
-<body ng-app="appAngular" ng-controller="ctrlPessoa" >
-		<!-- <div class="container-fluid"> -->
-		 	<div class="row">
-		 		
+<body>
+		<div 
+			ng-app="appAngular"
+			ng-controller="ctrlPessoa"
+		>
+		 	<div class="row">		 		
 		 		<div >
 		   	</div>
 		 		<input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
@@ -320,18 +322,6 @@
 		</div>
 	</div>
 
-  <!-- Modal Structure -->
-   <div id="modal1" class="modal">
-    	<div class="modal-content">
-      	<h4>Confirmação</h4>
-     		<p>Deseja realmente excluir este registro?</p>
-    	</div>
-    	<div class="modal-footer">
-       	<button  class="modal-action modal-close waves-effect waves-red btn-flat">Não</button>
-      	<button ng-click="excluir()" type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Sim</button>
-   	</div>
-  	</div>
-
 	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
 
 	<!-- Compiled and minified JavaScript -->
@@ -347,7 +337,7 @@
 	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
 
 	<!-- MY App -->
-	<script type="text/javascript" src="../includes/js/PessoaCartaoCredito.js?<?php echo date('YmdHis');?>"></script>
+	<script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
 	<script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
 	<script type="text/javascript" src="../includes/js/pessoa.js?<?php echo date('YmdHis');?>"></script>
 	

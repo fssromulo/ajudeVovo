@@ -58,14 +58,17 @@ class Login extends CI_Controller {
 	   	break;
 	   	case 'contratante':  
 	   		$arrRetornoPessoa = $this->LoginDB->getLoginContratante( $arrPessoa )->result_array();
-				$arrRetornoPessoa = $arrRetornoPessoa[0];
-
-	   			// var_dump( $arrRetornoPessoa );
-	   			// die;
 
 	   		if ( !empty($arrRetornoPessoa) ) {
+					$arrRetornoPessoa = $arrRetornoPessoa[0];
 					$this->session->set_userdata($arrRetornoPessoa);
+
+					echo 'true';
+					return;
 	   		}
+
+	   		echo 'Erro - usuário não encontrado';
+	   		return;
 
 	   	break;
 	   	default : 

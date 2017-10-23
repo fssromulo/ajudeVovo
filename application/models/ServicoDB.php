@@ -68,6 +68,7 @@ class ServicoDB extends CI_Model {
     public function get_servicos_cliente() {
         return $this->db->query("
         select
+            c.id_servico id_servico,
             d.descricao ds_categoria, 
             d.imagem_categoria url_img_categoria,
             a.nome nm_prestador, 
