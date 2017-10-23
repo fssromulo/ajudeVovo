@@ -12,18 +12,18 @@ app.controller(
         $scope.id_servico_escolhido = null;
         $scope.arrDadosParam = [];
 
-        $('.datetimepicker').datepicker({
-            format: "dd/mm/yyyy",
-            language: "pt-BR"
+        $('.date').datepicker({
+            language: "pt-BR",
+            autoclose: true,
+            keyboardNavigation: false
         });
 
         $scope.carregaTelaSolicitacao();
 	};
 
-    $scope.$on('TesteMaroto', function(e) {  
+    $scope.$on('carregaDetalheServico', function(e) {  
         $scope.__construct();    
     });
-
 
     $scope.carregaTelaSolicitacao = function() {
         $scope.id_servico_escolhido = ServicoClienteDetalhe.getIdServico();
@@ -59,10 +59,11 @@ app.controller(
     
 	}
 
-    $scope.verificaDataExiste = function(){
-        var dia= $('#vlData').val();
-        var arrData=dia.split("/");
-        var objDate= new Date(arrData[2], arrData[0]-1, arrData[1]);
+    $scope.verificaDataExiste = function() {
+
+        var dia = $('#vlData').val();
+        var arrData = dia.split("/");
+        var objDate = new Date(arrData[2], arrData[1]-1, arrData[0]);
         var dia_escolhido_solicitacao = objDate.getDay()+1;
 
         // Variavel com retorno da funcao

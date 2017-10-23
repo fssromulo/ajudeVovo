@@ -21,8 +21,7 @@ app.service(
 			this.sn_mostra_solicitacao = true;
 			this.id_servico = id_servico;
 
-			$rootScope.$broadcast('TesteMaroto');
-
+			$rootScope.$broadcast('carregaDetalheServico');
 		}
 
 		this.getIdServico = function( id_servico ) {

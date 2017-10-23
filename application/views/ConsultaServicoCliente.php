@@ -5,6 +5,8 @@
 
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
+	
+	<link href="../includes/css/bootstrap-datepicker/bootstrap-datepicker.min.css"  type="text/css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
@@ -95,18 +97,14 @@
 	<!-- Compiled and minified JavaScript -->
 	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
 	
-    <!-- <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script> -->
-    <script type="text/javascript" src="../includes/js/bootstrap-datepicker.js"></script>
+   <script type="text/javascript" src="../includes/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>
 	<!-- Angular JS -->
+   <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
 
 	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
 	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
-
-    <!-- Referência do arquivo JS do plugin após carregar o jquery -->
-    <!-- Datepicker -->
-
 
 	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>

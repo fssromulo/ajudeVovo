@@ -24,13 +24,9 @@
             </div>
 
 		    <div class="form-group">
-		    	</br>
-			 	<h2>Horários Disponíveis</h2>
-			 	</br></br>
-			 	
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <div class="col-sm-12 col-md-6">
+			 	<h4>Horários Disponíveis</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
                         <div class="form-group">
                             <table class="table table-stripped">
                                 <thead>
@@ -65,32 +61,46 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
 			</div>
 
             <div class="row">
                 <div class="form-group">
-                    <label for="dia">Dia:</label>
-                    <div class="input-group date" data-provide="datepicker">
-                        <input id="vlData" type="text" class="form-control" ng-model="dia_solicitacao">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
-                    <label for="horario_inicio">Horário de Início </label>
-                    <input type="time" ng-model="horario_inicio" id="horario_inicio"  ng-model="horario_inicio" name="horario_inicio" class="form-control" required/>
-    
-                    <label for="horario_fim">Horário de Fim </label> 
-                    <input type="time" ng-model="horario_fim" id="horario_fim"  ng-model="horario_fim" name="horario_fim" class="form-control" required/>
+                    <div class="col-sm-12">
+                        <label for="dia">Dia:</label>
+                        <div class="input-group date" data-provide="datepicker">
+                            <input id="vlData" type="text" class="form-control" ng-model="dia_solicitacao">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>                    
+                    </div>                    
                 </div>
             </div>
             
 
-            <div class="row text-center">
-                <button type="button" ng-click="salvarServico()" class="btn btn-primary">
-                    Adicionar
-                </button>
+            <div class="row">
+                <!-- <div class="form-group"> -->
+                    <div class="col-sm-6">
+                        <label for="horario_inicio">Horário de Início </label>
+                        <input type="time" ng-model="horario_inicio" id="horario_inicio"  ng-model="horario_inicio" name="horario_inicio" class="form-control" required/>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <label for="horario_fim">Horário de Fim </label> 
+                        <input type="time" ng-model="horario_fim" id="horario_fim"  ng-model="horario_fim" name="horario_fim" class="form-control" required/>
+                    </div>
+                <!-- </div> --> 
+            </div>
+
+            <div class="row">&nbsp;</div>       
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button type="button" ng-click="salvarServico()" class="btn btn-primary">
+                        Adicionar
+                    </button>
+                </div>
             </div>
 
             <div class="row">&nbsp;</div>
