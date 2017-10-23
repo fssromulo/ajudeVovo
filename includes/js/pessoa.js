@@ -67,12 +67,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		);
 	};
 
-<<<<<<< HEAD
-	$scope.salvar = function() {
-	 var arrPessoaSalvar = [];
-=======
+
 	$scope.prepareToSalvar = function() {
->>>>>>> ce4ffa508f25813b7c79381678fb705d332dc5f1
 
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
@@ -85,12 +81,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		var estado = $scope.estadoSelected['id_estado'];
 		var cidade = $scope.cidadeSelected['id_cidade'];
 
-<<<<<<< HEAD
-=======
 		// var arrPessoaSalvar = { 
 		// 	'arrCartao' : PessoaCartao.getCartao()
 		// };
->>>>>>> ce4ffa508f25813b7c79381678fb705d332dc5f1
 
 		var arrPessoaSalvar =
 		{
@@ -156,16 +149,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
 		}
 
-<<<<<<< HEAD
-	    $http.post(
-	    		'../Pessoa/salvar',
-	    		arrPessoaSalvar
-	    	).success(function (data) {
-	    		// $scope.arrPessoas = data;
-	    		$scope.cancelar();
-	    		location.href= "../Servico/";
-		});
-=======
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
 		PessoaCartao.salvarPessoaCartao();
 
@@ -180,9 +163,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		// 		// 	$scope.salvar();
 		// 		// }	    		
 		// });
->>>>>>> ce4ffa508f25813b7c79381678fb705d332dc5f1
 	};
-
 
 	$scope.verificaAcao = function () {
 

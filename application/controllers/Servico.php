@@ -5,6 +5,7 @@ class Servico extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('session');
         $this->load->model('ServicoDB');
     }
 
@@ -33,7 +34,8 @@ class Servico extends CI_Controller {
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $detalhe  = isset($dados['detalhe']) ? $dados['detalhe'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        $dados['id_prestador'] = $this->session->userdata('id_prestador');
+        // $dados['id_prestador'] = $this->session->userdata('id_prestador');
+        $dados['id_prestador'] = 4;
         
         $listaAtendimento = isset($dados['listaAtendimento']) ? $dados['listaAtendimento'] : null;
         unset($dados['listaAtendimento']);
