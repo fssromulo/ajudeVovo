@@ -15,7 +15,7 @@ app.controller(
 	$scope.goToDetail = (id_servico) => {
 		ServicoClienteDetalhe.setIdServico(id_servico);
 
-		if ( ServicoClienteDetalhe.getIdServico() != null ) {
+		if ( ServicoClienteDetalhe.getIdServico() != null ) {		
 			$('#modalDetalheServico').modal('show');	
 		}
 	}

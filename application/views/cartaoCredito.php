@@ -108,20 +108,4 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
-
-	<!-- <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script> -->
-
-	<!-- Compiled and minified JavaScript -->
-	<!-- <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>   -->
-
-	<!-- Angular JS -->
-	<!-- <script type="text/javascript" src="../includes/angular/angular.min.js"></script>   -->
-
-	<!-- <link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' /> -->
-	<!-- <script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script> -->
-
-	
-	<!-- <script type="text/javascript" src="../includes/js/pessoa.js?<?php echo date('YmdHis');?>"></script>
-	<script type="text/javascript" src="../includes/js/cartaoCredito.js"></script> -->
 </html>

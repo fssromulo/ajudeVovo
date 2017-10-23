@@ -31,7 +31,7 @@ class DetalheServicoDB extends CI_Model {
 
 	public function inserirSolicitacao($arrDadosSolicitacao) {
  		$this->db->insert(
- 			'operacao_financeira',
+ 			'servico_solicitado',
  			$arrDadosSolicitacao
  		);
   	}

@@ -17,7 +17,6 @@ app.controller("controllerDetalheServico", function($scope, $http){
             '../ControleSolicitante/buscaServico'
         ).success(function (data) {
             $scope.arrListaServico = data;
-            console.log($scope.arrListaServico); 
         });
     };
 

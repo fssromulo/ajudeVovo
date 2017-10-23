@@ -1,39 +1,60 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
-
-app.controller("controllerDetalheServico", function($scope, $http){
-
+app.controller(
+    "controllerDetalheServico",
+    function(
+        $scope,
+        $rootScope,
+        $http,
+        ServicoClienteDetalhe
+    )
+{
 	$scope.__construct = function() {
+
+        $scope.id_servico_escolhido = null;
+        $scope.arrDadosParam = [];
+
         $('.datetimepicker').datepicker({
             format: "dd/mm/yyyy",
             language: "pt-BR"
         });
 
-		$scope.carregarDetalheServico();
-		$scope.carregarDiaHorarioDisponivel();
+        $scope.carregaTelaSolicitacao();
 	};
 
-	
-	$scope.carregarDetalheServico = function(){
-		$http.post(
-            '../DetalheServico/buscaServico'
+    $scope.$on('TesteMaroto', function(e) {  
+        $scope.__construct();    
+    });
+
+
+    $scope.carregaTelaSolicitacao = function() {
+        $scope.id_servico_escolhido = ServicoClienteDetalhe.getIdServico();
+        
+        if ( $scope.id_servico_escolhido != null || $scope.id_servico_escolhido != undefined ) { 
+            $scope.carregarDetalheServico();
+            $scope.carregarDiaHorarioDisponivel();  
+        }
+    }
+
+    $scope.carregarDetalheServico = function() {
+
+        $scope.arrDadosParam = {
+            'id_servico' : $scope.id_servico_escolhido 
+        };
+
+        $http.post(
+            '../DetalheServico/buscaServico',
+            $scope.arrDadosParam
         ).success(function (data) {
             $scope.arrListaServico = data;
             
         });
-    
-	}
+    }
 
 	$scope.carregarDiaHorarioDisponivel = function(){
 		$http.post(
-            '../DetalheServico/buscaDiaHorarioDisponivel'
+            '../DetalheServico/buscaDiaHorarioDisponivel',
+            $scope.arrDadosParam
         ).success(function (data) {
             $scope.arrListaDiaHorario = data;
-            console.log($scope.arrListaDiaHorario); 
         });
     
 	}
@@ -43,8 +64,6 @@ app.controller("controllerDetalheServico", function($scope, $http){
         var arrData=dia.split("/");
         var objDate= new Date(arrData[2], arrData[0]-1, arrData[1]);
         var dia_escolhido_solicitacao = objDate.getDay()+1;
-        //console.log(dias[objDate.getDay()]);
-        // console.log(arrData);
 
         // Variavel com retorno da funcao
         var retorno = false;
@@ -71,7 +90,6 @@ app.controller("controllerDetalheServico", function($scope, $http){
         return (horario.getHours() + ":" + horario.getMinutes());
     };
 
-
     $scope.salvarServico = function() {
 
         // Varre a lista de datas para verifica se data selecionada existe
@@ -82,16 +100,13 @@ app.controller("controllerDetalheServico", function($scope, $http){
 
         var arrServicoSalvar = {
             'id_servico' : 5,
-            'id_contratante' : 1,
+            'id_contratante' : 2,
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
             'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
             'horario_fim': $scope.formatarHorario($scope.horario_fim),
-            'dia_solicitacao': $scope.dia_solicitacao
-            
+            'dia_solicitacao': $scope.dia_solicitacao            
         }
-
-
 
         $http.post(
             '../DetalheServico/salvarSolicitacao',
@@ -101,12 +116,7 @@ app.controller("controllerDetalheServico", function($scope, $http){
         });
     };
 
-	
-    
 	angular.element(document).ready(function () {
 		$scope.__construct();	
 	});
-
-
 });
-

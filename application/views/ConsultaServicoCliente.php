@@ -70,16 +70,15 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 		<div class="modal fade" id="modalDetalheServico" tabindex="-1" role="dialog" aria-labelledby="modalDetalheServicoLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="modalDetalheServicoLabel">Cadastro dos dados financeiros</h4>
+		        <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
 		      </div>
-		      <div class="modal-body" >
+		      <div class="modal-body">
 		      	<?php
 		      		$this->load->view('DetalheServico.php');
 		      	?>	 
@@ -88,13 +87,15 @@
 		  </div>
 		</div>
 
+	</div>
+
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	<!-- Compiled and minified JavaScript -->
 	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
 	
-    <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <!-- <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script> -->
     <script type="text/javascript" src="../includes/js/bootstrap-datepicker.js"></script>
 	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>
 	<!-- Angular JS -->
