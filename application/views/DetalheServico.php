@@ -79,7 +79,7 @@
 	                <div class="form-group">
 	                    <label for="dia">Dia:</label>
                         <div class="input-group date" data-provide="datepicker">
-                            <input id="vlData" type="text" class="form-control" ng-model="dia">
+                            <input id="vlData" type="text" class="form-control" ng-model="dia_solicitacao">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -95,6 +95,10 @@
 	                    <button type="button" ng-click="salvarServico()" class="btn btn-primary">
 	                        Adicionar
 	                    </button>
+
+                        <div class="alert alert-info" role="alert">
+                            <a href="../ControleSolicitante/" class="alert-link">Clique aqui para acompanhar sua solicitação!</a>
+                        </div>
 	                </div>
 	            </div>
             </form>

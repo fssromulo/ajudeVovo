@@ -3,13 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ControleSolicitante extends CI_Controller {
 
-	private $id_servico;
+	private $id_contratante;
 
 
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('ControleSolicitanteDB');
-		//$this->id_servico=5;		
+		$this->id_contratante=1;		
 	}
 
 	public function index() {
@@ -18,20 +18,14 @@ class ControleSolicitante extends CI_Controller {
 
 
 	public function buscaServico(){
-		$listaDetalheServico = $this->ControleSolicitanteDB->getDetalheServico($this->id_servico)->result_array();
+		$listaDetalheServico = $this->ControleSolicitanteDB->getDadosServico($this->id_contratante)->result_array();
 
-		echo json_encode($listaDetalheServico[0]);
+		echo json_encode($listaDetalheServico);
 
 	}
 
 	
-	public function salvarSolicitacao(){
-		
-
-		(array)$dados = json_decode(file_get_contents("php://input"), true); 
-
-		$this->DetalheServicoDB->inserirSolicitacao($dados);
-	}
+	
 }
 
 

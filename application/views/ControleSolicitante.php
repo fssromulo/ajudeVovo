@@ -14,12 +14,12 @@
 	
 </head>
 
-<body ng-app="appAngular" ng-controller="controllerControleSolicitante">
-	
+<body>
+  <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
     <div class="container">
 		<div class="row">
-                    <div class="col-sm-12 col-md-10 col-md-offset-1">
-                        <div class="col-sm-12 col-md-6">
+                    <div class="col-md-12 col-sm-10 col-md-offset-1">
+                        <div class="col-md-12 col-sm-6">
                             <div class="form-group">
                                 <table class="table table-stripped">
                                     <thead>
@@ -34,7 +34,7 @@
                                                 Ajudante
                                             </th>
                                             <th>
-                                                Dia da Semana
+                                                Data
                                             </th>
                                             <th>
                                                 Horário Início
@@ -42,13 +42,16 @@
                                             <th>
                                                 Horário Fim
                                             </th>
+                                            <th>
+                                                Situação
+                                            </th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="lista in arrListaDiaHorario">
-                                            <td>
-                                                {{lista.servico}}
+                                        <tr ng-repeat="lista in arrListaServico">
+                                            <td title="{{lista.servico}}">
+                                                {{lista.servico | limitTo:20 }}...
                                             </td>
                                             <td>
                                                 {{lista.categoria}}
@@ -65,6 +68,9 @@
                                             <td>
                                                 {{lista.horario_fim}}
                                             </td>
+                                            <td>
+                                                {{lista.situacao}}
+                                            </td>
                                             
                                         </tr>
                                     </tbody>
@@ -73,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
 
     </div>
 
@@ -93,6 +99,6 @@
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
-    <script src="../includes/js/DetalheServico.js"></script>
+    <script src="../includes/js/ConsultaControleSolicitante.js"></script>
 </body>
 </html>

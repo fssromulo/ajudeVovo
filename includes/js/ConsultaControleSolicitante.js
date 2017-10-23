@@ -8,22 +8,24 @@ var app =  angular.module(
 app.controller("controllerDetalheServico", function($scope, $http){
 
 	$scope.__construct = function() {
-        $('.datetimepicker').datepicker({
-            format: "dd/mm/yyyy",
-            language: "pt-BR"
-        });
-
 		$scope.carregarDetalheServico();
-		$scope.carregarDiaHorarioDisponivel();
+		
 	};
 
-	
-	$scope.carregarDiaHorarioDisponivel = function(){
+	$scope.carregarDetalheServico = function(){
 		$http.post(
-            '../DetalheServico/buscaDiaHorarioDisponivel'
+            '../ControleSolicitante/buscaServico'
         ).success(function (data) {
-            $scope.arrListaDiaHorario = data;
-            console.log($scope.arrListaDiaHorario); 
+            $scope.arrListaServico = data;
+            console.log($scope.arrListaServico); 
         });
-    
-	}
+    };
+
+
+
+
+    angular.element(document).ready(function () {
+		$scope.__construct();	
+	});
+
+});

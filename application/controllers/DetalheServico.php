@@ -9,7 +9,8 @@ class DetalheServico extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('DetalheServicoDB');
-		$this->id_servico=5;		
+		$this->id_servico=5;
+		$this->load->helper('formatarDatas');		
 	}
 
 	public function index() {
@@ -35,7 +36,9 @@ class DetalheServico extends CI_Controller {
 
 		(array)$dados = json_decode(file_get_contents("php://input"), true); 
 
+		$dados['dia_solicitacao'] = formatarDatas($dados['dia_solicitacao'], 'Y-m-d');
 		$this->DetalheServicoDB->inserirSolicitacao($dados);
+
 	}
 }
 
