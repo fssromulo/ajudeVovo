@@ -67,6 +67,11 @@ app.controller("controllerDetalheServico", function($scope, $http){
         return retorno;
     }
 
+    $scope.formatarHorario = function(horario) {
+        return (horario.getHours() + ":" + horario.getMinutes());
+    };
+
+
     $scope.salvarServico = function() {
 
         // Varre a lista de datas para verifica se data selecionada existe
@@ -80,9 +85,9 @@ app.controller("controllerDetalheServico", function($scope, $http){
             'id_contratante' : 1,
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
-            'horario_inicio': $scope.horario_inicio,
-            'horario_fim': $scope.horario_fim,
-            'dia': $scope.dia
+            'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
+            'horario_fim': $scope.formatarHorario($scope.horario_fim),
+            'dia_solicitacao': $scope.dia_solicitacao
             
         }
 
@@ -97,7 +102,7 @@ app.controller("controllerDetalheServico", function($scope, $http){
     };
 
 	
-
+    
 	angular.element(document).ready(function () {
 		$scope.__construct();	
 	});
