@@ -52,25 +52,40 @@ class PagSeguro extends CI_Controller {
 
 	// Metodo que envia os dados da compra do servico para o PAGSEGUROO
 	public function realizaPagamentoPagSeguro() {
+		(array)$arrDadosPagSeguro = json_decode(file_get_contents("php://input"), true);   
+
 
 		// $url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout/';
-		$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?';
+		$url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/';		
 
 		$identificador_teste = date('d/m/Y H:i:s');
 
 		$data['email'] = $this->email_pagseguro;
 		$data['token'] = $this->token_pagamento;
 		$data['currency'] = 'BRL';
-		$data['itemId1'] = '0001';
+		$data['itemId1'] = '1';
+
+
+
+		$data['paymentMethod'] = 'creditCard';
+		$data['creditCardToken'] = $arrDadosPagSeguro['tokenDoCartao'];
+		
+		$data['creditCardHolderName'] = 'Romulo fernando teste pagVOVO';
+		$data['creditCardHolderCPF'] = '08550724904';
+		$data['credicreditCardHolderBirthDatetCardToken'] = '05/12/1997';
+
+		$data['creditCardHolderAreaCode'] = '47';
+		$data['creditCardHolderPhone'] = '991725457';
+
 		$data['itemDescription1'] = 'SERVICO DE TESTE AJUDE O VOVO';
-		$data['itemAmount1'] = '24.00';
-		$data['itemQuantity1'] = '1';
-		$data['itemWeight1'] = '0';
-		$data['reference'] = 'REF1234';
+		$data['itemAmount1'] = 100.55;
+		$data['itemQuantity1'] = 1;
+		$data['itemWeight1'] = 0;
+		$data['reference'] = 666;
 		$data['senderName'] = 'ROMULO Comprador de testes';
 		$data['senderAreaCode'] = '47';
 		$data['senderPhone'] = '991725457';
-		$data['senderEmail'] = 'fssromulo@gmail.com';
+		$data['senderEmail'] = 'c50891760423331506798@sandbox.pagseguro.com.br';
 		$data['shippingType'] = '1';
 		$data['shippingAddressStreet'] = 'Av. Brig. Faria Lima';
 		$data['shippingAddressNumber'] = '33';
@@ -81,17 +96,31 @@ class PagSeguro extends CI_Controller {
 		$data['shippingAddressState'] = 'SC';
 		$data['shippingAddressCountry'] = 'BRA';
 
+		$data['senderCPF'] = '08550724904';
+				
+		$data['installmentQuantity'] = 1;
+		$data['installmentValue'] = 100.55;
+
+
+		$data['billingAddressStreet']= 'Av. PagSeguro';
+		$data['billingAddressNumber']= '9999';
+		$data['billingAddressComplement']= '99o andar';
+		$data['billingAddressDistrict']= 'Jardim Internet';
+		$data['billingAddressPostalCode']= '99999999';
+		$data['billingAddressCity']= 'Cidade Exemplo';
+		$data['billingAddressState']= 'SP';
+		$data['billingAddressCountry']= 'ATA';
+
 		$data = http_build_query($data);
 
-		// print_r($data);die;
 
 		$curl = curl_init($url);
 
 		
-		$headers = array();
-		$headers[] = 'Accept: application/xml';	
-		$headers[] = 'Content-Type: application/xml; charset=ISO-8859-1';
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		// $headers = array();
+		// $headers[] = 'Accept: application/xml';	
+		// $headers[] = 'Content-Type: application/xml; charset=ISO-8859-1';
+		// curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
@@ -99,10 +128,9 @@ class PagSeguro extends CI_Controller {
 		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
-
-
 		$xml_resposta = curl_exec($curl);
 
+		print_r($xml_resposta);die;
 		if ( $xml_resposta == 'Unauthorized' ) {
 			//VALIDAr se a requisicao nao for aceita
 
@@ -121,5 +149,4 @@ class PagSeguro extends CI_Controller {
 		echo($xml_resposta);
 
 	}
-
 }

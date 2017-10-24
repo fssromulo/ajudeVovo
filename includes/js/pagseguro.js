@@ -6,6 +6,7 @@ var app =  angular.module(
 app.controller("controllerAngular2", function($scope, $http){
 
 	$scope.__construct = function() {
+		$scope.tokenCartaoVovo = '';
 		$scope.iniciaSessaoPagSeguro();
 	};
 
@@ -13,22 +14,22 @@ app.controller("controllerAngular2", function($scope, $http){
 		$http.post(
 			'../PagSeguro/PagSeguro/getSessaoPagSeguro'
 		).success(function (data) {
-			console.log(data);
+			// console.log(data);
 			PagSeguroDirectPayment.setSessionId(data);
 			PagSeguroDirectPayment.getPaymentMethods({
 				success: function(response) {
-					console.log('getPaymentMethods --> success');
-					console.log(response);
+					// console.log('getPaymentMethods --> success');
+					// console.log(response);
 				},
 				error: function(response) {
-					console.log('getPaymentMethods --> error');
-					console.log(response);
+					// console.log('getPaymentMethods --> error');
+					// console.log(response);
 					//tratamento do erro
 				},
 				complete: function(response) {
 					//tratamento comum para todas chamadas
-					console.log('getPaymentMethods --> complete');
-					console.log(response);
+					// console.log('getPaymentMethods --> complete');
+					// console.log(response);
 				}
 			});
 			
@@ -39,18 +40,19 @@ app.controller("controllerAngular2", function($scope, $http){
 				expirationYear: '2030',
 				success: function(response) {
 				    //token gerado, esse deve ser usado na chamada da API do Checkout Transparente
-				    console.log('getPaymentMethods --> success');
+				    // console.log('getPaymentMethods --> success');
 					console.log(response);
+					$scope.tokenCartaoVovo = response['card']['token'];
 				},
 				error: function(response) {
 				    //tratamento do erro
-				 				    console.log('getPaymentMethods --> error');
-					console.log(response);
+				 				    // console.log('getPaymentMethods --> error');
+					// console.log(response);
 				},
 				complete: function(response) {
 				    //tratamento comum para todas chamadas
-				   console.log('getPaymentMethods --> complete');
-					console.log(response);
+				   // console.log('getPaymentMethods --> complete');
+					// console.log(response);
 				}
 			}
 
@@ -62,10 +64,17 @@ app.controller("controllerAngular2", function($scope, $http){
 
 	$scope.realizaPagamentoPagSeguro = function() {
 
+		alert($scope.tokenCartaoVovo  );
+
+		var arrDados = {
+			'tokenDoCartao' : $scope.tokenCartaoVovo
+		}
+
 		$http.post(
-			'../PagSeguro/PagSeguro/realizaPagamentoPagSeguro'
+			'../PagSeguro/PagSeguro/realizaPagamentoPagSeguro',
+			arrDados
 		).success(function (data) {
-			console.log(data);
+			// console.log(data);
 		});
 
 	}
