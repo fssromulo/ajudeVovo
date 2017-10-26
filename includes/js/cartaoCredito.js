@@ -59,7 +59,6 @@ app.controller(
 			$http.post(
 				'../CartaoCredito/getCartaoCredito'
 			).success(function (data) {
-				console.log(data);
 				$scope.arrCartao = data;
 				$scope.cancelar();
 			});

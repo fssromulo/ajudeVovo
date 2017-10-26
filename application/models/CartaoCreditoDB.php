@@ -9,11 +9,7 @@ class CartaoCreditoDB extends CI_Model{
 	}
 
 	public function getCartaoCredito() {
- 		// return $this->db->get( //this->db->get (tabela) é como se fosse um select * from nome_tabela
- 		// 	'cartao_credito'  
- 		// );
-
- 		$this->db->select('cartao_credito.*, pessoa_fisica.nome');
+  		$this->db->select('cartao_credito.*, pessoa_fisica.nome');
 		$this->db->from('cartao_credito');
 		$this->db->join('pessoa_fisica', 'pessoa_fisica.id_pessoa_fisica = cartao_credito.id_pessoa', 'left');
 		return $query = $this->db->get();

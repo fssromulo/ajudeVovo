@@ -54,14 +54,14 @@ app.service(
 		    $http.post(
 		    		'../Pessoa/salvar',
 		    		arrDados
-		    	).success(function (data) {
+		    	).success(function (retornoRequisicao) {
 		    		
 		    		// Se for ajudante, redireciona para cadastrar seus serviço
-		    		if (this.isAjudante == true)  {
-		    			location.href = "../Servico/";
+		    		if (retornoRequisicao == 'contratante')  {
+		    			location.href = "../ListarServico/";
 		    		}
 
-					if (this.setIsContratante == true) {
+					if (retornoRequisicao == 'ajudante') {
 		    			location.href = "../ConsultaServicoCliente/"; 						
 					}	    		
 			});

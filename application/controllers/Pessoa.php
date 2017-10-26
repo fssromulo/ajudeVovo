@@ -3,6 +3,8 @@
 
 	class Pessoa extends CI_Controller {
 
+		private $perfil;
+
 		public function __construct() {
 			parent::__construct();
 			$this->load->helper('url');
@@ -46,61 +48,58 @@
 		public function salvar() {
 			(array)$dados = json_decode(file_get_contents("php://input"), true);   
 
-		   	$is_alterar = $dados['is_alterar'];
-		   	$cd_pessoa = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
-		   	unset( $dados['cd_pessoa'] );
-		   	unset( $dados['is_alterar'] );
+	   	$is_alterar = $dados['is_alterar'];
+	   	$cd_pessoa = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
+	   	unset( $dados['cd_pessoa'] );
+	   	unset( $dados['is_alterar'] );
 
-		   	// $dados
+	   	// $dados
+	   	$arrPessoa   = $dados['arrPessoa'];
+	   	$arrPessoa['senha'] =  md5($arrPessoa['senha']);
+	   	$arrEndereco = $dados['arrEndereco'];
+	   	$arrContatos = $dados['arrContatos'];
+	   	$arrCartaoCredito = $dados['cartaoCredito'];
+	   	unset( $arrCartaoCredito['is_alterar'] );
 
-		   	$arrPessoa   = $dados['arrPessoa'];
-		   	$arrPessoa['senha'] =  md5($arrPessoa['senha']);
-		   	$arrEndereco = $dados['arrEndereco'];
-		   	$arrContatos = $dados['arrContatos'];
-		   	$arrCartaoCredito = $dados['cartaoCredito'];
-		   	unset( $arrCartaoCredito['is_alterar'] );
+	   	// Ajusta os valores para salvar no banco
+	   	$arrPessoa['cpf'] = removeCaracteres($arrPessoa['cpf']);
+	   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
+   	
+   		if ( !$is_alterar ) {  			
+	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
 
-		   	// Ajusta os valores para salvar no banco
-		   	$arrPessoa['cpf'] = removeCaracteres($arrPessoa['cpf']);
-		   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
+	      	// Inserir Perfil
+	      	$this->perfil = $this->inserirPerfil( $dados, $cd_pessoa );
 
-		   	// var_dump($arrPessoa);
+	   		$arrEndereco['id_pessoa'] = $cd_pessoa;
 
-		   	// die;
-	   	
-	   		if ( !$is_alterar ) {  			
-		      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
-
-		      	// Inserir Perfil
-		      	$this->inserirPerfil( $dados, $cd_pessoa );
-
-		   		$arrEndereco['id_pessoa'] = $cd_pessoa;
-
-		      	$this->EnderecoDB->inserirEndereco($arrEndereco);
+	      	$this->EnderecoDB->inserirEndereco($arrEndereco);
+	      	
+	      	// Salvar dados do cartao da pessoa
+	      	if ( !empty($arrCartaoCredito) ) {
+		      	$arrCartaoCredito['id_pessoa'] = $cd_pessoa;
 		      	
-		      	// Salvar dados do cartao da pessoa
-		      	if ( !empty($arrCartaoCredito) ) {
-			      	$arrCartaoCredito['id_pessoa'] = $cd_pessoa;
-			      	$this->CartaoCreditoDB->inserir_cartao($arrCartaoCredito);      		
-		      	}
-		      	
-		      	foreach ( $arrContatos as $chave => $contato ) {
-		   			$contato['id_pessoa'] = $cd_pessoa;
-
-		   			if ( $contato['id_tipo_contato'] != 4 ) {
-		   				$contato['descricao'] = removeCaracteres($contato['descricao']);
-		   			}
-
-		      		$this->ContatoDB->inserirContato($contato);
-		      	}
-	 		}
-
-	   		if ( $is_alterar ) {
-	      		$this->PessoaDB->alterar_pessoa(
-		      		$arrPessoa,
-		      		$cd_pessoa
+		      	// Ajusta os valores para salvar no banco
+		      	$arrCartaoCredito['dt_validade'] = formatarDatas(
+		      		$arrCartaoCredito['dt_validade'],
+		      		'Y-m-d'
 		      	);
-	   		}
+
+		      	$this->CartaoCreditoDB->inserir_cartao($arrCartaoCredito);      		
+	      	}
+	      	
+	      	foreach ( $arrContatos as $chave => $contato ) {
+	   			$contato['id_pessoa'] = $cd_pessoa;
+
+	   			if ( $contato['id_tipo_contato'] != 4 && !empty($contato['descricao']) ) {
+	   				$contato['descricao'] = removeCaracteres($contato['descricao']);
+	   			}
+
+	      		$this->ContatoDB->inserirContato($contato);
+	      	}
+
+	      	echo $this->perfil;
+ 			}	
 		}
 		   
 		public function inserirPerfil($arrDados, $cd_pessoa) {
@@ -109,14 +108,14 @@
 			if ( isset($arrDados['is_ajudante']) == true ) {
 				$arrPerfil['is_ajudante'] = true;
 				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-				return;
-	   		}
+				return 'ajudante';
+	   	}
 	   	
-		   	if ( isset($arrDados['is_contratante']) == true ) {
-					$arrPerfil['is_contratante'] = true;
-					$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-					return;
-		   	}
+	   	if ( isset($arrDados['is_contratante']) == true ) {
+				$arrPerfil['is_contratante'] = true;
+				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
+				return 'contratante';
+	   	}
 		}
 	   
 		public function excluir() {
