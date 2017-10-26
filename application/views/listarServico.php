@@ -9,10 +9,7 @@
 
     <body>
 
-        <div
-            ng-app="appAngular"
-            ng-controller="controllerListarServico"
-        >
+        <div ng-app="appAngular" ng-controller="controllerListarServico">
     	   <div class="container-fluid">
         		<table class="table table-stripped">
                 <tr>
@@ -39,7 +36,10 @@
                     </td>
                 </tr>
             </table>
-        	</div> <!-- Fim da container principal do bootstrap -->
+            
+            <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
+            
+    	</div> <!-- Fim da container principal do bootstrap -->
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">
