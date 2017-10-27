@@ -7,6 +7,7 @@
 
 		public function __construct() {
 			parent::__construct();
+			$this->load->library('session');
 			$this->load->helper('url');
 			$this->load->helper('removeCaracteres');
 			$this->load->helper('formatarDatas');
@@ -15,7 +16,8 @@
 				'PessoaDB',
 				'ContatoDB',
 				'EnderecoDB',
-				'CartaoCreditoDB'
+				'CartaoCreditoDB',
+				'LoginDB'
 			);
 
 			foreach ( $arrModelsImportar as $chave => $modelImportar ) {
@@ -67,6 +69,7 @@
    	
    		if ( !$is_alterar ) {  			
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
+	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
 	      	// Inserir Perfil
 	      	$this->perfil = $this->inserirPerfil( $dados, $cd_pessoa );
@@ -97,6 +100,21 @@
 
 	      		$this->ContatoDB->inserirContato($contato);
 	      	}
+
+	      	if ( $this->perfil == 'ajudante') {
+	    	 		$arrRetornoPessoa = $this->LoginDB->getAjudante(
+	    	 			$arrCondicaoPessoa,
+	    	 			'cadastro_pessoa'
+	    	 		)->result_array();
+	      	} else {
+	    	 		$arrRetornoPessoa = $this->LoginDB->getContratante(
+	    	 			$arrCondicaoPessoa,
+	    	 			'cadastro_pessoa'
+	    	 		)->result_array();	      		
+	      	}
+	      	
+   			$arrRetornoPessoa = $arrRetornoPessoa[0];
+				$this->session->set_userdata($arrRetornoPessoa);
 
 	      	echo $this->perfil;
  			}	

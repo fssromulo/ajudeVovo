@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ListarServico extends CI_Controller {
 	public function __construct() {
         parent::__construct();
+        $this->load->library('session');
         $this->load->model('ServicoDB');
     }
 
@@ -12,7 +13,9 @@ class ListarServico extends CI_Controller {
     }
 
     public function getServicos() {
-        $listar = $this->ServicoDB->get_servicos()->result_array();
+        $id_prestador = $this->session->userdata('id_prestador');
+
+        $listar = $this->ServicoDB->get_servicos( $id_prestador )->result_array();
 
         echo json_encode($listar);
     }

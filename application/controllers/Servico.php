@@ -14,7 +14,8 @@ class Servico extends CI_Controller {
     }
 
     public function getServicos() {
-        $listar = $this->ServicoDB->get_servicos()->result_array();
+        $id_prestador =  $this->session->userdata('id_prestador');
+        $listar = $this->ServicoDB->get_servicos($id_prestador)->result_array();
 
         echo json_encode($listar);
     }
@@ -28,14 +29,12 @@ class Servico extends CI_Controller {
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-
         $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
         $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
         $valor = isset($dados['valor']) ? $dados['valor'] : null;
         $detalhe  = isset($dados['detalhe']) ? $dados['detalhe'] : null;
         $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
-        // $dados['id_prestador'] = $this->session->userdata('id_prestador');
-        $dados['id_prestador'] = 4;
+        $dados['id_prestador'] = $this->session->userdata('id_prestador');
         
         $listaAtendimento = isset($dados['listaAtendimento']) ? $dados['listaAtendimento'] : null;
         unset($dados['listaAtendimento']);
@@ -44,7 +43,6 @@ class Servico extends CI_Controller {
 
         $this->salvarDiaDisponivel($servico, $listaAtendimento);
 
-        return $this->getServicos();
     }
 
     public function salvarDiaDisponivel($id_servico, $listaAtendimento) {
@@ -53,10 +51,8 @@ class Servico extends CI_Controller {
                 'id_servico' => $id_servico,
                 'nr_dia' => $value['nr_dia'],
                 'descricao' => $value['dia']
-            )
-            ;
+            );
 
-            
             $dia = $this->ServicoDB->inserir_dia_disponivel($arrDiasDisponiveis);
             
             $arrHorariosDisponiveis = array(

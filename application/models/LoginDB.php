@@ -8,31 +8,48 @@ class LoginDB extends CI_Model{
 		parent::__construct();
 	}
 
-	public function getLoginAjudante($arrDadosPessoa = null) {
+	private function getCondicao($arrDadosPessoa, $ds_tela ) {
+		$ds_condicao_retorno = '';
+
+		if ( $ds_tela == 'login' ) {
+			return $ds_condicao_retorno = "  pf.login = '" . $arrDadosPessoa['usuario'] . "'" .
+				" AND pf.senha = '" . $arrDadosPessoa['senha'] . "'";
+		}
+
+		if ( $ds_tela == 'cadastro_pessoa' ) {
+			return $ds_condicao_retorno = "  pf.id_pessoa_fisica = " . $arrDadosPessoa['id_pessoa_fisica'];
+		}
+
+		return $ds_condicao_retorno;
+	}
+
+	public function getAjudante($arrDadosPessoa = null, $ds_tela) {
        		
        	if ( empty($arrDadosPessoa) ) {
        		return false;
        	}
 
-       	return $this->db->query("
-				SELECT
-					pf.id_pessoa_fisica,
-					p.id_prestador,
-					pf.nome,
-					pf.imagem_pessoa,
-					pf.login
-				FROM
-					pessoa_fisica pf
-				INNER JOIN prestador p ON (
-					p.id_pessoa = pf.id_pessoa_fisica
-				) 
-				WHERE	
-					pf.login = '" . $arrDadosPessoa['usuario'] . "'" .
-				"	AND pf.senha = '" . $arrDadosPessoa['senha'] . "'"
+       	$ds_condicao =  $this->getCondicao($arrDadosPessoa, $ds_tela);
+
+
+       	return $this->db->query(
+				' SELECT ' 
+				.'	pf.id_pessoa_fisica, '
+				.'	p.id_prestador, '
+				.'	pf.nome, '
+				.'	pf.imagem_pessoa, '
+				.'	pf.login '
+				.' FROM '
+				.'	pessoa_fisica pf '
+				.' INNER JOIN prestador p ON ( '
+				.'	p.id_pessoa = pf.id_pessoa_fisica '
+				.' ) '
+				.' WHERE	' . $ds_condicao
+					
 		   , FALSE);
   	}
 
-	public function getLoginContratante($arrDadosPessoa = null) {
+	public function getContratante($arrDadosPessoa = null) {
        		
        	if ( empty($arrDadosPessoa) ) {
        		return false;

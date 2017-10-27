@@ -57,11 +57,11 @@ app.service(
 		    	).success(function (retornoRequisicao) {
 		    		
 		    		// Se for ajudante, redireciona para cadastrar seus serviço
-		    		if (retornoRequisicao == 'contratante')  {
+		    		if (retornoRequisicao == 'ajudante')  {
 		    			location.href = "../ListarServico/";
 		    		}
 
-					if (retornoRequisicao == 'ajudante') {
+					if (retornoRequisicao == 'contratante') {
 		    			location.href = "../ConsultaServicoCliente/"; 						
 					}	    		
 			});

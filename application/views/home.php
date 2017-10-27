@@ -19,7 +19,7 @@
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuResponsivo">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -28,7 +28,7 @@
                     <a class="navbar-brand" href="">Ajude o vovô</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse pull-right" >
+                <div class="collapse navbar-collapse" id="menuResponsivo" >
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="#about">Home</a>
@@ -144,15 +144,6 @@
 
             <hr class="featurette-divider">
 
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Your Website 2014</p>
-                    </div>
-                </div>
-            </footer>
-
         </div>
         <!-- /.container -->
     </div>
@@ -168,7 +159,7 @@
 	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
 	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
 
-	<script type="text/javascript" src="../includes/js/home.js"></script>
+	<script type="text/javascript" src="../includes/js/home.js?<?php echo date('YmdHis');?>"></script>
 </body>
 
 </html>

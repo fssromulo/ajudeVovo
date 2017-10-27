@@ -7,10 +7,17 @@ class ServicoDB extends CI_Model {
         parent::__construct();
     }
 
-    public function get_servicos() {
-        return $this->db->get(
-            'servico'
+    public function get_servicos($id_prestador) {
+        
+        $this->db->select(
+           'id_servico,
+            descricao,
+            valor,
+            detalhe'
         );
+        $this->db->from('servico');
+        $this->db->where('id_prestador', $id_prestador);
+        return $this->db->get();
     }
 
     public function get_categorias() {

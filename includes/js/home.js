@@ -11,6 +11,9 @@ app.controller("controllerHome", function($scope, $http){
 		$scope.is_contratante = false;
 		$scope.is_ajudante = false;
 
+		$scope.usuario_logar = null;
+		$scope.senha_logar = null;
+
 		$("[data-toggle=popover]").popover({
 		    html: true, 
 			content: function() {
