@@ -24,10 +24,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 			}
 		];
 
-
-
-
-
 		// Chama metodos que vão preencher algo em tela
 		$scope.getListaPais();
 	};
@@ -61,6 +57,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	}
 
 	$scope.comparaValores = function(valor1, valor2) {
+		if ( valor1 == undefined || valor2 == undefined ) {
+			return;
+		}
+
 		return angular.equals(
 			valor1.trim(),
 			valor2.trim()
@@ -129,7 +129,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		))
 		{
 			arrPessoaSalvar['is_ajudante'] = true;
-			PessoaCartao.isAjudante(true);
+			PessoaCartao.setIsAjudante(true);
 
 		}
 		else
@@ -150,19 +150,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		}
 
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
-		PessoaCartao.salvarPessoaCartao();
-
-
-	 //    $http.post(
-	 //    		'../Pessoa/salvar',
-	 //    		arrPessoaSalvar
-	 //    	).success(function (data) {
-	 //    		$scope.cancelar();
-	    		
-	 //  	// if ($scope.is_contratante == 1) {
-		// 		// 	$scope.salvar();
-		// 		// }	    		
-		// });
+		if ($scope.is_ajudante != 1)  {
+			PessoaCartao.salvarPessoaCartao();
+		}
 	};
 
 	$scope.verificaAcao = function () {

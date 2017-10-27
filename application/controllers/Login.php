@@ -40,7 +40,7 @@ class Login extends CI_Controller {
   		$arrRetornoPessoa = array();
   		switch ($arrPessoa['perfil']) {
   			case 'ajudante':  {
-	   		$arrRetornoPessoa = $this->LoginDB->getLoginAjudante( $arrPessoa )->result_array();
+	   		$arrRetornoPessoa = $this->LoginDB->getAjudante( $arrPessoa, 'login' )->result_array();
 				
 				// Se achou a pessoa seta os dados dela na sessao
 	   		if ( !empty($arrRetornoPessoa) ) {
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
   			}
 	   	break;
 	   	case 'contratante':  
-	   		$arrRetornoPessoa = $this->LoginDB->getLoginContratante( $arrPessoa )->result_array();
+	   		$arrRetornoPessoa = $this->LoginDB->getContratante( $arrPessoa, 'login' )->result_array();
 
 	   		if ( !empty($arrRetornoPessoa) ) {
 					$arrRetornoPessoa = $arrRetornoPessoa[0];
