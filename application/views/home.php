@@ -35,7 +35,9 @@
                         </li>
                        
     				    <li>
-               			  <a popover
+               			  <a
+                             href="#"  
+                            popover
                				data-placement="bottom"
                				data-toggle="popover"
                				data-title="Efetue o login"
@@ -49,7 +51,7 @@
 
 
                         <li>
-    								<a popover
+    								<a href="#" popover
     									data-placement="bottom"
     									data-toggle="popover"
     									data-title="Efetue o login"

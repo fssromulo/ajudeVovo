@@ -10,7 +10,9 @@ app.controller(
 	$scope.__construct = function() {
 
         $scope.id_servico_escolhido = null;
+        $scope.tokenCartaoVovo = null;
         $scope.arrDadosParam = [];
+        $scope.iniciaSessaoPagSeguro();
 
         $('.date').datepicker({
             language: "pt-BR",
@@ -100,13 +102,13 @@ app.controller(
         }
 
         var arrServicoSalvar = {
-            'id_servico' : 5,
-            'id_contratante' : 2,
+            'id_servico' : $scope.id_servico_escolhido,
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
             'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
             'horario_fim': $scope.formatarHorario($scope.horario_fim),
-            'dia_solicitacao': $scope.dia_solicitacao            
+            'dia_solicitacao': $scope.dia_solicitacao,
+            'tokenCartaoVovo' :  $scope.tokenCartaoVovo 
         }
 
         $http.post(
@@ -116,6 +118,61 @@ app.controller(
         	alert("Salvo com sucesso!");
         });
     };
+
+    $scope.iniciaSessaoPagSeguro = function() {
+        $http.post(
+            '../PagSeguro/PagSeguro/getSessaoPagSeguroFromLibrary'
+        ).success(function (data) {
+            // console.log(data);
+            PagSeguroDirectPayment.setSessionId(data);
+            PagSeguroDirectPayment.getPaymentMethods({
+                success: function(response) {
+
+                    // console.log('getPaymentMethods --> success');
+                    // console.log(response);
+                },
+                error: function(response) {
+                    // console.log('getPaymentMethods --> error');
+                    // console.log(response);
+                    //tratamento do erro
+                },
+                complete: function(response) {
+                    $scope.getDadosCartao();
+                    //tratamento comum para todas chamadas
+                    // console.log('getPaymentMethods --> complete');
+                    // console.log(response);
+                }
+            });     
+        });
+    }
+
+    $scope.getDadosCartao = function() {
+        $http.post(
+            '../PagSeguro/PagSeguro/getCartaoFromLibrary'
+        ).success(function (arrDadosCartao) {
+            var param = {
+                cardNumber: arrDadosCartao['numero_cartao'],
+                cvv:  arrDadosCartao['codigo_seguranca'],
+                expirationMonth: arrDadosCartao['mes_cartao'],
+                expirationYear: arrDadosCartao['ano_cartao'],
+                success: function(response) {
+                    $scope.tokenCartaoVovo = response['card']['token'];
+                },
+                error: function(response) {
+                    //tratamento do erro
+                                    // console.log('getPaymentMethods --> error');
+                    // console.log(response);
+                },
+                complete: function(response) {
+                    //tratamento comum para todas chamadas
+                   // console.log('getPaymentMethods --> complete');
+                    // console.log(response);
+                }
+            }
+
+            PagSeguroDirectPayment.createCardToken(param);
+        });
+    }
 
 	angular.element(document).ready(function () {
 		$scope.__construct();	
