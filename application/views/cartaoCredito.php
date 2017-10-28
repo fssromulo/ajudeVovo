@@ -31,8 +31,14 @@
 							<label for="nome_titular">Nome do Titular:</label>
 							<input type="text" ng-model="nome_titular" class="form-control" id="nome_titular" placeholder="nome_titular" />
 						</div>
-		   			</div>
-		   		</div>
+		   	   </div>
+					<div class="col-sm-12 col-md-6">
+						<div class="form-group">
+							<label for="codigo_seguranca">Código de Segurança(CVV):</label>
+							<input type="text" ng-model="codigo_seguranca" class="form-control" id="codigo_seguranca" placeholder="Código de seguranca" />
+						</div>
+		   	   </div>
+		   	</div>
 		   </div>
 
 			<div class="row">

@@ -5,6 +5,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$("#dt_nascimento").mask("99/99/9999",  {placeholder:"_"});
 		$("#cpf").mask("999.999.999-99",  {placeholder:"_"});
 		$(".cls-mascara-fone").mask("(99)9999-99999",  {placeholder:"_"});
+		$("#cep").mask("99.999-999",  {placeholder:"_"});
 
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
@@ -81,10 +82,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		var estado = $scope.estadoSelected['id_estado'];
 		var cidade = $scope.cidadeSelected['id_cidade'];
 
-		// var arrPessoaSalvar = { 
-		// 	'arrCartao' : PessoaCartao.getCartao()
-		// };
-
 		var arrPessoaSalvar =
 		{
 			'is_alterar' : $scope.is_alterar,
@@ -101,6 +98,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 				'bairro'  : $scope.bairro,
 				'rua'     : $scope.rua,
 				'numero'  : $scope.nr_rua,
+				'cep'     : $scope.cep,
 				'complemento' : $scope.complemento
 			},
 			'arrContatos' : [

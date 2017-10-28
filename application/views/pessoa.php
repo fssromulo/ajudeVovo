@@ -161,6 +161,12 @@
 							<input type="text" ng-model="complemento" class="form-control" id="complemento" placeholder="complemento" />
 						</div>
 		   		</div>
+					<div class="col-sm-12 col-md-6">
+						<div class="form-group">
+							<label for="cep">CEP:</label>
+							<input type="text" ng-model="cep" class="form-control" id="cep" placeholder="cep" />
+						</div>
+		   		</div>
 		   	</div>
 		   </div>
 

@@ -21,6 +21,7 @@ class PrestadorDB extends CI_Model{
 			. ' 	c.descricao cidade, '
 			. ' 	e.bairro, '
 			. ' 	e.rua, '
+			. ' 	e.cep, '
 			. ' 	e.numero, '
 			. ' 	e.complemento, '
 			. ' 	es.uf estado_sigla, '

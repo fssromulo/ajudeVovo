@@ -21,10 +21,7 @@ class CartaoCredito extends CI_Controller {
 	*/
 
 	public function salvar() {
-      (array)$dados = json_decode(file_get_contents("php://input"), true); 
-
-
-     
+      (array)$dados = json_decode(file_get_contents("php://input"), true);    
 
       // JOGAMOS OS VALORES DO ARRAY NAS VARIAVEIS, POIS VAMOS TIRAR ESSES VALORES DO ARRAY
    	$is_alterar = $dados['is_alterar'];
