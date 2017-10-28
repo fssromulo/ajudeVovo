@@ -110,5 +110,7 @@
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>
 	<script type="text/javascript" src="../includes/js/DetalheServico.js"></script>
+
+	<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 </body>
 </html>

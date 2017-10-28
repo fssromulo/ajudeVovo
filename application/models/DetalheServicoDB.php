@@ -34,6 +34,8 @@ class DetalheServicoDB extends CI_Model {
  			'servico_solicitado',
  			$arrDadosSolicitacao
  		);
+
+ 		return $this->db->insert_id();
   	}
 
 

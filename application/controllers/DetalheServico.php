@@ -9,7 +9,9 @@ class DetalheServico extends CI_Controller {
 		parent::__construct();
 		$this->load->model('DetalheServicoDB');
 		$this->load->helper('formatarDatas');		
+ 			
 		$this->id_servico = null;
+
 	}
 
 	public function index() {
@@ -46,8 +48,22 @@ class DetalheServico extends CI_Controller {
 
 	public function salvarSolicitacao(){
 		(array)$dados = json_decode(file_get_contents("php://input"), true); 
+	 	$this->load->library('PagSeguro/pagsegurolib');
 
-		$dados['dia_solicitacao'] = formatarDatas($dados['dia_solicitacao'], 'Y-m-d');
-		$this->DetalheServicoDB->inserirSolicitacao($dados);
+	 	$tokenCartaoVovo = $dados['tokenCartaoVovo'];
+	 	unset($dados['tokenCartaoVovo']);
+
+		$dados['dia_solicitacao']  = formatarDatas($dados['dia_solicitacao'], 'Y-m-d');
+		$dados['id_contratante']   = $this->session->userdata('id_contratante');
+		$id_servico_solicitacao    = $this->DetalheServicoDB->inserirSolicitacao($dados);
+
+		
+
+		$arrIntegraPagSeguro = array(
+			'id_servico_solicitacao' => $id_servico_solicitacao,
+			'tokenCartaoVovo' 			 => $tokenCartaoVovo
+		);
+
+		$this->pagsegurolib->realizaPagamentoPagSeguro( $arrIntegraPagSeguro );
 	}
 }
