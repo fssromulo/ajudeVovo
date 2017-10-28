@@ -105,7 +105,7 @@ class PagSeguroLib {
 		$data['shippingAddressCity'] 		  = $arrPrestador['cidade'];
 		$data['shippingAddressState']      = $arrPrestador['estado_sigla'];
 		$data['shippingAddressCountry']    = 'BRA';
-		$data['shippingAddressPostalCode'] = '89060112';
+		$data['shippingAddressPostalCode'] = $arrPrestador['cep'];
 
 		// Billing - Dados do VOVO
 		$data['billingAddressStreet']      = $arrContratante['rua'];
@@ -115,7 +115,7 @@ class PagSeguroLib {
 		$data['billingAddressCity']        = $arrContratante['cidade'];
 		$data['billingAddressState']       = $arrContratante['estado_sigla'];
 		$data['billingAddressCountry']     = 'BRA';
-		$data['billingAddressPostalCode']  = '89060112';
+		$data['billingAddressPostalCode']  = $arrContratante['cep'];
 
 	   $data = http_build_query($data);
 

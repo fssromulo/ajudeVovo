@@ -64,7 +64,8 @@
 	   	unset( $arrCartaoCredito['is_alterar'] );
 
 	   	// Ajusta os valores para salvar no banco
-	   	$arrPessoa['cpf'] = removeCaracteres($arrPessoa['cpf']);
+	   	$arrPessoa['cpf']   = removeCaracteres($arrPessoa['cpf']);
+	   	$arrEndereco['cep'] = removeCaracteres($arrEndereco['cep']);
 	   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
    	
    		if ( !$is_alterar ) {  			

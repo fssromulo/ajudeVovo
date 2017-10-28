@@ -13,10 +13,24 @@ app.controller(
 			// Inicializa variaveis
 			$scope.id_cartao = null;
 			$scope.is_alterar = false;
-		
-			// Chama metodos que vão preencher algo em tela
-			$scope.getCartaoCredito();
+			
+			$("#dt_validade").mask("99/99/9999",  {placeholder:"_"});
 		};
+
+		$scope.salvarCartao = function() {
+
+			var arrCartaoSalvar	= {
+				"nome_titular"     : $scope.nome_titular,
+				"numero_cartao"    : $scope.numero_cartao,
+				"dt_validade"      : $scope.dt_validade,
+				"codigo_seguranca" : $scope.codigo_seguranca,
+				"is_alterar"       : $scope.is_alterar
+			}
+
+			PessoaCartao.setCartao( arrCartaoSalvar );
+
+			PessoaCartao.salvarPessoaCartao();
+		}
 
 		$scope.cancelar = function () {
 			$scope.is_alterar = false;
@@ -63,20 +77,6 @@ app.controller(
 				$scope.cancelar();
 			});
 
-		}
-
-		$scope.salvarCartao = function() {
-
-			var arrCartaoSalvar	= {
-				"nome_titular" : $scope.nome_titular,
-				"numero_cartao" : $scope.numero_cartao,
-				"dt_validade" : $scope.dt_validade,
-				"is_alterar" : $scope.is_alterar
-			}
-
-			PessoaCartao.setCartao( arrCartaoSalvar );
-
-			PessoaCartao.salvarPessoaCartao();
 		}
 
 		angular.element(document).ready(function () {
