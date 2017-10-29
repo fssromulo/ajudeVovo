@@ -11,6 +11,13 @@
 
         <div ng-app="appAngular" ng-controller="controllerListarServico">
     	   <div class="container-fluid">
+            
+            <div class="row">
+                <div class="alert alert-info" role="alert">
+                    <a href="../ControlePrestador/" class="alert-link">Consultar serviços solicitados</a>
+                </div>
+            </div>
+
         		<table class="table table-stripped">
                 <tr>
                     <th> Codigo </th>
@@ -38,7 +45,7 @@
             </table>
             
             <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
-            
+
     	</div> <!-- Fim da container principal do bootstrap -->
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">

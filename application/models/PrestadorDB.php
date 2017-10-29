@@ -59,4 +59,49 @@ class PrestadorDB extends CI_Model{
 		   $arrCondicao
 		);
   	}
+
+	  
+	public function getDadosServicosSolicitados($id_prestador) {
+		return $this->db->query("
+			select
+				ss.id_servico_solicitacao,
+				pf.nome,
+				s.descricao,
+				ss.dia_solicitacao,
+				ss.horario_inicio,
+				ss.horario_fim,
+				eo.id_estado_operacao,
+				eo.descricao ds_estado_atual
+			from
+				pessoa_fisica pf,
+				contratante c,
+				servico_solicitado ss,
+				servico s,
+				estado_operacao eo
+			where	
+				pf.id_pessoa_fisica = c.id_pessoa
+			and 
+				ss.id_contratante = c.id_contratante
+			and
+				ss.id_estado_operacao = eo.id_estado_operacao
+			and		
+				ss.id_servico = s.id_servico
+		  	and
+				s.id_prestador = ? ",
+			array(
+				$id_prestador
+			)
+		);
+	}
+
+	public function atualizarEstado($params) {
+		$this->db->update(
+			'servico_solicitado', 
+			$params, 
+			array(
+				'id_servico_solicitacao' => $params["id_servico_solicitacao"]
+			)
+		);
+	}
+
 }
