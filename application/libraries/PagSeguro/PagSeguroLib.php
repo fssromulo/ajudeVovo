@@ -69,8 +69,8 @@ class PagSeguroLib {
 
 		$identificador_teste = date('d/m/Y H:i:s');
 
-		$codigoAreaTelefone  = substr($arrContratante['celular'], 0, 2);
-		$telefoneNumero 	   = substr($arrContratante['celular'], 2, strlen($arrContratante['celular']) );
+		$codigoAreaTelefone  = substr($arrContratante['telefone'], 0, 2);
+		$telefoneNumero 	   = substr($arrContratante['telefone'], 2, strlen($arrContratante['telefone']) );
 
 		$data['email'] 						  = $this->email_pagseguro;
 		$data['token']    					  = $this->token_pagamento;
@@ -130,7 +130,6 @@ class PagSeguroLib {
 
 		$xml_resposta = curl_exec($curl);
 
-		print_r($xml_resposta);die;
 		if ( $xml_resposta == 'Unauthorized' ) {
 			//VALIDAr se a requisicao nao for aceita
 			print_r(json_encode($xml_resposta));

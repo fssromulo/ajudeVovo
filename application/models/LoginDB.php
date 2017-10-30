@@ -31,7 +31,6 @@ class LoginDB extends CI_Model{
 
        	$ds_condicao =  $this->getCondicao($arrDadosPessoa, $ds_tela);
 
-
        	return $this->db->query(
 				' SELECT ' 
 				.'	pf.id_pessoa_fisica, '
@@ -49,11 +48,13 @@ class LoginDB extends CI_Model{
 		   , FALSE);
   	}
 
-	public function getContratante($arrDadosPessoa = null) {
+	public function getContratante($arrDadosPessoa = null, $ds_tela) {
        		
        	if ( empty($arrDadosPessoa) ) {
        		return false;
        	}
+
+       	$ds_condicao =  $this->getCondicao($arrDadosPessoa, $ds_tela);
 
        	return $this->db->query("
 				SELECT
@@ -67,9 +68,7 @@ class LoginDB extends CI_Model{
 				INNER JOIN contratante c ON (
 					c.id_pessoa = pf.id_pessoa_fisica
 				) 
-				WHERE	
-					pf.login = '" . $arrDadosPessoa['usuario'] . "'" .
-				"	AND pf.senha = '" . $arrDadosPessoa['senha'] . "'"
+				WHERE " . $ds_condicao 
 		   , FALSE);
   	}
 }

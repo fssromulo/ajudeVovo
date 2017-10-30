@@ -150,17 +150,14 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		console.log(arrPessoaSalvar);
 
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
-		if ($scope.is_ajudante != 1)  {
-			PessoaCartao.salvarPessoaCartao();
-		}
+		// if ($scope.is_ajudante != 1)  {
+		// 	PessoaCartao.salvarPessoaCartao();
+		// }
 	};
-
+ 
+    /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
 	$scope.verificaAcao = function () {
-
-		if ($scope.is_ajudante == 1)  {
-			$('#modalCartaoCredito').modal('show');
-		}
-
+		$('#modalCartaoCredito').modal('show');
 		$scope.prepareToSalvar();
 	}
 
