@@ -147,6 +147,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
 		}
 
+		console.log(arrPessoaSalvar);
+
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
 		if ($scope.is_ajudante != 1)  {
 			PessoaCartao.salvarPessoaCartao();
