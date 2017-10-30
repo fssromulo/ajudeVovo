@@ -55,13 +55,12 @@ class DetalheServico extends CI_Controller {
 
 		$dados['dia_solicitacao']  = formatarDatas($dados['dia_solicitacao'], 'Y-m-d');
 		$dados['id_contratante']   = $this->session->userdata('id_contratante');
-		$id_servico_solicitacao    = $this->DetalheServicoDB->inserirSolicitacao($dados);
 
-		
+		$id_servico_solicitacao    = $this->DetalheServicoDB->inserirSolicitacao($dados);
 
 		$arrIntegraPagSeguro = array(
 			'id_servico_solicitacao' => $id_servico_solicitacao,
-			'tokenCartaoVovo' 			 => $tokenCartaoVovo
+			'tokenCartaoVovo' 		 => $tokenCartaoVovo
 		);
 
 		$this->pagsegurolib->realizaPagamentoPagSeguro( $arrIntegraPagSeguro );

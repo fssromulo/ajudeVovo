@@ -25,7 +25,7 @@ class PrestadorDB extends CI_Model{
 			. ' 	e.numero, '
 			. ' 	e.complemento, '
 			. ' 	es.uf estado_sigla, '
-			. ' 	( SELECT ct.descricao  FROM contato ct WHERE ct.id_pessoa = pf.id_pessoa_fisica AND ct.id_tipo_contato = 3 ) celular, '
+			. ' 	(SELECT get_telefone(pf.id_pessoa_fisica)) telefone, '
 			. ' 	( SELECT ct.descricao  FROM contato ct WHERE ct.id_pessoa = pf.id_pessoa_fisica AND ct.id_tipo_contato = 4 ) email '
 			. ' FROM '
 			. '   servico_solicitado ss '
