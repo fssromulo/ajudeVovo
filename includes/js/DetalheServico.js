@@ -12,7 +12,6 @@ app.controller(
         $scope.id_servico_escolhido = null;
         $scope.tokenCartaoVovo = null;
         $scope.arrDadosParam = [];
-        $scope.iniciaSessaoPagSeguro();
 
         $('.date').datepicker({
             language: "pt-BR",
@@ -20,17 +19,18 @@ app.controller(
             keyboardNavigation: false
         });
 
-        $scope.carregaTelaSolicitacao();
+        // $scope.carregaTelaSolicitacao();
 	};
 
     $scope.$on('carregaDetalheServico', function(e) {  
-        $scope.__construct();    
+        $scope.carregaTelaSolicitacao();   
     });
 
     $scope.carregaTelaSolicitacao = function() {
         $scope.id_servico_escolhido = ServicoClienteDetalhe.getIdServico();
         
-        if ( $scope.id_servico_escolhido != null || $scope.id_servico_escolhido != undefined ) { 
+        if ( $scope.id_servico_escolhido != null || $scope.id_servico_escolhido != undefined ) {
+            $scope.iniciaSessaoPagSeguro(); 
             $scope.carregarDetalheServico();
             $scope.carregarDiaHorarioDisponivel();  
         }
@@ -83,9 +83,7 @@ app.controller(
                 retorno = true;
                 break;
             }
-
         }
-
         return retorno;
     }
 
@@ -123,11 +121,10 @@ app.controller(
         $http.post(
             '../PagSeguro/PagSeguro/getSessaoPagSeguroFromLibrary'
         ).success(function (data) {
-            // console.log(data);
             PagSeguroDirectPayment.setSessionId(data);
             PagSeguroDirectPayment.getPaymentMethods({
                 success: function(response) {
-
+                    $scope.getDadosCartao();
                     // console.log('getPaymentMethods --> success');
                     // console.log(response);
                 },
@@ -137,7 +134,6 @@ app.controller(
                     //tratamento do erro
                 },
                 complete: function(response) {
-                    $scope.getDadosCartao();
                     //tratamento comum para todas chamadas
                     // console.log('getPaymentMethods --> complete');
                     // console.log(response);
@@ -156,11 +152,11 @@ app.controller(
                 expirationMonth: arrDadosCartao['mes_cartao'],
                 expirationYear: arrDadosCartao['ano_cartao'],
                 success: function(response) {
-                    $scope.tokenCartaoVovo = response['card']['token'];
+                    $scope.tokenCartaoVovo = response['card']['token'];                  
                 },
                 error: function(response) {
                     //tratamento do erro
-                                    // console.log('getPaymentMethods --> error');
+                    // console.log('getPaymentMethods --> error');
                     // console.log(response);
                 },
                 complete: function(response) {
