@@ -24,12 +24,14 @@
                     <th> Descrição </th>
                     <th> Valor </th>
                     <th> Detalhe </th>
+                    <th> Solicitações </th>
                 </tr>
                 <tr ng-repeat="servico in arrListaServico">
                     <td>{{servico.id_servico}}</td>
                     <td>{{servico.descricao}}</td>
                     <td>{{servico.valor}}</td>
                     <td>{{servico.detalhe}}</td>
+                    <td>{{servico.solicitacoes}}</td>
                     <td>
                         <span style="cursor:pointer;" class="glyphicon glyphicon-edit" 
                             ng-click="carregarAlterar(servico)"></span>
