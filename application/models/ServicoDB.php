@@ -8,16 +8,17 @@ class ServicoDB extends CI_Model {
     }
 
     public function get_servicos($id_prestador) {
-        
-        $this->db->select(
-           'id_servico,
-            descricao,
-            valor,
-            detalhe'
-        );
-        $this->db->from('servico');
-        $this->db->where('id_prestador', $id_prestador);
-        return $this->db->get();
+        return $this->db->query(
+			"select 
+				s.id_servico as id_servico, 
+				s.descricao as descricao, 
+				s.valor as valor, 
+				s.detalhe as detalhe, 
+				(SELECT COUNT(ss.id_servico) FROM servico_solicitado ss WHERE ss.id_servico=s.id_servico) as solicitacoes
+			from 
+				servico s
+			where 
+				s.id_prestador=".$id_prestador);
     }
 
     public function get_categorias() {
@@ -67,7 +68,9 @@ class ServicoDB extends CI_Model {
     }
 
     public function buscarHorariosServico($id_servico) {
-        $this->db->select();
+        $this->db->select(
+            
+        );
     }
 
     public function get_servicos_cliente() {
