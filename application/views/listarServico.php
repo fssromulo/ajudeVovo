@@ -18,8 +18,7 @@
                         &nbsp;
                     </div>
                 </div>
-
-                    
+              
                 <div class="col-sm-10 col-lg-offset-1">                    
                     <div class="row">
                         <div class="alert alert-info" role="alert">
@@ -55,7 +54,6 @@
                 </table>
                 
                 <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
-
             </div> <!-- Fim da container principal do bootstrap -->
     	</div> <!-- Fim da container principal do bootstrap -->
 
