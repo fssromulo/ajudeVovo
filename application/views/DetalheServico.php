@@ -97,7 +97,14 @@
 
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <button type="button" ng-click="salvarServico()" class="btn btn-primary">
+                    <button
+                        type="button"
+                        name="btn_servico"
+                        id="btn_servico"
+                        ng-click="salvarServico()"
+                        class="btn btn-primary"
+                        ng-disabled="bloquear_btn_servico"
+                    >
                         Adicionar
                     </button>
                 </div>

@@ -3,6 +3,7 @@
 	<title>Opa! Ajude o Vovô</title>
 	<!-- jQuery & Bootstrap -->
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
 	

@@ -20,9 +20,6 @@ app.controller("controllerDetalheServico", function($scope, $http){
         });
     };
 
-
-
-
     angular.element(document).ready(function () {
 		$scope.__construct();	
 	});

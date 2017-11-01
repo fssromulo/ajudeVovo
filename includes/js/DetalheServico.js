@@ -11,6 +11,7 @@ app.controller(
 
         $scope.id_servico_escolhido = null;
         $scope.tokenCartaoVovo = null;
+        $scope.bloquear_btn_servico = false;
         $scope.arrDadosParam = [];
 
         $('.date').datepicker({
@@ -109,11 +110,15 @@ app.controller(
             'tokenCartaoVovo' :  $scope.tokenCartaoVovo 
         }
 
+        // Bloqueia o botão para o usuário não realizar inumeras requisicoes
+        $scope.bloquear_btn_servico = true;
+
         $http.post(
             '../DetalheServico/salvarSolicitacao',
             arrServicoSalvar
         ).success(function(data) {
         	alert("Salvo com sucesso!");
+            $scope.bloquear_btn_servico = false;
         });
     };
 

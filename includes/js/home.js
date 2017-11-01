@@ -35,6 +35,12 @@ app.controller("controllerHome", function($scope, $http){
 	    		'../Login/fazerLogin/',
 	    		arrDadosLogin
 	    	).success(function (data) {
+
+	    		if ( data != 'true' ) {
+	    			alert('Usuário não encontrado');
+	    			return;
+	    		}
+
 	    		if ( data == 'true' && arrDadosLogin['perfil'] == 'ajudante') {
 	    			location.href = "../ListarServico/";
 	    		}
