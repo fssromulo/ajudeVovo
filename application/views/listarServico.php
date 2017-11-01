@@ -16,6 +16,7 @@
                 <div class="alert alert-info" role="alert">
                     <a href="../ControlePrestador/" class="alert-link">Consultar serviços solicitados</a>
                 </div>
+<<<<<<< HEAD
             </div>
 
         		<table class="table table-stripped">
@@ -46,6 +47,45 @@
             
             <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
 
+=======
+              
+                <div class="col-sm-10 col-lg-offset-1">                    
+                    <div class="row">
+                        <div class="alert alert-info" role="alert">
+                            <a href="../ControlePrestador/" class="alert-link">Consultar serviços solicitados</a>
+                        </div>
+                    </div>
+
+            		<table class="table table-stripped">
+                    <tr>
+                        <th> Codigo </th>
+                        <th> Descrição </th>
+                        <th> Valor </th>
+                        <th> Detalhe </th>
+                        <th> Ações </th>
+                    </tr>
+                    <tr ng-repeat="servico in arrListaServico">
+                        <td>{{servico.id_servico}}</td>
+                        <td>{{servico.descricao}}</td>
+                        <td>{{servico.valor}}</td>
+                        <td>{{servico.detalhe}}</td>
+                        <td>
+                            <span style="cursor:pointer;" class="glyphicon glyphicon-edit" 
+                                ng-click="carregarAlterar(servico)"></span>
+                            <span 
+                                style="cursor:pointer;"
+                                class="glyphicon glyphicon-remove"
+                                data-toggle="modal"
+                                data-target="#modal_excluir"
+                                ng-click="carregarExcluir(servico)"
+                            ></span>
+                        </td>
+                    </tr>
+                </table>
+                
+                <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
+            </div> <!-- Fim da container principal do bootstrap -->
+>>>>>>> 703becd0877a4031efd09a01c90842dc4c79342c
     	</div> <!-- Fim da container principal do bootstrap -->
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
