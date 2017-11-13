@@ -1,14 +1,9 @@
-<html lang="pt_BR">
-<head>
-	<title>Opa! Ajude o Vovô</title>
-	<!-- jQuery & Bootstrap -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
-	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-</head>
+<?php
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('header.php');
+?>
 
+</head>
 <body>
 		<div 
 			ng-app="appAngular"

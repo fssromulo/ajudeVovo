@@ -1,38 +1,42 @@
-<html lang="pt_BR">
-    <head>
-        <title>Opa! Ajude o Vovô</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('header.php');
+?>
 
-        <link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
-        <link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-    </head>
+</head>
 
     <body>
 
-        <div ng-app="appAngular" ng-controller="controllerListarServico">
-            <div class="container-fluid">
-    	        <div class="row">
-                    <div class="col-sm-10  col-lg-offset-1">
-                        &nbsp;
-                    </div>
-                </div>
-              
-                <div class="col-sm-10 col-lg-offset-1">                    
-                    <div class="row">
-                        <div class="alert alert-info" role="alert">
-                            <a href="../ControlePrestador/" class="alert-link">Consultar serviços solicitados</a>
-                        </div>
-                    </div>
+    <?php
+        // Importa o cabeçalho padrao a todas as telas
+        $this->load->view('menuPrestador.php');
+    ?>
 
-            		<table class="table table-stripped">
+
+        <div ng-app="appAngular" ng-controller="controllerListarServico">
+           <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-sm-12">&nbsp;</div>
+
+<!--                 <div class="col-sm-12">
+                    <div class="alert alert-info" role="alert">
+                        <a href="../ControlePrestador/" class="alert-link">Consultar serviços solicitados</a>
+                    </div>
+                </div> -->
+                
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-primary" href="../Servico/"><span class="glyphicon glyphicon-plus"></span> Adicionar Novo Serviço</a>
+                </div>
+
+                <div class="col-sm-12">&nbsp;</div>
+                
+                <table class="table table-stripped">
                     <tr>
                         <th> Codigo </th>
                         <th> Descrição </th>
                         <th> Valor </th>
                         <th> Detalhe </th>
-                        <th> Ações </th>
                     </tr>
                     <tr ng-repeat="servico in arrListaServico">
                         <td>{{servico.id_servico}}</td>
@@ -52,10 +56,8 @@
                         </td>
                     </tr>
                 </table>
-                
-                <a class="btn btn-primary" href="../Servico/">Adicionar Novo Serviço</a>
+            
             </div> <!-- Fim da container principal do bootstrap -->
-    	</div> <!-- Fim da container principal do bootstrap -->
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">

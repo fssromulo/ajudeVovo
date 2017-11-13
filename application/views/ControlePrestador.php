@@ -1,16 +1,18 @@
-<html lang="pt_BR">
-<head>
-	<title>Opa! Ajude o Vovô</title>
-	<!-- jQuery & Bootstrap -->
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
-	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
+<?php
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('header.php');
+?>
+
 </head>
 
-<body>
+
+    <body>  
+
+    <?php
+        // Importa o cabeçalho padrao a todas as telas
+        $this->load->view('menuPrestador.php');
+    ?>
+
   <div ng-app="appAngular" ng-controller="controllerControlePrestador">	
     <div class="container">
 		<div class="row">
@@ -19,65 +21,72 @@
                     <div class="form-group">
 
                         <a href="javascript:history.back()" class="btn">Voltar</a>
-
-                        <table class="table table-stripped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Serviço
-                                    </th>
-                                    <th>
-                                        Idoso
-                                    </th>
-                                    <th>
-                                        Data
-                                    </th>
-                                    <th>
-                                        Horário Início
-                                    </th>
-                                    <th>
-                                        Horário Fim
-                                    </th>
-                                    <th>
-                                        Situação
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="lista in arrListaServico">
-                                    <td>
-                                        {{lista.descricao | limitTo:20 }}...
-                                    </td>
-                                    <td>
-                                        {{lista.nome}}
-                                    </td>
-                                    <td>
-                                        {{lista.dia_solicitacao}}
-                                    </td>
-                                    <td>
-                                        {{lista.horario_inicio}}
-                                    </td>
-                                    <td>
-                                        {{lista.horario_fim}}
-                                    </td>
-                                    <td>
-                                        {{lista.ds_estado_atual}}
-                                    </td>
-                                    <td ng-show="{{lista.id_estado_operacao}} == 3">
-                                        <button 
-                                            ng-click="aceitar(lista.id_servico_solicitacao)"
-                                            class="btn btn-success">
-                                                Aceitar
-                                        </button>
-                                        <button 
-                                            ng-click="negar(lista.id_servico_solicitacao)"
-                                            class="btn btn-danger">
-                                                Negar
-                                        </button>
-                                    </td>        
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-stripped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Serviço
+                                        </th>
+                                        <th>
+                                            Idoso
+                                        </th>
+                                        <th>
+                                            Data
+                                        </th>
+                                        <th>
+                                            Horário Início
+                                        </th>
+                                        <th>
+                                            Horário Fim
+                                        </th>
+                                        <th>
+                                            Situação
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="lista in arrListaServico">
+                                        <td>
+                                            {{lista.descricao | limitTo:20 }}...
+                                        </td>
+                                        <td>
+                                            {{lista.nome}}
+                                        </td>
+                                        <td>
+                                            {{lista.dia_solicitacao}}
+                                        </td>
+                                        <td>
+                                            {{lista.horario_inicio}}
+                                        </td>
+                                        <td>
+                                            {{lista.horario_fim}}
+                                        </td>
+                                        <td>
+                                            {{lista.ds_estado_atual}}
+                                        </td>
+                                        <td ng-show="{{lista.id_estado_operacao}} == 3">
+                                            <button 
+                                                title="Aceitar" 
+                                                ng-click="aceitar(lista.id_servico_solicitacao)"
+                                                class="btn btn-success"
+                                                style="font-size: 16px;">
+                                                    <span class="glyphicon glyphicon-thumbs-up" >
+                                                    </span>
+                                            </button>
+                                            <button 
+                                                title="Negar"
+                                                ng-click="negar(lista.id_servico_solicitacao)"
+                                                class="btn btn-danger"
+                                                style="font-size: 16px;">
+                                                    <span class="glyphicon glyphicon-thumbs-down"  >
+                                                    </span>
+                                            </button>
+                                        </td>        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,15 +1,19 @@
-<html lang="pt_BR">
-    <head>
-        <title>Opa! Ajude o Vovô</title>
-        <!-- jQuery & Bootstrap -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
-        <link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-    </head>
+<?php
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('header.php');
+?>
 
-    <body>        
+</head>
+
+
+    <body>  
+
+    <?php
+        // Importa o cabeçalho padrao a todas as telas
+        $this->load->view('menuPrestador.php');
+    ?>
+
+
         <div
             ng-app="appAngular"
             ng-controller="controllerServico"
@@ -17,7 +21,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-sm-10  col-lg-offset-1">
+                    <div class="col-sm-10">
                         &nbsp;
                     </div>
                 </div>
@@ -102,7 +106,8 @@
                                             <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control"/>
                                         </div>
 
-                                        <div class="col-sm-12 col-md-4">
+                                        <div class="col-sm-12 col-md-4 text-center">
+                                            <div class="col-sm-12">&nbsp;</div>
                                             <button type="button" ng-click="adicionarDiaAtendimento()" class="btn btn-primary">
                                                 Adicionar
                                             </button>
@@ -165,7 +170,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-5">
+                            <div class="col-md-4 text-center">
                                 <div class="col-sm-12">
                                     <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
                                         Salvar
