@@ -16,7 +16,11 @@ class ControleSolicitanteDB extends CI_Model {
 			TIME_FORMAT(f.horario_inicio,"%H:%i") as horario_inicio, 
 			TIME_FORMAT(f.horario_fim,"%H:%i") as horario_fim,			
 			DATE_FORMAT(f.dia_solicitacao, "%d/%m/%Y") as dia,
-			e.descricao as situacao'
+			e.descricao as situacao,
+			f.id_estado_operacao,
+			f.id_servico_solicitacao,
+
+			'
 		);
 
 		$this->db->distinct();

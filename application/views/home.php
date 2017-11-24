@@ -2,12 +2,11 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('header.php');
 ?>
-
 </head>
 <body>
     <div ng-app="AppHome" ng-controller="controllerHome">
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top bg-ajudeVovo" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -34,7 +33,7 @@
                				data-toggle="popover"
                				data-title="Efetue o login"
                				data-container="body"
-    		             	data-html="true"
+    		             	data-html="true"                             
     		             	id="login"
     		             	class="links_menu"
     		             	ng-click="escolherPerfil('ajudante')"
@@ -43,15 +42,15 @@
 
 
                         <li>
-    								<a href="#" popover
-    									data-placement="bottom"
-    									data-toggle="popover"
-    									data-title="Efetue o login"
-    									data-container="body"
-    				             	data-html="true" id="login"
-    				             	class="links_menu"
-    				             	ng-click="escolherPerfil('contratante')"
-    				             >Solicitar ajuda</a>
+    						<a href="#" popover
+    							data-placement="bottom"
+    							data-toggle="popover2"
+    							data-title="Efetue o login"                                         
+    							data-container="body"
+    		             	    data-html="true" id="login"
+    		             	    class="links_menu"
+    		             	    ng-click="escolherPerfil('contratante')"
+    				        >Solicitar ajuda</a>
                         </li>
                     </ul>
                 </div>
@@ -96,9 +95,9 @@
         <!-- Full Width Image Header -->
         <header class="header-image">
             <div class="headline">
-                <div class="container">
-                    <h1>Ajude um vovô agora mesmo!</h1>
-                    <h2>Junte-se a nós</h2>
+                <div class="container ">
+                 <!--    <h1>Ajude um vovô agora mesmo!</h1>
+                    <h2>Junte-se a nós</h2> -->
                 </div>
             </div>
         </header>
@@ -118,7 +117,7 @@
 
             <!-- Second Featurette -->
             <div class="featurette" id="services">
-                <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
+                <img class="featurette-image img-circle img-responsive pull-left" src="https://2.bp.blogspot.com/-xG7dTAAPykA/WAj6oA5BZ3I/AAAAAAAAAHM/TGAYcM2qxJYHIl7t0jyGbPHXuzx4aFSCgCLcB/s1600/022-CasalIdoso.jpg" style="width:200px;height: 200px;">
                 <h2 class="featurette-heading">The Second Heading
                     <span class="text-muted">Is Pretty Cool Too.</span>
                 </h2>

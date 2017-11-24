@@ -67,9 +67,9 @@ class PrestadorDB extends CI_Model{
 				ss.id_servico_solicitacao,
 				pf.nome,
 				s.descricao,
-				ss.dia_solicitacao,
-				ss.horario_inicio,
-				ss.horario_fim,
+				DATE_FORMAT(ss.dia_solicitacao, '%d/%m/%Y') dia_solicitacao,
+				TIME_FORMAT(ss.horario_inicio,'%H:%i') as horario_inicio, 
+				TIME_FORMAT(ss.horario_fim,'%H:%i') as horario_fim,		
 				eo.id_estado_operacao,
 				eo.descricao ds_estado_atual
 			from

@@ -13,7 +13,7 @@ app.controller("controllerHome", function($scope, $http){
 
 		$scope.usuario_logar = null;
 		$scope.senha_logar = null;
-
+$('[data-toggle="popover2"]').popover('hide');
 		$("[data-toggle=popover]").popover({
 		    html: true, 
 			content: function() {

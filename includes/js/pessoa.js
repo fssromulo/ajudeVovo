@@ -4,7 +4,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 		$("#dt_nascimento").mask("99/99/9999",  {placeholder:"_"});
 		$("#cpf").mask("999.999.999-99",  {placeholder:"_"});
-		$(".cls-mascara-fone").mask("(99)9999-99999",  {placeholder:"_"});
+		$(".cls-mascara-fone").mask("(99)9999-9999?9",  {placeholder:"_"});
 		$("#cep").mask("99.999-999",  {placeholder:"_"});
 
 		// Inicializa variaveis

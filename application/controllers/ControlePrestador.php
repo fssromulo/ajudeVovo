@@ -14,12 +14,16 @@ class ControlePrestador extends CI_Controller {
 	}
 
 	public function buscaServicos() {
-		$listaServicosSolicitados = $this->PrestadorDB->getDadosServicosSolicitados
-			($this->session->userdata('id_prestador'))->result_array();
+		$listaServicosSolicitados = $this->PrestadorDB->getDadosServicosSolicitados(
+			$this->session->userdata('id_prestador')
+		)->result_array();
 
 		echo json_encode($listaServicosSolicitados);
 	}	
-
+	
+	/*
+		Função que atualiza o status da solicitacao caso o PRESTADOR aceite ou não 
+	*/
 	public function atualizarEstado() {
 		(array)$dados = json_decode(file_get_contents("php://input"), true);   
 		$this->PrestadorDB->atualizarEstado($dados);

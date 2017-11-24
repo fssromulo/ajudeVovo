@@ -12,7 +12,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    background: url('https://s-media-cache-ak0.pinimg.com/originals/a7/e1/bc/a7e1bcc75c77e8063bc9a8f9b278503a.jpg') no-repeat center center scroll;
+    background: url('../../imagens/home/banner_vovo.png') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -144,7 +144,7 @@ footer {
 
 @media(max-width:640px) {
     .headline {
-        padding: 75px 0 25px 0;
+        padding: 175px 0 25px 0;
     }
 
     .headline h1 {
