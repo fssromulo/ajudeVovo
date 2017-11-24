@@ -60,8 +60,15 @@ class PagSeguroLib {
 		$this->CI->load->library('prestador');
 		$this->CI->load->library('contratante');
 
-		$arrPrestador = $this->CI->prestador->getPrestador($arrCondicoes['id_servico_solicitacao']);
-		$arrContratante = $this->CI->contratante->getContratante($arrCondicoes['id_servico_solicitacao']);
+		$arrPrestador = $this
+								->CI
+								->prestador
+								->getPrestador($arrCondicoes['id_servico_solicitacao']);
+		
+		$arrContratante = $this
+								->CI
+								->contratante
+								->getContratante($arrCondicoes['id_servico_solicitacao']);
 
 		(array)$arrDadosPagSeguro = json_decode(file_get_contents("php://input"), true);   
 

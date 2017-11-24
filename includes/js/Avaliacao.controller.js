@@ -1,35 +1,35 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
+app.controller(
+	"controllerAvaliacao",
+	function($scope, $rootScope, $http, RealizaAvaliacao) {
 
-app.controller("controllerAvaliacao", function($scope, $http){
 
-	$scope.__construct = function() {
-	};
+	$scope.__construct = function() {};
 
-	$scope.salvar = function() {
+	$scope.salvarAvaliacao = function() {
 
-		let arrAvaliacao =
-		{
-			'nota'  : $scope.nota | 0,
-			'comentario'  : $scope.comentario,
-			'id_contratante'      : $scope.contratante,
-			'id_servico'	: $scope.servico
+		let arrAvaliacao = {
+			'nota'  		 : $scope.nota | 0,
+			'comentario'     : $scope.comentario,
+			'id_servico'	 : RealizaAvaliacao.getIdServicoSolicitado()
 		};
+
 
 	    $http.post(
 	    		'../avaliacao/salvar',
 	    		arrAvaliacao
 	    	).success(function (data) {
+
+	    		if ( $scope.is_contratante == 1 ) {
+	    			RealizaAvaliacao.atualizarEstadoService();	    		
+	    		}
+
 	    		$scope.arrAvaliacao = data;
 	    		$scope.cancelar();
 		});
 	};
 
 	$scope.cancelar = function () {
+		$('#modalAvaliacao').modal('hide');
 		$scope.nota = null;
 		$scope.comentario = null;
 	}

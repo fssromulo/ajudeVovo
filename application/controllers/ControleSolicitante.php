@@ -7,8 +7,8 @@ class ControleSolicitante extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('ControleSolicitanteDB');
-		$this->id_contratante=2;		
+		$this->load->library('session');
+		$this->load->model('ControleSolicitanteDB');	
 	}
 
 	public function index() {
@@ -16,7 +16,8 @@ class ControleSolicitante extends CI_Controller {
 	}
 
 	public function buscaServico(){
-		$listaDetalheServico = $this->ControleSolicitanteDB->getDadosServico($this->id_contratante)->result_array();
+		$listaDetalheServico = $this->ControleSolicitanteDB->
+			getDadosServico($this->session->userdata('id_contratante'))->result_array();
 
 		echo json_encode($listaDetalheServico);
 	}	

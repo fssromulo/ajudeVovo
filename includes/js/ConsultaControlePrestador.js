@@ -1,11 +1,8 @@
-var app =  angular.module(
-	"appAngular",
- 	[
- 		'angular-loading-bar'
- 	]
-);
-
-app.controller("controllerControlePrestador", function($scope, $http){
+app.controller(
+	"controllerControlePrestador",
+	function(
+		$scope, $rootScope, $http, RealizaAvaliacao
+	){
 
 	$scope.__construct = () => {
 		$scope.carregarServicosSolicitados();
@@ -19,10 +16,6 @@ app.controller("controllerControlePrestador", function($scope, $http){
         });
     };
 
-    angular.element(document).ready(() => {
-		$scope.__construct();	
-	});
-
 	$scope.aceitar = (id_servico_solicitacao) => {
 		$scope.id_servico_solicitacao = id_servico_solicitacao;
 		$scope.atualizarEstado(1);
@@ -33,6 +26,15 @@ app.controller("controllerControlePrestador", function($scope, $http){
 		$scope.atualizarEstado(2);
 	};
 
+	$scope.abrirTelaAvaliacao = (id_servico_solicitacao) => {
+		RealizaAvaliacao.setIdServicoSolicitado(id_servico_solicitacao);
+	};
+
+    $scope.$on('finalizar_servico', function(e) {  
+    	$scope.id_servico_solicitacao = RealizaAvaliacao.getIdServicoSolicitado();
+        $scope.atualizarEstado(5);  
+    });
+
 	$scope.atualizarEstado = (estado) => {
 		$http.post(
 			'../ControlePrestador/atualizarEstado',
@@ -41,7 +43,12 @@ app.controller("controllerControlePrestador", function($scope, $http){
 				'id_estado_operacao': estado
 			}
         ).success(() => {
+        	$('#modalAvaliacao').modal('hide');
             $scope.carregarServicosSolicitados();
         });
 	}	
+
+	angular.element(document).ready(() => {
+		$scope.__construct();	
+	});
 });

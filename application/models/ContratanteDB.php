@@ -12,6 +12,7 @@ class ContratanteDB extends CI_Model{
 			$ds_sql =  ' SELECT  '
 				. ' 	pf.id_pessoa_fisica, '
 				. ' 	ss.id_servico_solicitacao, '
+				. ' 	ct.id_contratante, '
 				. ' 	pf.nome, '
 				. ' 	pf.cpf, '
 				. ' 	DATE_FORMAT(pf.dt_nascimento, "%d/%m/%Y") dt_nascimento,  '
