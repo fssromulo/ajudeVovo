@@ -1,6 +1,6 @@
 <?php
 	// Importa o cabeçalho padrao a todas as telas
-	$this->load->view('header.php');
+	$this->load->view('nucleo/header.php');
 ?>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
@@ -79,6 +79,7 @@
 		        <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
 		      </div>
 		      <div class="modal-body">
+		      	<span id="mostraSucesso"></span>
 		      	<?php
 		      		$this->load->view('DetalheServico.php');
 		      	?>	 
@@ -90,21 +91,15 @@
 	</div>
 
 
-	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-	<script type="text/javascript" src="../includes/jQuery/jquery.js"></script>
 
-	<!-- Compiled and minified JavaScript -->
-	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
-	
-   <script type="text/javascript" src="../includes/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+   <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
+	<?php
+		// Importa o cabeçalho rodape padrao a todas as telas
+		$this->load->view('nucleo/footer.php');
+	?>
+
+	 <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>
-	<!-- Angular JS -->
-   <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-
-	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
-	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
-
 	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>

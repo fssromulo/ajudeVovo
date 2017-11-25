@@ -96,7 +96,14 @@ app.controller(
 
         // Varre a lista de datas para verifica se data selecionada existe
         if ($scope.verificaDataExiste() != true){
-            alert("Data Inválida!");
+            /* Componente externo ! Documentacao:  https://notifyjs.com*/
+           $("#vlData").notify(
+                "Data Inválida!",
+                {
+                    position:"top"
+                },
+                "error"
+            );
             return false;
         }
 
@@ -117,7 +124,7 @@ app.controller(
             '../DetalheServico/salvarSolicitacao',
             arrServicoSalvar
         ).success(function(data) {
-        	alert("Salvo com sucesso!");
+            $("#btn_servico").notify("Salvo com sucesso!",{position:"right" });
             $scope.bloquear_btn_servico = false;
         });
     };

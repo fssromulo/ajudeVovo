@@ -5,6 +5,7 @@ app.controller(
 	){
 
 	$scope.__construct = () => {
+		RealizaAvaliacao.iniciaComponenteAvaliacao();
 		$scope.carregarServicosSolicitados();
 	};
 
