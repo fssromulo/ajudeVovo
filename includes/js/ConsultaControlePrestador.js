@@ -28,6 +28,7 @@ app.controller(
 
 	$scope.abrirTelaAvaliacao = (id_servico_solicitacao) => {
 		RealizaAvaliacao.setIdServicoSolicitado(id_servico_solicitacao);
+		RealizaAvaliacao.abrirModal();
 	};
 
     $scope.$on('finalizar_servico', function(e) {  

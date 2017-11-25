@@ -19,9 +19,8 @@ app.controller(
 	    		arrAvaliacao
 	    	).success(function (data) {
 
-	    		if ( $scope.is_contratante == 1 ) {
-	    			RealizaAvaliacao.atualizarEstadoService();	    		
-	    		}
+
+	   			RealizaAvaliacao.atualizarEstadoService();	    		
 
 	    		$scope.arrAvaliacao = data;
 	    		$scope.cancelar();
