@@ -1,13 +1,7 @@
 <?php
     // Importa o cabeçalho padrao a todas as telas
-    $this->load->view('header.php');
+    $this->load->view('nucleo/header.php');
 ?>
-   <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
-    <!-- <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script> -->
-    <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
-
-    <script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-    <script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script> 
 
 </head>
 
@@ -63,7 +57,7 @@
                                                 <div ng-show="{{lista.id_estado_operacao}} == 5">
                                                     <button 
                                                         title="Finalizar Serviço" 
-                                                        ng-click="abrirTelaAvaliacao(lista.id_servico_solicitacao)"
+                                                        ng-click="abrirTelaAvaliacao(lista.id_servico)"
                                                         class="btn btn-info"
                                                         style="font-size: 16px;">
                                                         <span class="glyphicon glyphicon-ok">
@@ -88,7 +82,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalAvaliacaoLabel">Realiazar Avaliação </h4>
+                <h4 class="modal-title" id="modalAvaliacaoLabel">Realizar Avaliação </h4>
               </div>
               <div class="modal-body" >
 
@@ -104,22 +98,17 @@
 
     </div>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
-    <script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
+   <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>    
+   <script type="text/javascript" src="../includes/star-rating/js/star-rating.min.js" ></script> 
 
-
-    <!-- Referência do arquivo JS do plugin após carregar o jquery -->
-    
-    <script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <?php
+        // Importa o cabeçalho rodape padrao a todas as telas
+        $this->load->view('nucleo/footer.php');
+    ?> 
 
 
     <script type="text/javascript" src="../includes/js/RealizarAvaliacao.service.js"></script>
     <script type="text/javascript" src="../includes/js/ConsultaControleSolicitante.js"></script>
     <script type="text/javascript" src="../includes/js/Avaliacao.controller.js"></script>
-
 </body>
 </html>

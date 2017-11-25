@@ -1,6 +1,6 @@
 <?php
     // Importa o cabeçalho padrao a todas as telas
-    $this->load->view('header.php');
+    $this->load->view('nucleo/header.php');
 ?>
 
 </head>
@@ -301,19 +301,24 @@
 
 	</div>
 
-	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
+ <!--	
 
-	<!-- Compiled and minified JavaScript -->
 	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
 
-	<!-- Include MASK INPUT-->
-	<script type="text/javascript" src="../includes/maskinput/jquery.maskedinput.js"></script>  
 	
-	<!-- Angular JS -->
+
 	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
 
 	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
 	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
+-->
+
+ 	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
+    <?php
+        // Importa o cabeçalho rodape padrao a todas as telas
+        $this->load->view('nucleo/footer.php');
+    ?> 
+
 
 	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
