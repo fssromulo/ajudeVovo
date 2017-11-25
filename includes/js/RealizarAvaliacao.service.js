@@ -11,7 +11,7 @@ app.service(
 
 		this.id_servico_solicitado = 0;
 
-		this.iniciaComponenteAvaliacao= function() {
+		this.iniciaComponenteAvaliacao = function() {
 	        $(function(){        
 	            $('.kv-fa-heart').rating({
 	                theme: 'krajee-fa',
