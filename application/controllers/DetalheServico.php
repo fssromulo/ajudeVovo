@@ -48,21 +48,10 @@ class DetalheServico extends CI_Controller {
 
 	public function salvarSolicitacao(){
 		(array)$dados = json_decode(file_get_contents("php://input"), true); 
-	 	$this->load->library('PagSeguro/pagsegurolib');
-
-	 	$tokenCartaoVovo = $dados['tokenCartaoVovo'];
-	 	unset($dados['tokenCartaoVovo']);
 
 		$dados['dia_solicitacao']  = formatarDatas($dados['dia_solicitacao'], 'Y-m-d');
 		$dados['id_contratante']   = $this->session->userdata('id_contratante');
 
 		$id_servico_solicitacao    = $this->DetalheServicoDB->inserirSolicitacao($dados);
-
-		$arrIntegraPagSeguro = array(
-			'id_servico_solicitacao' => $id_servico_solicitacao,
-			'tokenCartaoVovo' 		 => $tokenCartaoVovo
-		);
-
-		$this->pagsegurolib->realizaPagamentoPagSeguro( $arrIntegraPagSeguro );
 	}
 }

@@ -26,6 +26,20 @@ class ControlePrestador extends CI_Controller {
 	*/
 	public function atualizarEstado() {
 		(array)$dados = json_decode(file_get_contents("php://input"), true);   
+	 	$this->load->library('PagSeguro/pagsegurolib');
+
+	 	if (isset($dados['tokenCartaoVovo'])) {
+	 		$tokenCartaoVovo = $dados['tokenCartaoVovo'];
+	 		unset($dados['tokenCartaoVovo']);
+	 	}
+
 		$this->PrestadorDB->atualizarEstado($dados);
+		
+		$arrIntegraPagSeguro = array(
+			'id_servico_solicitacao' => $dados['id_servico_solicitacao'],
+			'tokenCartaoVovo' 		 => $tokenCartaoVovo
+		);
+
+		$this->pagsegurolib->realizaPagamentoPagSeguro( $arrIntegraPagSeguro );		
 	}
 }

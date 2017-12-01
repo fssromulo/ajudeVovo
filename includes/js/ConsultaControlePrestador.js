@@ -5,7 +5,7 @@ app.controller(
 	){
 
 	$scope.__construct = () => {
-		RealizaAvaliacao.iniciaComponenteAvaliacao();
+    	RealizaAvaliacao.iniciaComponenteAvaliacao();
 		$scope.carregarServicosSolicitados();
 	};
 
@@ -38,12 +38,14 @@ app.controller(
     });
 
 	$scope.atualizarEstado = (estado) => {
+		var arrDados = {
+			'id_servico_solicitacao': $scope.id_servico_solicitacao,
+			'id_estado_operacao': estado
+		};
+
 		$http.post(
 			'../ControlePrestador/atualizarEstado',
-			{
-				'id_servico_solicitacao': $scope.id_servico_solicitacao,
-				'id_estado_operacao': estado
-			}
+			arrDados
         ).success(() => {
         	$('#modalAvaliacao').modal('hide');
             $scope.carregarServicosSolicitados();

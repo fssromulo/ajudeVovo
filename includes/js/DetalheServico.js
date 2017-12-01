@@ -31,7 +31,7 @@ app.controller(
         $scope.id_servico_escolhido = ServicoClienteDetalhe.getIdServico();
         
         if ( $scope.id_servico_escolhido != null || $scope.id_servico_escolhido != undefined ) {
-            $scope.iniciaSessaoPagSeguro(); 
+            // $scope.iniciaSessaoPagSeguro(); 
             $scope.carregarDetalheServico();
             $scope.carregarDiaHorarioDisponivel();  
         }
@@ -96,7 +96,7 @@ app.controller(
 
         // Varre a lista de datas para verifica se data selecionada existe
         if ($scope.verificaDataExiste() != true){
-            /* Componente externo ! Documentacao:  https://notifyjs.com*/
+            /* Componente externo ! Documentacao:  https://notifyjs.com */
            $("#vlData").notify(
                 "Data Inválida!",
                 {
@@ -108,13 +108,12 @@ app.controller(
         }
 
         var arrServicoSalvar = {
-            'id_servico' : $scope.id_servico_escolhido,
+            'id_servico'         : $scope.id_servico_escolhido,
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
-            'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
-            'horario_fim': $scope.formatarHorario($scope.horario_fim),
-            'dia_solicitacao': $scope.dia_solicitacao,
-            'tokenCartaoVovo' :  $scope.tokenCartaoVovo 
+            'horario_inicio'     : $scope.formatarHorario($scope.horario_inicio),
+            'horario_fim'        : $scope.formatarHorario($scope.horario_fim),
+            'dia_solicitacao'    : $scope.dia_solicitacao
         }
 
         // Bloqueia o botão para o usuário não realizar inumeras requisicoes
@@ -124,7 +123,7 @@ app.controller(
             '../DetalheServico/salvarSolicitacao',
             arrServicoSalvar
         ).success(function(data) {
-            $("#btn_servico").notify("Salvo com sucesso!",{position:"right" });
+            $("#btn_servico").notify("Salvo com sucesso!", {position:"right" }, "success");
             $scope.bloquear_btn_servico = false;
         });
     };

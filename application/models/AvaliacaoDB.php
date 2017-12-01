@@ -22,7 +22,6 @@ class AvaliacaoDB extends CI_Model{
  			$arrAvaliacao
  		);
   	}
-
 	  
 	public function inserir_avaliacao_contratante($arrAvaliacao) {
  		$this->db->insert(

@@ -20,5 +20,5 @@ class ControleSolicitante extends CI_Controller {
 			getDadosServico($this->session->userdata('id_contratante'))->result_array();
 
 		echo json_encode($listaDetalheServico);
-	}	
+	}
 }
