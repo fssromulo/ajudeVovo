@@ -12,13 +12,13 @@ class ServicoDB extends CI_Model {
 			"select 
 				s.id_servico as id_servico, 
 				s.descricao as descricao, 
-				s.valor as valor, 
+			    CONCAT('R$ ',format(s.valor,2,'de_DE')) valor,
 				s.detalhe as detalhe, 
 				(SELECT COUNT(ss.id_servico) FROM servico_solicitado ss WHERE ss.id_servico=s.id_servico) as solicitacoes
 			from 
 				servico s
 			where 
-				s.id_prestador=".$id_prestador);
+				s.id_prestador=" . $id_prestador);
     }
 
     public function get_categorias() {

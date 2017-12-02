@@ -68,7 +68,18 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="valor">Valor:</label>
-                                    <input type="number" ng-model="valor" class="form-control" id="valor" required/>
+                                        <div class="input-group">
+                                          <span class="input-group-addon">R$</span>
+                                            <input
+                                                type="text"
+                                                ng-model="valor"
+                                                class="form-control"
+                                                id="valor"
+                                                data-ng-blur="validaValorServico()"
+                                                required
+                                            />
+                                        </div>
+
                                 </div>
                             </div>
                         </div>
