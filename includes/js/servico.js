@@ -1,8 +1,8 @@
 var app =  angular.module(
 	"appAngular",
  	[
-         'angular-loading-bar'
- 	]
+        'ui.bootstrap',
+        'angular-loading-bar' 	]
 );
 
 app.controller("controllerServico", function($scope, $http) {
@@ -12,7 +12,10 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.id_servico = null;
         $scope.id_categoria = null;
         $scope.is_alterar = false;
+        $scope.valorConvertido = 0;
         $scope.arrListaAtendimento = [];
+
+        $("#valor").maskMoney({thousands:'.',decimal:','});
 
         $scope.arrListaDiaAtendimento = 
 		[
@@ -76,7 +79,7 @@ app.controller("controllerServico", function($scope, $http) {
 
         var arrServicoSalvar = {
             'descricao' : $scope.descricao,
-            'valor' : $scope.valor,
+            'valor' : $scope.valorConvertido,
             'detalhe' : $scope.detalhe,
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'listaAtendimento': $scope.arrListaAtendimento,
@@ -88,6 +91,7 @@ app.controller("controllerServico", function($scope, $http) {
             arrServicoSalvar
         ).success(function (data) {
             $scope.arrListaServico = data;
+             $.notify("Serviço salvo!", "success");
             $scope.cancelar();
         });
     };
@@ -126,13 +130,30 @@ app.controller("controllerServico", function($scope, $http) {
     //     });
     // };
 
-    $scope.informacoesServicoValidas = function() {        
-        if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
-            console.log("As informações do serviço são inválidas");
+    $scope.validaValorServico = function () {
+        $scope.valorConvertido  = $("#valor").val().replace('.', '');
+        $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
+        $scope.valorConvertido = parseFloat($scope.valorConvertido);
+
+        if ( $scope.valorConvertido > 250 ) {
+            $("#valor")
+                .notify("O valor máximo para serviços é de R$ 250,00", "error")
+                .val("")
+                .focus();
+
             return false;
         }
 
         return true;
+    }
+
+    $scope.informacoesServicoValidas = function() {        
+        if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
+            $.notify("As informações do serviço são inválidas");
+            return false;
+        }
+
+        return $scope.validaValorServico();
     };
 
     $scope.adicionarDiaAtendimento = function() {
@@ -143,10 +164,6 @@ app.controller("controllerServico", function($scope, $http) {
         if (!$scope.horarioInicioMenorQueHorarioFim()) {
             return false;
         }
-
-        // if (!$scope.horarioConflitante()) {
-        //     return false;
-        // }
 
         var arrDiaAtendimento = {
             'dia': $scope.diaAtendimentoSelected['descricao'],
@@ -173,12 +190,14 @@ app.controller("controllerServico", function($scope, $http) {
 
 
         if (horaInicio > horaFim) {
-            console.log("O horário de início é menor do que o horário de fim do atendimento");
+            $.notify("O horário de início é menor do que o horário de fim do atendimento");
+            $("#horario_inicio").focus();
             return false;
         }
 
         if ((horaInicio == horaFim) && (minutoInicio > minutoFim)) {
-            console.log("O horário de início é menor do que o horário de fim do atendimento");
+            $.notify("O horário de início é menor do que o horário de fim do atendimento");
+            $("#horario_inicio").focus();
             return false;
         }
 
@@ -196,8 +215,13 @@ app.controller("controllerServico", function($scope, $http) {
     };
 
     $scope.informacoesAtendimentoValidas = function() {
-        if ($scope.diaAtendimentoSelected == undefined || $scope.horario_inicio == null || $scope.horario_fim == null) {
-            console.log("As informações de atendimento são inválidas");
+        if (
+            $scope.diaAtendimentoSelected == undefined ||
+            $scope.horario_inicio == null ||
+            $scope.horario_fim == null
+        ) {
+            $.notify("As informações de atendimento são inválidas", "error");        
+            $("#diaAtendimento").focus();
             return false;
         }
      
@@ -206,7 +230,7 @@ app.controller("controllerServico", function($scope, $http) {
 
       $scope.temAtendimentoInserido = function() {
         if ($scope.arrListaAtendimento == 0) {
-            console.log("Nenhuma data de atendimento foi inserida");
+            $.notify("Nenhuma data de atendimento foi inserida");
             return false;
         }
         
@@ -214,7 +238,19 @@ app.controller("controllerServico", function($scope, $http) {
     };
 
     $scope.formatarHorario = function(horario) {
-        return (horario.getHours() + ":" + horario.getMinutes());
+        /*
+            Pega a hora digitada, e adiona o 0 
+            porque a hora deve ter 2 digitos
+            se já tiver irá remover com o slice(funcao do javascript)
+        */
+        
+        hora = horario.getHours();
+        hora = ("0" + hora).slice(-2);
+
+        minutos = horario.getMinutes();
+        minutos = ("0" + minutos).slice(-2);
+    
+        return (hora + ":" + minutos);
     };
 
     $scope.cancelar = function () {

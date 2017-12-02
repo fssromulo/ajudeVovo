@@ -20,13 +20,13 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="nome">Nome:</label>
-								<input type="text" ng-model="nome" class="form-control" id="nome" placeholder="nome" />
+								<input type="text" ng-model="nome" class="form-control" id="nome" placeholder="Nome" />
 							</div>
 			   		</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
-								<label for="dt_nascimento">Data:</label>
-								<input type="text" ng-model="dt_nascimento" class="form-control" id="dt_nascimento" placeholder="dt_nascimento" />
+								<label for="dt_nascimento">Data de nascimento:</label>
+								<input type="text" ng-model="dt_nascimento" class="form-control" id="dt_nascimento" placeholder="Data de nascimento" />
 							</div>
 			   		</div>
 			   	</div>
@@ -36,7 +36,7 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="cpf">CPF:</label>
-								<input type="text" ng-model="cpf" class="form-control" id="cpf" placeholder="cpf" />
+								<input type="text" ng-model="cpf" class="form-control" id="cpf" placeholder="Cpf" />
 							</div>
 			   		</div>
 						<div class="col-sm-12 col-md-6">
@@ -138,14 +138,14 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="rua">Rua:</label>
-								<input type="text" ng-model="rua" class="form-control" id="rua" placeholder="rua" />
+								<input type="text" ng-model="rua" class="form-control" id="rua" placeholder="Rua" />
 							</div>
 			   		</div>
 			   		
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="nr_rua">Número da rua:</label>
-								<input type="text" ng-model="nr_rua" class="form-control" id="nr_rua" placeholder="nr_rua" />
+								<input type="text" ng-model="nr_rua" class="form-control" id="nr_rua" placeholder="Número da rua" />
 							</div>
 			   		</div>
 			   	</div>
@@ -156,13 +156,13 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="complemento">Complemento:</label>
-								<input type="text" ng-model="complemento" class="form-control" id="complemento" placeholder="complemento" />
+								<input type="text" ng-model="complemento" class="form-control" id="complemento" placeholder="Complemento" />
 							</div>
 			   		</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="cep">CEP:</label>
-								<input type="text" ng-model="cep" class="form-control" id="cep" placeholder="cep" />
+								<input type="text" ng-model="cep" class="form-control" id="cep" placeholder="Cep" />
 							</div>
 			   		</div>
 			   	</div>
@@ -181,14 +181,14 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="fone_residencial">Telefone residencial:</label>
-								<input type="text" ng-model="fone_residencial" class="form-control cls-mascara-fone" id="fone_residencial" placeholder="fone_residencial" />
+								<input type="text" ng-model="fone_residencial" class="form-control cls-mascara-fone" id="fone_residencial" placeholder="Telefone residencial" />
 							</div>
 			   		</div>
 			   		
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="fone_comercial">Telefone comercial:</label>
-								<input type="text" ng-model="fone_comercial" class="form-control cls-mascara-fone" id="fone_comercial" placeholder="fone_comercial" />
+								<input type="text" ng-model="fone_comercial" class="form-control cls-mascara-fone" id="fone_comercial" placeholder="Telefone comercial" />
 							</div>
 			   		</div>
 			   	</div>
@@ -199,14 +199,14 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="celular">Celular:</label>
-								<input type="text" ng-model="celular" class="form-control cls-mascara-fone" id="celular" placeholder="celular" />
+								<input type="text" ng-model="celular" class="form-control cls-mascara-fone" id="celular" placeholder="Celular" />
 							</div>
 			   		</div>
 			   		
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="email">E-mail:</label>
-								<input type="text" ng-model="email" class="form-control" id="email" placeholder="email" />
+								<input type="text" ng-model="email" class="form-control" id="email" placeholder="E-mail" />
 							</div>
 			   		</div>
 			   	</div>
@@ -227,7 +227,7 @@
 						<div class="col-sm-12 col-md-12">
 							<div class="form-group">
 								<label for="login">Login:</label>
-								<input type="text" ng-model="login" class="form-control" id="login" placeholder="login" />
+								<input type="text" ng-model="login" class="form-control" id="login" placeholder="Login" />
 							</div>
 			   		</div>		   		
 			   	</div>
@@ -239,14 +239,14 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="senha1">Senha:</label>
-								<input type="password" ng-model="senha1" class="form-control" id="senha1" placeholder="senha1" />
+								<input type="password" ng-model="senha1" class="form-control" id="senha1" placeholder="Senha" />
 							</div>
 			   		</div>
 			   		
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group">
 								<label for="senha2">Repetir senha:</label>
-								<input type="password" ng-model="senha2" class="form-control" id="senha2" placeholder="senha2" />
+								<input type="password" ng-model="senha2" class="form-control" id="senha2" placeholder="Confirmar senha" />
 							</div>
 			   		</div>
 			   	</div>
