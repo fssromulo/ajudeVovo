@@ -8,7 +8,7 @@ class PrestadorDB extends CI_Model{
 		parent::__construct();
 	}
 
-	public function getPrestador($id_servico_solicitacao) {
+	public function getPrestador($id_servico) {
 
    	$ds_sql = ' SELECT ' 
 			. ' 	pf.id_pessoa_fisica, '
@@ -48,10 +48,10 @@ class PrestadorDB extends CI_Model{
 			. ' 	c.id_estado = es.id_estado '
 			. ' ) '
 			. ' WHERE '
-			. ' 	ss.id_servico_solicitacao = ?';
+			. ' 	s.id_servico = ?';
 
 			$arrCondicao = array(
-				$id_servico_solicitacao
+				$id_servico
 			);
 
    	return $this->db->query(
@@ -65,6 +65,7 @@ class PrestadorDB extends CI_Model{
 		return $this->db->query("
 			select
 				ss.id_servico_solicitacao,
+				s.id_servico,
 				pf.nome,
 				s.descricao,
 				DATE_FORMAT(ss.dia_solicitacao, '%d/%m/%Y') dia_solicitacao,
@@ -72,21 +73,21 @@ class PrestadorDB extends CI_Model{
 				TIME_FORMAT(ss.horario_fim,'%H:%i') as horario_fim,		
 				eo.id_estado_operacao,
 				eo.descricao ds_estado_atual
-			from
+			FROM
 				pessoa_fisica pf,
 				contratante c,
 				servico_solicitado ss,
 				servico s,
 				estado_operacao eo
-			where	
+			WHERE	
 				pf.id_pessoa_fisica = c.id_pessoa
-			and 
+			AND 
 				ss.id_contratante = c.id_contratante
-			and
+			AND
 				ss.id_estado_operacao = eo.id_estado_operacao
-			and		
+			AND		
 				ss.id_servico = s.id_servico
-		  	and
+		  	AND
 				s.id_prestador = ? ",
 			array(
 				$id_prestador
@@ -95,11 +96,14 @@ class PrestadorDB extends CI_Model{
 	}
 
 	public function atualizarEstado($params) {
+		
+		$id_servico = $params["id_servico"];
+
 		$this->db->update(
 			'servico_solicitado', 
 			$params, 
 			array(
-				'id_servico_solicitacao' => $params["id_servico_solicitacao"]
+				'id_servico' => $id_servico
 			)
 		);
 	}

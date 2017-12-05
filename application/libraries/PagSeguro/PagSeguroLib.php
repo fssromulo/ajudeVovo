@@ -63,12 +63,12 @@ class PagSeguroLib {
 		$arrPrestador = $this
 								->CI
 								->prestador
-								->getPrestador($arrCondicoes['id_servico_solicitacao']);
+								->getPrestador($arrCondicoes['id_servico']);
 		
 		$arrContratante = $this
 								->CI
 								->contratante
-								->getContratante($arrCondicoes['id_servico_solicitacao']);
+								->getContratante($arrCondicoes['id_servico']);
 
 		(array)$arrDadosPagSeguro = json_decode(file_get_contents("php://input"), true);   
 

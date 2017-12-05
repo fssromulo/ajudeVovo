@@ -20,19 +20,19 @@ app.controller(
         });
     };
 
-	$scope.abrirTelaAvaliacao = (id_servico_solicitacao) => {
-		RealizaAvaliacao.setIdServicoSolicitado(id_servico_solicitacao);
+	$scope.abrirTelaAvaliacao = (id_servico) => {
+		RealizaAvaliacao.setIdServicoSolicitado(id_servico);
 		RealizaAvaliacao.abrirModal();
 	};
 
     $scope.$on('finalizar_servico', function(e) {  
-    	$scope.id_servico_solicitacao = RealizaAvaliacao.getIdServicoSolicitado();      
+    	$scope.id_servico = RealizaAvaliacao.getIdServicoSolicitado();      
         $scope.atualizarEstado(6);  
     });
 
 	$scope.atualizarEstado = (estado) => {
 		var arrDados = {
-			'id_servico_solicitacao': $scope.id_servico_solicitacao,
+			'id_servico': $scope.id_servico,
 			'id_estado_operacao': estado
 		};
 
