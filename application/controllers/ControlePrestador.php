@@ -28,10 +28,8 @@ class ControlePrestador extends CI_Controller {
 		(array)$dados = json_decode(file_get_contents("php://input"), true);   
 	 	$this->load->library('PagSeguro/pagsegurolib');
 
-	 	if (isset($dados['tokenCartaoVovo'])) {
-	 		$tokenCartaoVovo = $dados['tokenCartaoVovo'];
-	 		unset($dados['tokenCartaoVovo']);
-	 	}
+		$tokenCartaoVovo = $dados['tokenCartaoVovo'];
+		unset($dados['tokenCartaoVovo']);	
 
 		$this->PrestadorDB->atualizarEstado($dados);
 		
