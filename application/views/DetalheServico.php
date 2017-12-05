@@ -105,7 +105,7 @@
                         class="btn btn-primary"
                         ng-disabled="bloquear_btn_servico"
                     >
-                        Adicionar
+                        Confirmar Solicitação
                     </button>
                 </div>
             </div>

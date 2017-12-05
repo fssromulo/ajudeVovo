@@ -60,7 +60,7 @@
                                                 <div ng-show="{{lista.id_estado_operacao}} == 3">
                                                     <button 
                                                         title="Aceitar" 
-                                                        ng-click="aceitar(lista.id_servico_solicitacao)"
+                                                        ng-click="aceitar(lista.id_servico)"
                                                         class="btn btn-success"
                                                         style="font-size: 16px;">
                                                             <span class="glyphicon glyphicon-thumbs-up" >
@@ -68,7 +68,7 @@
                                                     </button>
                                                     <button 
                                                         title="Negar"
-                                                        ng-click="negar(lista.id_servico_solicitacao)"
+                                                        ng-click="negar(lista.id_servico)"
                                                         class="btn btn-danger"
                                                         style="font-size: 16px;">
                                                             <span class="glyphicon glyphicon-thumbs-down"  >
@@ -78,7 +78,7 @@
                                                 <div ng-show="{{lista.id_estado_operacao}} == 4">
                                                     <button 
                                                         title="Finalizar Serviço" 
-                                                        ng-click="abrirTelaAvaliacao(lista.id_servico_solicitacao)"
+                                                        ng-click="abrirTelaAvaliacao(lista.id_servico)"
                                                         class="btn btn-info"
                                                         style="font-size: 16px;">
                                                             <span class="glyphicon glyphicon-ok">

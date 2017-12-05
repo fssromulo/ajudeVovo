@@ -9,7 +9,7 @@ app.service(
 	'RealizaAvaliacao',
 	function($rootScope, $http, $q) {
 
-		this.id_servico_solicitado = 0;
+		this.id_servico = 0;
 
 		this.iniciaComponenteAvaliacao = function() {
 	        $(function(){        
@@ -34,8 +34,8 @@ app.service(
 	        });
 		}
 
-		this.setIdServicoSolicitado = function( id_servico_solicitado ) {
-			this.id_servico_solicitado = id_servico_solicitado;
+		this.setIdServicoSolicitado = function( id_servico ) {
+			this.id_servico = id_servico;
 		}
 
 		this.salvarAvaliacaoService = function() {
@@ -53,7 +53,7 @@ app.service(
 		}
 
 		this.getIdServicoSolicitado = function() {
-			return this.id_servico_solicitado;
+			return this.id_servico;
 		}
 	}
 );
