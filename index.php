@@ -1,6 +1,5 @@
 <?php
 
-echo phpinfo();
 /**
  * CodeIgniter
  *
