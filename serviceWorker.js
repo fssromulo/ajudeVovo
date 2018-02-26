@@ -7,8 +7,8 @@
 
 var filesToCache = [];
 
-var cacheName = 'my-site-cache-v4';
-var dataCacheName = 'weatherData-v4';
+var cacheName = 'my-site-cache-v5';
+var dataCacheName = 'weatherData-v5';
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
@@ -35,6 +35,14 @@ self.addEventListener('activate', function(e) {
 
 
   return self.clients.claim();
+});
+
+// Push notificationss
+self.addEventListener('push', function(event) {
+  event.waitUntil(
+    self.registration.showNotification('Ajude o vovô - Informa...', {
+      body: 'Existem mais aviões no mar, que submarinos no céu!'
+   }));
 });
 
 self.addEventListener('fetch', function(event) {
