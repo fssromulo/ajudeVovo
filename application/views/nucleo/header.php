@@ -10,10 +10,10 @@
 <!-- 
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
-	<link href="../includes/css/pagina_inicial/pagina_inicial.css" rel="stylesheet" />	
 	<link href="../includes/css/bootstrap-datepicker/bootstrap-datepicker.min.css"  type="text/css" rel="stylesheet" /> -->
+	<link href="../includes/css/pagina_inicial/pagina_inicial.css" rel="stylesheet"  media="screen,projection" />	
 	
-	<link href="../includes/materialize/css/materialize.min.css"  type="text/css" rel="stylesheet" />
+	<link href="../includes/materialize/css/materialize.min.css"  type="text/css" rel="stylesheet"  media="screen,projection" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link rel="stylesheet" href="../includes/css/fontawesome.css"/>	
 	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
