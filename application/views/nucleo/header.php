@@ -3,23 +3,30 @@
 <head>
 	<title>Ajude o vovo</title>
 	<meta charset="utf-8" />
+	<meta http-equiv="Content-Language" content="pt-br">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="Ajude um vovo agora mesmo. Cuide de quem um dia cuidou de você" />
-	<meta name="author" content="" />
+<!-- 
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
 	<link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
 	<link href="../includes/css/pagina_inicial/pagina_inicial.css" rel="stylesheet" />	
-	<link href="../includes/css/bootstrap-datepicker/bootstrap-datepicker.min.css"  type="text/css" rel="stylesheet" />
+	<link href="../includes/css/bootstrap-datepicker/bootstrap-datepicker.min.css"  type="text/css" rel="stylesheet" /> -->
+	
+	<link href="../includes/materialize/css/materialize.min.css"  type="text/css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link rel="stylesheet" href="../includes/css/fontawesome.css"/>	
 	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
 	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
 
-		<!-- PWA things; -->
-		<!-- PWA things; -->
-		<!-- PWA things; -->
-		<!-- PWA things; -->
+	<!-- PWA things; -->
+	<!-- PWA things; -->
+	<!-- PWA things; -->
+	<!-- PWA things; -->
 
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="#1889ff"/>
+	<meta name="apple-mobile-web-app-title" content="Ajude o Vovô" />
 	<link rel="apple-touch-icon" sizes="57x57" href="../includes/imagens/pwa_icons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="../includes/imagens/pwa_icons/apple-touch-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="../includes/imagens/pwa_icons/apple-touch-icon-72x72.png">

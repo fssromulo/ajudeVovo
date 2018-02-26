@@ -2,13 +2,94 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
+
 </head>
-<body>
-    <div ng-app="AppHome" ng-controller="controllerHome">
+<body class="blue-grey lighten-4">
+    <div data-ng-app="AppHome" data-ng-controller="controllerHome">
+    <div class="container">
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top bg-ajudeVovo" role="navigation">
+<!--         <nav>
+            <div class="nav-wrapper blue #1889ff">
+              <a href="#!" class="brand-logo"><img src="../includes/imagens/pwa_icons/android-chrome-48x48.png"/></a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Quero ajudar</a></li>
+                <li><a href="#">Solicitar ajuda</a></li>
+              </ul>
+                  <ul id="mobile-demo" class="side-nav">
+                    <li><div class="user-view">
+                      <div class="background blue #1889ff">
+                        <div class="blue lighten-1"></div>
+                      </div>
+                      <a href="#!user"><img class="circle" src="../includes/imagens/pwa_icons/android-chrome-192x192.png"></a>
+                      <a href="#!name"><span class="white-text name">Adalberto Azevedo</span></a>
+                      <a href="#!email"><span class="white-text email">ajudevovo@gmail.com</span></a>
+                    </div></li>
+                    <li><a href="#" id="link_frm_login" ><i class="material-icons">home</i>Home</a></li>
+                    
+                    <li><a href="#"><i class="material-icons">power_settings_new</i>Sair</a></li>
+                  </ul>
+            </div>
+        </nav> -->
+
+            <div class="center row" >
+                    <div class="center col s12 m8 offset-m4 l9 offset-l3"> <!-- Note that "m8 l9" was added -->     
+
+                        <div id="frm_login">
+                           <div class="row">
+                            <div class="row"> &nbsp;</div>
+                            <form class="center col s12 m8 l8">
+                                <div class="">
+                                    <img
+                                        class=" center-align responsive-img" 
+                                        src="../includes/imagens/logo_login.png"
+                                        alt="logo_ajude_vovo"
+                                    />
+                                    <br/>
+                                </div>
+
+                                  <div class="row">
+                                    <div class="input-field col s12">
+                                      <input
+                                        value=""
+                                        type="email"
+                                        class="validate" 
+                                        data-ng-model="usuario_logar"/>
+                                      <label for="disabled">Usuário/E-mail</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="input-field col s12">
+                                      <input
+                                        id="password"
+                                        type="password"
+                                        class="validate"
+                                        data-ng-model="senha_logar"
+                                      />
+                                      <label for="password">Senha</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                        <div class=" left-align  col s12">
+                                          <a class="left-align" href="#">Novo por aqui? Cadastre-se!</a>
+                                        </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="input-field col s12 ">
+                                      <a class="waves-effect waves-light btn right  light-blue darken-2">Entrar</a>
+                                    </div>
+                                  </div>
+                            </form>
+                          </div>
+                        </div>
+
+                    </div>
+              </div>
+
+        <!-- nav class="navbar navbar-inverse navbar-fixed-top bg-ajudeVovo" role="navigation">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
+
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuResponsivo">
                         <span class="sr-only">Toggle navigation</span>
@@ -18,7 +99,7 @@
                     </button>
                     <a class="navbar-brand" href="">Ajude o vovô</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
+
                 <div class="collapse navbar-collapse" id="menuResponsivo" >
                     <ul class="nav navbar-nav">
                         <li>
@@ -36,7 +117,7 @@
     		             	data-html="true"                             
     		             	id="login"
     		             	class="links_menu"
-    		             	ng-click="escolherPerfil('ajudante')"
+    		             	data-ng-click="escolherPerfil('ajudante')"
     			             >Quero Ajudar</a>
                     	</li>
 
@@ -49,96 +130,51 @@
     							data-container="body"
     		             	    data-html="true" id="login"
     		             	    class="links_menu"
-    		             	    ng-click="escolherPerfil('contratante')"
+    		             	    data-ng-click="escolherPerfil('contratante')"
     				        >Solicitar ajuda</a>
                         </li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
+               
             </div>
-            <!-- /.container -->
-        </nav>
+
+        </nav> 
 
         <div id="popLoginPessoa" class="hide">
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-12">
-                    <input type="text" placeholder="Usuário" ng-model="usuario_logar" class="form-control" maxlength="15"><br/>
+                    <input type="text" placeholder="Usuário" data-ng-model="usuario_logar" class="form-control" maxlength="15"><br/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <input type="password" placeholder="Senha" ng-model="senha_logar" class="form-control"><br/>
+                        <input type="password" placeholder="Senha" data-ng-model="senha_logar" class="form-control"><br/>
                     </div>  
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="button" ng-click="cancelar()" class="btn btn-danger">
+                        <button type="button" data-ng-click="cancelar()" class="btn btn-danger">
                             Cancelar
                         </button>
-                        <button type="submit" class="btn btn-primary" ng-click="fazerLogin()">
+                        <button type="submit" class="btn btn-primary" data-ng-click="fazerLogin()">
                             Login
                         </button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="left-align col-sm-12">
                         <a
                         href="{{link_cadastro}}"
-                        class="link_cadastro">Novo por aqui? Cadastre-se!</a>
+                        class="left-align">Novo por aqui? Cadastre-se!</a>
                         <br/>
                     </div>
                 </div>                
             </div>
         </div>
-
-        <!-- Full Width Image Header -->
-        <header class="header-image">
-            <div class="headline">
-                <div class="container ">
-                 <!--    <h1>Ajude um vovô agora mesmo!</h1>
-                    <h2>Junte-se a nós</h2> -->
-                </div>
-            </div>
-        </header>
-
-        <!-- Page Content -->
-        <div class="container">
-
-            <hr class="featurette-divider">
-
-            <!-- First Featurette -->
-            <div class="featurette" id="about" >           
-    		
-
-            </div>
-
-            <hr class="featurette-divider">
-
-            <!-- Second Featurette -->
-            <div class="featurette" id="services">
-                <img class="featurette-image img-circle img-responsive pull-left" src="https://2.bp.blogspot.com/-xG7dTAAPykA/WAj6oA5BZ3I/AAAAAAAAAHM/TGAYcM2qxJYHIl7t0jyGbPHXuzx4aFSCgCLcB/s1600/022-CasalIdoso.jpg" style="width:200px;height: 200px;">
-                <h2 class="featurette-heading">The Second Heading
-                    <span class="text-muted">Is Pretty Cool Too.</span>
-                </h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <!-- Third Featurette -->
-            <div class="featurette" id="contact">
-                <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-                <h2 class="featurette-heading">The Third Heading
-                    <span class="text-muted">Will Seal the Deal.</span>
-                </h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-
-            <hr class="featurette-divider">
-
-        </div>
-        <!-- /.container -->
+    -->
+        
+    </div>
     </div>
     <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
 

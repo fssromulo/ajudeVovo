@@ -1,7 +1,8 @@
  var app =  angular.module(
 	"AppHome",
  	[
- 		'angular-loading-bar'
+ 		'angular-loading-bar',
+ 		'ui.materialize'
  	]
 );
 
@@ -13,15 +14,19 @@ app.controller("controllerHome", function($scope, $http){
 
 		$scope.usuario_logar = null;
 		$scope.senha_logar = null;
-$('[data-toggle="popover2"]').popover('hide');
-		$("[data-toggle=popover]").popover({
-		    html: true, 
-			content: function() {
-				$('[data-toggle="popover"]').popover('hide');
-		          return $('#popLoginPessoa').html();
+
+		 	$('.button-collapse').sideNav({
+		      menuWidth: 300, // Default is 300
+		      edge: 'left', // Choose the horizontal origin
+		      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+		      draggable: true, // Choose whether you can drag to open on touch screens,
+		      onOpen: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is opened
+		      onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
 		    }
-		});
-	};
+		  );
+
+
+	}
 
 	$scope.fazerLogin = function() {
 
