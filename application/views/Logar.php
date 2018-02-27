@@ -4,7 +4,7 @@
 ?>
 
 </head>
-<body class="blue-grey lighten-4">
+<body>
     <div data-ng-app="AppHome" data-ng-controller="controllerHome">
     <div class="container">
         <!-- Navigation -->
