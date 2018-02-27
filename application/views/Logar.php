@@ -78,6 +78,7 @@
                                   <div class="row">
                                     <div class="input-field col s12 ">
                                       <a class="waves-effect waves-light btn right  light-blue darken-2">Entrar</a>
+                                      <a class="waves-effect waves-light btn right  light-blue darken-2" href="../home/">Voltar</a>
                                     </div>
                                   </div>
                             </form>
