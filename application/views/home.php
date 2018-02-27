@@ -37,7 +37,7 @@
           <h5 class="header col s12 light">Ajude um idoso ou seja ajudado!</h5>
         </div>
         <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
+          <a href="../logar/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
         </div>
         <br><br>
 
