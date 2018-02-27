@@ -13,16 +13,16 @@
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">
-      	Ajude o Vovô
+      	Ajude Vovô
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Sobre Nós</a></li>
-        <li><a href="../logar/">Login</a></li>
+        <li><a href="../perfil/">Login</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Sobre nós</a></li>
-        <li><a href="../logar/">Login</a></li>
+        <li><a href="../perfil/">Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -37,7 +37,7 @@
           <h5 class="header col s12 light">Ajude um idoso ou seja ajudado!</h5>
         </div>
         <div class="row center">
-          <a href="../logar/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
+          <a href="../perfil/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
         </div>
         <br><br>
 
@@ -131,28 +131,16 @@
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Redes sociais</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="#!">#AjudeVovo</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      <div class="container center">
+        © <?php echo date('Y') ?> Ajude o vovô, Todos os direitos reservados.
       </div>
     </div>
   </footer>
@@ -170,14 +158,5 @@
           $('.parallax').parallax();
         });
     </script>
-
-  <!--  Scripts-->
-  <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-  <!-- <script src="js/materialize.js"></script> -->
-  <!-- <script src="js/init.js"></script> -->
-
   </body>
-
-
-
 </html>
