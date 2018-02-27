@@ -17,12 +17,12 @@
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Sobre Nós</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="../logar/">Login</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Sobre nós</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="../logar/">Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="../includes/imagens/inicial/opa.png" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="../includes/imagens/inicial/idosos_banner2.png" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
