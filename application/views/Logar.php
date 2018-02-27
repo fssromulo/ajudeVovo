@@ -71,16 +71,20 @@
                                     </div>
                                   </div>
                                   <div class="row">
-                                        <div class=" left-align  col s12">
+                                        <div class="left-align  col s12">
                                           <a class="left-align" href="#">Novo por aqui? Cadastre-se!</a>
                                         </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="input-field col s12 ">
-                                      <a class="waves-effect waves-light btn right  light-blue darken-2">Entrar</a>
-                                      <a class="waves-effect waves-light btn right  light-blue darken-2" href="../home/">Voltar</a>
+                                  <!-- <div class="row"> -->
+                                    <div class="col s12 center-align">
+
+                                      <a
+                                        class="waves-effect waves-light btn red darken-1" href="../home/"><i class="material-icons left">arrow_back</i>Voltar</a>
+                                      <span>&nbsp;</span>
+                                      <a class="waves-effect waves-light btn light-blue darken-2">
+                                        <i class="material-icons right">arrow_forward</i>Entrar</a>
                                     </div>
-                                  </div>
+                                  <!-- </div> -->
                             </form>
                           </div>
                         </div>
