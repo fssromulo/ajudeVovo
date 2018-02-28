@@ -9,8 +9,7 @@
 app.controller("controllerHome", function($scope, $http){
 
 	$scope.__construct = function() {
-		$scope.is_contratante = false;
-		$scope.is_ajudante = false;
+		$scope.perfil = null;
 
 		$scope.usuario_logar = null;
 		$scope.senha_logar = null;
@@ -25,10 +24,17 @@ app.controller("controllerHome", function($scope, $http){
 	    }
 	  );
 
-
 	}
 
 	$scope.fazerLogin = function() {
+
+		// Define o perfil
+		$scope.escolherPerfil();
+
+		if ( $scope.perfil == undefined || $scope.perfil.length < 1 ) {
+			alert('Atenção! Perfil não identificado!');
+			return false;
+		}
 
 		var arrDadosLogin = {
 			"usuario" : $scope.usuario_logar,
@@ -41,8 +47,8 @@ app.controller("controllerHome", function($scope, $http){
 	    		arrDadosLogin
 	    	).success(function (data) {
 
-	    		if ( data != 'true' ) {
-	    			alert('Usuário não encontrado');
+	    		if ( data != 'true' ) {	    	
+	    			$.notify('Usuário não encontrado!', "error");
 	    			return;
 	    		}
 
@@ -57,30 +63,18 @@ app.controller("controllerHome", function($scope, $http){
 
 	};
 
-	$scope.cancelar = function() {
-		$('[data-toggle="popover"]').popover('hide');
-	};
+	$scope.escolherPerfil = function( ) {
 
-	$scope.escolherPerfil = function( perfil ) {
-		$scope.link_cadastro = '#';
-		$scope.perfil = perfil.trim();
+		$scope.perfil = null;
 
-		if (
-			($scope.perfil != 'ajudante') && ($scope.perfil != 'contratante') ||
-			($scope.perfil == undefined) &&  ($scope.perfil == null) 
-		)	
-		{ 
-			return false;
+		if ( $scope.is_ajudante ) {
+			$scope.perfil = 'ajudante';
+			return;
 		}
 
-		$scope.link_cadastro = '../Pessoa/';
-
-		if ( $scope.perfil == 'ajudante' ) { 
-			$scope.link_cadastro += '?' + $scope.perfil; 
-		}
-
-		if ( $scope.perfil == 'contratante' ) { 
-			$scope.link_cadastro += '?' + $scope.perfil;
+		if ( $scope.is_contratante ) {
+			$scope.perfil = 'contratante';
+			return;
 		}
 	}
 

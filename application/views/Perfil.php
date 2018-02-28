@@ -38,14 +38,14 @@
 							<div class="row">
 								<div class="col s12">
 									<button
-									onclick="location.href='../Logar/'"
+									onclick="location.href='../Logar/?ajudante'"
 									class="waves-effect btn btn-large col s12 teal lighten-1"><i class="material-icons left">person_add</i><strong>Sou um ajudante</strong></button>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">              
 									<button
-										onclick="location.href='../Logar/'"
+										onclick="location.href='../Logar/?contratante'"
 										class="waves-effect btn btn-large col s12 teal lighten-1">
 										<i class="material-icons left">group_add</i>
 										<strong>Sou um vovô</strong>
