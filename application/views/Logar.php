@@ -34,12 +34,17 @@
         </nav> -->
 
             <div class="center row" >
-                    <div class="center col s12 m8 offset-m4 l9 offset-l3"> <!-- Note that "m8 l9" was added -->     
+                <input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
+
+                <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
+
+                    <div class="center col s12 m7 offset-m3 l7 offset-l3"> <!-- Note that "m8 l9" was added -->     
+                    <!-- <div class="center col s12 m8 offset-m4 l9 offset-l3"> -->
 
                         <div id="frm_login">
                            <div class="row">
                             <div class="row"> &nbsp;</div>
-                            <form class="center col s12 m8 l8">
+                            <form class="center col s12">
                                 <div class="">
                                     <img
                                         class=" center-align responsive-img" 
@@ -53,7 +58,7 @@
                                     <div class="input-field col s12">
                                       <input
                                         value=""
-                                        type="email"
+                                        type="text"
                                         class="validate" 
                                         data-ng-model="usuario_logar"/>
                                       <label for="disabled">Usuário/E-mail</label>
@@ -78,11 +83,17 @@
                                   <!-- <div class="row"> -->
                                     <div class="col s12 center-align">
 
-                                      <a
-                                        class="waves-effect waves-light btn red darken-1" href="../home/"><i class="material-icons left">arrow_back</i>Voltar</a>
-                                      <span>&nbsp;</span>
-                                      <a class="waves-effect waves-light btn light-blue darken-2">
-                                        <i class="material-icons right">arrow_forward</i>Entrar</a>
+                                    <div class="col s6">
+                                      <a 
+                                        class="waves-effect waves-light btn red darken-1 col s12" href="../home/"><i class="material-icons left">arrow_back</i>Voltar</a>
+                                      </div>
+                                    <div class="col s6">
+                                      <button
+                                       type="submit"
+                                       data-ng-click="fazerLogin()"
+                                       class="waves-effect waves-light btn light-blue darken-2 col s12">
+                                          <i class="material-icons right">arrow_forward</i>Entrar</button>
+                                      </div>
                                     </div>
                                   <!-- </div> -->
                             </form>
