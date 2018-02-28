@@ -14,7 +14,7 @@
 
     <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('menuPrestador.php');
+        $this->load->view('MenuPrestador.php');
     ?>
 
     <div ng-app="appAngular" ng-controller="controllerControlePrestador">
