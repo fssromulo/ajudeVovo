@@ -10,7 +10,7 @@
 
     <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('menuContratante.php');
+        $this->load->view('MenuContratante.php');
     ?>
   <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />

@@ -11,7 +11,7 @@ class CartaoCredito extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('cartaoCredito');
+		$this->load->view('CartaoCredito');
 	}
 
 	/*

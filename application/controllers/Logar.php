@@ -1,34 +1,34 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Teste extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+class Logar extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('PessoaTeste');
+		// $this->load->model('Pessoa');
 		
 	}
 
 	public function index()
 	{
-		$this->load->view('teste');
+		$contratante = $this->input->get('contratante', TRUE);
+		$ajudante = $this->input->get('ajudante', TRUE);
+
+		$arrDados = array();
+
+		if ( !isset($contratante) && !isset($ajudante)) {
+			redirect('./Home/');
+			die('Redirecionando...');
+		}
+		
+		$arrDados = array(
+			"contratante" => isset($contratante) ? 1 : 0,
+			"ajudante"    => isset($ajudante) ? 1 : 0
+		);
+
+		$this->load->view('Logar', $arrDados);
 	}
+
 
 	/*
 	  Função que recebe os dados da View e salva no banco de dados

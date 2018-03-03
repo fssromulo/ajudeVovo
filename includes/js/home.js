@@ -1,29 +1,40 @@
  var app =  angular.module(
 	"AppHome",
  	[
- 		'angular-loading-bar'
+ 		'angular-loading-bar',
+ 		'ui.materialize'
  	]
 );
 
 app.controller("controllerHome", function($scope, $http){
 
 	$scope.__construct = function() {
-		$scope.is_contratante = false;
-		$scope.is_ajudante = false;
+		$scope.perfil = null;
 
 		$scope.usuario_logar = null;
 		$scope.senha_logar = null;
-$('[data-toggle="popover2"]').popover('hide');
-		$("[data-toggle=popover]").popover({
-		    html: true, 
-			content: function() {
-				$('[data-toggle="popover"]').popover('hide');
-		          return $('#popLoginPessoa').html();
-		    }
-		});
-	};
+
+	 	$('.button-collapse').sideNav({
+	      menuWidth: 300, // Default is 300
+	      edge: 'left', // Choose the horizontal origin
+	      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+	      draggable: true, // Choose whether you can drag to open on touch screens,
+	      onOpen: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is opened
+	      onClose: function(el) { /* Do Stuff*/ }, // A function to be called when sideNav is closed
+	    }
+	  );
+
+	}
 
 	$scope.fazerLogin = function() {
+
+		// Define o perfil
+		$scope.escolherPerfil();
+
+		if ( $scope.perfil == undefined || $scope.perfil.length < 1 ) {
+			alert('Atenção! Perfil não identificado!');
+			return false;
+		}
 
 		var arrDadosLogin = {
 			"usuario" : $scope.usuario_logar,
@@ -36,8 +47,8 @@ $('[data-toggle="popover2"]').popover('hide');
 	    		arrDadosLogin
 	    	).success(function (data) {
 
-	    		if ( data != 'true' ) {
-	    			alert('Usuário não encontrado');
+	    		if ( data != 'true' ) {	    	
+	    			$.notify('Usuário não encontrado!', "error");
 	    			return;
 	    		}
 
@@ -52,30 +63,18 @@ $('[data-toggle="popover2"]').popover('hide');
 
 	};
 
-	$scope.cancelar = function() {
-		$('[data-toggle="popover"]').popover('hide');
-	};
+	$scope.escolherPerfil = function( ) {
 
-	$scope.escolherPerfil = function( perfil ) {
-		$scope.link_cadastro = '#';
-		$scope.perfil = perfil.trim();
+		$scope.perfil = null;
 
-		if (
-			($scope.perfil != 'ajudante') && ($scope.perfil != 'contratante') ||
-			($scope.perfil == undefined) &&  ($scope.perfil == null) 
-		)	
-		{ 
-			return false;
+		if ( $scope.is_ajudante ) {
+			$scope.perfil = 'ajudante';
+			return;
 		}
 
-		$scope.link_cadastro = '../Pessoa/';
-
-		if ( $scope.perfil == 'ajudante' ) { 
-			$scope.link_cadastro += '?' + $scope.perfil; 
-		}
-
-		if ( $scope.perfil == 'contratante' ) { 
-			$scope.link_cadastro += '?' + $scope.perfil;
+		if ( $scope.is_contratante ) {
+			$scope.perfil = 'contratante';
+			return;
 		}
 	}
 
