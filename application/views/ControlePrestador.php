@@ -3,10 +3,6 @@
     $this->load->view('nucleo/header.php');
 ?>
    
-    <!-- <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script> -->
-    <!-- <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>   -->
-
-    <!-- <script type="text/javascript" src="../includes/angular/angular.min.js"></script>   -->
 </head>
 
 
@@ -122,31 +118,6 @@
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?>
-
-    <script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script> 
-
-<!--     <script type="text/javascript">
-        $(function(){        
-            $('.kv-fa-heart').rating({
-                theme: 'krajee-fa', 
-                filledStar: '<i class="fa fa-heart"></i>',
-                emptyStar: '<i class="fa fa-heart-o"></i>',
-                clearButtonTitle: 'Limpar',
-                clearCaption: '',
-                starCaptions: {1: ' ', 2: ' ', 3: ' ', 4: ' ', 5: ' '},
-                //showClear: false, disabled: true,
-                starCaptionClasses: {1: 'text-info', 2: 'text-info', 3: 'text-info', 4: 'text-info', 5: 'text-info'}
-            });
-            
-            $('.kv-fa').rating({
-                theme: 'krajee-fa',
-                filledStar: '<i class="fa fa-star"></i>',
-                emptyStar: '<i class="fa fa-star-o"></i>',
-                clearButtonTitle: 'Limpar',
-                clearCaption: 'Não avaliado'
-            });
-        });
-    </script> -->
 
     <script type="text/javascript" src="../includes/js/RealizarAvaliacao.service.js"></script>
     <script type="text/javascript" src="../includes/js/ConsultaControlePrestador.js"></script>

@@ -6,9 +6,10 @@ app.controller(
 	$scope.__construct = function() {};
 
 	$scope.salvarAvaliacao = function() {
+		$scope.nota = $('#nota').starbox("getValue") * 5 | 0;
 
 		let arrAvaliacao = {
-			'nota'  		 : $scope.nota | 0,
+			'nota'  		 : $scope.nota,
 			'comentario'     : $scope.comentario,
 			'id_servico'	 : RealizaAvaliacao.getIdServicoSolicitado()
 		};
@@ -28,7 +29,7 @@ app.controller(
 	};
 
 	$scope.cancelar = function () {
-		$('#modalAvaliacao').modal('hide');
+		$('#modalAvaliacao').modal('close');
 		$scope.nota = null;
 		$scope.comentario = null;
 	}
