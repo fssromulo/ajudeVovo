@@ -18,7 +18,7 @@
 	<link href="../includes/materialize/css/materialize.min.css"  type="text/css" rel="stylesheet"  media="screen,projection" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link rel="stylesheet" href="../includes/css/fontawesome.css"/>	
-	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
+	<link rel="stylesheet" href="../includes/jStarBox/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
 
 	<!-- PWA things; -->

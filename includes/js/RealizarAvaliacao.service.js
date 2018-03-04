@@ -12,26 +12,16 @@ app.service(
 		this.id_servico = 0;
 
 		this.iniciaComponenteAvaliacao = function() {
-	        $(function(){        
-	            $('.kv-fa-heart').rating({
-	                theme: 'krajee-fa',
-	                filledStar: '<i class="fa fa-heart"></i>',
-	                emptyStar: '<i class="fa fa-heart-o"></i>',
-	                clearButtonTitle: 'Limpar',
-	                clearCaption: '',
-	                starCaptions: {1: ' ', 2: ' ', 3: ' ', 4: ' ', 5: ' '},
-	                //showClear: false, disabled: true,
-	                starCaptionClasses: {1: 'text-info', 2: 'text-info', 3: 'text-info', 4: 'text-info', 5: 'text-info'}
-	            });
-	            
-	            $('.kv-fa').rating({
-	                theme: 'krajee-fa',
-	                filledStar: '<i class="fa fa-star"></i>',
-	                emptyStar: '<i class="fa fa-star-o"></i>',
-	                clearButtonTitle: 'Limpar',
-	                clearCaption: 'Não avaliado'
-	            });
-	        });
+			$(() => {
+				$('.starbox').each(function() {
+					var starbox = jQuery(this);
+					starbox.starbox({
+						average: 0,
+						ghosting: true,
+						autoUpdateAverage: true,
+					});
+				});
+			});
 		}
 
 		this.setIdServicoSolicitado = function( id_servico ) {
@@ -46,10 +36,12 @@ app.service(
 			$rootScope.$broadcast('finalizar_servico');
 		}
 
-		/* Mostrar Modaaal */
+		/* Mostrar Modal */
 		this.abrirModal = function() {
-			$('.kv-fa-heart').rating('reset');
-			$('#modalAvaliacao').modal('show');	
+			this.iniciaComponenteAvaliacao();
+			const modalAval = $('#modalAvaliacao');
+			modalAval.modal();	
+			modalAval.modal('open');	
 		}
 
 		this.getIdServicoSolicitado = function() {
