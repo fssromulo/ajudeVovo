@@ -13,7 +13,7 @@
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">
-      	Ajude o Vovô
+      	<strong>Ajude o Vovô</strong>
       </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Sobre Nós</a></li>
