@@ -9,7 +9,7 @@ class Categoria extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('categoria');
+        $this->load->view('Categoria');
     }
 
     public function categorias() {

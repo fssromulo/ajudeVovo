@@ -10,7 +10,7 @@
 
     <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('menuContratante.php');
+        $this->load->view('MenuContratante.php');
     ?>
   <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
@@ -99,13 +99,10 @@
     </div>
 
    <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>    
-   <script type="text/javascript" src="../includes/star-rating/js/star-rating.min.js" ></script> 
-
     <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
-
 
     <script type="text/javascript" src="../includes/js/RealizarAvaliacao.service.js"></script>
     <script type="text/javascript" src="../includes/js/ConsultaControleSolicitante.js"></script>

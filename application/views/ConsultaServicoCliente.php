@@ -2,15 +2,13 @@
 	// Importa o cabeçalho padrao a todas as telas
 	$this->load->view('nucleo/header.php');
 ?>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../includes/star-rating/css/star-rating.min.css" media="all" type="text/css"/>
 </head>
 
 <body>  
 
     <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('menuContratante.php');
+        $this->load->view('MenuContratante.php');
     ?>
 	<div
 		ng-app="appAngular"
@@ -39,20 +37,15 @@
 			ng-repeat="servico in arrServicos | filter:pesquisa " 
 			after-load-services-directive>
 			<div class="thumbnail text-center novas-cards" style="height:600px;">
-				<img 
+				  <img  
 					class="novas-fotos" 
 					ng-src="{{servico.url_img_categoria}}" 
-					alt="{{servico.ds_categoria}}"> 
+					alt="{{servico.ds_categoria}}">  
 				<div class="caption">
 					<h3>{{servico.ds_categoria}}</h3>
 					<p>{{servico.nm_prestador}}</p>
 					<div>
-						<input
-							 class="kv-fa-heart rating-loading"
-							 data-min="0" 
-							 data-max="5" 
-							 value="{{servico.qt_estrela}}"
-							 data-size="xs">
+						<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
 						<p class="pessoas-atendidas pull-right">{{servico.qt_servico}} pessoas atendidas</p>
 					</div>
 					<br>
@@ -90,16 +83,13 @@
 
 	</div>
 
-
-
-   <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
+	<script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
 	<?php
 		// Importa o cabeçalho rodape padrao a todas as telas
 		$this->load->view('nucleo/footer.php');
 	?>
 
-	 <script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-	<script src="../includes/star-rating/js/star-rating.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>

@@ -34,9 +34,9 @@
         </nav> -->
 
             <div class="center row" >
-                <input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
+                <!--<input type="hidden" ng-model="is_ajudante" name="is_ajudante"  />
 
-                <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
+                <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php /*echo */$contratante;?>" />
 
                     <div class="center col s12 m7 offset-m3 l7 offset-l3"> <!-- Note that "m8 l9" was added -->     
                     <!-- <div class="center col s12 m8 offset-m4 l9 offset-l3"> -->
@@ -61,7 +61,7 @@
                                         type="text"
                                         class="validate" 
                                         data-ng-model="usuario_logar"/>
-                                      <label for="disabled">Usuário/E-mail</label>
+                                      <label for="disabled">Administrador/E-mail</label>
                                     </div>
                                   </div>
                                   <div class="row">
@@ -75,11 +75,7 @@
                                       <label for="password">Senha</label>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                        <div class="left-align  col s12">
-                                          <a class="left-align" href="#">Novo por aqui? Cadastre-se!</a>
-                                        </div>
-                                  </div>
+                                  
                                   <!-- <div class="row"> -->
                                     <div class="col s12 center-align">
 

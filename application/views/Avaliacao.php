@@ -6,16 +6,7 @@
 		<div class="col-sm-12">
 			<div class="form-group">
 				<label for="nota">Nota:</label>
-				<input
-					id="nota"
-					name="nota" 
-					class="kv-fa-heart rating-loading"
-					data-min="0" 
-					data-max="5" 
-					data-step="1" 
-					data-size="xs"
-					ng-value="0"
-					ng-model="nota">
+				<div id="nota" name="nota" class="starbox" ng-model="nota"></div>
 			</div>
 		</div>
 	</div>

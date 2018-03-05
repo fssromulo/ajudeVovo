@@ -10,7 +10,7 @@ class Servico extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('servico');
+        $this->load->view('Servico');
     }
 
     public function getServicos() {

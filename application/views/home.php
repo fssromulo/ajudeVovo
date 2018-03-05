@@ -10,23 +10,23 @@
 
 </head>
 <body>
+<div class="navbar-fixed">
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">
-      	<strong>Ajude o Vovô</strong>
-      </a>
+      
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Sobre Nós</a></li>
-        <li><a href="../logar/">Login</a></li>
+        <li><a href="#quemSomos">Sobre Nós</a></li>
+        <li><a href="../perfil/">Login</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Sobre nós</a></li>
-        <li><a href="../logar/">Login</a></li>
+        <li><a href="../perfil/">Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+</div>
 
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
@@ -37,7 +37,7 @@
           <h5 class="header col s12 light">Ajude um idoso ou seja ajudado!</h5>
         </div>
         <div class="row center">
-          <a href="../logar/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
+          <a href="../perfil/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Começar</a>
         </div>
         <br><br>
 
@@ -55,9 +55,9 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">important_devices</i></h2>
-            <h5 class="center">Quem somos</h5>
+            <h5 class="center" id="quemSomos">Quem somos</h5>
 
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light">somos uma equipe que se preocupa com o bem estar de idosos que precisam de alguma ajuda e não tem a quem recorrer.</p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@
             <h2 class="center brown-text"><i class="material-icons">favorite_border</i></h2>
             <h5 class="center">Nosso objetivo</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">Nós queremos aproximar quem precisa de ajuda com quem tem vontade de ajudar ou que disponibiliza algum serviço doméstico pago.</p>
           </div>
         </div>
 
@@ -75,7 +75,7 @@
             <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
             <h5 class="center">Como funciona?</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light">Idosos e jovens podem se cadastrar! Se você quer ser um ajudante, basta se cadastrar e entraremos em contato com você, pois para melhor segurança, seus dados passarão por uma análise antes de confirmarmos o seu cadastro. Cadastre-se e venha fazer parte desse time!</p>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+          <h2 class="header col s12 dark">Venha fazer parte!</h2>
         </div>
       </div>
     </div>
@@ -101,8 +101,11 @@
       <div class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+          <h4>Entre em contato</h4>
+          <p class="left-align light">Estamos nas redes sociais!!</p>
+          
+
+          
         </div>
       </div>
 
@@ -125,34 +128,32 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+         <h5 class="white-text">Venha fazer parte desse time!</h5>
+           <!--<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>-->
 
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Redes sociais</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li>
+              <a class="white-text" href="https://www.facebook.com/ajudeOvovo/">@AjudeOvovo
+               <img src="../includes/imagens/icon-facebook.png" width="50px">
+              </a>
+            </li>
+            <li>
+              <a class="white-text" href="https://www.instagram.com/?hl=pt-br">@Ajudeovovo
+                <img src="../includes/imagens/icon-instagram.png" width="60">
+                
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      <div class="container center">
+        © <?php echo date('Y') ?> Ajude o vovô, Todos os direitos reservados.
       </div>
     </div>
   </footer>
@@ -170,14 +171,5 @@
           $('.parallax').parallax();
         });
     </script>
-
-  <!--  Scripts-->
-  <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-  <!-- <script src="js/materialize.js"></script> -->
-  <!-- <script src="js/init.js"></script> -->
-
   </body>
-
-
-
 </html>

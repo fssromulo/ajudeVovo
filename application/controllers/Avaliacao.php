@@ -19,7 +19,7 @@ class Avaliacao extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('avaliacao');
+		$this->load->view('Avaliacao');
 	}
 
 	private function getIdContratanteServico( $id_servico_solicitado = null) {
