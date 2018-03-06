@@ -5,325 +5,260 @@
 
 </head>
 <body>
-		<div 
-			ng-app="appAngular"
-			ng-controller="ctrlPessoa"
-		>
-			<form name="frmCadastro">
-			 	<div class="row">		 		
-			 		<div >
-			   	</div>
-			 		<input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
-			 		<input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
+<div 
+   ng-app="appAngular"
+   ng-controller="ctrlPessoa"
+>
+   <div class="container">
+      <div class="row">
+         <form class="col s12" name="frmCadastro">
+            <!-- Perfil -->
+            <!-- Perfil -->
+            <input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=<?php echo $ajudante;?>" />
+            <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
+            <!-- Perfil -->
+            <!-- Perfil -->
 
-					<div class="col-sm-12 col-md-6 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="nome">Nome:</label>
-								<input type="text" ng-model="nome" class="form-control" id="nome" placeholder="Nome" />
-							</div>
-			   		</div>
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="dt_nascimento">Data de nascimento:</label>
-								<input type="text" ng-model="dt_nascimento" class="form-control" id="dt_nascimento" placeholder="Data de nascimento" />
-							</div>
-			   		</div>
-			   	</div>
-		   	</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-1">		   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="cpf">CPF:</label>
-								<input type="text" ng-model="cpf" class="form-control" id="cpf" placeholder="Cpf" />
-							</div>
-			   		</div>
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="sexo">Sexo:</label>
-								<select
-									ng-options="listaSexo.descricao for listaSexo in arrListaSexo"
-									ng-model="sexoSelected"
-									name="sexo"
-									id="sexo"
-									class="form-control"
-								>
-									<option value="" selected>Selecione um sexo...</option>
-								</select>
-							</div>
-			   		</div>
-			   		
-			   	</div>
-			   </div>
+            <div class="section">
+               <h5>Dados Pessoais</h5>
+               <div class="divider"></div> 
+               <div class="row">
+                  <input-field >
+                     <input autocomplete="off" id="nome" ng-model="nome" id="nome" type="text" class="validate"> {{nome}}
+                     <label for="nome">Nome</label>
+                  </input-field>
+                  <div input-field class="session col s12 m6">
+                     <div  class="show-on-medium-and-down hide-on-large-only">
+                        <input
+                           class=""
+                           ng-model="dt_nascimento3"
+                           id="dt_nascimento"
+                           type="date"                       
+                        />
+                     </div>
+                     <div class="hide-on-med-and-down show-on-large"">
+                        <input
+                           input-date
+                           type="text"
+                           name="created"
+                           id="inputCreated"
+                           ng-model="currentTime"
+                           format="dd/mm/yyyy"
+                           months-full="{{ month }}"
+                           months-short="{{ monthShort }}"
+                           weekdays-full="{{ weekdaysFull }}"
+                           weekdays-short="{{ weekdaysShort }}"
+                           weekdays-letter="{{ weekdaysLetter }}"                               
+                        />  
+                        <label for="dt_nascimento">Data nascimento</label>
+                     </div>
+                  </div>            
+               </div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="cpf" ng-model="cpf" id="cpf" type="tel" class="validate">
+                     <label for="cpf">CPF:</label>
+                  </div>
+                  <div input-field class="session col s12 m6">
+                     <select
+                        ng-options="listaSexo.descricao for listaSexo in arrListaSexo.options"
+                        ng-model="arrListaSexo.sexoSelected"
+                        name="sexo"
+                        id="sexo"
+                        material-select watch
+                     >
+                        <option value="" selected>Selecione um sexo...</option>
+                     </select>
+                  </div>            
+               </div> 
+            </div> 
 
-				<div class="row">
-					<div class="row col-md-10 col-md-offset-1">
+            <div class="section">
+               <h5>Endereço</h5>
+               <div class="divider"></div> 
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                        <select
+                           ng-options="listaPais.descricao for listaPais in arrListaPais.options"
+                           ng-model="arrListaPais.paisSelected"
+                           ng-change="getListaEstado()"
+                           name="pais"
+                           id="pais"
+                           class="form-control"
+                           material-select watch
+                        >
+                           <option value="">Selecione um pais...</option>
+                        </select>
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <select
+                        ng-options="listaEstado.descricao for listaEstado in arrListaEstado.options track by listaEstado.id_estado"
+                        ng-model="arrListaEstado.estadoSelected"
+                        name="estado"
+                        id="estado"
+                        ng-change="getListaCidade()"
+                        material-select watch
+                     >
+                        <option value="">Selecione um estado...</option>
+                     </select>
+                  </div>
+               </div>
+      
 
-			   	</div>
-		   	</div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <select
+                        ng-options="listaCidade.descricao for listaCidade in arrListaCidade.options"
+                        ng-model="arrListaCidade.cidadeSelected"
+                        name="cidade"
+                        id="cidade"
+                        material-select watch
+                     >
+                        <option value="">Selecione uma cidade...</option>
+                     </select>
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="bairro" ng-model="bairro" id="bairro" type="text" class="validate">
+                     <label for="bairro">Bairro:</label>  
+                  </div>
+               </div>
 
-			 	<div class="row">
-					<div class="col-sm-12 col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-12">
-		   				Endereço:<hr style="background-color: #ccc;" />
-		   			</div>	
-		   		</div>	
-		   	</div>	
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="rua" ng-model="rua" id="rua" type="text" class="validate">
+                     <label for="rua">Rua:</label>                                       
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="nr_rua" ng-model="nr_rua" id="nr_rua" type="tel" class="validate">
+                     <label for="nr_rua">Número da rua:</label>                  
+                  </div>
+               </div>
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="pais">Pais:</label>
-								<select
-									ng-options="listaPais.descricao for listaPais in arrListaPais"
-									ng-model="paisSelected"
-									ng-change="getListaEstado()"
-									name="pais"
-									id="pais"
-									class="form-control"
-								>
-									<option value="">Selecione um pais...</option>
-								</select>
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="estado">Estado:</label>
-								<select
-									ng-options="listaEstado.descricao for listaEstado in arrListaEstado track by listaEstado.id_estado"
-									ng-model="estadoSelected"
-									name="estado"
-									id="estado"
-									ng-change="getListaCidade()"
-									class="form-control"
-								>
-									<option value="">Selecione um estado...</option>
-								</select>
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="complemento" ng-model="complemento" id="complemento" type="text" class="validate">
+                     <label for="complemento">Complemento:</label>                                       
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="cep" ng-model="cep" id="cep" type="tel" class="validate">
+                     <label for="cep">CEP:</label>                  
+                  </div>
+               </div>
+            </div>
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="cidade">Cidade:</label>
-								<select
-									ng-options="listaCidade.descricao for listaCidade in arrListaCidade"
-									ng-model="cidadeSelected"
-									name="cidade"
-									id="cidade"
-									class="form-control"
-								>
-									<option value="">Selecione um cidade...</option>
-								</select>
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="bairro">Bairro:</label>
-								<input type="text" ng-model="bairro" class="form-control" id="bairro" placeholder="Bairro" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+            <div class="section">
+               <h5>Contatos:</h5>
+               <div class="divider"></div> 
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="rua">Rua:</label>
-								<input type="text" ng-model="rua" class="form-control" id="rua" placeholder="Rua" />
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="nr_rua">Número da rua:</label>
-								<input type="text" ng-model="nr_rua" class="form-control" id="nr_rua" placeholder="Número da rua" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="fone_residencial" ng-model="fone_residencial" id="fone_residencial" type="tel" class="validate">
+                     <label for="fone_residencial">Telefone residencial:</label>                                       
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="fone_comercial" ng-model="fone_comercial" id="fone_comercial" type="tel" class="validate">
+                     <label for="fone_comercial">Telefone comercial:</label>                  
+                  </div>
+               </div>
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="complemento">Complemento:</label>
-								<input type="text" ng-model="complemento" class="form-control" id="complemento" placeholder="Complemento" />
-							</div>
-			   		</div>
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="cep">CEP:</label>
-								<input type="text" ng-model="cep" class="form-control" id="cep" placeholder="Cep" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="celular" ng-model="celular" id="celular" type="tel" class="validate">
+                     <label for="celular">Celular:</label>                                       
+                  </div>
+                  
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="email" ng-model="email" id="email" type="email" class="validate">
+                     <label for="email">E-mail:</label>                  
+                  </div>
+               </div>
+            </div>
 
-			 	<div class="row">
-					<div class="col-sm-12 col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-12">
-		   				Contatos:<hr style="background-color: #ccc;" />
-		   			</div>	
-		   		</div>	
-		   	</div>	
+            <div class="section">
+               <h5>Dados de acesso:</h5>
+               <div class="divider"></div> 
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="fone_residencial">Telefone residencial:</label>
-								<input type="text" ng-model="fone_residencial" class="form-control cls-mascara-fone" id="fone_residencial" placeholder="Telefone residencial" />
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="fone_comercial">Telefone comercial:</label>
-								<input type="text" ng-model="fone_comercial" class="form-control cls-mascara-fone" id="fone_comercial" placeholder="Telefone comercial" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+               <div class="row">
+                  <div input-field>
+                     <input autocomplete="off" id="login" ng-model="login" id="login" type="text" class="validate">
+                     <label for="login">Login:</label>                                       
+                  </div>
+               </div>
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="celular">Celular:</label>
-								<input type="text" ng-model="celular" class="form-control cls-mascara-fone" id="celular" placeholder="Celular" />
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="email">E-mail:</label>
-								<input type="text" ng-model="email" class="form-control" id="email" placeholder="E-mail" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+               <div class="row">
+                  <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="senha1" ng-model="senha1" id="senha1" type="password" class="validate">
+                     <label for="senha1">Senha:</label>                                       
+                  </div>
+                  
+                  <div  class="session col s12 m6">
+                     <input input-field autocomplete="off" id="senha2" ng-model="senha2" id="senha2" type="password" class="validate">
+                     <label for="senha2">Repetir senha:</label>                  
+                  </div>
+               </div>
 
+               <div class="col s12 center-align">
 
-			 	<div class="row">
-					<div class="col-sm-12 col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-12">
-		   				Dados de acesso:<hr style="background-color: #ccc;" />
-		   			</div>	
-		   		</div>	
-		   	</div>
+               <div class="col s6">
+                   <button
+                        type="button" ng-click="cancelar()" 
+                        class="waves-effect waves-light btn red darken-1 col s12" 
+                     ><i class="material-icons left">arrow_back</i>Voltar
+                     </button>
+                 </div>
+               <div class="col s6">
 
+                     <button
+                        type="submit"
+                        ng-click="verificaAcao()"
+                         class="waves-effect waves-light btn light-blue darken-2 col s12"
+                        ng-show="!is_alterar"
+                        ng-disabled="frmCadastro.$invalid"
+                     >
+                     <i class="material-icons right">arrow_forward</i>
+                        Salvar
+                     </button>
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-12">
-							<div class="form-group">
-								<label for="login">Login:</label>
-								<input type="text" ng-model="login" class="form-control" id="login" placeholder="Login" />
-							</div>
-			   		</div>		   		
-			   	</div>
-			   </div>
+                 </div>
+               </div>
+            </div>
+         </form>
+      </div>
 
 
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="senha1">Senha:</label>
-								<input type="password" ng-model="senha1" class="form-control" id="senha1" placeholder="Senha" />
-							</div>
-			   		</div>
-			   		
-						<div class="col-sm-12 col-md-6">
-							<div class="form-group">
-								<label for="senha2">Repetir senha:</label>
-								<input type="password" ng-model="senha2" class="form-control" id="senha2" placeholder="Confirmar senha" />
-							</div>
-			   		</div>
-			   	</div>
-			   </div>
+      <!-- Modal Structure -->
+      <div id="modalCartaoCredito" class="modal">
+          <div class="modal-content">
+              <h4  id="modalCartaoCreditoLabel" >Cadastro dos dados financeiros</h4>
+               <?php
+                  $this->load->view('cartaoCredito.php');
+               ?> 
+          </div>
+          <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+      </div>
 
+   </div>  
+</div>  
+      
 
-				<div class="row">
-					<div class="col-md-4 col-md-offset-5">
-						<div class="col-sm-12 col-md-6">
-							<button
-								type="submit"
-								ng-click="verificaAcao()"
-								class="btn btn-success" 
-								ng-show="!is_alterar"
-								ng-disabled="frmCadastro.$invalid"
-							>
-								Salvar
-							</button>
-
-			<!-- 				<button type="submit" ng-click="verificaAcao()" class="btn btn-success" ng-show="is_alterar">
-								Alterar
-							</button> -->
-
-							<button type="button" ng-click="cancelar()" class="btn btn-danger">
-								Cancelar
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<br/>
-
-	
-			</form>
-				<!-- Modal -->
-				<div class="modal fade" id="modalCartaoCredito" tabindex="-1" role="dialog" aria-labelledby="modalCartaoCreditoLabel">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="modalCartaoCreditoLabel">Cadastro dos dados financeiros</h4>
-				      </div>
-				      <div class="modal-body" >
-				      	<!-- <div ng-include="'../CartaoCredito/'" ></div> -->
-				      	<?php
-				      		$this->load->view('cartaoCredito.php');
-				      	?>	
-				      </div>
-				    </div>
-				  </div>
-				</div>
-
-	</div>
-
- <!--	
-
-	<script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
-
-	
-
-	<script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-
-	<link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
-	<script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
--->
-
- 	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
     <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
 
 
-	<!-- MY App -->
-	<script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
-	<script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
-	<script type="text/javascript" src="../includes/js/pessoa.js?<?php echo date('YmdHis');?>"></script>
-	
+   <!-- MY App -->
+   <script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
+   <script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
+   <script type="text/javascript" src="../includes/js/pessoa.js?<?php echo date('YmdHis');?>"></script>
+   
 </body>
 </html>
