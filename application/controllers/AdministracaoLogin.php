@@ -27,7 +27,7 @@ class AdministracaoLogin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('administracaoLogin');
+		$this->load->view('AdministracaoLogin');
 	}
 
 }
