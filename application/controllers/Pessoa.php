@@ -42,7 +42,7 @@
 			);
 
 			$this->load->view(
-				'pessoa',
+				'Pessoa',
 				$arrDados
 			);			
 		}
