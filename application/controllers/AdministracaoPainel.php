@@ -27,7 +27,7 @@ class AdministracaoPainel extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('AdministracaoPainel');
+		$this->load->view('administracaoPainel');
 	}
 
 }
