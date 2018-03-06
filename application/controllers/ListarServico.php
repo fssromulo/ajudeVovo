@@ -9,7 +9,7 @@ class ListarServico extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('listarServico');
+        $this->load->view('ListarServico');
     }
 
     public function getServicos() {

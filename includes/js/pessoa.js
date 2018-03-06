@@ -7,23 +7,39 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$(".cls-mascara-fone").mask("(99)9999-9999?9",  {placeholder:"_"});
 		$("#cep").mask("99.999-999",  {placeholder:"_"});
 
+		// $scope.nome = "teste 1212";
+
+		var currentTime = new Date();
+		$scope.currentTime = currentTime;
+		$scope.month = ['Janeiro', 'Fevereiro', 'Março', 'Abri', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+		$scope.monthShort = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+		$scope.weekdaysFull = ['Domingo', 'Segunda-Feita', 'Terça-Feita', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
+		$scope.weekdaysLetter = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+		$scope.disable = [false, 1, 7];
+		$scope.today = 'Hoje';
+		$scope.clear = 'Limpar';
+		$scope.close = 'Fechar';
+
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
 		$scope.is_alterar = false;
-		$scope.arrListaPais = [];
+		// $scope.arrListaPais = [];
 
 		// Define array com sexos para listagem
 		$scope.arrListaSexo = 
-		[
-			{
+		{
+			sexoSelected : 'sexoSelected',
+			options : [{
 				'descricao' : 'Feminino',
 				'valor' : 'F'
 			},
 			{
 				'descricao' : 'Masculino',
 				'valor' : 'M'
-			}
-		];
+			}]
+		};
+
+		$('.modal').modal();
 
 		// Chama metodos que vão preencher algo em tela
 		$scope.getListaPais();
@@ -39,9 +55,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	}
 
 	$scope.getListaEstado = function() {
+
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/',
-	    		$scope.paisSelected
+	    		$scope.arrListaPais.paisSelected 
 	    	).success(function (data) {
 	    		$scope.arrListaEstado = data;
 		});
@@ -51,7 +68,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
-	    		$scope.estadoSelected
+	    		$scope.arrListaEstado.estadoSelected
 	    	).success(function (data) {
 	    		$scope.arrListaCidade = data;
 		});
@@ -71,16 +88,20 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.prepareToSalvar = function() {
 
+		console.log($scope.nome);
+		console.log($scope.senha1);
+		console.log( $scope.senha2);
+		
 		// Se as senhas não são iguais, então aborta o envio do formulário
-		if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
-			alert('Senhas não são iguais');
-			return false;
-		}
+		// if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
+		// 	$.notify('Senhas não são iguais');
+		// 	return false;
+		// }
 
-		var sexo   = $scope.sexoSelected['valor'];
-		var pais   = $scope.paisSelected['id_pais'];
-		var estado = $scope.estadoSelected['id_estado'];
-		var cidade = $scope.cidadeSelected['id_cidade'];
+		var sexo   = $scope.arrListaSexo.sexoSelected['valor'];
+		var pais   = $scope.arrListaPais.paisSelected['id_pais'];
+		var estado = $scope.arrListaEstado.estadoSelected['id_estado'];
+		var cidade = $scope.arrListaCidade.cidadeSelected['id_cidade'];
 
 		var arrPessoaSalvar =
 		{
@@ -149,7 +170,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 		console.log(arrPessoaSalvar);
 
-		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
+		// PessoaCartao.setArrPessoa(arrPessoaSalvar);			
 		// if ($scope.is_ajudante != 1)  {
 		// 	PessoaCartao.salvarPessoaCartao();
 		// }
@@ -157,7 +178,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
  
     /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
 	$scope.verificaAcao = function () {
-		$('#modalCartaoCredito').modal('show');
+		angular.element('#modalCartaoCredito').modal('open');
 		$scope.prepareToSalvar();
 	}
 
@@ -193,7 +214,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		});
 	};
 
+	$scope.__construct();	
 	angular.element(document).ready(function () {
-		$scope.__construct();	
+	
 	});
 });
