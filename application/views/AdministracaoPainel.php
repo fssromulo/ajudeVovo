@@ -28,8 +28,6 @@
     </div>
   </nav>
 
-  
-
   <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
