@@ -8,6 +8,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 
+
 </head>
 <body>
   <nav class="white" role="navigation">
@@ -27,8 +28,6 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-  
 
   <?php
         // Importa o cabeçalho rodape padrao a todas as telas
