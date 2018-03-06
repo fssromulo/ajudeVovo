@@ -6,24 +6,6 @@
 <body>
 
 	 
-  	<nav>
-	    <div class="nav-wrapper light-blue darken-2">
-	      <a href="../home/" class="brand-logo light">Ajude o Vovô</a>
-	      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-	      <ul class="right hide-on-med-and-down">
-	        <li><a href="../home/">Home</a></li>
-	        <li><a href="../Logar/?ajudante">Sair</a></li>
-	        <li><a href="collapsible.html">Voltar</a></li>
-	      </ul>
-	      <ul class="side-nav light-blue darken-2" id="mobile-demo">
-	        <li><a href="../home/">Home</a></li>
-	        <li><a href="badges.html">Sair</a></li>
-	        <li><a href="badges.html">voltar</a></li>
-	      </ul>
-	    </div>
-  	</nav>
-  	<br/>
-
   	<div class="container" ng-controller="ctrlCartaoCredito">
 		<form>
 		
