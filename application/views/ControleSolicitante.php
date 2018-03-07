@@ -15,8 +15,27 @@
   <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     <div class="container">
-		<div class="row">
-                    <!-- <div class="col-md-12 col-sm-10 col-md-offset-1"> -->
+         <ul  class="collapsible" data-collapsible="accordion"  >
+            <li ng-repeat="lista in arrListaServico">
+                <div class="collapsible-header" >
+                    <!--<i class="large material-icons">-->
+                        <img src="{{lista.imagem_pessoa}}" class="circle" width="60" height="40">
+                    <!--</i>-->
+                     <div class="col s6 col m6 flow-text" >{{lista.servico}}</div>
+                </div>
+                <div class="collapsible-body" > 
+                    Serviço:{{lista.servico}}<br/>
+                    Ajudante:{{lista.ajudante}} <br/>
+                    Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
+                    Situação: {{lista.situacao}} <br/>
+                </div>
+            </li>
+            
+        </ul>
+       
+
+		<!--<div class="row">
+                   
                         <div class="col-md-12 col-sm-6">
                             <div class="table-responsive">
                                 <table class="table table-stripped">
