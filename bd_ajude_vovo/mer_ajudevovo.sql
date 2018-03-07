@@ -16,7 +16,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema ajudevovo
 -- -----------------------------------------------------
 
-DROP DATABASE ajudevovo;
+DROP IF EXISTS DATABASE ajudevovo;
 
 CREATE SCHEMA IF NOT EXISTS `ajudevovo` DEFAULT CHARACTER SET latin1 ;
 USE `ajudevovo` ;
