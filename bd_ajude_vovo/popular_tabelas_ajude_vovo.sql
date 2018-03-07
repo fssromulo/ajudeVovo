@@ -1,3 +1,5 @@
+USE AJUDEVOVO;
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 INSERT INTO `avaliacao` (`id_avaliacao`, `nota`, `comentario`) VALUES
