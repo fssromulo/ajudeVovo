@@ -19,9 +19,9 @@
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
                     <!--<i class="large material-icons">-->
-                        <img src="{{lista.imagem_pessoa}}" class="circle" width="60" height="40">
+                        <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
                     <!--</i>-->
-                     <div class="col s6 col m6 flow-text" >{{lista.servico}}</div>
+                     <div class="col s6 col m6 flow-text" >&nbsp; {{lista.servico}}</div>
                 </div>
                 <div class="collapsible-body" > 
                     Serviço:{{lista.servico}}<br/>
@@ -32,6 +32,7 @@
             </li>
             
         </ul>
+    </div>
        
 
 		<!--<div class="row">
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                 <!-- </div> -->
-            </div>
+            
 
 
         <!-- Modal -->
