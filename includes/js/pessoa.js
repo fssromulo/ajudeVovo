@@ -1,5 +1,26 @@
 app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
+	$scope.arrRegistros = {
+		nome : '',
+		dt_nascimento : '',
+		cpf : '',
+		sexo : '',
+		pais : '',
+		estado : '',
+		cidade : '',
+		bairro : '',
+		rua : '',
+		nr_rua : '',
+		complemento : '',
+		fone_comercial : '',
+		fone_residencial : '',
+		celular : '',
+		email : '',
+		login : '',
+		senha1 : '',
+		senha2 : ''
+	};
+
 	$scope.__construct = function() {
 
 		$("#dt_nascimento").mask("99/99/9999",  {placeholder:"_"});
@@ -7,10 +28,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$(".cls-mascara-fone").mask("(99)9999-9999?9",  {placeholder:"_"});
 		$("#cep").mask("99.999-999",  {placeholder:"_"});
 
-		// $scope.nome = "teste 1212";
-
-		var currentTime = new Date();
-		$scope.currentTime = currentTime;
+		var dt_nascimento = new Date();
+		$scope.dt_nascimento = dt_nascimento;
 		$scope.month = ['Janeiro', 'Fevereiro', 'Março', 'Abri', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 		$scope.monthShort = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 		$scope.weekdaysFull = ['Domingo', 'Segunda-Feita', 'Terça-Feita', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
@@ -19,6 +38,12 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$scope.today = 'Hoje';
 		$scope.clear = 'Limpar';
 		$scope.close = 'Fechar';
+		$scope.selectMonths = true;
+		$scope.selectYears = 100;
+
+		$scope.arrListaPais = [];
+		$scope.arrListaEstado = [];
+		$scope.arrListaCidade = [];
 
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
@@ -41,8 +66,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 		$('.modal').modal();
 
-		// Chama metodos que vão preencher algo em tela
-		$scope.getListaPais();
+
+
 	};
 
 	$scope.getListaPais = function() {
@@ -51,26 +76,31 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	    		'../Gerais/Geral/getListaPais/'
 	    	).success(function (data) {
 	    		$scope.arrListaPais = data;
+	    		console.log($scope.arrListaPais);
 		});
 	}
 
 	$scope.getListaEstado = function() {
 
+		console.log($scope.arrRegistros.pais);
+
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/',
-	    		$scope.arrListaPais.paisSelected 
+	    		$scope.arrRegistros.pais
 	    	).success(function (data) {
 	    		$scope.arrListaEstado = data;
+	    		console.log($scope.arrListaEstado);
 		});
 	}
 
 	$scope.getListaCidade = function() {
-
+		console.log($scope.arrRegistros.estado );
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
-	    		$scope.arrListaEstado.estadoSelected
+	    		$scope.arrRegistros.estado
 	    	).success(function (data) {
 	    		$scope.arrListaCidade = data;
+	    		console.log($scope.arrListaCidade);
 		});
 	}
 
@@ -88,10 +118,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.prepareToSalvar = function() {
 
-		console.log($scope.nome);
-		console.log($scope.senha1);
-		console.log( $scope.senha2);
-		
+		console.log($scope.arrRegistros.login);
+		console.log($scope.arrRegistros.cpf);
+		console.log( $scope.arrRegistros.senha2);
+	
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		// if ( !$scope.comparaValores($scope.senha1, $scope.senha2) ) {
 		// 	$.notify('Senhas não são iguais');
@@ -179,6 +209,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
     /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
 	$scope.verificaAcao = function () {
 		angular.element('#modalCartaoCredito').modal('open');
+	
+		console.log($scope.arrRegistros);
 		$scope.prepareToSalvar();
 	}
 
@@ -214,8 +246,13 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		});
 	};
 
-	$scope.__construct();	
 	angular.element(document).ready(function () {
 	
+		$scope.__construct();	
 	});
+
+
+	// Chama metodos que vão preencher algo em tela
+	$scope.getListaPais();
+
 });

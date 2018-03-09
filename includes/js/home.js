@@ -62,6 +62,13 @@ app.controller("controllerHome", function($scope, $http){
 		});				
 
 	};
+	
+	$scope.novoCadastro = function( ) {		
+		// Define o perfil
+		$scope.escolherPerfil();
+
+		location.href = "../Pessoa/?" + $scope.perfil;
+	}
 
 	$scope.escolherPerfil = function( ) {
 
