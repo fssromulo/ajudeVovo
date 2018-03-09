@@ -64,6 +64,22 @@
 			</div>
 		</div>
 
+
+	
+		  <!-- Modal Structure -->
+		  <div  id="modalDetalheServico" class="modal">
+		    <div class="modal-content">
+		      <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
+		      <?php
+		      		$this->load->view('DetalheServico.php');
+		      	?>	
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+		    </div>
+		  </div>
+       
+<!-- 
 		<div class="modal fade" id="modalDetalheServico" tabindex="-1" role="dialog" aria-labelledby="modalDetalheServicoLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -79,15 +95,16 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div> -->
 
 	</div>
 
-	<script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
+	  
 	<?php
 		// Importa o cabeçalho rodape padrao a todas as telas
 		$this->load->view('nucleo/footer.php');
 	?>
+
 
 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<!-- MY App -->
