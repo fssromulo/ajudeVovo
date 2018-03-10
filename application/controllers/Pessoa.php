@@ -9,8 +9,8 @@
 			parent::__construct();
 			$this->load->library('session');
 			$this->load->helper('url');
-			$this->load->helper('removeCaracteres');
-			$this->load->helper('formatarDatas');
+			$this->load->helper('removecaracteres');
+			$this->load->helper('formatardatas');
 
 			$arrModelsImportar = array(
 				'PessoaDB',
@@ -42,7 +42,7 @@
 			);
 
 			$this->load->view(
-				'pessoa',
+				'Pessoa',
 				$arrDados
 			);			
 		}

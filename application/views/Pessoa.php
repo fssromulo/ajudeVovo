@@ -36,7 +36,7 @@
                            type="date"                       
                         />
                      </div>
-                     <div class="hide-on-med-and-down show-on-large"">
+                     <div class="hide-on-med-and-down show-on-large">
                         <input
                            autocomplete="off"
                            type="text"
@@ -230,7 +230,7 @@
           <div class="modal-content">
               <h4  id="modalCartaoCreditoLabel" >Cadastro dos dados financeiros</h4>
                <?php
-                 $this->load->view('cartaoCredito.php');
+                 $this->load->view('CartaoCredito.php');
                ?> 
           </div>
       </div>
