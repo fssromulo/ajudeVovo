@@ -44,6 +44,7 @@ app.directive('afterLoadServicesDirective', () => {
 	return (scope, element, attrs) => {
 		scope.$evalAsync( () => {
 			$(() => {
+				// $('.materialboxed').materialbox();
 				$('.starbox').each(function() {
 					var starbox = jQuery(this);
 					starbox.starbox({
