@@ -1,4 +1,4 @@
-	<script type="text/javascript" src="../includes/jQuery/jquery.min.js"></script>  
+	<script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="../includes/materialize/js/materialize.min.js"></script>  
 
 	<!-- Angular JS -->

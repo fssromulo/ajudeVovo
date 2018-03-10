@@ -68,12 +68,26 @@
 	   	$arrEndereco['cep'] = removeCaracteres($arrEndereco['cep']);
 	   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
    	
-   		if ( !$is_alterar ) {  			
+   		if ( !$is_alterar ) { 
+				// Perfil inativo por padrão
+				$arrPessoa['ativo'] = 0;
+
+				if ( isset($dados['is_ajudante']) == true ) {
+					$this->perfil = 'ajudante';
+					$arrPessoa['id_perfil'] = 3;
+		   	} else if ( isset($dados['is_contratante']) == true ) {
+					$this->perfil = 'contratante';
+					$arrPessoa['ativo'] = 1;
+					$arrPessoa['id_perfil'] = 2;
+		   	}
+
+
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
+
 	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
 	      	// Inserir Perfil
-	      	$this->perfil = $this->inserirPerfil( $dados, $cd_pessoa );
+	      	$this->inserirPerfil( $cd_pessoa );
 
 	   		$arrEndereco['id_pessoa'] = $cd_pessoa;
 
@@ -121,19 +135,17 @@
  			}	
 		}
 		   
-		public function inserirPerfil($arrDados, $cd_pessoa) {
+		public function inserirPerfil( $cd_pessoa) {
 			$arrPerfil['id_pessoa'] = $cd_pessoa;
 
-			if ( isset($arrDados['is_ajudante']) == true ) {
+			if ($this->perfil == 'ajudante') {
 				$arrPerfil['is_ajudante'] = true;
 				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-				return 'ajudante';
 	   	}
 	   	
-	   	if ( isset($arrDados['is_contratante']) == true ) {
+	   	if ( $this->perfil == 'contratante' ) {
 				$arrPerfil['is_contratante'] = true;
 				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-				return 'contratante';
 	   	}
 		}
 	   

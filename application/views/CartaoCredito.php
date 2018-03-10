@@ -1,11 +1,3 @@
-<?php
-    // Importa o cabeçalho padrao a todas as telas
-    $this->load->view('nucleo/header.php');
-?>
-</head>
-<body>
-
-	 
   	<div class="container" ng-controller="ctrlCartaoCredito">
 		<form>
 		
@@ -57,49 +49,13 @@
 						</button>
 					</div>
 					<div class="col s4">
-						<!--<button type="submit" ng-click="cancelar()" class="btn btn-danger waves-effect waves-light btn red darken-1 col s12">
+						<button type="submit" ng-click="cancelar()" class="btn btn-danger waves-effect waves-light btn red darken-1 col s12">
 							Cancelar
-						</button>-->
+						</button>
 
-						<a class="waves-effect waves-light btn red darken-1 col s12" href="../home/">
-							Cancelar
-						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		</form>
 	<br/>
-	
-
-
-	
-
-	<?php
-        // Importa o cabeçalho rodape padrao a todas as telas
-        $this->load->view('nucleo/footer.php');
-    ?> 
-
-    <script type="text/javascript">
-		$('.datepicker').pickadate({
-	    selectMonths: true, // Creates a dropdown to control month
-	    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-	    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-	    weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-	    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-	    today: 'Hoje',
-	    clear: 'Limpar',
-	    close: 'Pronto',
-	    labelMonthNext: 'Próximo mês',
-	    labelMonthPrev: 'Mês anterior',
-	    labelMonthSelect: 'Selecione um mês',
-	    labelYearSelect: 'Selecione um ano',
-	    selectYears: 100, // Creates a dropdown of 15 years to control year,
-	    closeOnSelect: false, // Close upon selecting a date,
-	    format: 'mm/yyyy' 
-  		});
-
-  		$(".button-collapse").sideNav();
-	</script>
-    
-</body>
