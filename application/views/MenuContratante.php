@@ -31,7 +31,7 @@
      </li>
      <li><a href="#perfil_implementar"><i class="material-icons">face</i>Perfil</a></li>
      <li><a href="../ConsultaServicoCliente/"><i class="material-icons">room_service</i>Serviços</a></li>
-     <li><a href="../ControleSolicitante/"><i class="material-icons">event</i>Serviços solicitados</a></li>
+     <li><a href="../ControleSolicitante/"><i class="material-icons">history</i>Serviços solicitados</a></li>
    </ul>
 
 </header>

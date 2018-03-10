@@ -32,7 +32,7 @@
       </li>
       <li><a href="#perfil_implementar"><i class="material-icons">face</i>Perfil</a></li>
       <li><a href="../ListarServico/"><i class="material-icons">room_service</i>Meus serviços</a></li>
-      <li><a href="../ControlePrestador/"><i class="material-icons">event</i>Serviços solicitados</a></li>
+      <li><a href="../ControlePrestador/"><i class="material-icons">history</i>Serviços solicitados</a></li>
     </ul>
 </header>
 
