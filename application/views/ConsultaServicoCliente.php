@@ -93,14 +93,15 @@
   </div>
 	</div>	
 		  <!-- Modal Structure -->
-		  <div  id="modalDetalheServico" class="modal">
-		    <div class="modal-content">
-		      <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
-		      <?php
-		      		$this->load->view('DetalheServico.php');
-		      	?> 	
-		    </div>
-		  </div>
+  	<div  id="modalDetalheServico" class="modal">
+	    <div class="modal-content">
+	      <h5 class="modal-title center" id="modalDetalheServicoLabel">Solicitação de serviços</h5>
+	      <?php
+	      		$this->load->view('DetalheServico.php');
+	      	?> 	
+		</div>
+  	</div>
+
 	</div>
 
 	  
