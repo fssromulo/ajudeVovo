@@ -86,7 +86,8 @@ class Servico extends CI_Controller {
     public function excluir() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_servico = $dados['id_servico'];
+        $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
+        $ativo = 0;
 
         $this->ServicoDB->excluir_servico(
             $id_servico

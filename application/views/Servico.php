@@ -10,7 +10,7 @@
 
     <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('menuPrestador.php');
+        $this->load->view('MenuPrestador.php');
     ?>
 
 
@@ -18,7 +18,7 @@
             ng-app="appAngular"
             ng-controller="controllerServico"
         >
-            <div class="container-fluid">
+            <div class="container">
 
                 <div class="row">
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
 
                     <form class="form-group" name="form_servico">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col s12">
                                 <div class="form-group">
                                     <label for="descricao">Descrição:</label>
                                     <input type="text" ng-model="descricao" class="form-control" id="descricao" required/>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col s12">
                                 <div class="form-group">
                                     <label for="categoria">Categoria:</label>
                                     <select 
@@ -49,43 +49,36 @@
                                         name="categoria"
                                         id="categoria"
                                         class="form-control"
+                                        material-select
                                         required
                                     >
-                                        <option value="">Selecione uma categoria...</option>
+                                        <option value="" disabled selected>Selecione uma categoria...</option>
                                     </select>
-
-                                    <br>
-
-                                    <button 
-                                        type="button"
-                                        class="btn btn-link btn-xs"
-                                        ng-click="sugerirCategoria()"> Não encontrei minha categoria </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col s12">
                                 <div class="form-group">
                                     <label for="valor">Valor:</label>
-                                        <div class="input-group">
-                                          <span class="input-group-addon">R$</span>
-                                            <input
-                                                type="text"
-                                                ng-model="valor"
-                                                class="form-control"
-                                                id="valor"
-                                                data-ng-blur="validaValorServico()"
-                                                required
-                                            />
-                                        </div>
-
+                                    <div class="input-group">
+                                        <span class="input-group-addon">R$</span>
+                                        <input
+                                            type="text"
+                                            ng-model="valor"
+                                            class="form-control"
+                                            id="valor"
+                                            data-ng-blur="validaValorServico()"
+                                            required
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col s12">
                                 <div class="form-group">
                                     <label for="valor">Dia de Atendimento </label>
                                     <select 
@@ -94,8 +87,9 @@
                                         name="diaAtendimento"
                                         id="diaAtendimento"
                                         class="form-control"
+                                        material-select
                                     >
-                                        <option value="">Selecione o dia da semana...</option>
+                                        <option value="" disabled selected>Selecione o dia da semana...</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,23 +98,26 @@
                         <div>
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-sm-12">
+                            <div class="col s12">
+                                <div class="col s12">
                                     <div class="form-group">
-                                        <div class="col-sm-12 col-md-4">
+                                        <div class="col s6 col m6">
                                             <label for="horario_inicio">Horário de Início </label>
                                             <input type="time" ng-model="horario_inicio" id="horario_inicio" name="horario_inicio" class="form-control"/>
                                         </div>
 
-                                        <div class="col-sm-12 col-md-4">
+                                        <div class="col s6 col m6">
                                             <label for="horario_fim">Horário de Fim </label> 
                                             <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control"/>
                                         </div>
 
-                                        <div class="col-sm-12 col-md-4 text-center">
-                                            <div class="col-sm-12">&nbsp;</div>
-                                            <button type="button" ng-click="adicionarDiaAtendimento()" class="btn btn-primary">
-                                                Adicionar
+                                        <div class="col s12 col m6 text-center">
+                                            <div class="col m12">&nbsp;</div>
+                                            <button
+                                                type="button"
+                                                data-ng-click="adicionarDiaAtendimento()"
+                                                class="waves-effect waves-light btn light-blue darken-2 col s12"
+                                            >Adicionar
                                             </button>
                                         </div>
                                     </div>
@@ -160,7 +157,8 @@
                                                     {{lista.horario_fim}}
                                                 </td>
                                                 <td>
-                                                    <span class="glyphicon glyphicon-remove" ng-click="removerDiaAtendimento($index)"></span>
+                                                    <i class="material-icons left"
+                                                        ng-click="removerDiaAtendimento($index)"/>delete</i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -170,8 +168,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-sm-12">
+                            <div class="col s12">
+                                <div class="col s12">
                                     <div class="form-group">
                                         <label for="detalhe">Detalhes do Serviço:</label>
                                         <textarea style="resize: none;" class="form-control" ng-model="detalhe" name="detalhe" id="detalhe" cols="30" rows="10"></textarea>
@@ -181,20 +179,41 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 text-center">
-                                <div class="col-sm-12">
-                                    <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
-                                        Salvar
-                                    </button>
-
-                                    <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
-                                        Alterar
-                                    </button>
-
-                                    <button type="button" ng-click="cancelar()" class="btn btn-danger">
-                                        Cancelar
-                                    </button>
+                            <div class="col s12">
+                                <div>
+                                    <a 
+                                        class="waves-effect waves-light btn red darken-1 col s5 left" 
+                                        href="../ListarServico/">
+                                    <i class="material-icons left">block</i>Cancelar</a>
                                 </div>
+                                <!-- <button type="button" ng-click="cancelar()" class="btn btn-danger">
+                                    Cancelar
+                                </button> -->
+
+                                <button
+                                    type="submit"
+                                    data-ng-click="alterarServico()"
+                                    class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+                                    ng-show="is_alterar"
+                                >
+                                    <i class="material-icons right">check</i>Atualizar
+                                </button>
+                                <!-- <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
+                                    Alterar
+                                </button> -->
+
+                                <button
+                                    type="submit"
+                                    data-ng-click="salvarServico()"
+                                    class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+                                    ng-show="!is_alterar"
+                                >
+                                    <i class="material-icons right">check</i>Salvar
+                                </button>
+
+                                <!-- <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
+                                    Salvar
+                                </button> -->
                             </div>
                         </div>
                     </form>

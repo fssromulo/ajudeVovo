@@ -1,7 +1,7 @@
 var app =  angular.module(
 	"appAngular",
  	[
-        'ui.bootstrap',
+        'ui.materialize',
         'angular-loading-bar' 	]
 );
 

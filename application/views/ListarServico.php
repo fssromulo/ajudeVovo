@@ -14,13 +14,15 @@
 
 
         <div ng-app="appAngular" ng-controller="controllerListarServico">
-           <div class="container-fluid">
+           <div class="container">
             
             <div class="row">
-                <div class="col-sm-12">&nbsp;</div>
-
-                <div class="col-sm-12 text-center">
-                    <a class="btn btn-primary" href="../Servico/"><span class="glyphicon glyphicon-plus"></span> Adicionar Novo Serviço</a>
+                <div class="col-sm-12">&nbsp;</div>            
+                
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large waves-effect waves-light light-blue darken-2" href="../Servico/">
+                      <i class="material-icons">add</i>
+                    </a>
                 </div>
 
                 <div class="col-sm-12">&nbsp;</div>
@@ -28,30 +30,25 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
                 <table class="table table-stripped">
-                    <tr>
-                        <th> Descrição </th>
-                        <th> Valor </th>
-                        <th> Detalhe </th>
-                    </tr>
-                    <tr ng-repeat="servico in arrListaServico">
-                        <!-- <td>{{servico.id_servico}}</td> -->
-                        <td>{{servico.descricao}}</td>
-                        <td>{{servico.valor}}</td>
-                        <td>{{servico.detalhe}}</td>
-                        <td>
-                            <span style="cursor:pointer;" class="glyphicon glyphicon-edit" 
-                                ng-click="carregarAlterar(servico)"></span>
-                            <span 
-                                style="cursor:pointer;"
-                                class="glyphicon glyphicon-remove"
-                                data-toggle="modal"
-                                data-target="#modal_excluir"
-                                ng-click="carregarExcluir(servico)"
-                            ></span>
-                        </td>
-                    </tr>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li ng-repeat="servico in arrListaServico">
+                            <div class="collapsible-header">{{servico.descricao}}</div>
+                            <div class="collapsible-body">
+                                <span>Detalhes do serviço: {{servico.detalhe}}</span>
+                                <br><br>
+                                <span>Valor do serviço: {{servico.valor}}</span>
+                                <br><br><br>
+                                <div class="col s12">
+                                    <i class="material-icons right blue-text"
+                                        ng-click="alterarServico(servico)"/>edit</i>
+                                    <i class="material-icons right red-text darken-2"
+                                        ng-click="carregarExcluir(servico)"/>delete</i>
+                                </div>
+                                <br>
+                            </div>
+                        </li>
+                    </ul>
                 </table>
-            
                 </div>
             </div> <!-- Fim da container principal do bootstrap -->
 
@@ -59,17 +56,17 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!!</h4>
                         </div>
                         
                         <div class="modal-body">
                                 Deseja excluir este registro?                            
                         </div>
-
+                        <br><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
+                            <button type="button" class="btn-flat blue-text" ng-click="fecharModalExcluir()">Não</button>
+                            <button type="button" class="btn-flat blue-text" ng-click="excluirServico()">Sim</button>
+                            <!-- <button type="button" class="btn-flat blue-text" ng-click="desativarServico()">Sim</button> -->
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

@@ -29,4 +29,13 @@ class ListarServico extends CI_Controller {
 
         $this->getServicos();
     }
+
+    // public desativarServico() {
+    //     (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+    //     $id_servico = $dados['id_servico'];
+    //     $ativo = $dados['ativo'];
+
+    //     $this->ServicoDB->desativar_servico($id_servico, $ativo)
+    // }
 }
