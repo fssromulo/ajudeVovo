@@ -16,7 +16,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema ajudevovo
 -- -----------------------------------------------------
 
-DROP DATABASE ajudevovo;
+DROP  DATABASE ajudevovo;
 
 CREATE SCHEMA IF NOT EXISTS `ajudevovo` DEFAULT CHARACTER SET latin1 ;
 USE `ajudevovo` ;
@@ -106,7 +106,7 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `ajudevovo`.`perfil` ;
 
 CREATE TABLE IF NOT EXISTS `ajudevovo`.`perfil` (
-  `id_perfil` INT(11) NOT NULL,
+  `id_perfil` INT(11) NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_perfil`))
 ENGINE = InnoDB
@@ -127,10 +127,10 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`pessoa_fisica` (
   `login` VARCHAR(255) NULL DEFAULT NULL,
   `senha` VARCHAR(255) NULL DEFAULT NULL,
   `imagem_pessoa` VARCHAR(255) NULL DEFAULT NULL,
-  `id_perfil` INT(11) NOT NULL,
+  `id_perfil` INT(11) NULL,
   `ativo` TINYINT(1) NULL DEFAULT '1',
-  `id_cidade` INT(11) NOT NULL,
-  `id_estado` INT(11) NOT NULL,
+  `id_cidade` INT(11) NULL,
+  `id_estado` INT(11) NULL,
   `nome_pai` VARCHAR(100) NULL DEFAULT NULL,
   `nome_mae` VARCHAR(100) NULL DEFAULT NULL,
   `imagem_frente_documento` VARCHAR(255) NULL DEFAULT NULL,

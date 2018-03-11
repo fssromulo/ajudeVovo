@@ -18,7 +18,9 @@ class ServicoDB extends CI_Model {
 			from 
 				servico s
 			where 
-				s.id_prestador=" . $id_prestador);
+                    s.ativo = 1
+                and 
+                    s.id_prestador=" . $id_prestador);
     }
 
     public function get_categorias() {
@@ -107,6 +109,8 @@ class ServicoDB extends CI_Model {
             a.id_pessoa_fisica = b.id_pessoa
         and		
             b.id_prestador = c.id_prestador
+        and
+            c.ativo = 1
         and		
             c.id_categoria = d.id_categoria ", FALSE);
     }

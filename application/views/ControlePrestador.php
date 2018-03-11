@@ -13,14 +13,37 @@
         $this->load->view('MenuPrestador.php');
     ?>
 
-    <div ng-app="appAngular" ng-controller="controllerControlePrestador">
+    <div ng-app="appAngular" ng-controller="controllerControlePrestador">  
+    <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
+    <div class="container">
+         <ul  class="collapsible" data-collapsible="accordion"  >
+            <li ng-repeat="lista in arrListaServico">
+                <div class="collapsible-header" >
+                    <!--<i class="large material-icons">-->
+                        <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+                    <!--</i>-->
+                     <div class="col s6 col m6 flow-text" >&nbsp; {{lista.descricao}}</div>
+                </div>
+                <div class="collapsible-body" > 
+                    Serviço:{{lista.descricao}}<br/>
+                    Idoso:{{lista.nome}} <br/>
+                    Data/Horário:
+                        {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
+                    Situação:  {{lista.ds_estado_atual}} <br/>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+
+    <!--div ng-app="appAngular" ng-controller="controllerControlePrestador">
         <input type="hidden" ng-model="is_ajudante" name="is_ajudante" ng-init="is_ajudante=1" />  	
         <div class="container">
     		<div class="row">
                 <!-- <div class="col-md-12 col-sm-10 col-md-offset-1"> -->
-                    <div class="col-md-12 col-sm-6">
+                    <!--div class="col-md-12 col-sm-6">
                                 <!-- <a href="javascript:history.back()" class="btn">Voltar</a> -->
-                            <div class="table-responsive">
+                        <!--    <div class="table-responsive">
                                 <table class="table table-stripped">
                                     <thead>
                                         <tr>
@@ -88,8 +111,8 @@
                              </div>
                     </div>
                 <!-- </div> -->
-            </div>
-        </div>
+           <!-- </div> -->
+        
 
 
         <!-- Modal -->

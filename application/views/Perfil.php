@@ -7,29 +7,29 @@
 <body>
 	<div data-ng-app="AppHome" data-ng-controller="controllerHome">
 
-		<!-- <div class="navbar-fixed"> -->
-			<nav class="white" role="navigation">
-				<div class="nav-wrapper container">
-					<a id="logo-container" href="#" class="brand-logo">
-					Ajude Vovô
-					</a>
-					<ul class="right hide-on-med-and-down">
-						<li><a href="../Home/">Home</a></li>
-						<li><a href="../logar/">Login</a></li>
-					</ul>
+	<header>
+	  <div class="navbar-fixed">
+	    <nav class="white" role="navigation">
+	    <div class="nav-wrapper container">
+	      
+	      <a href="#" data-activates="nav-mobile" class="button-collapse menus_iniciais"><i class="material-icons">menu</i></a>
+	      <ul class="right hide-on-med-and-down">
+	        <li><a href="#quemSomos">Sobre Nós</a></li>
+	        <li><a href="../perfil/">Login</a></li>
+	      </ul>
+	    </div>
+	  </nav>
+	  </div>
 
-					<ul id="nav-mobile" class="side-nav">
-						<li><a href="../Home/">Home</a></li>
-						<li><a href="../logar/">Login</a></li>
-					</ul>
-					<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-				</div>
-			</nav>
-		<!-- </div>   -->
+	  <ul id="nav-mobile" class="side-nav white">
+	    <li><a href="#">Sobre nós</a></li>
+	    <li><a href="../perfil/">Login</a></li>
+	  </ul>
+	</header>
 
 		<div class="container">
 
-			<div class="center row" >
+			<div class="center">
 
 					<div class="row">
 

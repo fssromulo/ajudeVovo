@@ -1,4 +1,11 @@
+USE AJUDEVOVO;
+
 SET FOREIGN_KEY_CHECKS = 0;
+
+INSERT INTO perfil VALUES 
+	(NULL,'ADMINISTRADOR'),
+	(NULL,'CONTRATANTE'),
+	(NULL,'AJUDANTE');
 
 INSERT INTO `avaliacao` (`id_avaliacao`, `nota`, `comentario`) VALUES
 	(1, 4, 'muito bom'),
@@ -8397,6 +8404,12 @@ INSERT INTO `cidade` (`id_cidade`, `id_estado`, `descricao`) VALUES
 	(8296, 24, 'Lindoia do Sul'),
 	(8297, 24, 'Linha das Palmeiras');
 
+INSERT INTO `tipo_contato`  VALUES
+	(1, 'Telefone Residencial'),
+	(2, 'Telefone Comercial'),
+	(3, 'Celular'),
+	(4, 'E-mail');
+
 
 INSERT INTO `contato` (`id_contato`, `id_pessoa`, `id_tipo_contato`, `descricao`) VALUES
 	(1, 1, 1, '47919199119'),
@@ -8546,15 +8559,15 @@ INSERT INTO `horario_disponivel` (`id_horario_disponivel`, `id_dia_disponivel`, 
 INSERT INTO `pais` (`id_pais`, `descricao`, `sigla`) VALUES
 	(1, 'Brasil', 'BR');
 
-INSERT INTO `pessoa_fisica` (`id_pessoa_fisica`, `nome`, `dt_nascimento`, `cpf`, `sexo`, `login`, `senha`, `imagem_pessoa`) VALUES
-	(1, 'Ajudante 1', '1997-06-17', '08550724904', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', NULL),
-	(2, 'Ajudante 2', '1979-09-16', '67884233690', 'F', 'ajudante2', '202cb962ac59075b964b07152d234b70', NULL),
-	(8, 'Vovo da quebrada', '1953-12-12', '25862711147', 'F', 'vovo1', '202cb962ac59075b964b07152d234b70', NULL),
-	(9, 'Ajudante tres', '1997-12-05', '31163984884', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', NULL),
-	(10, 'Vovo da quebrada 2', '1958-03-03', '51638824495', 'M', 'vovo2', '202cb962ac59075b964b07152d234b70', NULL),
-	(11, 'Adamastor Pereira', '1962-03-12', '35587573516', 'M', 'vovoAda', '202cb962ac59075b964b07152d234b70', NULL),
-	(12, 'Ajudante 3', '1991-08-08', '72707163155', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', NULL),
-	(13, 'Vovo 3', '1955-01-01', '36040375906', 'M', 'vovo3', '202cb962ac59075b964b07152d234b70', NULL);
+INSERT INTO `pessoa_fisica` (`id_pessoa_fisica`, `nome`, `dt_nascimento`, `cpf`, `sexo`, `login`, `senha`, `imagem_pessoa`,`id_perfil`) VALUES
+	(1, 'Ajudante 1', '1997-06-17', '08550724904', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', NULL,3),
+	(2, 'Ajudante 2', '1979-09-16', '67884233690', 'F', 'ajudante2', '202cb962ac59075b964b07152d234b70', NULL,3),
+	(8, 'Vovo da quebrada', '1953-12-12', '25862711147', 'F', 'vovo1', '202cb962ac59075b964b07152d234b70', NULL,2),
+	(9, 'Ajudante tres', '1997-12-05', '31163984884', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', NULL,3),
+	(10, 'Vovo da quebrada 2', '1958-03-03', '51638824495', 'M', 'vovo2', '202cb962ac59075b964b07152d234b70', NULL,2),
+	(11, 'Adamastor Pereira', '1962-03-12', '35587573516', 'M', 'vovoAda', '202cb962ac59075b964b07152d234b70', NULL,2),
+	(12, 'Ajudante 3', '1991-08-08', '72707163155', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', NULL,3),
+	(13, 'Vovo 3', '1955-01-01', '36040375906', 'M', 'vovo3', '202cb962ac59075b964b07152d234b70', NULL,2);
 
 
 INSERT INTO `prestador` (`id_prestador`, `id_pessoa`, `id_conta_bancaria`) VALUES
@@ -8617,6 +8630,8 @@ VALUES
 	(10, 'Perda de memória' ),
 	(11, 'Perda de visão' ),
 	(12, 'Surdez' );
+
+
 
 -- Copiando estrutura para evento ajudevovo.setServicoEmExecucao
 DELIMITER //

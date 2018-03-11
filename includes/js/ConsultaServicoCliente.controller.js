@@ -15,8 +15,15 @@ app.controller(
 	$scope.goToDetail = (id_servico) => {
 		ServicoClienteDetalhe.setIdServico(id_servico);
 
+		
+			const modalAval = $('#modalDetalheServico');
+			modalAval.modal();	
+			modalAval.modal('open');
+
 		if ( ServicoClienteDetalhe.getIdServico() != null ) {		
-			$('#modalDetalheServico').modal('show');	
+			// $('#modalDetalheServico').modal('show');
+
+
 		}
 	}
 
@@ -37,6 +44,7 @@ app.directive('afterLoadServicesDirective', () => {
 	return (scope, element, attrs) => {
 		scope.$evalAsync( () => {
 			$(() => {
+				// $('.materialboxed').materialbox();
 				$('.starbox').each(function() {
 					var starbox = jQuery(this);
 					starbox.starbox({

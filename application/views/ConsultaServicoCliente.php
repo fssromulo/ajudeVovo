@@ -32,62 +32,83 @@
 				</div>
 			</div>
 		</div>
+<div>
 		<div 
-			class="col-md-3 col-sm-6 hero-feature" 
 			ng-repeat="servico in arrServicos | filter:pesquisa " 
 			after-load-services-directive>
-			<div class="thumbnail text-center novas-cards" style="height:600px;">
-				  <img  
-					class="novas-fotos" 
-					ng-src="{{servico.url_img_categoria}}" 
-					alt="{{servico.ds_categoria}}">  
-				<div class="caption">
-					<h3>{{servico.ds_categoria}}</h3>
-					<p>{{servico.nm_prestador}}</p>
-					<div>
-						<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
-						<p class="pessoas-atendidas pull-right">{{servico.qt_servico}} pessoas atendidas</p>
-					</div>
-					<br>
-					<p></p>
-					<p>
-						{{servico.ds_detalhe}}
-					</p>
-					<p class="price">R$ {{servico.valor}}</p>
-					<p>
-						<button 
-							ng-click="goToDetail(servico.id_servico)"
-							class="btn btn-primary btn-contratar">Mais informações
-						</button>
-					</p>
-				</div>
-			</div>
-		</div>
 
-		<div class="modal fade" id="modalDetalheServico" tabindex="-1" role="dialog" aria-labelledby="modalDetalheServicoLabel">
-		  <div class="modal-dialog" role="document">
+
+	<!-- <div class="material-placeholder">
+		<img class="materialboxed" width="650" 
+						src="https://cdn2.iconfinder.com/data/icons/lil-faces/233/lil-face-4-512.png"
+	></div> -->
+
+	<div class="card small">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" 
+			alt="{{servico.ds_categoria}}"
+			ng-src="{{servico.url_img_categoria}}" 
+			>
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">
+				{{servico.ds_categoria}}
+				<i class="material-icons right">
+					visibility
+				</i>
+			</span>
+      <p class="right">R$ {{servico.valor}}</p>
+			<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
+    </div>
+    <div class="card-reveal container valign-wrapper">
+      <span 
+				class="card-title grey-text text-darken-4">
+				{{servico.ds_categoria}}
+				<i class="material-icons right">
+					close
+				</i>
+			</span>
+			<!-- materialboxed class="materialboxed responsive-img" width="650"  -->
+			<!-- ng-src="{{servico.url_img_categoria}}"  
+			user-avatar-->
+				<div class="user-avatar-container right"> 
+					<img 
+					class="user-avatar materialboxed responsive-img"
+					src="https://cdn4.iconfinder.com/data/icons/smileys-for-fun/128/smiley__3-128.png"
+					alt="{{servico.ds_categoria}}"						
+					> 
+				</div>
+					<p>
+						Ajudante: {{servico.nm_prestador}} <br/>
+						{{servico.qt_servico}} pessoas atendidas.<br/>
+						Preço: R$ {{servico.valor}} <br/>
+						Avaliação:
+					</p>
+					<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
+					<button 
+						ng-click="goToDetail(servico.id_servico)"
+						class="btn right">Solicitar
+					</button>
+    </div>
+  </div>
+	</div>	
+		  <!-- Modal Structure -->
+		  <div  id="modalDetalheServico" class="modal">
 		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
-		      </div>
-		      <div class="modal-body">
-		      	<span id="mostraSucesso"></span>
-		      	<?php
+		      <h4 class="modal-title" id="modalDetalheServicoLabel">Solicitação de serviços</h4>
+		      <?php
 		      		$this->load->view('DetalheServico.php');
-		      	?>	 
-		      </div>
+		      	?> 	
 		    </div>
 		  </div>
-		</div>
-
 	</div>
 
-	<script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
+	  
 	<?php
 		// Importa o cabeçalho rodape padrao a todas as telas
 		$this->load->view('nucleo/footer.php');
 	?>
+
 
 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<!-- MY App -->

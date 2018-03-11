@@ -23,8 +23,8 @@ class Geral extends CI_Controller {
     	$listar = $this->GeralDB->getListaPais($dados)->result_array();
 
       $listar = array(
-        'paisSelected' => 'paisSelected',
-        'options'      => $listar
+        'pais' => 'pais',
+        'options' => $listar
       );
 
     	echo json_encode($listar);   	      
@@ -40,8 +40,8 @@ class Geral extends CI_Controller {
     	$listar = $this->GeralDB->getListaEstado($id_pais)->result_array();
 
       $listar = array(
-        'estadoSelected' => 'estadoSelected',
-        'options'      => $listar
+        'estado' => 'estado',
+        'options' => $listar
       );
 
       echo json_encode($listar);     	      
@@ -59,10 +59,10 @@ class Geral extends CI_Controller {
       }
 
     	$listar = $this->GeralDB->getListaCidade($id_estado)->result_array();
-      
+
       $listar = array(
-        'cidadeSelected' => 'cidadeSelected',
-        'options'      => $listar
+        'cidade' => 'cidade',
+        'options' => $listar
       );
 
       echo json_encode($listar);    	     

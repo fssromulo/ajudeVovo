@@ -10,23 +10,25 @@
 
 </head>
 <body>
-<div class="navbar-fixed">
-  <nav class="white" role="navigation">
+<header>
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       
+      <a href="#" data-activates="nav-mobile" class="button-collapse menus_iniciais"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#quemSomos">Sobre Nós</a></li>
         <li><a href="../perfil/">Login</a></li>
       </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Sobre nós</a></li>
-        <li><a href="../perfil/">Login</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-</div>
+  </div>
+
+  <ul id="nav-mobile" class="side-nav white">
+    <li><a href="#">Sobre nós</a></li>
+    <li><a href="../perfil/">Login</a></li>
+  </ul>
+</header>
 
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
@@ -163,13 +165,6 @@
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
-    <script type="text/javascript">
-                
-        $( document ).ready(function() {
 
-          $('.button-collapse').sideNav();
-          $('.parallax').parallax();
-        });
-    </script>
   </body>
 </html>
