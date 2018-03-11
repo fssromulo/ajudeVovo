@@ -65,9 +65,7 @@
                         <br><br>
                         <div class="modal-footer">
                             <button type="button" class="btn-flat blue-text" ng-click="fecharModalExcluir()">Não</button>
-                            <button type="button" class="btn-flat blue-text" ng-click="excluirServico()">Sim</button>
-                            <!-- TO-DO: CARD NO TRELLO -->
-                            <!-- <button type="button" class="btn-flat blue-text" ng-click="desativarServico()">Sim</button> -->
+                            <button type="button" class="btn-flat blue-text" ng-click="desabilitarServico()">Sim</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

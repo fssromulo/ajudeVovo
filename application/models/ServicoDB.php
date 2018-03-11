@@ -44,28 +44,11 @@ class ServicoDB extends CI_Model {
         );
     }
 
-    public function excluir_servico($id_servico) {
-        $this->db->delete(
-            'servico',
-            array('id_servico' => $id_servico)
-        );
+    public function desabilitar_servico($id_servico) {
+        $data = array('ativo' => 0);
+        $this->db->where('id_servico', $id_servico);
+        $this->db->update('servico', $data);
     }
-
-    // TO-DO: CARD NO TRELLO
-    // public function desativar_servico($id_servico, $ativo) {
-    //     $this->db->update(
-    //         'servico',
-    //         array('id_servico' => $id_servico);
-    //     )
-
-    //     $this->db->update(
-    //         'pessoa_fisica', // NOME DA TABELA QUE RECEBERÁ O UPDATE
-    //         $arrPessoaAlterar, // Array apenas com os dados que vao no SET do UPDATE
-    //         array(
-    //             'id_pessoa_fisica' => $id_pessoa_fisica // CONDICOES QUE IRÃO NO WHERE 
-    //         )
-    //     );
-    // }
 
     public function inserir_dia_disponivel($arrDiaDisponivel) {
         $this->db->insert(

@@ -20,23 +20,13 @@ class ListarServico extends CI_Controller {
         echo json_encode($listar);
     }
 
-    public function excluir() {
+    public function desabilitarServico() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_servico = $dados['id_servico'];
-
-        $this->ServicoDB->excluir_servico($id_servico);
-
+        // A variável $dados contém somente o id_servico.
+        // Por isso pode ser passada direta por parâmetro.
+        $this->ServicoDB->desabilitar_servico($dados);
+        
         $this->getServicos();
     }
-
-    // TO-DO: CARD NO TRELLO
-    // public desativarServico() {
-    //     (array)$dados = json_decode(file_get_contents("php://input"), true);
-
-    //     $id_servico = $dados['id_servico'];
-    //     $ativo = $dados['ativo'];
-
-    //     $this->ServicoDB->desativar_servico($id_servico, $ativo)
-    // }
 }
