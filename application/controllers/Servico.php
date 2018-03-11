@@ -86,7 +86,7 @@ class Servico extends CI_Controller {
     public function excluir() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_servico = $dados['id_servico'];
+        $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
 
         $this->ServicoDB->excluir_servico(
             $id_servico
@@ -94,6 +94,11 @@ class Servico extends CI_Controller {
 
         $this->getServicos();
     }
+
+    // TO-DO: CARD NO TRELLO
+    // public function desativarServico() {
+
+    // }
 
     public function buscarHorariosServico() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
