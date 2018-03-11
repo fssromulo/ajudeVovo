@@ -37,18 +37,19 @@ app.controller("controllerListarServico", function($scope, $http) {
         	});
     };
 
-    $scope.desativarServico = function() {
-        var arrServicoDesativar = {
-            "id_servico" : $scope.id_servico,
-            "ativo" : 0
-        }
+    // TO-DO: CARD NO TRELLO
+    // $scope.desativarServico = function() {
+    //     var arrServicoDesativar = {
+    //         "id_servico" : $scope.id_servico,
+    //         "ativo" : 0
+    //     }
 
-        http
-            .post('../ListarServico/desativarServico', arrServicoDesativar)
-            .success(function(data) {
-                $scope.arrListaServico = data;
-            });
-    }
+    //     http
+    //         .post('../ListarServico/desativarServico', arrServicoDesativar)
+    //         .success(function(data) {
+    //             $scope.arrListaServico = data;
+    //         });
+    // }
 
     $scope.fecharModalExcluir = function() {
         $("#modal_excluir").modal();

@@ -49,6 +49,7 @@ class ServicoDB extends CI_Model {
         );
     }
 
+    // TO-DO: CARD NO TRELLO
     // public function desativar_servico($id_servico, $ativo) {
     //     $this->db->update(
     //         'servico',

@@ -30,6 +30,7 @@ class ListarServico extends CI_Controller {
         $this->getServicos();
     }
 
+    // TO-DO: CARD NO TRELLO
     // public desativarServico() {
     //     (array)$dados = json_decode(file_get_contents("php://input"), true);
 
