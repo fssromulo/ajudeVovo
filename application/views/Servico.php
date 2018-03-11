@@ -16,8 +16,8 @@
 
         <div
             ng-app="appAngular"
-            ng-controller="controllerServico"
-        >
+            ng-controller="controllerServico">
+
             <div class="container">
 
                 <div class="row">
@@ -157,7 +157,7 @@
                                                     {{lista.horario_fim}}
                                                 </td>
                                                 <td>
-                                                    <i class="material-icons left"
+                                                    <i class="material-icons red-text left"
                                                         ng-click="removerDiaAtendimento($index)"/>delete</i>
                                                 </td>
                                             </tr>
