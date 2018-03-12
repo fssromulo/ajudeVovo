@@ -12,7 +12,7 @@
                 <a href="../ListarServico/">Meus serviços</a>
              </li>
              <li>
-                <a href="../ControleSolicitante/">Serviços solicitados</a>
+                <a href="../ControlePrestador/">Serviços solicitados</a>
              </li>
           </ul>
 
