@@ -22,8 +22,15 @@
                         <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
                     <!--</i>-->
                      <div class="col s6 col m6 flow-text" >&nbsp; {{lista.servico}}</div>
+                        <span ng-show="lista.ativo != 1" class="new badge red" data-badge-caption="" class="left-align">
+                           Cancelado! 
+                        </span>
+                     
                 </div>
                 <div class="collapsible-body" > 
+                     <span ng-show="lista.ativo != 1">
+                        <strong>Este serviço foi cancelado pelo ajudante!</strong>
+                     </span>
                     Serviço:{{lista.servico}}<br/>
                     Ajudante:{{lista.ajudante}} <br/>
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>

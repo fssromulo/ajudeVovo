@@ -22,7 +22,7 @@ class DetalheServicoDB extends CI_Model {
 
 
 	public function getDetalheServico($id_servico) {
- 		$this->db->select('s.descricao, c.descricao as categoria');
+ 		$this->db->select('s.descricao, c.descricao as categoria, s.ativo');
 		$this->db->from('servico s');
 		$this->db->join('categoria c','c.id_categoria = s.id_categoria', 'inner');
 		$this->db->where('s.id_servico = '.$id_servico);
