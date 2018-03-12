@@ -30,7 +30,7 @@
                 <div class="collapsible-body" > 
                      <span ng-show="lista.ativo != 1">
                         <strong>Este serviço foi cancelado pelo ajudante!</strong>
-                     </span>
+                     </span><br/>
                     Serviço:{{lista.servico}}<br/>
                     Ajudante:{{lista.ajudante}} <br/>
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
