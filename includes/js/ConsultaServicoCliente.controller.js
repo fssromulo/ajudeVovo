@@ -5,8 +5,7 @@ app.controller(
 		$rootScope,
 		$http,
 		ServicoClienteDetalhe
-	)
-{
+	){
 
 	$scope.__construct = () => {
 		$scope.getServicos();
@@ -15,16 +14,9 @@ app.controller(
 	$scope.goToDetail = (id_servico) => {
 		ServicoClienteDetalhe.setIdServico(id_servico);
 
-		
-			const modalAval = $('#modalDetalheServico');
-			modalAval.modal();	
-			modalAval.modal('open');
-
-		if ( ServicoClienteDetalhe.getIdServico() != null ) {		
-			// $('#modalDetalheServico').modal('show');
-
-
-		}
+		const modalAval = $('#modalDetalheServico');
+		modalAval.modal();	
+		modalAval.modal('open');
 	}
 
 	$scope.getServicos = function() {
@@ -42,17 +34,37 @@ app.controller(
 
 app.directive('afterLoadServicesDirective', () => {
 	return (scope, element, attrs) => {
-		scope.$evalAsync( () => {
-			$(() => {
-				// $('.materialboxed').materialbox();
-				$('.starbox').each(function() {
-					var starbox = jQuery(this);
-					starbox.starbox({
-						average: starbox.attr('data-button-count') / 5,
-						changeable: false,
+		if (scope.$last) {
+			setTimeout(() => {
+				$('.materialboxed').materialbox();			
+				loadRating = () => {	
+					$('.starbox').each(function() {
+						const starbox = jQuery(this);
+						starbox.starbox({
+							average: starbox.attr('data-button-count') / 5,
+							changeable: false,
+						});
 					});
+				};
+				(function() {
+					var ev = new $.Event('style'),
+						orig = $.fn.css;
+					$.fn.css = function() {
+						$(this).trigger(ev);
+						return orig.apply(this, arguments);
+					}
+				})();
+				
+				$('.card-reveal').bind('style', function(e) {
+					setTimeout(() => {
+						//alert( $(this).attr('style'));
+					},0, false);
+					
+					//loadRating();
 				});
-			});
-		});
+
+				loadRating();
+			},0, false);
+		}
 	}
 });

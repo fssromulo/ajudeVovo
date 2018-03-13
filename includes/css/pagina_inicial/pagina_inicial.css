@@ -55,19 +55,3 @@ p {
 footer.page-footer {
   margin: 0;
 }
-
-.user-avatar {
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  overflow: hidden;
-  left: -15px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.user-avatar-container {
-  min-height: 84px;
-  padding-left: 72px;
-  position: relative;
-}

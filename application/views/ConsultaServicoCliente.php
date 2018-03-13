@@ -5,7 +5,6 @@
 </head>
 
 <body>  
-
     <?php
         // Importa o cabeçalho padrao a todas as telas
         $this->load->view('MenuContratante.php');
@@ -36,13 +35,6 @@
 		<div 
 			ng-repeat="servico in arrServicos | filter:pesquisa " 
 			after-load-services-directive>
-
-
-	<!-- <div class="material-placeholder">
-		<img class="materialboxed" width="650" 
-						src="https://cdn2.iconfinder.com/data/icons/lil-faces/233/lil-face-4-512.png"
-	></div> -->
-
 	<div class="card small">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" 
@@ -60,7 +52,7 @@
       <p class="right">R$ {{servico.valor}}</p>
 			<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
     </div>
-    <div class="card-reveal container valign-wrapper">
+    <div class="card-reveal">
       <span 
 				class="card-title grey-text text-darken-4">
 				{{servico.ds_categoria}}
@@ -68,13 +60,11 @@
 					close
 				</i>
 			</span>
-			<!-- materialboxed class="materialboxed responsive-img" width="650"  -->
-			<!-- ng-src="{{servico.url_img_categoria}}"  
-			user-avatar-->
-				<div class="user-avatar-container right"> 
+				<div class="right"> 
 					<img 
-					class="user-avatar materialboxed responsive-img"
-					src="https://cdn4.iconfinder.com/data/icons/smileys-for-fun/128/smiley__3-128.png"
+					width="128"
+					class="materialboxed responsive-img"
+					src="https://cdn4.iconfinder.com/data/icons/smileys-for-fun/128/smiley__19-512.png"
 					alt="{{servico.ds_categoria}}"						
 					> 
 				</div>
@@ -110,7 +100,9 @@
 		$this->load->view('nucleo/footer.php');
 	?>
 
-
+	 <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/9bc43a1199ad5dfb78d58ba47726ab039218a939/dist/js/materialize.min.js"></script>  -->
+	  <script type="text/javascript" src="http://next.materializecss.com/bin/materialize.js"></script>  
+	<!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/v0.100.2/dist/js/materialize.min.js"></script> -->
 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
