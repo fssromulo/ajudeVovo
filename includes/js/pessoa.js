@@ -1,3 +1,28 @@
+app.config(function(ngJcropConfigProvider){
+
+    ngJcropConfigProvider.setJcropConfig({
+        bgColor: 'black',
+        bgOpacity: .4,
+        aspectRatio: 1,
+        maxWidth: 300,
+        maxHeight: 300
+    });
+
+    // Used to differ the upload example
+    ngJcropConfigProvider.setJcropConfig('upload', {
+        bgColor: 'black',
+        bgOpacity: .4,
+        aspectRatio: 1,
+        maxWidth: 300,
+        maxHeight: 300
+    });
+
+});
+
+function getImageSrc(src) {
+    // return window.isLocal ? '/demo/' + src : src;
+}
+
 app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.objPessoa = {
@@ -28,6 +53,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$("#cpf").mask("999.999.999-99",  {placeholder:"_"});
 		$(".cls-mascara-fone").mask("(99)9999-9999?9",  {placeholder:"_"});
 		$("#cep").mask("99.999-999",  {placeholder:"_"});
+
+
+
 
 		var dt_nascimento = new Date();
 		$scope.dt_nascimento = dt_nascimento;
@@ -66,7 +94,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		};
 
 		angular.element('.modal').modal();
-
+ 		angular.element('ul.tabs').tabs();
 	};
 
 	$scope.getListaPais = function() {
@@ -83,9 +111,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 		if ( $scope.arrListaPais.pais == undefined || $scope.arrListaPais.pais.length < 1 ) {
 			return false;
-		}
-
-		
+		}		
 		$scope.objPessoa.pais = $scope.arrListaPais.pais;
 
 
@@ -244,6 +270,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	$scope.carregaExcluir = function( pessoa ) {
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 	}
+	
+	$scope.trocarAba = function(tab_selecionada) {
+		$('ul.tabs').tabs('select_tab', tab_selecionada);
+	}
 
 	$scope.excluir = function() {
 
@@ -253,7 +283,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	    	).success(function (data) {
 	    		$scope.arrPessoas = data;
 		});
-	};
+	};	
 
 	angular.element(document).ready(function () {
 	
@@ -263,5 +293,5 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	// Chama metodos que vão preencher algo em tela
 	$scope.getListaPais();
-
+	$scope.obj  = {src:"", selection: [], thumbnail: true};
 });

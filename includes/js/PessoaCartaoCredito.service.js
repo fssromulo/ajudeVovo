@@ -1,6 +1,7 @@
 var app =  angular.module(
 	"appAngular",
  	[
+ 		'ngJcrop',
  		'angular-loading-bar',
  		'ui.materialize'
  	]
