@@ -19,15 +19,29 @@ app.controller("controllerListarServico", function($scope, $http) {
         	});
     };
 
-    $scope.carregarExcluir = function(servico) {
-        $("#modal_excluir").modal();
-        $("#modal_excluir").modal('open');
-        $scope.id_servico = servico.id_servico;
+    $scope.carregarInativar = function(servico) {
+        if ($scope.servicoPodeSerInativado(servico.id_servico)) {
+            $("#modal_excluir").modal();
+            $("#modal_excluir").modal('open');
+            $scope.id_servico = servico.id_servico;
+        } else {
+            $.notify("Este serviço não pode ser inativado!", "erro");
+        }
     };
 
-    $scope.desabilitarServico = function() {
+    $scope.servicoPodeSerInativado = function(id_servico) {
         $http
-            .post('../ListarServico/desabilitarServico', $scope.id_servico)
+            .post('../ListarServico/servicoPodeSerInativado', id_servico)
+            .success(function(data) {
+                $scope.registrosEncontrados = data;
+            });
+
+        return $scope.registrosEncontrados == 0;
+    }
+
+    $scope.inativarServico = function() {
+        $http
+            .post('../ListarServico/inativarServico', $scope.id_servico)
             .success(function(data) {
                 $scope.arrListaServico = data;
             });

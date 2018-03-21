@@ -80,7 +80,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="form-group">
-                                    <label for="valor">Dia de Atendimento </label>
+                                    <label for="diaAtendimento">Dia de Atendimento </label>
                                     <select 
                                         ng-options="listaDiaAtendimento.descricao for listaDiaAtendimento in arrListaDiaAtendimento"
                                         ng-model="diaAtendimentoSelected"

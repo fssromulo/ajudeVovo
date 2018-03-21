@@ -44,7 +44,7 @@ class ServicoDB extends CI_Model {
         );
     }
 
-    public function desabilitar_servico($id_servico) {
+    public function inativar_servico($id_servico) {
         $data = array('ativo' => 0);
         $this->db->where('id_servico', $id_servico);
         $this->db->update('servico', $data);
@@ -70,6 +70,21 @@ class ServicoDB extends CI_Model {
         $this->db->select(
             
         );
+    }
+
+    public function servico_pode_ser_inativado($id_servico) {
+        $query = $this->db->query(
+            "select 
+                ss.id_servico
+            from 
+                servico_solicitado ss
+            where
+                ss.id_servico =".$id_servico." 
+            and 
+                ss.id_estado_operacao in(1,2,4,5)"
+        );
+
+        return $query->num_rows();
     }
 
     public function get_servicos_cliente() {

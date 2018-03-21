@@ -65,8 +65,8 @@ app.controller(
     $scope.verificaDataExiste = function() {
 
         var dia = $('#vlData').val();
-        var arrData = dia.split("/");
-        var objDate = new Date(arrData[2], arrData[1]-1, arrData[0]);
+        var arrData = dia.split("-");
+        var objDate = new Date(arrData[0], arrData[1]-1, arrData[2]);
         var dia_escolhido_solicitacao = objDate.getDay()+1;
 
         // Variavel com retorno da funcao
@@ -75,7 +75,6 @@ app.controller(
         // Laço "for" para varrer a lista de dias cadastrado no banco pra verificar se
         // a data que foi escolhida esta na lista
         for (var i = 0, len = $scope.arrListaDiaHorario.length; i < len; i++) {
-
             // Pega o numero dia do servico salvo no banco
             var dia_na_lista = $scope.arrListaDiaHorario[i]['nr_dia'];
 
@@ -85,6 +84,7 @@ app.controller(
                 break;
             }
         }
+
         return retorno;
     }
 
@@ -93,7 +93,6 @@ app.controller(
     };
 
     $scope.salvarServico = function() {
-
         // Varre a lista de datas para verifica se data selecionada existe
         if ($scope.verificaDataExiste() != true){
             /* Componente externo ! Documentacao:  https://notifyjs.com */
