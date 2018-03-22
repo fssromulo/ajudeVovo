@@ -25,7 +25,7 @@ app.controller("controllerListarServico", function($scope, $http) {
             $("#modal_excluir").modal('open');
             $scope.id_servico = servico.id_servico;
         } else {
-            $.notify("Este serviço não pode ser inativado!", "erro");
+            $.notify("Este serviço não pode ser excluído!", "error");
         }
     };
 
