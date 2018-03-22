@@ -36,14 +36,13 @@
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação: {{lista.situacao}} <br/>
 
-                    <div ng-show="{{lista.id_estado_operacao}} == 5">
+                    <div class="right" ng-show="{{lista.id_estado_operacao}} == 5">
                         <button 
                             title="Finalizar Serviço" 
                             ng-click="abrirTelaAvaliacao(lista.id_servico)"
-                            class="waves-effect waves-light btn light darken-1 col s12"
+                            class="waves-effect waves-light btn light darken-1"
                             style="font-size: 16px;"> Finalizar Serviço
-                            <span class="glyphicon glyphicon-ok">
-                            </span>
+                            <span class="material-icons">check</span>
                         </button>
                     </div>
                 </div>

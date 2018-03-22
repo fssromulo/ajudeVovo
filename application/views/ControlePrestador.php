@@ -35,36 +35,39 @@
                         {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação:  {{lista.ds_estado_atual}} <br/>
 
-                    <div ng-show="{{lista.id_estado_operacao}} == 3">
-                                                    <a 
-                                                        title="Aceitar" 
-                                                        ng-click="aceitar(lista.id_servico)"
-                                                        class="waves-effect waves-light btn light darken-1 col s12"
-                                                        style="font-size: 16px;">
-                                                            <span class="thumbs-up" >
-                                                                <i class="material-icons">thumb_up</i>
-                                                            </span>
-                                                    </a>
-                                                    <button 
-                                                        title="Negar"
-                                                        ng-click="negar(lista.id_servico)"
-                                                        class="waves-effect waves-light btn red darken-1 col s12"
-                                                        style="font-size: 16px;">
-                                                            <span class="thumbs-up" >
-                                                                <i class="material-icons">thumb_down</i>
-                                                            </span>
-                                                    </button>
-                                                </div>
-                                                <div ng-show="{{lista.id_estado_operacao}} == 4">
-                                                    <button 
-                                                        title="Finalizar Serviço" 
-                                                        ng-click="abrirTelaAvaliacao(lista.id_servico)"
-                                                        class="waves-effect waves-light btn light darken-1 col s12"
-                                                        style="font-size: 16px;">Finalizar Serviço
-                                                            <span class="glyphicon glyphicon-ok">
-                                                            </span>
-                                                    </button>
-                                                </div>
+                    <div   ng-show="{{lista.id_estado_operacao}} == 3">
+                       
+                            <button 
+                                title="Negar"
+                                ng-click="negar(lista.id_servico)"
+                                class="waves-effect waves-light btn red darken-1"
+                                style="font-size: 16px;">
+                                    <span class="thumbs-up" >
+                                        <i class="material-icons">thumb_down</i>
+                                    </span>
+                            </button>
+
+                             <a 
+                            title="Aceitar" 
+                            ng-click="aceitar(lista.id_servico)"
+                            class="waves-effect waves-light btn light darken-1"
+                            style="font-size: 16px;">
+                            <span class="thumbs-up" >
+                                <i class="material-icons">thumb_up</i>
+                            </span>
+                        </a>
+                    </div>
+                    
+                        <div ng-show="{{lista.id_estado_operacao}} == 4">
+                            <button 
+                                title="Finalizar Serviço" 
+                                ng-click="abrirTelaAvaliacao(lista.id_servico)"
+                                class="waves-effect waves-light btn light darken-1"
+                                style="font-size: 14px;">Finalizar Serviço
+                                    <span class="material-icons">check</span>
+                            </button>
+                        </div>
+                   
                 </div>
             </li>
             
@@ -162,7 +165,6 @@
 
                 <?php
                     $this->load->view('Avaliacao.php');
-                    
                 ?>  
               </div>
             </div>
