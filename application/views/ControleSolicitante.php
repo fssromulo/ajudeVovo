@@ -21,15 +21,16 @@
                     <!--<i class="large material-icons">-->
                         <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
                     <!--</i>-->
-                     <div class="col s6 col m6 flow-text" >&nbsp; {{lista.servico}}</div>
-                        <span ng-show="lista.ativo != 1" class="new badge red right-align" data-badge-caption="" >
-                           Cancelado! 
+                        <p class="truncate"> {{lista.servico}}</p>
+                        <span ng-show="lista.ativo != 1" class="new badge red right" data-badge-caption="" >
+                                Inativo! 
                         </span>
+                
                      
                 </div>
                 <div class="collapsible-body" > 
                      <span ng-show="lista.ativo != 1">
-                        <strong>Este serviço foi cancelado pelo ajudante!</strong>
+                        <strong>Este serviço está inativo!</strong>
                      </span><br/>
                     Serviço:{{lista.servico}}<br/>
                     Ajudante:{{lista.ajudante}} <br/>

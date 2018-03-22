@@ -21,12 +21,12 @@
                 <div class="collapsible-header" >
                     
                     <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
-                    <div class="col s6 col m6 flow-text" >
-                        &nbsp; {{lista.descricao}} 
+                    <!--<div class="col s6 col m6 flow-text" >-->
+                        <p class="truncate">{{lista.descricao}}</p> 
                         <span ng-show="lista.ativo != 1" class="new badge red" data-badge-caption="">
                             Inativo
                         </span>
-                    </div>
+                    <!--</div>-->
                 </div>
                 <div class="collapsible-body" > 
                     Serviço:{{lista.descricao}}<br/>
