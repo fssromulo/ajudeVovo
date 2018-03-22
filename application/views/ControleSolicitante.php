@@ -36,7 +36,7 @@
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação: {{lista.situacao}} <br/>
 
-                    <div class="right" ng-show="{{lista.id_estado_operacao}} == 5">
+                    <div ng-show="{{lista.id_estado_operacao}} == 5">
                         <button 
                             title="Finalizar Serviço" 
                             ng-click="abrirTelaAvaliacao(lista.id_servico)"
