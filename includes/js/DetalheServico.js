@@ -75,7 +75,7 @@ app.controller(
         // Laço "for" para varrer a lista de dias cadastrado no banco pra verificar se
         // a data que foi escolhida esta na lista
         for (var i = 0, len = $scope.arrListaDiaHorario.length; i < len; i++) {
-            
+
             // Pega o numero dia do servico salvo no banco
             var dia_na_lista = $scope.arrListaDiaHorario[i]['nr_dia'];
 
@@ -94,7 +94,6 @@ app.controller(
     };
 
     $scope.salvarServico = function() {
-
         // Varre a lista de datas para verifica se data selecionada existe
         if ($scope.verificaDataExiste() != true){
             /* Componente externo ! Documentacao:  https://notifyjs.com */

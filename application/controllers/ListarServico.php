@@ -20,13 +20,22 @@ class ListarServico extends CI_Controller {
         echo json_encode($listar);
     }
 
-    public function desabilitarServico() {
+    public function inativarServico() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
         // A variável $dados contém somente o id_servico.
         // Por isso pode ser passada direta por parâmetro.
-        $this->ServicoDB->desabilitar_servico($dados);
+        $this->ServicoDB->inativar_servico($dados);
         
         $this->getServicos();
+    }
+
+    public function servicoPodeSerInativado() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        // A variável $dados contém somente o id_servico.
+        // Por isso pode ser passada direta por parâmetro.
+        $quantidadeRegistrosEncontrados = $this->ServicoDB->servico_pode_ser_inativado($dados);
+        echo json_encode($quantidadeRegistrosEncontrados);
     }
 }

@@ -42,7 +42,7 @@
                                     <i class="material-icons right blue-text"
                                         ng-click="alterarServico(servico)"/>edit</i>
                                     <i class="material-icons right red-text darken-2"
-                                        ng-click="carregarExcluir(servico)"/>delete</i>
+                                        ng-click="carregarInativar(servico)"/>delete</i>
                                 </div>
                                 <br>
                             </div>
@@ -65,7 +65,7 @@
                         <br><br>
                         <div class="modal-footer">
                             <button type="button" class="btn-flat blue-text" ng-click="fecharModalExcluir()">Não</button>
-                            <button type="button" class="btn-flat blue-text" ng-click="desabilitarServico()">Sim</button>
+                            <button type="button" class="btn-flat blue-text" ng-click="inativarServico()">Sim</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
