@@ -8,7 +8,7 @@ class DetalheServico extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('DetalheServicoDB');
-		$this->load->helper('formatarDatas');		
+		$this->load->helper('formatardatas');		
  			
 		$this->id_servico = null;
 
