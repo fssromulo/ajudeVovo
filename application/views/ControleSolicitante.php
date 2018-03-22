@@ -22,7 +22,7 @@
                         <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
                     <!--</i>-->
                      <div class="col s6 col m6 flow-text" >&nbsp; {{lista.servico}}</div>
-                        <span ng-show="lista.ativo != 1" class="new badge red" data-badge-caption="" class="left-align">
+                        <span ng-show="lista.ativo != 1" class="new badge red right-align" data-badge-caption="" >
                            Cancelado! 
                         </span>
                      
@@ -35,6 +35,17 @@
                     Ajudante:{{lista.ajudante}} <br/>
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação: {{lista.situacao}} <br/>
+
+                    <div ng-show="{{lista.id_estado_operacao}} == 5">
+                        <button 
+                            title="Finalizar Serviço" 
+                            ng-click="abrirTelaAvaliacao(lista.id_servico)"
+                            class="waves-effect waves-light btn light darken-1 col s12"
+                            style="font-size: 16px;"> Finalizar Serviço
+                            <span class="glyphicon glyphicon-ok">
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </li>
             

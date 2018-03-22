@@ -2,6 +2,16 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
+<style type="text/css">
+  .tabs .indicator{
+    background-color: #1889ff;
+  }
+    .ng-jcrop-image-wrapper { display: inline-block; }
+    .ng-jcrop-thumbnail-wrapper { display: inline-block; }
+
+    [ng-controller] { margin-bottom: 48px; }
+    caption { text-align: left; }
+</style>
 
 </head>
 <body>
@@ -10,7 +20,19 @@
    ng-controller="ctrlPessoa"
 >
    <div class="container">
-      <div class="row">
+    <div class="row">
+    <br/>
+       <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#tab_dados_pessoais"><i class="material-icons blue-text #1889ff">person</i></a></li>
+            <li class="tab col s3"><a href="#tab_endereco"><i class="material-icons blue-text #1889ff">home</i></a></li>
+            <li class="tab col s3 "><a href="#tab_contatos"><i class="material-icons blue-text #1889ff">local_phone</i> </a></li>
+            <li class="tab col s3"><a href="#tab_dados_acesso"><i class="material-icons blue-text #1889ff">https</i></a></li>
+          </ul>
+        </div>
+    <br/>
+    <br/>
+
          <form class="col s12" name="frmCadastro">
             <!-- Perfil -->
             <!-- Perfil -->
@@ -19,55 +41,97 @@
             <!-- Perfil -->
             <!-- Perfil -->
 
-            <div class="section">
-               <h5>Dados Pessoais</h5>
-               <div class="divider"></div> 
-               <div class="row">
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="nome" ng-model="objPessoa.nome" id="nome" type="text" class="validate">
-                     <label for="nome">Nome</label>
-                  </div>
-                  <div input-field class="session col s12 m6">
-                     <div  class="show-on-medium-and-down hide-on-large-only">
-                        <input
-                           class="dt_nascimento"
-                           ng-model="objPessoa.dt_nascimento3"
-                           id="dt_nascimento_mobile"
-                           type="date"                       
-                        />
+            <div id="tab_dados_pessoais" class="col s12">
+              <div class="section">
+                  <h5>Dados Pessoais</h5>
+                  <div class="divider"></div> 
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="nome" ng-model="objPessoa.nome" id="nome" type="text" class="validate">
+                        <label for="nome">Nome</label>
                      </div>
-                     <div class="hide-on-med-and-down show-on-large">
-                        <input
-                           autocomplete="off"
-                           type="text"
-                           class="dt_nascimento"
-                           id="dt_nascimento"
-                           ng-model="objPessoa.dt_nascimento"                         
-                        />  
-                        <label for="dt_nascimento">Data nascimento</label>
-                     </div>
-                  </div>            
-               </div>
-               <div class="row">
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="cpf" ng-model="objPessoa.cpf" id="cpf" type="tel" class="validate">
-                     <label for="cpf">CPF:</label>
+                     <div input-field class="session col s12 m6">
+                        <div  class="show-on-medium-and-down hide-on-large-only">
+                           <input
+                              class="dt_nascimento"
+                              ng-model="objPessoa.dt_nascimento3"
+                              id="dt_nascimento_mobile"
+                              type="date"                       
+                           />
+                        </div>
+                        <div class="hide-on-med-and-down show-on-large">
+                           <input
+                              autocomplete="off"
+                              type="text"
+                              class="dt_nascimento"
+                              id="dt_nascimento"
+                              ng-model="objPessoa.dt_nascimento"                         
+                           />  
+                           <label for="dt_nascimento">Data nascimento</label>
+                        </div>
+                     </div>            
                   </div>
-                  <div input-field class="session col s12 m6">
-                     <select
-                        ng-options="listaSexo.descricao for listaSexo in arrListaSexo.options"
-                        ng-model="arrListaSexo.sexoSelected"
-                        name="sexo"
-                        id="sexo"
-                        material-select watch
-                     >
-                        <option value="" selected>Selecione um sexo...</option>
-                     </select>
-                  </div>            
-               </div> 
-            </div> 
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="cpf" ng-model="objPessoa.cpf" id="cpf" name="cpf" type="tel" class="validate">
+                        <label for="cpf">CPF:</label>
+                     </div>
+                     <div input-field class="session col s12 m6">
+                        <select
+                           ng-options="listaSexo.descricao for listaSexo in arrListaSexo.options"
+                           ng-model="arrListaSexo.sexoSelected"
+                           name="sexo"
+                           id="sexo"
+                           material-select watch
+                        >
+                           <option value="" selected>Selecione um sexo...</option>
+                        </select>
+                     </div>
 
-            <div class="section">
+                     <div input-field class="session col s12 m6">
+
+                         <div class="file-field input-field">
+                           <div class="btn">
+                             <span>Foto perfil</span>
+                              <input type="file" ng-jcrop-input="upload" />
+                           </div>
+                           <div class="file-path-wrapper">
+                             <input class="file-path validate" type="text">
+                           </div>
+                         </div>
+
+                           <div ng-jcrop="obj.src" ng-jcrop-config-name="upload" selection="obj.selection" thumbnail="obj.thumbnail"></div>
+                     </div>            
+                  </div>
+
+               <div class="col s12 center-align">
+
+               <div class="col s6">
+               <!--     <button
+                        type="button" ng-click="cancelar()" 
+                        class="waves-effect waves-light btn red darken-1 col s12" 
+                     ><i class="material-icons left">arrow_back</i>Voltar
+                     </button> -->
+                 </div>
+               <div class="col s6">
+
+                     <button
+                        type="button"
+                        class="waves-effect waves-light btn light-blue darken-2 col s12"
+                       data-ng-click="trocarAba('tab_endereco')"
+                     >
+                     <i class="material-icons right">arrow_forward</i>
+                        Avan&ccedil;ar
+                     </button>
+
+                 </div>
+               </div>
+
+               </div>             
+            </div>
+
+            <div id="tab_endereco" class="col s12">
+               <div class="section">
                <h5>Endereço</h5>
                <div class="divider"></div> 
                <div class="row">
@@ -142,65 +206,120 @@
                      <label for="cep">CEP:</label>                  
                   </div>
                </div>
+
+             <div class="col s12 center-align">
+
+               <div class="col s6">
+                   <button
+                        type="button" ng-click="trocarAba('tab_dados_pessoais')" 
+                        class="waves-effect waves-light btn red darken-1 col s12" 
+                     ><i class="material-icons left">arrow_back</i>Voltar
+                     </button>
+                 </div>
+               <div class="col s6">
+
+                     <button
+                        type="button"
+                        class="waves-effect waves-light btn light-blue darken-2 col s12"
+                       data-ng-click="trocarAba('tab_contatos')"
+                     >
+                     <i class="material-icons right">arrow_forward</i>
+                        Avan&ccedil;ar
+                     </button>
+
+                 </div>
+               </div>               
+            </div>               
+
             </div>
 
-            <div class="section">
-               <h5>Contatos:</h5>
-               <div class="divider"></div> 
+            <div id="tab_contatos" class="col s12">
+               <div class="section">
+                  <h5>Contatos</h5>
+                  <div class="divider"></div> 
 
-               <div class="row">
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="fone_residencial" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" class="validate">
-                     <label for="fone_residencial">Telefone residencial:</label>                                       
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="fone_residencial" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" class="validate">
+                        <label for="fone_residencial">Telefone residencial:</label>                                       
+                     </div>
+                     
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" id="fone_comercial" type="tel" class="validate">
+                        <label for="fone_comercial">Telefone comercial:</label>                  
+                     </div>
                   </div>
-                  
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" id="fone_comercial" type="tel" class="validate">
-                     <label for="fone_comercial">Telefone comercial:</label>                  
+
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="celular" ng-model="objPessoa.celular" id="celular" type="tel" class="validate">
+                        <label for="celular">Celular:</label>                                       
+                     </div>
+                     
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="email" ng-model="objPessoa.email" id="email" type="email" class="validate">
+                        <label for="email">E-mail:</label>                  
+                     </div>
                   </div>
+
+             <div class="col s12 center-align">
+
+               <div class="col s6">
+                   <button
+                        type="button" ng-click="trocarAba('tab_endereco')" 
+                        class="waves-effect waves-light btn red darken-1 col s12" 
+                     ><i class="material-icons left">arrow_back</i>Voltar
+                     </button>
+                 </div>
+               <div class="col s6">
+
+                     <button
+                        type="button"
+                        class="waves-effect waves-light btn light-blue darken-2 col s12"
+                       data-ng-click="trocarAba('tab_dados_acesso')"
+                     >
+                     <i class="material-icons right">arrow_forward</i>
+                        Avan&ccedil;ar
+                     </button>
+
+                 </div>
                </div>
 
-               <div class="row">
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="celular" ng-model="objPessoa.celular" id="celular" type="tel" class="validate">
-                     <label for="celular">Celular:</label>                                       
-                  </div>
-                  
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="email" ng-model="objPessoa.email" id="email" type="email" class="validate">
-                     <label for="email">E-mail:</label>                  
-                  </div>
-               </div>
+               </div>               
+
             </div>
 
-            <div class="section">
-               <h5>Dados de acesso:</h5>
-               <div class="divider"></div> 
+            <div id="tab_dados_acesso" class="col s12">
 
-               <div class="row">
-                  <div input-field class="session col s12">
-                     <input autocomplete="off" id="login" ng-model="objPessoa.login" id="login" type="text" class="validate">
-                     <label for="login">Login:</label>                                       
-                  </div>
-               </div>
+               <div class="section">
+                  <h5>Dados de acesso:</h5>
+                  <div class="divider"></div> 
 
-               <div class="row">
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="senha1" ng-model="objPessoa.senha1" id="senha1" type="password" class="validate">
-                     <label for="senha1">Senha:</label>                                       
+                  <div class="row">
+                     <div input-field class="session col s12">
+                        <input autocomplete="off" id="login" ng-model="objPessoa.login" id="login" type="text" class="validate">
+                        <label for="login">Login:</label>                                       
+                     </div>
                   </div>
-                  
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="senha2" ng-model="objPessoa.senha2" id="senha2" type="password" class="validate">
-                     <label for="senha2">Repetir senha:</label>                  
-                  </div>
-               </div>
+
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="senha1" ng-model="objPessoa.senha1" id="senha1" type="password" class="validate">
+                        <label for="senha1">Senha:</label>                                       
+                     </div>
+                     
+                     <div input-field class="session col s12 m6">
+                        <input autocomplete="off" id="senha2" ng-model="objPessoa.senha2" id="senha2" type="password" class="validate">
+                        <label for="senha2">Repetir senha:</label>                  
+                     </div>
+                  </div>               
+               </div>               
 
                <div class="col s12 center-align">
 
                <div class="col s6">
                    <button
-                        type="button" ng-click="cancelar()" 
+                        type="button" ng-click="trocarAba('tab_contatos')" 
                         class="waves-effect waves-light btn red darken-1 col s12" 
                      ><i class="material-icons left">arrow_back</i>Voltar
                      </button>
@@ -220,6 +339,8 @@
 
                  </div>
                </div>
+
+            </div>
             </div>
          </form>
       </div>
