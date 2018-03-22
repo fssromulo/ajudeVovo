@@ -65,8 +65,8 @@ app.controller(
     $scope.verificaDataExiste = function() {
 
         var dia = $('#vlData').val();
-        var arrData = dia.split("/");
-        var objDate = new Date(arrData[2], arrData[1]-1, arrData[0]);
+        var arrData = dia.split("-");
+        var objDate = new Date(arrData[0], arrData[1]-1, arrData[2]);
         var dia_escolhido_solicitacao = objDate.getDay()+1;
 
         // Variavel com retorno da funcao
@@ -75,7 +75,7 @@ app.controller(
         // Laço "for" para varrer a lista de dias cadastrado no banco pra verificar se
         // a data que foi escolhida esta na lista
         for (var i = 0, len = $scope.arrListaDiaHorario.length; i < len; i++) {
-
+            
             // Pega o numero dia do servico salvo no banco
             var dia_na_lista = $scope.arrListaDiaHorario[i]['nr_dia'];
 
@@ -85,6 +85,7 @@ app.controller(
                 break;
             }
         }
+
         return retorno;
     }
 
@@ -107,13 +108,20 @@ app.controller(
             return false;
         }
 
+        var objData = new Date($scope.dia_solicitacao);
+
+        var dataFormatada = 
+            objData.getDate() + "/" 
+            + (objData.getMonth() + 1) + "/"
+            + objData.getFullYear();
+
         var arrServicoSalvar = {
             'id_servico'         : $scope.id_servico_escolhido,
             'id_forma_pagamento' : 1,
             'id_estado_operacao' : 3,
             'horario_inicio'     : $scope.formatarHorario($scope.horario_inicio),
             'horario_fim'        : $scope.formatarHorario($scope.horario_fim),
-            'dia_solicitacao'    : $scope.dia_solicitacao
+            'dia_solicitacao'    : dataFormatada
         }
 
         // Bloqueia o botão para o usuário não realizar inumeras requisicoes
@@ -123,8 +131,13 @@ app.controller(
             '../DetalheServico/salvarSolicitacao',
             arrServicoSalvar
         ).success(function(data) {
-            $("#btn_servico").notify("Salvo com sucesso!", {position:"right" }, "success");
             $scope.bloquear_btn_servico = false;
+            
+            const modalAval = $('#modalDetalheServico');
+            modalAval.modal();  
+            modalAval.modal('close');
+
+            $.notify("Salvo com sucesso!", "success");
         });
     };
 
