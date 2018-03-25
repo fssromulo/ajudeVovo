@@ -48,7 +48,7 @@
 		}
 
 		public function salvar() {
-			(array)$dados = json_decode(file_get_contents("php://input"), true);   
+		(array)$dados = json_decode(file_get_contents("php://input"), true);   
 
 	   	$is_alterar = $dados['is_alterar'];
 	   	$cd_pessoa = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
@@ -158,12 +158,22 @@
 				$dados,
 				$cd_pessoa 
 			);
-
 		}
 
 		public function getPessoas() {
 		   $listar = $this->PessoaDB->getPessoasFisica()->result_array();
 
 	     	echo json_encode($listar);
+		}
+
+		public function inativarPessoa() {
+			$arrPessoaAlterar = array(
+				"ativo" => 0
+			);
+			
+	   		$listar = $this->PessoaDB->inativarPessoa(
+				$this->session->userdata('id_pessoa_fisica'),
+				$arrPessoaAlterar
+			);
 		}
 	}

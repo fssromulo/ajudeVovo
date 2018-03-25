@@ -21,6 +21,14 @@ class ControlePrestador extends CI_Controller {
 		echo json_encode($listaServicosSolicitados);
 	}	
 	
+	public function obterSePodeExcluir() {
+		$obterSePodeExcluir = $this->PrestadorDB->obterSePodeExcluir(
+			$this->session->userdata('id_prestador')
+		)->result_array();
+
+		echo json_encode($obterSePodeExcluir);
+	}	
+
 	/*
 		Função que atualiza o status da solicitacao caso o PRESTADOR aceite ou não 
 	*/

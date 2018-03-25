@@ -60,6 +60,19 @@ class PrestadorDB extends CI_Model{
 		);
   	}
 
+	public function obterSePodeExcluir($id_prestador) {
+		return $this->db->query("
+			select 
+				obter_se_pode_excluir(?) pode
+			from 
+				dual
+			",
+			array(
+				$id_prestador
+			)
+		);
+	}
+
 	  
 	public function getDadosServicosSolicitados($id_prestador) {
 		return $this->db->query("
@@ -90,7 +103,8 @@ class PrestadorDB extends CI_Model{
 			AND		
 				ss.id_servico = s.id_servico
 		  	AND
-				s.id_prestador = ? ",
+				s.id_prestador = ? 
+			",
 			array(
 				$id_prestador
 			)
