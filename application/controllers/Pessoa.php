@@ -10,7 +10,7 @@
 			$this->load->library('session');
 			$this->load->helper('url');
 			$this->load->helper('removecaracteres');
-			//$this->load->helper('formatardatas');
+			$this->load->helper('formatardatas');
 
 			$arrModelsImportar = array(
 				'PessoaDB',
