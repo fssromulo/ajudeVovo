@@ -63,6 +63,14 @@ class PessoaDB extends CI_Model{
 
   	}
 
-
+	public function inativarPessoa($id_pessoa_fisica, $arrPessoaAlterar) {
+		$this->db->update(
+			'pessoa_fisica', 
+			$arrPessoaAlterar, 
+			array(
+				'id_pessoa_fisica' => $id_pessoa_fisica 
+			)
+		);
+	}
 }
 ?>

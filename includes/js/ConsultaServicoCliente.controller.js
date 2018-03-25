@@ -37,33 +37,25 @@ app.directive('afterLoadServicesDirective', () => {
 		if (scope.$last) {
 			setTimeout(() => {
 				$('.materialboxed').materialbox();			
-				loadRating = () => {	
-					$('.starbox').each(function() {
-						const starbox = jQuery(this);
-						starbox.starbox({
-							average: starbox.attr('data-button-count') / 5,
-							changeable: false,
-						});
+				
+				loadRating = (element) => {	
+					const starbox = $(element);
+					starbox.starbox({
+						average: starbox.attr('data-button-count') / 5,
+						changeable: false,
 					});
 				};
-				(function() {
-					var ev = new $.Event('style'),
-						orig = $.fn.css;
-					$.fn.css = function() {
-						$(this).trigger(ev);
-						return orig.apply(this, arguments);
-					}
-				})();
-				
-				$('.card-reveal').bind('style', function(e) {
-					setTimeout(() => {
-						//alert( $(this).attr('style'));
-					},0, false);
-					
-					//loadRating();
-				});
 
-				loadRating();
+				$('.starbox').each(function() {
+					loadRating(this);
+				});
+				
+				$('.activator').click((e) => {
+					const starbox = ($(e.target.parentElement.parentElement).find('.starbox')[1]);
+					setTimeout(() => {
+						loadRating(starbox);
+					}, 0, false);	
+				});
 			},0, false);
 		}
 	}

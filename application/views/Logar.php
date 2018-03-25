@@ -84,7 +84,6 @@
         $this->load->view('nucleo/footer.php');
     ?> 
 
-
 	<script type="text/javascript" src="../includes/js/home.js?<?php echo date('YmdHis');?>"></script>
 </body>
 
