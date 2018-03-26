@@ -18,8 +18,6 @@ class PagSeguro extends CI_Controller {
 
 	public function getSessaoPagSeguroFromLibrary(){
 		$this->load->library('PagSeguro/pagsegurolib');
-		echo  $this->pagsegurolib->getSessaoPagSeguro();
-
-	}
-	
+		echo  $this->pagsegurolib->getSessaoPagSeguro();	
+	}	
 }

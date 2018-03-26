@@ -5,11 +5,18 @@ class Categoria extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('controleacesso');
         $this->load->model('CategoriaDB');
+        $this->load->helper('url');        
     }
 
     public function index() {
-        $this->load->view('Categoria');
+      /*Verifica sessão do usuário*/
+      if (!$this->controleacesso->isUsuarioLogado()) {
+         redirect('/Home/');
+      }
+
+      $this->load->view('Categoria');
     }
 
     public function categorias() {

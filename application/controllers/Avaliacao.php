@@ -14,11 +14,18 @@ class Avaliacao extends CI_Controller {
 		$this->perfil = null;
 		$this->CI =& get_instance();
 		$this->load->library('session');
-		$this->load->model('AvaliacaoDB');		
+		$this->load->library('controleacesso');
+		$this->load->model('AvaliacaoDB');	
+		$this->load->helper('url');			
 	}
 
 	public function index()
 	{
+      /*Verifica sessão do usuário*/
+      if (!$this->controleacesso->isUsuarioLogado()) {
+         redirect('/Home/');
+      }
+
 		$this->load->view('Avaliacao');
 	}
 
