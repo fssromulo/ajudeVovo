@@ -17,8 +17,7 @@ class Logar extends CI_Controller {
 		$arrDados = array();
 
 		if ( !isset($contratante) && !isset($ajudante)) {
-			redirect('./Home/');
-			die('Redirecionando...');
+			redirect('/Home/');
 		}
 		
 		$arrDados = array(
