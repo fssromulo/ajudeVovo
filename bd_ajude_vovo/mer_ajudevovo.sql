@@ -618,6 +618,38 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- function obter_se_pode_excluir
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP function IF EXISTS `ajudevovo`.`obter_se_pode_excluir`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_se_pode_excluir`(`id_prestador_p` INT) RETURNS varchar(1)
+BEGIN
+	DECLARE retorno varchar(1);
+	
+	select
+		case
+			when count(1) = 0 then 'S'
+			else 'N'
+		end
+	into
+		retorno
+	from
+		servico_solicitado ss,
+		servico s
+	where ss.id_servico = s.id_servico
+	and s.id_prestador = id_prestador_p
+	and ss.id_estado_operacao in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
+	
+	return retorno;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- function obter_quantidade_servicos
 -- -----------------------------------------------------
 
