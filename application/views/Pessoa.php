@@ -100,7 +100,7 @@
                            </div>
                          </div>
 
-                           <div ng-jcrop="obj.src" ng-jcrop-config-name="upload" selection="obj.selection" thumbnail="obj.thumbnail"></div>
+                          <div ng-jcrop="obj.src" ng-jcrop-config-name="upload" selection="obj.selection" thumbnail="obj.thumbnail"></div>
                      </div>            
                   </div>
 
