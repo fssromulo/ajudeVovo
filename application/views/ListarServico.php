@@ -38,7 +38,7 @@
                                 <br><br><br>
                                 <div class="col s12">
                                     <i class="material-icons right blue-text"
-                                        ng-click="alterarServico(servico)"/>edit</i>
+                                        ng-click="editarServico(servico)"/>edit</i>
                                     <i class="material-icons right red-text darken-2"
                                         ng-click="carregarInativar(servico)"/>delete</i>
                                 </div>
@@ -85,7 +85,7 @@
             // Importa o cabeçalho rodape padrao a todas as telas
             $this->load->view('nucleo/footer.php');
         ?> 
-
+        
         <!-- MY App -->
         <script type="text/javascript" src="../includes/js/listarServico.js"></script>
         <script type="text/javascript" src="../includes/js/MenuPrestador.controller.js"></script>

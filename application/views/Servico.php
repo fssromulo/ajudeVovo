@@ -11,11 +11,15 @@
         <div
             ng-app="appAngular"
             ng-controller="controllerServico">
-
+            
             <?php
                 // Importa o cabeçalho padrao a todas as telas
                 $this->load->view('MenuPrestador.php');
             ?>
+
+            <input type="hidden" name="is_edicao" ng-model="id_servico" 
+                ng-init="id_servico=<?php echo $id_servico?>">
+
             <div class="container">
 
                 <div class="row">
@@ -246,7 +250,7 @@
             // Importa o cabeçalho rodape padrao a todas as telas
             $this->load->view('nucleo/footer.php');
         ?> 
-
+ 
         <!-- MY App -->
         <script type="text/javascript" src="../includes/js/servico.js"></script>
         <script type="text/javascript" src="../includes/js/MenuPrestador.controller.js"></script>

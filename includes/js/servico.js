@@ -1,19 +1,20 @@
-var app =  angular.module(
-	"appAngular",
- 	[
-        'ui.materialize',
-        'angular-loading-bar' 	]
+var app = angular.module(
+    "appAngular",
+    [
+        'angular-loading-bar',
+        'ui.materialize'
+    ]
 );
 
 app.controller("controllerServico", function($scope, $http) {
 
     $scope.__construct = function() {
 
-        $scope.id_servico = null;
         $scope.id_categoria = null;
         $scope.is_alterar = false;
         $scope.valorConvertido = 0;
         $scope.arrListaAtendimento = [];
+        $scope.arrListaCategoria = [];
 
         $("#valor").maskMoney({thousands:'.',decimal:','});
 
@@ -48,18 +49,12 @@ app.controller("controllerServico", function($scope, $http) {
 				'nr_dia' : '1'
 			}
 		];
-   
-        $scope.getServicos();
-        $scope.getCategorias();
-    };
 
-    $scope.getServicos = function() {
-        $http.post(
-            '../Servico/getServicos'
-        ).success(function (data) {
-            $scope.arrListaServico = data;
-            $scope.cancelar();
-        });
+        $scope.getCategorias();
+
+        if ($scope.id_servico) {
+            $scope.getServicoParaEdicao();
+        }
     };
 
     $scope.getCategorias = function() {
@@ -276,15 +271,32 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.categoriaSelected = {"id_categoria" : servico.id_categoria  };
     };
 
-    // $scope.carregarExcluir = function(servico) {
-    //     $scope.id_servico = servico.id_servico;
-    // };
-
     $scope.sugerirCategoria = function() {
         alert("Prioridade baixa: Implementar mais tarde");
     }
 
+    $scope.getServicoParaEdicao = function() {
+        $http.post(
+            '../Servico/getServicoParaEdicao', $scope.id_servico
+        ).success(function (data) {
+            $scope.carregarServicoParaEdicao(data);
+        });
+    };
+
+    $scope.carregarServicoParaEdicao = function(servico) {
+        console.log("carregarServicoParaEdicao");
+
+        $scope.descricao = servico['descricao'];
+        $scope.valor = servico['valor'];
+        $scope.detalhe = servico['detalhe'];
+        $scope.categoriaSelected = $scope.arrListaCategoria[servico['id_categoria']];
+
+        // Buscar os dias de atendimento
+        // $scope.getDiasAtendimento(servico['id_servico']);
+        // Em seguida, buscar os horários dos dias
+    }
+
     angular.element(document).ready(function () {
-		$scope.__construct();	
+		$scope.__construct();
 	});
 });

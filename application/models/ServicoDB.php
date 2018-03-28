@@ -23,6 +23,21 @@ class ServicoDB extends CI_Model {
                     s.id_prestador=" . $id_prestador);
     }
 
+    public function get_servico($id_servico) {
+        return $this->db->query(
+            "select 
+                s.id_servico as id_servico, 
+                s.id_categoria as id_categoria, 
+                s.descricao as descricao, 
+                CONCAT('R$ ',format(s.valor,2,'de_DE')) valor,
+                s.detalhe as detalhe,
+                s.ativo as ativo
+            from 
+                servico s
+            where 
+                s.id_servico=" . $id_servico);
+    }
+
     public function get_categorias() {
         return $this->db->query("select id_categoria, descricao from Categoria");
     }
@@ -63,12 +78,6 @@ class ServicoDB extends CI_Model {
         $this->db->insert(
             'horario_disponivel',
             $arrHorarioDisponivel
-        );
-    }
-
-    public function buscarHorariosServico($id_servico) {
-        $this->db->select(
-            
         );
     }
 
