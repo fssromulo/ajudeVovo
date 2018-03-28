@@ -16,8 +16,12 @@ class ConsultaServicoCliente extends CI_Controller {
       if (!$this->controleacesso->isUsuarioLogado()) {
          redirect('/Home/');
       }
-      
-		$this->load->view('ConsultaServicoCliente');
+
+      $arrTitulo = array(
+      	'titulo_tela' => 'Consulta&nbsp;Servico'
+      );
+
+		$this->load->view('ConsultaServicoCliente', $arrTitulo);
 	}
 
 	public function goToDetail() {
