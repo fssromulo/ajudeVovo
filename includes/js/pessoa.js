@@ -158,18 +158,34 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.validaSalvar = function() {
 
+ 		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
+        	Coordenadas do corte da foto!!                
+        */
+            
+        var x = $scope.obj.selection[0];
+        var y = $scope.obj.selection[1];
+        var w = $scope.obj.selection[4];
+        var h = $scope.obj.selection[5];
+
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		if ( !$scope.comparaValores($scope.objPessoa.senha1, $scope.objPessoa.senha2) ) {
 			$.notify('Senhas não são iguais');
 			return false;
 		}
 
-		var sexo   = $scope.arrListaSexo.sexoSelected['valor'];
-		var cidade = $scope.arrListaCidade.cidade['id_cidade'];
+		var sexo    = $scope.arrListaSexo.sexoSelected['valor'];
+		var cidade  = $scope.arrListaCidade.cidade['id_cidade'];
 
-		var arrPessoaSalvar =
+		let arrPessoaSalvar =
 		{
 			'is_alterar' : $scope.is_alterar,
+			'arrDadosImagem'  : {
+				'urlFoto' : $scope.obj.src,
+				'x' : x,
+				'y' : y,
+				'w' : w,
+				'h' : h
+			},
 			'arrPessoa'  : {
 				'nome'   : $scope.objPessoa.nome,
 				'cpf'    : $scope.objPessoa.cpf,
