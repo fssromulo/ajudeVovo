@@ -10,14 +10,31 @@ class Servico extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Servico');
+        $dados = $this->input->get('id_servico', true);
+
+        $arrDados = array(
+            "id_servico" => !empty($dados) ? $dados : "" 
+        );
+
+        $this->load->view('Servico', $arrDados);
     }
 
-    public function getServicos() {
-        $id_prestador =  $this->session->userdata('id_prestador');
-        $listar = $this->ServicoDB->get_servicos($id_prestador)->result_array();
+    public function editarServico()  {
+        $dados = $this->input->get('id_servico', true);
 
-        echo json_encode($listar);
+        $arrDados = array(
+            "id_servico" => $dados
+        );
+
+        $this->load->view('Servico', $arrDados);
+    }
+
+    public function getServicoParaEdicao() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $servico = $this->ServicoDB->get_servico($dados)->result_array();
+
+        echo json_encode($servico[0]);
     }
 
     public function getCategorias() {
@@ -93,22 +110,5 @@ class Servico extends CI_Controller {
         );
 
         $this->getServicos();
-    }
-
-    // TO-DO: CARD NO TRELLO
-    // public function desativarServico() {
-
-    // }
-
-    public function buscarHorariosServico() {
-        (array)$dados = json_decode(file_get_contents("php://input"), true);
-
-        $id_servico = $dados['id_servico'];
-
-        (array)$horariosDoServico = $this->ServicoDB->buscarHorariosServico(
-            $id_servico
-        );
-
-        echo($horariosDoServico);
     }
 }

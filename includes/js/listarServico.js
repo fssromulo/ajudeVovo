@@ -1,8 +1,9 @@
-var app =  angular.module(
-	"appAngular",
- 	[
-         'angular-loading-bar'
- 	]
+var app = angular.module(
+    "appAngular",
+    [
+        'angular-loading-bar',
+        'ui.materialize'
+    ]
 );
 
 app.controller("controllerListarServico", function($scope, $http) {
@@ -53,6 +54,10 @@ app.controller("controllerListarServico", function($scope, $http) {
         $("#modal_excluir").modal();
         $("#modal_excluir").modal('close');
     };
+
+    $scope.editarServico = function(servico) {
+        location.href = '../Servico/?id_servico=' + servico.id_servico
+    }
 
 	angular.element(document).ready(function () {
 		$scope.__construct();	
