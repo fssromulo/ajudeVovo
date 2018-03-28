@@ -7,13 +7,11 @@
 
     <body>
 
-    <?php
-        // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('MenuPrestador.php');
-    ?>
-
-
         <div ng-app="appAngular" ng-controller="controllerListarServico">
+            <?php
+                // Importa o cabeçalho padrao a todas as telas
+                $this->load->view('MenuPrestador.php');
+            ?>
            <div class="container">
             
             <div class="row">
@@ -90,6 +88,6 @@
         
         <!-- MY App -->
         <script type="text/javascript" src="../includes/js/listarServico.js"></script>
-    
+        <script type="text/javascript" src="../includes/js/MenuPrestador.controller.js"></script>
     </body>
 </html>

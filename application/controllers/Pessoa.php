@@ -51,9 +51,13 @@
 			(array)$dados = json_decode(file_get_contents("php://input"), true);   
 
 	   	$is_alterar = $dados['is_alterar'];
-	   	$cd_pessoa = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
+	   	$cd_pessoa  = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
+
+	   	$arrDadosImagem =  $dados['arrDadosImagem'];
+
 	   	unset( $dados['cd_pessoa'] );
 	   	unset( $dados['is_alterar'] );
+	   	unset( $dados['arrDadosImagem'] );
 
 	   	// $dados
 	   	$arrPessoa   = $dados['arrPessoa'];
@@ -81,8 +85,23 @@
 					$arrPessoa['id_perfil'] = 2;
 		   	}
 
-
+				// Salvar pessoa
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
+
+	      	// Salva a imagem no servidor e dpois registra o caminho no banco
+				$ds_imagem = $this->salvarImagemPessoa(
+					$arrDadosImagem,
+					$cd_pessoa
+				);
+
+				if ( !empty($ds_imagem)) {
+
+					$arrPessoaAlterar = array(
+						'imagem_pessoa' => $ds_imagem
+					);
+
+					$this->PessoaDB->alterarPessoa( $arrPessoaAlterar, $cd_pessoa );
+				}
 
 	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
@@ -158,12 +177,79 @@
 				$dados,
 				$cd_pessoa 
 			);
-
 		}
 
 		public function getPessoas() {
 		   $listar = $this->PessoaDB->getPessoasFisica()->result_array();
 
 	     	echo json_encode($listar);
+		}
+
+		public function inativarPessoa() {
+			$arrPessoaAlterar = array(
+				"ativo" => 0
+			);
+			
+	   	$listar = $this->PessoaDB->inativarPessoa(
+				$this->session->userdata('id_pessoa_fisica'),
+				$arrPessoaAlterar
+			);
+		}
+
+		public function salvarImagemPessoa(
+			$arrDadosImagem,
+			$id_pessoa_fisica
+		) {
+
+			$targ_w = $targ_h = 150;
+			$img_quality = 120;
+
+			$extensao = '';  
+			$nome_imagem = '';
+			$ds_imagem = $arrDadosImagem['urlFoto'];
+
+			$arrExtensaoPermitidas = array(
+				'jpeg', 'jpg'
+			);
+
+			// Pega a extensão do arquivo para salva com a extensão correta 
+			$pos_inicio = strpos($ds_imagem, '/')+1;
+			$pos_fim    = strpos($ds_imagem, ';');
+			$extensao   = substr($ds_imagem,$pos_inicio, ($pos_fim - $pos_inicio) );
+
+			// Se não for um extensão permitida, retorna erro!!
+			if (!in_array($extensao, $arrExtensaoPermitidas)) {
+				echo 'Extensão não aceita! Transfira um arquivo jpeg ou jpg';    
+				die;
+			}
+
+			// limpar o buffer de imagem
+			ob_clean(); 
+			ob_start();
+			$img_r = imagecreatefromjpeg($ds_imagem);
+			$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+			imagecopyresampled(
+				$dst_r,
+				$img_r,
+				0,
+				0,
+				$arrDadosImagem['x'],
+				$arrDadosImagem['y'],
+				$targ_w,
+				$targ_h,
+				$arrDadosImagem['w'],
+				$arrDadosImagem['h']
+			);
+
+			$nome_imagem =  $id_pessoa_fisica .  '.' . $extensao ;
+
+			$ds_pasta_salvar = './includes/imagens/fotos_pessoas/'. $nome_imagem; 
+
+			imagejpeg($dst_r, $ds_pasta_salvar, $img_quality);
+
+			ob_clean(); 
+
+			return $nome_imagem;
 		}
 	}

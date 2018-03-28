@@ -6,10 +6,17 @@ class ControlePrestador extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('PrestadorDB');
+		$this->load->library('controleacesso');
 		$this->load->library('session');
+		$this->load->helper('url');
 	}
 
 	public function index() {
+      /*Verifica sessão do usuário*/
+      if (!$this->controleacesso->isUsuarioLogado()) {
+         redirect('/Home/');
+      }
+      		
 		$this->load->view('ControlePrestador');
 	}
 
@@ -21,6 +28,14 @@ class ControlePrestador extends CI_Controller {
 		echo json_encode($listaServicosSolicitados);
 	}	
 	
+	public function obterSePodeExcluir() {
+		$obterSePodeExcluir = $this->PrestadorDB->obterSePodeExcluir(
+			$this->session->userdata('id_prestador')
+		)->result_array();
+
+		echo json_encode($obterSePodeExcluir);
+	}	
+
 	/*
 		Função que atualiza o status da solicitacao caso o PRESTADOR aceite ou não 
 	*/

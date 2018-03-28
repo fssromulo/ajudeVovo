@@ -8,13 +8,20 @@ class DetalheServico extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('DetalheServicoDB');
-		$this->load->helper('formatardatas');		
+		$this->load->helper('formatardatas');	
+		$this->load->library('controleacesso');
+		$this->load->helper('url');	
  			
 		$this->id_servico = null;
 
 	}
 
 	public function index() {
+      /*Verifica sessão do usuário*/
+      if (!$this->controleacesso->isUsuarioLogado()) {
+         redirect('/Home/');
+      }
+
 		$this->load->view('DetalheServico');
 	}
 

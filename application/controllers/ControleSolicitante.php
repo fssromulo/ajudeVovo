@@ -8,10 +8,17 @@ class ControleSolicitante extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->library('controleacesso');
+		$this->load->helper('url');		
 		$this->load->model('ControleSolicitanteDB');	
 	}
 
 	public function index() {
+      /*Verifica sessão do usuário*/
+      if (!$this->controleacesso->isUsuarioLogado()) {
+         redirect('/Home/');
+      }
+
 		$this->load->view('ControleSolicitante');
 	}
 

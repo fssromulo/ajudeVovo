@@ -25,6 +25,8 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('session');
+		$this->load->library('controleacesso');
+		$this->load->helper('url');	
 
 		$this->load->model('LoginDB');
 	}
@@ -79,6 +81,16 @@ class Login extends CI_Controller {
 	   // var_dump( $arrRetornoPessoa );
 	   // die;
 
+
+   }
+
+   public function sairSistema() {
+   	$this->controleacesso->encerrarSessao();
+
+   	if ( !$this->controleacesso->isUsuarioLogado() ) {
+   		redirect('/Home/');
+   	}
+   		redirect('/Home/');
 
    }
 

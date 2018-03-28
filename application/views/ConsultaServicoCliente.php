@@ -64,8 +64,8 @@
 					<img 
 					width="128"
 					class="materialboxed responsive-img"
-					src="https://cdn4.iconfinder.com/data/icons/smileys-for-fun/128/smiley__19-512.png"
-					alt="{{servico.ds_categoria}}"						
+					data-ng-src="../includes/imagens/fotos_pessoas/{{servico.imagem_pessoa}}"
+					alt="{{servico.nm_prestador}}"						
 					> 
 				</div>
 					<p>
