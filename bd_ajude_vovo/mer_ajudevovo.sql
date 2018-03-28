@@ -520,6 +520,14 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`servico_solicitado` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+drop table estado_pessoa_fisica;
+
+Create table if not exists estado_pessoa_fisica (
+	id_estado_pessoa_fisica int primary key auto_increment,
+	descricao varchar(100)
+) Engine=innoDB;
+
+
 USE `ajudevovo` ;
 
 -- -----------------------------------------------------
