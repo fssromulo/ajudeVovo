@@ -18,7 +18,7 @@ class ConsultaServicoCliente extends CI_Controller {
       }
 
       $arrTitulo = array(
-      	'titulo_tela' => 'Consulta&nbsp;Servico'
+      	'titulo_tela' => 'Consulta&nbsp;de&nbsp;Serviços'
       );
 
 		$this->load->view('ConsultaServicoCliente', $arrTitulo);
