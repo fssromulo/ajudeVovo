@@ -527,6 +527,12 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`estado_pessoa_fisica` (
 	descricao varchar(100)
 ) Engine=innoDB;
 
+ALTER TABLE `pessoa_fisica`
+  CHANGE COLUMN `ativo` `id_estado_pessoa_fisica` INT NULL DEFAULT '1' AFTER `id_perfil`;
+
+ALTER TABLE `pessoa_fisica`
+  ADD CONSTRAINT `fk_estado_pessoa_fisica` FOREIGN KEY (`id_estado_pessoa_fisica`) REFERENCES `estado_pessoa_fisica` (`id_estado_pessoa_fisica`) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
 
 USE `ajudevovo` ;
 
