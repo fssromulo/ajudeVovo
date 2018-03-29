@@ -3,7 +3,9 @@
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper blue #1889ff">
-            <a href="#!" class="brand-logo"><img src="../includes/imagens/pwa_icons/android-chrome-48x48.png"/></a>
+           <a href="#!" class="brand-logo" style="font-size:18px; color:white !important; " >
+             <?php echo $titulo_tela ?>
+           </a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
               <li>
