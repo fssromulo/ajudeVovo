@@ -19,7 +19,11 @@ class ControleSolicitante extends CI_Controller {
          redirect('/Home/');
       }
 
-		$this->load->view('ControleSolicitante');
+      $arrTitulo = array(
+      	'titulo_tela' => 'Serviços&nbsp;solicitados'
+      );
+
+		$this->load->view('ControleSolicitante', $arrTitulo);
 	}
 
 	public function buscaServico(){

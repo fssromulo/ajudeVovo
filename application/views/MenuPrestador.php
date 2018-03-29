@@ -47,8 +47,6 @@
       </ul>
   </header>
 
-  <div class="row"><div class="col-sm-12">&nbsp;</div></div>
-
   <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
