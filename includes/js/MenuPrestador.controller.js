@@ -11,11 +11,15 @@ app.controller(
 	});
 
 	$scope.__construct = () => {
-		$('#delete_forever').click(() => {
-			const modalAval = $('#modal_excluir');
+		const clickFunction = () => {
+			const modalAval = $('#modal_excluir_ajudante');
 			modalAval.modal();	
 			modalAval.modal('open');
-		});
+		};
+
+		$('#delete_forever_header').click(clickFunction);
+		$('#delete_forever').click(clickFunction);
+		
 		$scope.podeExcluirContaRetorno = false;
 		$scope.podeExcluirConta();
 	};
@@ -40,6 +44,6 @@ app.controller(
 	};
 
 	$scope.fechar = () => {
-		$('#modal_excluir').modal('close');
+		$('#modal_excluir_ajudante').modal('close');
 	}
 });
