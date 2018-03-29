@@ -3,7 +3,7 @@
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper blue #1889ff">
-           <a href="#!" class="brand-logo" style="font-size:18px; color:white !important; " >
+           <a href="#!" class="left-align" style="font-size:23px; color:white !important; " >
              <?php echo $titulo_tela ?>
            </a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>

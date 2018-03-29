@@ -15,8 +15,12 @@ class ListarServico extends CI_Controller {
         if (!$this->controleacesso->isUsuarioLogado()) {
             redirect('/Home/');
         }
+
+        $arrTitulo = array(
+            'titulo_tela' => 'Lista&nbsp;de&nbsp;Serviços'
+        );
         
-        $this->load->view('ListarServico');
+        $this->load->view('ListarServico', $arrTitulo);
     }
 
     public function getServicos() {
