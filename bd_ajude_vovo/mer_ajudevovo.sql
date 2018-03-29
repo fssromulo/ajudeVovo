@@ -16,7 +16,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema ajudevovo
 -- -----------------------------------------------------
 
-DROP  DATABASE ajudevovo;
+DROP DATABASE IF EXISTS ajudevovo;
 
 CREATE SCHEMA IF NOT EXISTS `ajudevovo` DEFAULT CHARACTER SET latin1 ;
 USE `ajudevovo` ;
@@ -520,9 +520,9 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`servico_solicitado` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
-drop table estado_pessoa_fisica;
+DROP TABLE IF EXISTS `ajudevovo`.`estado_pessoa_fisica`;
 
-Create table if not exists estado_pessoa_fisica (
+CREATE TABLE IF NOT EXISTS `ajudevovo`.`estado_pessoa_fisica` (
 	id_estado_pessoa_fisica int primary key auto_increment,
 	descricao varchar(100)
 ) Engine=innoDB;
