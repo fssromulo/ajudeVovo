@@ -533,6 +533,8 @@ ALTER TABLE `pessoa_fisica`
 ALTER TABLE `pessoa_fisica`
   ADD CONSTRAINT `fk_estado_pessoa_fisica` FOREIGN KEY (`id_estado_pessoa_fisica`) REFERENCES `estado_pessoa_fisica` (`id_estado_pessoa_fisica`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
+ALTER TABLE `contato`
+  ADD CONSTRAINT `fk_contato_pessoa_fisica` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoa_fisica` (`id_pessoa_fisica`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 USE `ajudevovo` ;
 
