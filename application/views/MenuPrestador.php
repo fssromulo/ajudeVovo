@@ -3,7 +3,7 @@
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper blue #1889ff">
-           <a href="#!" class="brand-logo" style="font-size:18px; color:white !important; " >
+           <a href="#!" class="left-align" style="font-size:23px; color:white !important; " >
              <?php echo $titulo_tela ?>
            </a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -50,6 +50,7 @@
   <div class="row"><div class="col-sm-12">&nbsp;</div></div>
 
   <div class="modal fade" id="modal_excluir_ajudante" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">

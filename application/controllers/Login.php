@@ -77,21 +77,11 @@ class Login extends CI_Controller {
 	   		return $arrRetornoPessoa;
 	   	break;
   		}
-
-	   // var_dump( $arrRetornoPessoa );
-	   // die;
-
-
    }
 
    public function sairSistema() {
    	$this->controleacesso->encerrarSessao();
-
-   	if ( !$this->controleacesso->isUsuarioLogado() ) {
-   		redirect('/Home/');
-   	}
-   		redirect('/Home/');
-
+   	redirect('/Home/', 'location');
    }
 
 }

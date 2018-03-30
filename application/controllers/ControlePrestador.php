@@ -16,8 +16,12 @@ class ControlePrestador extends CI_Controller {
       if (!$this->controleacesso->isUsuarioLogado()) {
          redirect('/Home/');
       }
+
+      $arrTitulo = array(
+      	'titulo_tela' => 'Serviços&nbsp;solicitados'
+      );
       		
-		$this->load->view('ControlePrestador');
+		$this->load->view('ControlePrestador', $arrTitulo );
 	}
 
 	public function buscaServicos() {

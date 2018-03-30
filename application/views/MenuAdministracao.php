@@ -2,19 +2,17 @@
    <div class="navbar-fixed">
       <nav>
        <div class="nav-wrapper blue #1889ff">
-         <a href="#!" class="align-left" style="font-size:23px; color:white !important; " >
-           <?php echo $titulo_tela ?>
-         </a>
+         <a href="#!" class="brand-logo"><img src="../includes/imagens/pwa_icons/android-chrome-48x48.png"/></a>
          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
          <ul class="right hide-on-med-and-down">
             <li>
-                <a href="#perfil_implementar">Perfil</a>
+                <a href="../AdministracaoCadastroCategorias/">Categorias</a>
             </li>
             <li>
-               <a href="../ConsultaServicoCliente/">Serviços</a>
+               <a href="../ConsultaServicoCliente/">Perfil</a>
             </li>
             <li>
-               <a href="../ControleSolicitante/">Serviços solicitados</a>
+               <a href="../ControleSolicitante/"></a>
             </li>
             <li>
               <a href="../Login/sairSistema">Sair</a>

@@ -13,14 +13,14 @@
                 $this->load->view('MenuPrestador.php');
             ?>
            <div class="container">
-            
             <div class="row">
-                <div class="col-sm-12">&nbsp;</div>            
-                
+
                 <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large waves-effect waves-light light-blue darken-2" href="../Servico/">
-                      <i class="material-icons">add</i>
-                    </a>
+                    <a
+                        href="../Servico/"
+                        class="btn-floating btn-large waves-effect waves-light light-blue darken-2">
+                      <i class="material-icons">add</i></a>
+                      
                 </div>
 
                 <div class="col-sm-12">&nbsp;</div>

@@ -4,20 +4,20 @@
 ?>
 
  <!-- CSS  -->
-<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 </head>
 
     <body>
         <div ng-app="appAngular" ng-controller="controllerAdministracaoCadastroCategoria">
-            <div class="container-fluid">
+            <div class="">
 
                 <form class="form-group" name="form_categoria">
                     <div class="row">
                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                             <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
+                                <div class="">
                                     <label for="descricao">Descrição</label>
                                     <input type="text" ng-model="descricao" class="validate" id="descricao" required />
                                 </div>
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-5">
                             <div class="col-sm-12 col-md-6">
-                                <button type="submit" ng-click="salvarCategoria()" class="btn btn-success" ng-show="!is_alterar">
+                                <button type="submit" ng-click="salvarCategoria()" class="waves-effect waves-light btn" ng-show="!is_alterar">
                                     Salvar
                                 </button>
 
