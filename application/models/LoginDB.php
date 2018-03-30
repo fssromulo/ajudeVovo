@@ -37,6 +37,7 @@ class LoginDB extends CI_Model{
 				.'	p.id_prestador, '
 				.'	pf.nome, '
 				.'	pf.imagem_pessoa, '
+				.'	pf.id_estado_pessoa_fisica, '
 				.'	pf.login '
 				.' FROM '
 				.'	pessoa_fisica pf '
@@ -44,7 +45,6 @@ class LoginDB extends CI_Model{
 				.'	p.id_pessoa = pf.id_pessoa_fisica '
 				.' ) '
 				.' WHERE	' . $ds_condicao
-					
 		   , FALSE);
   	}
 

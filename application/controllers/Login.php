@@ -46,14 +46,26 @@ class Login extends CI_Controller {
 				
 				// Se achou a pessoa seta os dados dela na sessao
 	   		if ( !empty($arrRetornoPessoa) ) {
-	   			$arrRetornoPessoa = $arrRetornoPessoa[0];
-					$this->session->set_userdata($arrRetornoPessoa);
+				$arrRetornoPessoa = $arrRetornoPessoa[0];
 
-					echo 'true';
-					return;
+				switch ($arrRetornoPessoa['id_estado_pessoa_fisica']) {
+					case 1: { //Ativo
+						$this->session->set_userdata($arrRetornoPessoa);
+						echo 'true';
+						return;
+					}
+					case 2: { //Inativo
+						echo 'Usuário inativado!';
+						return;
+					}
+					case 3: { //Aguardando Aprovação
+						echo 'Usuário ainda não aprovado!';
+						return;
+					}
+				}
 	   		}
 
-	   		echo 'Erro - usuário não encontrado';
+	   		echo 'Usuário não encontrado!';
 	   		return;
 
   			}
@@ -69,7 +81,7 @@ class Login extends CI_Controller {
 					return;
 	   		}
 
-	   		echo 'Erro - usuário não encontrado';
+	   		echo 'Usuário não encontrado!';
 	   		return;
 
 	   	break;

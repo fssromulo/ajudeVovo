@@ -187,7 +187,7 @@
 
 		public function inativarPessoa() {
 			$arrPessoaAlterar = array(
-				"ativo" => 0
+				"id_estado_pessoa_fisica" => 2
 			);
 			
 	   	$listar = $this->PessoaDB->inativarPessoa(
