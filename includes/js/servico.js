@@ -290,10 +290,20 @@ app.controller("controllerServico", function($scope, $http) {
         $scope.valor = servico['valor'];
         $scope.detalhe = servico['detalhe'];
         $scope.categoriaSelected = $scope.arrListaCategoria[servico['id_categoria']];
+        $scope.getDiasAtendimento(servico['id_servico']);
+    }
 
-        // Buscar os dias de atendimento
-        // $scope.getDiasAtendimento(servico['id_servico']);
-        // Em seguida, buscar os horários dos dias
+    $scope.getDiasAtendimento = function(id_servico) {
+        console.log("getDiasAtendimento");
+        console.log("id_servico: " + id_servico);
+        
+        $http.post(
+            '../Servico/buscarDiaAtendimentoServico', id_servico
+        ).success(function (data) {
+            console.log("data:");
+            console.log(data);
+            $scope.arrListaAtendimento = data;
+        });
     }
 
     angular.element(document).ready(function () {
