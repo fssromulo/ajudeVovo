@@ -21,7 +21,7 @@
                 <a href="../Login/sairSistema">Sair</a>
               </li>
               <li>
-                  <a ng-show="podeExcluirContaRetorno" id="delete_foreverx">Excluir minha conta</a>
+                  <a ng-show="podeExcluirContaRetorno" id="delete_forever_header">Excluir minha conta</a>
               </li>
             </ul>
 
@@ -47,7 +47,10 @@
       </ul>
   </header>
 
-  <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="row"><div class="col-sm-12">&nbsp;</div></div>
+
+  <div class="modal fade" id="modal_excluir_ajudante" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
