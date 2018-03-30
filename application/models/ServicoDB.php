@@ -120,7 +120,7 @@ class ServicoDB extends CI_Model {
         and
             s.ativo = 1
         and
-			pf.ativo = 1
+			pf.id_estado_pessoa_fisica = 1
         and		
             s.id_categoria = c.id_categoria 
         ", FALSE);

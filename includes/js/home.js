@@ -48,7 +48,7 @@ app.controller("controllerHome", function($scope, $http){
 	    	).success(function (data) {
 
 	    		if ( data != 'true' ) {	    	
-	    			$.notify('Usuário não encontrado!', "error");
+	    			$.notify(data, "error");
 	    			return;
 	    		}
 
