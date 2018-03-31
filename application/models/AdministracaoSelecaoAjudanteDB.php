@@ -10,34 +10,38 @@ class AdministracaoSelecaoAjudanteDB extends CI_Model {
     
 	public function getBuscaPessoasInativas() {
  		$this->db->select('pf.nome, 
- 						   pf.dt_nascimento, 
- 						   pf.cpf, 
- 						   pf.sexo,
-		 				   pf.imagem_pessoa,
-		 				   pf.nome_pai,
-		 				   pf.nome_mae,
-		 				   pf.imagem_frente_documento,
-		 				   pf.imagem_verso_documento,
-		 				   pf.ativo,
-		 				   pf.id_pessoa_fisica');
+				 		   pf.dt_nascimento, 
+				 		   pf.cpf, 
+				 		   pf.sexo,
+					       pf.imagem_pessoa,
+					       pf.nome_pai,
+					       pf.nome_mae,
+					       pf.imagem_frente_documento,
+					       pf.imagem_verso_documento,
+					       pf.id_pessoa_fisica,
+					       epf.descricao as situacao');
 		$this->db->from('pessoa_fisica pf');
-		// $this->db->join('cidade c','c.id_cidade = pf.id_cidade', 'inner');
-		// $this->db->join('estado e','e.id_estado = pf.id_estado', 'inner');
-		$this->db->where('pf.ativo <> 1'); // 
+		$this->db->join('estado_pessoa_fisica epf','epf.id_estado_pessoa_fisica = pf.id_estado_pessoa_fisica', 'inner');
+		$this->db->where('epf.id_estado_pessoa_fisica = 3'); // 
 		return $query = $this->db->get();
 	}
 
-	public function alterar( $arrPessoaAlterar, $id_pessoa ) {
+	
+	public function atualizarEstado( $arrPessoaAlterar) {
+
+		$id_pessoa_fisica = $arrPessoaAlterar["id_pessoa_fisica"];
+
 		$this->db->update(
 			'pessoa_fisica', // NOME DA TABELA QUE RECEBERÁ O UPDATE
 			$arrPessoaAlterar, // Array apenas com os dados que vao no SET do UPDATE
 			array(
-				'id_pessoa' => $id_pessoa // CONDICOES QUE IRÃO NO WHERE 
+				'id_pessoa_fisica' => $id_pessoa_fisica // CONDICOES QUE IRÃO NO WHERE 
 			)
 		);
 
   	}
 
+  	
 	
 
 

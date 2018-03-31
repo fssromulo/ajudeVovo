@@ -15,7 +15,14 @@ class AdministracaoSelecaoAjudante extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('AdministracaoSelecaoAjudante');
+		
+
+		 $arrTitulo = array(
+      	'titulo_tela' => 'Seleção&nbsp;de&nbsp;Ajudante'
+     	 );
+
+     	 $this->load->view('AdministracaoSelecaoAjudante', $arrTitulo);
+
 	}
 
 
@@ -33,7 +40,10 @@ class AdministracaoSelecaoAjudante extends CI_Controller {
 		echo json_encode($listaPessoas);
 	}
 
-	
-	
-
+	public function atualizarEstado() {
+		(array)$dados = json_decode(file_get_contents("php://input"), true);
+		
+		$this->AdministracaoSelecaoAjudanteDB->atualizarEstado($dados);
+		
+	}
 }
