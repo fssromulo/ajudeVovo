@@ -50,7 +50,13 @@ class Login extends CI_Controller {
 
 				switch ($arrRetornoPessoa['id_estado_pessoa_fisica']) {
 					case 1: { //Ativo
+
+					// Trata para apresentar uma no menu da pessoa
+					$arrRetornoPessoa['imagem_pessoa'] =
+						$this->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
+					 					 						
 						$this->session->set_userdata($arrRetornoPessoa);
+
 						echo 'true';
 						return;
 					}
@@ -75,6 +81,11 @@ class Login extends CI_Controller {
 
 	   		if ( !empty($arrRetornoPessoa) ) {
 					$arrRetornoPessoa = $arrRetornoPessoa[0];
+
+					// Trata para apresentar uma no menu da pessoa
+					$arrRetornoPessoa['imagem_pessoa'] =
+						$this->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
+ 						
 					$this->session->set_userdata($arrRetornoPessoa);
 
 					echo 'true';
@@ -89,6 +100,18 @@ class Login extends CI_Controller {
 	   		return $arrRetornoPessoa;
 	   	break;
   		}
+   }
+
+   public function verificaImagemPessoa( $img_pessoa = '' ) { 						
+		
+		// SETA UMA IMAGEM PADRÃO se vazio
+		if ( empty($img_pessoa) ) {			
+			$img_pessoa = 'pwa_icons/android-chrome-192x192.png';
+			return $img_pessoa;
+		}
+	
+		return $img_pessoa = 'fotos_pessoas/' . $img_pessoa;					
+
    }
 
    public function sairSistema() {

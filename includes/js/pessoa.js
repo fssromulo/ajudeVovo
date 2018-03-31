@@ -1,5 +1,6 @@
 app.config(function(ngJcropConfigProvider){
 
+	/* Configurações do componente de corte de imagens */ 
     ngJcropConfigProvider.setJcropConfig({
         bgColor: 'black',
         bgOpacity: .4,
@@ -19,15 +20,16 @@ app.config(function(ngJcropConfigProvider){
 
 });
 
-function getImageSrc(src) {
-    // return window.isLocal ? '/demo/' + src : src;
-}
+// function getImageSrc(src) {
+//     // return window.isLocal ? '/demo/' + src : src;
+// }
 
 app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 	$scope.objPessoa = {
 		nome : '',
-		dt_nascimento : '',
+		dt_nascimento : null,
+		dt_nascimento_mobile : null,
 		cpf : '',
 		sexo : '',
 		pais : 'pais',
@@ -54,15 +56,12 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$(".cls-mascara-fone").mask("(99)9999-9999?9",  {placeholder:"_"});
 		$("#cep").mask("99.999-999",  {placeholder:"_"});
 
-
-
-
-		var dt_nascimento = new Date();
+		let dt_nascimento = new Date();
 		$scope.dt_nascimento = dt_nascimento;
 		$scope.month = ['Janeiro', 'Fevereiro', 'Março', 'Abri', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 		$scope.monthShort = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 		$scope.weekdaysFull = ['Domingo', 'Segunda-Feita', 'Terça-Feita', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
-		$scope.weekdaysLetter = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+		$scope.weekdaysvarter = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 		$scope.disable = [false, 1, 7];
 		$scope.today = 'Hoje';
 		$scope.clear = 'Limpar';
@@ -155,17 +154,16 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		);
 	};
 
-
 	$scope.validaSalvar = function() {
 
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
         	Coordenadas do corte da foto!!                
         */
             
-        var x = $scope.obj.selection[0];
-        var y = $scope.obj.selection[1];
-        var w = $scope.obj.selection[4];
-        var h = $scope.obj.selection[5];
+        let x = $scope.obj.selection[0];
+        let y = $scope.obj.selection[1];
+        let w = $scope.obj.selection[4];
+        let h = $scope.obj.selection[5];
 
 		// Se as senhas não são iguais, então aborta o envio do formulário
 		if ( !$scope.comparaValores($scope.objPessoa.senha1, $scope.objPessoa.senha2) ) {
@@ -173,8 +171,23 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 			return false;
 		}
 
-		var sexo    = $scope.arrListaSexo.sexoSelected['valor'];
-		var cidade  = $scope.arrListaCidade.cidade['id_cidade'];
+		let sexo    = $scope.arrListaSexo.sexoSelected['valor'];
+		let cidade  = $scope.arrListaCidade.cidade['id_cidade'];
+
+
+		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;	
+		// Verifica se deve pegar a data do campo referente ao mobile ou do campo do referente ao site
+		if ( $scope.objPessoa.dt_nascimento != null || 
+			$scope.objPessoa.dt_nascimento == undefined ) { 			
+
+			let objData = new Date($scope.objPessoa.dt_nascimento_mobile);
+
+	        data_nascimento_salvar = 
+	            objData.getDate() + "/" 
+	            + (objData.getMonth() + 1) + "/"
+	            + objData.getFullYear();
+		}
+
 
 		let arrPessoaSalvar =
 		{
@@ -192,7 +205,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 				'sexo' 	 : sexo,
 				'login'  : $scope.objPessoa.login,
 				'senha'  : $scope.objPessoa.senha1,
-				'dt_nascimento' : $scope.objPessoa.dt_nascimento
+				'dt_nascimento' : data_nascimento_salvar
 			},
 			'arrEndereco' : {
 				'id_cidade'  : cidade,
@@ -224,6 +237,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 
 
 		console.log(arrPessoaSalvar);
+		return;
 
 		if (($scope.is_ajudante == 1) && ( ($scope.is_contratante == 0) ||
 		  	($scope.is_contratante == undefined) ||

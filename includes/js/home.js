@@ -1,4 +1,4 @@
- var app =  angular.module(
+ let app =  angular.module(
 	"AppHome",
  	[
  		'angular-loading-bar',
@@ -36,7 +36,7 @@ app.controller("controllerHome", function($scope, $http){
 			return false;
 		}
 
-		var arrDadosLogin = {
+		let arrDadosLogin = {
 			"usuario" : $scope.usuario_logar,
 			"senha"   : $scope.senha_logar,
 			"perfil"  : $scope.perfil
@@ -95,9 +95,9 @@ app.controller("controllerHome", function($scope, $http){
     	return {
     		restrict: 'A',
     		link:function(scope, elemento, attrs){
-            	var content = $("#popLoginPessoa").html();
-            	var compiledContent = $compile(content)(scope);
-            	var options = {
+            	let content = $("#popLoginPessoa").html();
+            	let compiledContent = $compile(content)(scope);
+            	let options = {
                 	content: compiledContent,
                 	html: true,
             	};
