@@ -3,17 +3,22 @@
     $this->load->view('nucleo/header.php');
 ?>
 
- <!-- CSS  -->
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- CSS  -->
+<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <!--<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+
 </head>
+<body>
+   <?php
+        // Importa o cabeçalho padrao a todas as telas
+        $this->load->view('MenuAdministracao.php');
+    ?>
 
-    <body>
-        <div ng-app="appAngular" ng-controller="controllerAdministracaoCadastroCategoria">
-            <div class="">
-
-                <form class="form-group" name="form_categoria">
+  <div class="user-view">
+    <div ng-app="appAngular" ng-controller="ctrlrAdmCadastroCategoria">
+    
+     <form class="form-group" name="form_categoria">
                     <div class="row">
                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                             <div class="col-sm-12 col-md-6">
@@ -72,12 +77,12 @@
                         <span style="cursor:pointer;" class="glyphicon glyphicon-edit" ng-click="carregarAlterar(categoria)"></span>
                         <span 
                         style="cursor:pointer;"
-    				  			class="glyphicon glyphicon-remove"
-    				  			data-toggle="modal"
-    				  			data-target="#modal_excluir"
-    				  			ng-click="carregarExcluir(categoria)"
-    				  		>				  			
-    				  		</span>
+                    class="glyphicon glyphicon-remove"
+                    data-toggle="modal"
+                    data-target="#modal_excluir"
+                    ng-click="carregarExcluir(categoria)"
+                  >               
+                  </span>
                     </td>
                 </tr>
             </table>
@@ -101,12 +106,16 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-        </div>
+        </div>  
+       
 
-      <?php
+
+  <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
+
+    <script type="text/javascript" src="../includes/js/AdmCadastroCategorias.js"></script>
 
   </body>
 </html>
