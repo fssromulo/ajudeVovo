@@ -12,7 +12,7 @@
 <body>
    <?php
         // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('MenuContratante.php');
+        $this->load->view('MenuAdministracao.php');
     ?>
 
   <div class="user-view">
@@ -33,17 +33,15 @@
                        
                   </div>
                   <div class="collapsible-body" > 
-                       <span ng-show="lista.ativo != 1">
-                          <strong>Ativar Pessoa?</strong>
-                       </span><br/>
-                      Nome:{{lista.servico}}<br/>
+                       
+                      Nome:{{lista.nome}}<br/>
                       Data de Nascimento:{{lista.dt_nascimento}} <br/>
                       CPF:{{lista.cpf}} <br/>
                       Situação: {{lista.situacao}} <br/>
 
                       <button 
                         title="Negar"
-                        ng-click="negar(lista.id_servico)"
+                        ng-click="negar(lista.id_pessoa_fisica)"
                         class="waves-effect waves-light btn red darken-1"
                         style="font-size: 16px;">
                             <span class="thumbs-up" >
@@ -53,7 +51,7 @@
 
                      <button 
                       title="Aceitar" 
-                      ng-click="aceitar(lista.id_servico)"
+                      ng-click="aceitar(lista.id_pessoa_fisica)"
                       class="waves-effect waves-light btn light darken-1"
                       style="font-size: 16px;">
                       <span class="thumbs-up" >

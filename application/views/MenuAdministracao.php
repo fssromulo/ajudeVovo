@@ -2,20 +2,25 @@
    <div class="navbar-fixed">
       <nav>
        <div class="nav-wrapper blue #1889ff">
-         <a href="#!" class="brand-logo"><img src="../includes/imagens/pwa_icons/android-chrome-48x48.png"/></a>
+         <a href="#!" class="align-left" style="font-size:23px; color:white !important; " >
+           <?php echo $titulo_tela ?>
+         </a>
          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
          <ul class="right hide-on-med-and-down">
             <li>
-                <a href="../AdministracaoCadastroCategorias/">Categorias</a>
+                <a href="#perfil_implementar">Perfil</a>
             </li>
             <li>
-               <a href="../ConsultaServicoCliente/">Perfil</a>
+               <a href="../AdministracaoCadastroCategorias/">Categorias</a>
             </li>
             <li>
-               <a href="../ControleSolicitante/"></a>
+               <a href="../AdministracaoSelecaoAjudante/">Seleção de Ajudantes</a>
             </li>
             <li>
               <a href="../Login/sairSistema">Sair</a>
+            </li>
+            <li>
+              <a href="#necessidades_implementar">Necessidades Especiais</a>
             </li>
          </ul>
        </div>
