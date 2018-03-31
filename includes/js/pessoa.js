@@ -236,9 +236,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		};
 
 
-		console.log(arrPessoaSalvar);
-		return;
-
 		if (($scope.is_ajudante == 1) && ( ($scope.is_contratante == 0) ||
 		  	($scope.is_contratante == undefined) ||
 		  	($scope.is_contratante == null)
