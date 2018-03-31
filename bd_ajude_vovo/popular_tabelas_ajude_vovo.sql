@@ -8560,14 +8560,14 @@ INSERT INTO `pais` (`id_pais`, `descricao`, `sigla`) VALUES
 	(1, 'Brasil', 'BR');
 
 INSERT INTO `pessoa_fisica` (`id_pessoa_fisica`, `nome`, `dt_nascimento`, `cpf`, `sexo`, `login`, `senha`, `imagem_pessoa`,`id_perfil`) VALUES
-	(1, 'Ajudante 1', '1997-06-17', '08550724904', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', NULL,3),
-	(2, 'Ajudante 2', '1979-09-16', '67884233690', 'F', 'ajudante2', '202cb962ac59075b964b07152d234b70', NULL,3),
-	(8, 'Vovo da quebrada', '1953-12-12', '25862711147', 'F', 'vovo1', '202cb962ac59075b964b07152d234b70', NULL,2),
-	(9, 'Ajudante tres', '1997-12-05', '31163984884', 'F', 'ajudante_oi', '202cb962ac59075b964b07152d234b70', NULL,3),
-	(10, 'Vovo da quebrada 2', '1958-03-03', '51638824495', 'M', 'vovo2', '202cb962ac59075b964b07152d234b70', NULL,2),
-	(11, 'Adamastor Pereira', '1962-03-12', '35587573516', 'M', 'vovoAda', '202cb962ac59075b964b07152d234b70', NULL,2),
-	(12, 'Ajudante 3', '1991-08-08', '72707163155', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', NULL,3),
-	(13, 'Vovo 3', '1955-01-01', '36040375906', 'M', 'vovo3', '202cb962ac59075b964b07152d234b70', NULL,2);
+	(1, 'Ajudante 1', '1997-06-17', '08550724904', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',3),
+	(2, 'Ajudante 2', '1979-09-16', '67884233690', 'F', 'ajudante2', '202cb962ac59075b964b07152d234b70', 'joao.jpeg',3),
+	(8, 'Vovo da quebrada', '1953-12-12', '25862711147', 'F', 'vovo1', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',2),
+	(9, 'Ajudante tres', '1997-12-05', '31163984884', 'F', 'ajudante_oi', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',3),
+	(10, 'Vovo da quebrada 2', '1958-03-03', '51638824495', 'M', 'vovo2', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',2),
+	(11, 'Adamastor Pereira', '1962-03-12', '35587573516', 'M', 'vovoAda', '202cb962ac59075b964b07152d234b70', 'joao.jpeg',2),
+	(12, 'Ajudante 3', '1991-08-08', '72707163155', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',3),
+	(13, 'Vovo 3', '1955-01-01', '36040375906', 'M', 'vovo3', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',2);
 
 
 INSERT INTO `prestador` (`id_prestador`, `id_pessoa`, `id_conta_bancaria`) VALUES

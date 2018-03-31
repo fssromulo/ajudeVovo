@@ -93,10 +93,12 @@
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
 
 	      	// Salva a imagem no servidor e dpois registra o caminho no banco
-				$ds_imagem = $this->salvarImagemPessoa(
-					$arrDadosImagem,
-					$cd_pessoa
-				);
+				if ( !empty($arrDadosImagem['urlFoto']) ) {				
+					$ds_imagem = $this->salvarImagemPessoa(
+						$arrDadosImagem,
+						$cd_pessoa
+					);
+				}
 
 				if ( !empty($ds_imagem)) {
 

@@ -55,3 +55,13 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+/* CSS da tela de cadastro de pessoas */
+.tabs .indicator{
+  background-color: #1889ff;
+}
+.ng-jcrop-image-wrapper { display: inline-block; }
+.ng-jcrop-thumbnail-wrapper { display: inline-block; }
+
+[ng-controller] { margin-bottom: 48px; }
+caption { text-align: left; }
