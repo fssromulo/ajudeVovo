@@ -11,7 +11,7 @@
                 <a href="#perfil_implementar">Perfil</a>
             </li>
             <li>
-               <a href="../AdministracaoCadastroCategorias/">Categorias</a>
+               <a href="../AdmCadastroCategorias/">Categorias</a>
             </li>
             <li>
                <a href="../AdministracaoSelecaoAjudante/">Seleção de Ajudantes</a>
