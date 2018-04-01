@@ -119,4 +119,17 @@ class Servico extends CI_Controller {
 
         $this->getServicos();
     }
+
+    public function buscarDiaAtendimentoServico() {
+
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        // (array)$diasDeAtendimentoDoServico = 
+        //     $this->ServicoDB->buscar_dia_atendimento_servico($dados)->result_array();
+
+        (array)$diasDeAtendimentoDoServico = 
+            $this->ServicoDB->buscar_dia_atendimento_servico($dados)->result_array();
+
+        echo json_encode($diasDeAtendimentoDoServico);
+    }
 }

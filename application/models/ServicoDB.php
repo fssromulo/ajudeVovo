@@ -125,5 +125,23 @@ class ServicoDB extends CI_Model {
             s.id_categoria = c.id_categoria 
         ", FALSE);
     }
+
+    public function buscar_dia_atendimento_servico($id_servico) {
+        return $this->db->query(
+            "select 
+                d.id_dia_disponivel as id_dia_disponivel, 
+                d.nr_dia as nr_dia, 
+                d.descricao as dia, 
+                h.horario_inicio as horario_inicio, 
+                h.horario_fim as horario_fim
+            from 
+                dia_disponivel d
+            join 
+                horario_disponivel h
+            on
+                d.id_dia_disponivel = h.id_dia_disponivel
+            where 
+                d.id_servico=".$id_servico);
+    }
 }
 ?>
