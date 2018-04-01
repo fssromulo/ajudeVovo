@@ -5,7 +5,7 @@ class AdmCadastroPerfil extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('AdmCadastroCategoriasDB');
+        $this->load->model('AdmCadastroPerfilDB');
     }
 
     public function index() {
@@ -16,8 +16,8 @@ class AdmCadastroPerfil extends CI_Controller {
          $this->load->view('AdmCadastroPerfil', $arrTitulo);
     }
 
-    public function categorias() {
-        $listar = $this->AdmCadastroCategoriasDB->buscar_categorias()->result_array();
+    public function perfil() {
+        $listar = $this->AdmCadastroPerfilDB->buscar_perfil()->result_array();
 
         echo json_encode($listar);
     }
@@ -25,36 +25,36 @@ class AdmCadastroPerfil extends CI_Controller {
     public function salvar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
+        $id_perfil = isset($dados['id_perfil']) ? $dados['id_perfil'] : null;
         
-        unset($dados['id_categoria']);
+        unset($dados['id_perfil']);
 
-        $this->AdmCadastroCategoriasDB->inserir_categoria($dados);
+        $this->AdmCadastroPerfilDB->inserir_perfil($dados);
 
-        $this->categorias();
+        $this->perfil();
     }
 
     public function alterar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
+        $id_perfil = isset($dados['id_perfil']) ? $dados['id_perfil'] : null;
         
-        unset($dados['id_categoria']);
+        unset($dados['id_perfil']);
 
-        $this->AdmCadastroCategoriasDB->alterar_categoria($dados, $id_categoria);
+        $this->AdmCadastroPerfilDB->alterar_perfil($dados, $id_perfil);
 
-        $this->categorias();
+        $this->perfil();
     }
 
     public function excluir() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_categoria = $dados['id_categoria'];
+        $id_perfil = $dados['id_perfil'];
 
-        $this->CategoriaDB->excluir_categoria(
-            $id_categoria
+        $this->AdmCadastroPerfilDB->excluir_perfil(
+            $id_perfil
         );
 
-        $this->categorias();
+        $this->perfil();
     }
 }
