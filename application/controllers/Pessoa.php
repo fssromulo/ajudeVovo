@@ -73,15 +73,19 @@
 	   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
    	
    		if ( !$is_alterar ) { 
-				// Perfil inativo por padrão
-				$arrPessoa['ativo'] = 0;
+				
+				/*
+					CRIA A PESSOA COM O STATUS DE "AGUARDANDO APROVAÇÃO" 
+					SE FOR AJUDANTE
+				*/
+				$arrPessoa['id_estado_pessoa_fisica'] = 3;
 
 				if ( isset($dados['is_ajudante']) == true ) {
 					$this->perfil = 'ajudante';
 					$arrPessoa['id_perfil'] = 3;
 		   	} else if ( isset($dados['is_contratante']) == true ) {
 					$this->perfil = 'contratante';
-					$arrPessoa['ativo'] = 1;
+					$arrPessoa['id_estado_pessoa_fisica'] = 1;
 					$arrPessoa['id_perfil'] = 2;
 		   	}
 
@@ -89,10 +93,12 @@
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
 
 	      	// Salva a imagem no servidor e dpois registra o caminho no banco
-				$ds_imagem = $this->salvarImagemPessoa(
-					$arrDadosImagem,
-					$cd_pessoa
-				);
+				if ( !empty($arrDadosImagem['urlFoto']) ) {				
+					$ds_imagem = $this->salvarImagemPessoa(
+						$arrDadosImagem,
+						$cd_pessoa
+					);
+				}
 
 				if ( !empty($ds_imagem)) {
 

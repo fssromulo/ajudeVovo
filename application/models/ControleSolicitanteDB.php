@@ -31,7 +31,6 @@ class ControleSolicitanteDB extends CI_Model {
 		$this->db->join('pessoa_fisica pf', 'pf.id_pessoa_fisica = p.id_pessoa');
 		$this->db->join('estado_operacao e', 'e.id_estado_operacao = f.id_estado_operacao');
 		$this->db->where('f.id_contratante = ' . $id_contratante);
-		//$this->db->where('s.ativo = 1');
 		return $query = $this->db->get();
 	}
 }

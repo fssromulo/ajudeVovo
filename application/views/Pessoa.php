@@ -2,17 +2,6 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
-<style type="text/css">
-  .tabs .indicator{
-    background-color: #1889ff;
-  }
-    .ng-jcrop-image-wrapper { display: inline-block; }
-    .ng-jcrop-thumbnail-wrapper { display: inline-block; }
-
-    [ng-controller] { margin-bottom: 48px; }
-    caption { text-align: left; }
-</style>
-
 </head>
 <body>
 <div 
@@ -51,15 +40,18 @@
                         <label for="nome">Nome</label>
                      </div>
                      <div input-field class="session col s12 m6">
+                        <!-- Mostra o este campo se estiver numa resolução de smartphones ou tablet para usar o calendário do proprio sistema operacional -->
                         <div  class="show-on-medium-and-down hide-on-large-only">
                            <input
-                              class="dt_nascimento"
-                              ng-model="objPessoa.dt_nascimento3"
-                              id="dt_nascimento_mobile"
                               type="date"                       
+                              class="dt_nascimento_mobile"
+                              ng-model="objPessoa.dt_nascimento_mobile"
+                              id="dt_nascimento_mobile"
+                              autocomplete="off"
                            />
                         </div>
                         <div class="hide-on-med-and-down show-on-large">
+                        <!-- Mostra o este campo se estiver numa resolução de computador para renderizar um calendário do materialize -->                           
                            <input
                               autocomplete="off"
                               type="text"

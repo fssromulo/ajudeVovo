@@ -34,9 +34,9 @@
           <div class="background blue #1889ff">
             <div class="blue lighten-1"></div>
           </div>
-          <a href="#!user"><img class="circle" src="../includes/imagens/pwa_icons/android-chrome-192x192.png"></a>
-          <a href="#!name"><span class="white-text name">Adalberto Azevedo</span></a>
-          <a href="#!email"><span class="white-text email">ajudevovo@gmail.com</span></a>
+          <a href="#!user"><img class="circle" src="../includes/imagens/<?php echo $this->session->userdata('imagem_pessoa');?>"></a>
+          <a href="#!name"><span class="white-text name"><?php echo $this->session->userdata('nome');?></span></a>
+          <a href="#!email"><span class="white-text email"><?php echo $this->session->userdata('login');?></span></a>
           </div>
         </li>
         <li><a href="#perfil_implementar"><i class="material-icons">face</i>Perfil</a></li>
