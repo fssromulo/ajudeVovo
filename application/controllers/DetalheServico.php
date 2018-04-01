@@ -9,7 +9,7 @@ class DetalheServico extends CI_Controller {
 		parent::__construct();
 		$this->load->model('DetalheServicoDB');
 		$this->load->helper('formatardatas');	
-		$this->load->library('controleacesso');
+		$this->load->library('ControleAcesso');
 		$this->load->helper('url');	
  			
 		$this->id_servico = null;
