@@ -15,19 +15,16 @@
 		class="container"
 	>
 		<div class="row">
-			<div class="col-sm-12 col-md-10 col-md-offset-1">
-				<div class="col-sm-12 col-md-12">
-					<div class="form-group">
-						<label for="pesquisa">Pesquise:</label>
-						<input
-							type="text" 
-							ng-model="pesquisa" 
-							id="pesquisa" 
-							name="pesquisa" 
-							class="form-control" 
-							id="contratante" 
-							placeholder="Insira o nome do serviço ou categoria desejada...">
-					</div>
+			<div class="col s12 col m12 ">
+				<div class="col s12 col m12 input-field">				
+					<label for="pesquisa">Pesquise:</label>
+					<input
+						type="text" 
+						ng-model="pesquisa" 
+						id="pesquisa" 
+						name="pesquisa" 
+						class="form-control" 
+						placeholder="Insira o nome do serviço ou categoria desejada...">
 				</div>
 			</div>
 		</div>
