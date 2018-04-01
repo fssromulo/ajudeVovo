@@ -15,87 +15,85 @@ app.controller("ctrlrAdmCadastroPerfil", function($scope,$rootScope,$http) {
 
 	$scope.__construct = function() {
 
-        $scope.id_categoria = null;
+        $scope.id_perfil = null;
         $scope.is_alterar = false;
-        $scope.arrListaCategoria = [];
+        $scope.arrListaPerfil = [];
 
-        $scope.categorias();
+        $scope.perfil();
     };
 
-    $scope.categorias = function() {
+    $scope.perfil = function() {
         $http.post(
-            '../AdmCadastroCategorias/categorias'
+            '../AdmCadastroPerfil/perfil'
         ).success(function (data) {
-            $scope.arrCategorias = data;
+            $scope.arrPerfil = data;
             $scope.cancelar;
         });
     };
 
-    $scope.salvarCategoria = function() {
-        if ($scope.form_categoria.$invalid) {
+    $scope.salvarPerfil = function() {
+        if ($scope.form_perfil.$invalid) {
             return;
         }
 
-        var arrCategoriaSalvar = {
-            'descricao' : $scope.descricao,
-            'taxa' : $scope.taxa
+        var arrPerfilSalvar = {
+            'descricao' : $scope.descricao
+            
         }        
 
         $http.post(
-            '../AdmCadastroCategorias/salvar',
-            arrCategoriaSalvar
+            '../AdmCadastroPerfil/salvar',
+            arrPerfilSalvar
         ).success(function (data) {
-            $scope.arrCategorias = data;
+            $scope.arrPerfil = data;
             $scope.cancelar();
         });
     };
 
-    $scope.alterarCategoria = function() {
-        var arrCategoriaAlterar = {
-            'id_categoria' : $scope.id_categoria,
-            'descricao' : $scope.descricao,
-            'taxa' : $scope.taxa
+    $scope.alterarPerfil = function() {
+        var arrPerfilAlterar = {
+            'id_perfil' : $scope.id_perfil,
+            'descricao' : $scope.descricao
         }
 
         $http.post(
-            '../AdmCadastroCategorias/alterar',
-            arrCategoriaAlterar
+            '../AdmCadastroPerfil/alterar',
+            arrPerfilAlterar
         ).success(function (data) {
-            $scope.arrCategorias = data;
+            $scope.arrPerfil = data;
             $scope.cancelar();
         });
     };
 
-    $scope.excluirCategoria = function() {
-        var arrCategoriaExcluir = {
-            "id_categoria" : $scope.id_categoria
+    $scope.excluirPerfil = function() {
+        var arrPerfilExcluir = {
+            "id_perfil" : $scope.id_perfil
         }
 
         $http.post(
-            '../AdmCadastroCategorias/excluir',
-            arrCategoriaExcluir
+            '../AdmCadastroPerfil/excluir',
+            arrPerfilExcluir
         ).success(function (data) {
             $('#modal_excluir').modal('toggle');
-            $scope.arrCategorias = data;
+            $scope.arrPerfil = data;
         });
     }
 
     $scope.cancelar = function () {
         $scope.is_alterar = false;
-        $scope.id_categoria = null;
+        $scope.id_perfil = null;
         $scope.descricao = null;
-        $scope.taxa = null;
+        
     }
 
-    $scope.carregarAlterar = function(categoria) {
+    $scope.carregarAlterar = function(perfil) {
         $scope.is_alterar = true;
-        $scope.id_categoria = categoria.id_categoria;
-        $scope.descricao = categoria.descricao;
-        $scope.taxa = categoria.taxa;
+        $scope.id_perfil = perfil.id_perfil;
+        $scope.descricao = perfil.descricao;
     };
 
-    $scope.carregarExcluir = function(categoria) {
-        $scope.id_categoria = categoria.id_categoria;
+    $scope.carregarExcluir = function(perfil) {
+        $scope.id_perfil = perfil.id_perfil;
     };
 
     angular.element(document).ready(function () {

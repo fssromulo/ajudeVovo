@@ -20,27 +20,30 @@
     
         <div class="container">
             <div class="row">
-                <label for="descricao">Descrição</label>
-                <input type="text" ng-model="descricao" class="validate" id="descricao" />
-            </div>
-                        
-            <div class="row">
-                <label for="taxa">Taxa de cobrança (em %)</label>
-                <input type="number" ng-model="taxa" class="validate" id="taxa" min="0"/>
-            </div>
-                               
-            <div class="row">
-                <button type="submit" ng-click="salvarCategoria()" class="waves-effect waves-light btn" ng-show="!is_alterar">
-                    Salvar
-                </button>
 
-                <button type="submit" ng-click="alterarCategoria()" class="waves-effect waves-light btn" ng-show="is_alterar">
-                    Alterar
-                </button>
+                <form class="col s12" name="form_categoria">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" ng-model="descricao" class="validate" id="descricao" />
+                
+                    <div class="row">
+                        <label for="taxa">Taxa de cobrança (em %)</label>
+                        <input type="number" ng-model="taxa" class="validate" id="taxa" min="0"/>
+                    </div>
+                                       
+                    <div class="row">
+                        <button type="submit" ng-click="salvarCategoria()" class="waves-effect waves-light btn" ng-show="!is_alterar">
+                            Salvar
+                        </button>
 
-                <button type="button" ng-click="cancelar()" class="waves-effect waves-light btn">
-                    Cancelar
-                </button>
+                        <button type="submit" ng-click="alterarCategoria()" class="waves-effect waves-light btn" ng-show="is_alterar">
+                            Alterar
+                        </button>
+
+                        <button type="button" ng-click="cancelar()" class="waves-effect waves-light btn">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
             </div>
                         
 
