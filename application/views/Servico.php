@@ -160,7 +160,7 @@
                                                 </td>
                                                 <td>
                                                     <i class="material-icons red-text left"
-                                                        ng-click="removerDiaAtendimento($index)"/>delete</i>
+                                                        ng-click="removerDiaAtendimento($index, lista.id_dia_disponivel)"/>delete</i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -206,7 +206,7 @@
 
                                 <button
                                     type="submit"
-                                    data-ng-click="salvarServico()"
+                                    data-ng-click="!id_servico ? salvarServico() : atualizarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
                                     ng-show="!is_alterar"
                                 >
