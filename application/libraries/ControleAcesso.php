@@ -32,4 +32,16 @@ class ControleAcesso {
    	$this->CI->session->sess_destroy();
    }
    
+
+   public function verificaImagemPessoa( $img_pessoa = '' ) { 						
+		
+		// SETA UMA IMAGEM PADRÃO se vazio
+		if ( empty($img_pessoa) ) {			
+			$img_pessoa = 'pwa_icons/android-chrome-192x192.png';
+			return $img_pessoa;
+		}
+	
+		return 'fotos_pessoas/' . $img_pessoa;	
+   }
+
 }

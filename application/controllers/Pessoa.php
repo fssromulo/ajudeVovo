@@ -8,6 +8,7 @@
 		public function __construct() {
 			parent::__construct();
 			$this->load->library('session');
+			$this->load->library('controleacesso');
 			$this->load->helper('url');
 			$this->load->helper('removecaracteres');
 			$this->load->helper('formatardatas');
@@ -154,6 +155,9 @@
 	      	}
 	      	
    			$arrRetornoPessoa = $arrRetornoPessoa[0];
+
+   			$arrRetornoPessoa['imagem_pessoa'] = 
+   				$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
 				$this->session->set_userdata($arrRetornoPessoa);
 
 	      	echo $this->perfil;

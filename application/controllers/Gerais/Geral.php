@@ -33,9 +33,10 @@ class Geral extends CI_Controller {
 	public function getListaEstado() {
       (array)$dados = json_decode(file_get_contents("php://input"), true);   
    	
-      if ( is_array($dados) ) {
-      	$id_pais = $dados['id_pais'];
-      }
+      $id_pais = null;
+      // if ( is_array($dados) ) {
+      //   $id_pais = $dados['id_pais'];
+      // }
 
     	$listar = $this->GeralDB->getListaEstado($id_pais)->result_array();
 

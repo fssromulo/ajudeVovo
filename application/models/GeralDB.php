@@ -20,7 +20,9 @@ class GeralDB extends CI_Model{
 		
 		$this->db->select('id_estado, descricao');
 		$this->db->from('estado');
-		$this->db->where('id_pais', $id_pais);
+		if ( !empty($id_pais)) {
+			$this->db->where('id_pais', $id_pais);
+		}
 		return $this->db->get();
   	}
 
