@@ -66,7 +66,7 @@
                   <div class="row">
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="cpf" ng-model="objPessoa.cpf" id="cpf" name="cpf" type="tel" class="validate">
-                        <label for="cpf">CPF:</label>
+                        <label for="cpf">CPF</label>
                      </div>
                      <div input-field class="session col s12 m6">
                         <select
@@ -79,7 +79,51 @@
                            <option value="" selected>Selecione um sexo...</option>
                         </select>
                      </div>
+                  </div>
 
+
+                 <div class="row">
+                    <div input-field class="session col s12 m6">
+                       <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" class="validate">
+                       <label for="nome_mae">Nome da m&atilde;e</label>                                       
+                    </div>
+                    
+                    <div input-field class="session col s12 m6">
+                       <input autocomplete="off" name="nome_pai" ng-model="objPessoa.nome_pai" id="nome_pai" type="text" class="validate">
+                       <label for="nome_pai">Nome do pai</label>                  
+                    </div>
+                 </div>
+
+
+                  <div class="row">
+                     <div input-field class="session col s12 m6">
+                        <select
+                           ng-options="listaEstadoNascimento.descricao for listaEstadoNascimento in arrListaEstadoNascimento.options track by listaEstadoNascimento.id_estado"
+                           ng-model="arrListaEstadoNascimento.estado"
+                           name="estadoNascimento"
+                           id="estadoNascimento"
+                           ng-change="getListaCidadeNascimento()"
+                           material-select watch
+                        >
+                           <option value="">Estado de nascimento...</option>
+                        </select>
+                     </div>                     
+
+
+                     <div input-field class="session col s12 m6">
+                        <select
+                           ng-options="listaCidade.descricao for listaCidade in arrListaCidadeNascimento.options"
+                           ng-model="arrListaCidadeNascimento.cidade"
+                           name="cidadeNascimento"
+                           id="cidadeNascimento"
+                           material-select watch
+                        >
+                           <option value="">Cidade de nascimento...</option>
+                        </select>
+                     </div>  
+                  </div>  
+
+                   <div class="row">
                      <div input-field class="session col s12 m6">
 
                          <div class="file-field input-field">
@@ -128,74 +172,62 @@
                <div class="divider"></div> 
                <div class="row">
                   <div input-field class="session col s12 m6">
-                        <select
-                           ng-options="listaPais.descricao for listaPais in arrListaPais.options"
-                           ng-model="arrListaPais.pais"
-                           ng-change="getListaEstado()"
-                           name="pais"
-                           id="pais"
-                           class="form-control"
-                           material-select watch
-                        >
-                           <option value="">Selecione um pais...</option>
-                        </select>
-                  </div>
-                  
-                  <div input-field class="session col s12 m6">
                      <select
-                        ng-options="listaEstado.descricao for listaEstado in arrListaEstado.options track by listaEstado.id_estado"
-                        ng-model="arrListaEstado.estado"
+                        ng-options="listaEstadoEndereco.descricao for listaEstadoEndereco in arrListaEstadoEndereco.options track by listaEstadoEndereco.id_estado"
+                        ng-model="arrListaEstadoEndereco.estado"
                         name="estado"
-                        id="estado"
-                        ng-change="getListaCidade()"
+                        id="estado" 
+                        ng-change="getListaCidadeEndereco()"
                         material-select watch
                      >
                         <option value="">Selecione um estado...</option>
                      </select>
                   </div>
-               </div>
-      
 
-               <div class="row">
                   <div input-field class="session col s12 m6">
                      <select
-                        ng-options="listaCidade.descricao for listaCidade in arrListaCidade.options"
-                        ng-model="arrListaCidade.cidade"
+                        ng-options="listaCidade.descricao for listaCidade in arrListaCidadeEndereco.options"
+                        ng-model="arrListaCidadeEndereco.cidade"
                         name="cidade"
                         id="cidade"
                         material-select watch
                      >
                         <option value="">Selecione uma cidade...</option>
                      </select>
-                  </div>
-                  
+                  </div>                  
+               </div>
+      
+
+               <div class="row">                
                   <div input-field class="session col s12 m6">
                      <input autocomplete="off" id="bairro" ng-model="objPessoa.bairro" id="bairro" type="text" class="validate">
-                     <label for="bairro">Bairro:</label>  
+                     <label for="bairro">Bairro</label>  
                   </div>
-               </div>
 
-               <div class="row">
                   <div input-field class="session col s12 m6">
                      <input autocomplete="off" id="rua" ng-model="objPessoa.rua" id="rua" type="text" class="validate">
-                     <label for="rua">Rua:</label>                                       
+                     <label for="rua">Rua</label>                                       
                   </div>
                   
-                  <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="nr_rua" ng-model="objPessoa.nr_rua" id="nr_rua" type="tel" class="validate">
-                     <label for="nr_rua">Número da rua:</label>                  
-                  </div>
                </div>
 
                <div class="row">
                   <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="complemento" ng-model="objPessoa.complemento" id="complemento" type="text" class="validate">
-                     <label for="complemento">Complemento:</label>                                       
+                     <input autocomplete="off" id="nr_rua" ng-model="objPessoa.nr_rua" id="nr_rua" type="tel" class="validate">
+                     <label for="nr_rua">Número da rua</label>                  
                   </div>
                   
                   <div input-field class="session col s12 m6">
+                     <input autocomplete="off" id="complemento" ng-model="objPessoa.complemento" id="complemento" type="text" class="validate">
+                     <label for="complemento">Complemento</label>                                       
+                  </div>
+               </div>
+
+               <div class="row">
+
+                  <div input-field class="session col s12 m6">
                      <input autocomplete="off" id="cep" ng-model="objPessoa.cep" id="cep" type="tel" class="validate">
-                     <label for="cep">CEP:</label>                  
+                     <label for="cep">CEP</label>                  
                   </div>
                </div>
 
@@ -233,24 +265,24 @@
                   <div class="row">
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="fone_residencial" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" class="validate">
-                        <label for="fone_residencial">Telefone residencial:</label>                                       
+                        <label for="fone_residencial">Telefone residencial</label>                                       
                      </div>
                      
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" id="fone_comercial" type="tel" class="validate">
-                        <label for="fone_comercial">Telefone comercial:</label>                  
+                        <label for="fone_comercial">Telefone comercial</label>                  
                      </div>
                   </div>
 
                   <div class="row">
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="celular" ng-model="objPessoa.celular" id="celular" type="tel" class="validate">
-                        <label for="celular">Celular:</label>                                       
+                        <label for="celular">Celular</label>                                       
                      </div>
                      
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="email" ng-model="objPessoa.email" id="email" type="email" class="validate">
-                        <label for="email">E-mail:</label>                  
+                        <label for="email">E-mail</label>                  
                      </div>
                   </div>
 
@@ -284,27 +316,27 @@
             <div id="tab_dados_acesso" class="col s12">
 
                <div class="section">
-                  <h5>Dados de acesso:</h5>
+                  <h5>Dados de acesso</h5>
                   <div class="divider"></div> 
 
                   <div class="row">
                      <div input-field class="session col s12">
                         <input autocomplete="off" id="login" ng-model="objPessoa.login" id="login" type="text" class="validate">
-                        <label for="login">Login:</label>                                       
+                        <label for="login">Login</label>                                       
                      </div>
                   </div>
 
                   <div class="row">
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="senha1" ng-model="objPessoa.senha1" id="senha1" type="password" class="validate">
-                        <label for="senha1">Senha:</label>                                       
+                        <label for="senha1">Senha</label>                                       
                      </div>
                      
                      <div input-field class="session col s12 m6">
                         <input autocomplete="off" id="senha2" ng-model="objPessoa.senha2" id="senha2" type="password" class="validate">
-                        <label for="senha2">Repetir senha:</label>                  
+                        <label for="senha2">Repetir senha</label>                  
                      </div>
-                  </div>               
+                  </div>                
                </div>               
 
                <div class="col s12 center-align">

@@ -24,7 +24,7 @@ app.config(function(ngJcropConfigProvider){
 //     // return window.isLocal ? '/demo/' + src : src;
 // }
 
-app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
+app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaCartao){
 
 	$scope.objPessoa = {
 		nome : '',
@@ -33,7 +33,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		cpf : '',
 		sexo : '',
 		pais : 'pais',
-		arrListaPais : '',
+		arrListaPaisEndereco : '',
 		estado : '',
 		cidade : '',
 		bairro : '',
@@ -46,7 +46,13 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		email : '',
 		login : '',
 		senha1 : '',
-		senha2 : ''
+		senha2 : '',
+		id_estado : '',
+		id_cidade : '',
+		nome_pai : '',
+		nome_mae : '',
+		imagem_frente_documento : '',
+		imagem_verso_documento : ''
 	};
 
 	$scope.__construct = function() {
@@ -69,14 +75,17 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		$scope.selectMonths = true;
 		$scope.selectYears = 100;
 
-		$scope.arrListaPais = [];
-		$scope.arrListaEstado = [];
-		$scope.arrListaCidade = [];
+		$scope.arrListaPaisEndereco = [];
+		
+		$scope.arrListaEstadoEndereco = [];
+		$scope.arrListaCidadeEndereco = [];
+		
+		$scope.arrListaEstadoNascimento = [];
+		$scope.arrListaCidadeNascimento = [];
 
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
 		$scope.is_alterar = false;
-		// $scope.arrListaPais = [];
 
 		// Define array com sexos para listagem
 		$scope.arrListaSexo = 
@@ -101,41 +110,52 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	    $http.post(
 	    		'../Gerais/Geral/getListaPais/'
 	    	).success(function (data) {
-	    		$scope.arrListaPais = data;
+	    		$scope.arrListaPaisEndereco = data;
 
 		});
 	}
 
-	$scope.getListaEstado = function() {
-
-		if ( $scope.arrListaPais.pais == undefined || $scope.arrListaPais.pais.length < 1 ) {
-			return false;
-		}		
-		$scope.objPessoa.pais = $scope.arrListaPais.pais;
-
+	$scope.getListaEstadoEndereco = function( ) {
 
 	    $http.post(
-	    		'../Gerais/Geral/getListaEstado/',
-	    		$scope.objPessoa.pais
+	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
-	    		$scope.arrListaEstado = data;
-
-		});
+	    		$scope.arrListaEstadoEndereco   = data;
+			}
+		);
 	}
 
-	$scope.getListaCidade = function() {
-		
-		// if ( $scope.arrListaEstado.estado == undefined || $scope.arrListaEstado.estado.length < 1 ) {
-		// 	return false;
-		// }
+	$scope.getListaEstadoNascimento = function( ) {
 
-		$scope.objPessoa.estado = $scope.arrListaEstado.estado;
+	    $http.post(
+	    		'../Gerais/Geral/getListaEstado/'
+	    	).success(function (data) {
+	    		$scope.arrListaEstadoNascimento = data;
+			}
+		);
+	}
+
+	$scope.getListaCidadeEndereco = function() {
+
+		$scope.objPessoa.estado = $scope.arrListaEstadoEndereco.estado;
 		
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
 	    		$scope.objPessoa.estado
 	    	).success(function (data) {
-	    		$scope.arrListaCidade = data;
+	    		$scope.arrListaCidadeEndereco = data;
+		});
+	}
+
+	$scope.getListaCidadeNascimento = function() {
+		
+		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.estado;
+		
+	    $http.post(
+	    		'../Gerais/Geral/getListaCidade/',
+	    		$scope.objPessoa.id_estado
+	    	).success(function (data) {
+	    		$scope.arrListaCidadeNascimento = data;
 		});
 	}
 
@@ -172,8 +192,11 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 		}
 
 		let sexo    = $scope.arrListaSexo.sexoSelected['valor'];
-		let cidade  = $scope.arrListaCidade.cidade['id_cidade'];
-
+		let cidadeEndereco  = $scope.arrListaCidadeEndereco.cidade['id_cidade'];
+		
+		// codigos do estado e da cidade de nascimento
+		let id_estado  = $scope.arrListaEstadoNascimento.estado['id_estado'];
+		let id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];
 
 		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;	
 		// Verifica se deve pegar a data do campo referente ao mobile ou do campo do referente ao site
@@ -199,16 +222,20 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 				'w' : w,
 				'h' : h
 			},
-			'arrPessoa'  : {
-				'nome'   : $scope.objPessoa.nome,
-				'cpf'    : $scope.objPessoa.cpf,
-				'sexo' 	 : sexo,
-				'login'  : $scope.objPessoa.login,
-				'senha'  : $scope.objPessoa.senha1,
+			'arrPessoa' : {
+				'nome'      : $scope.objPessoa.nome,
+				'cpf'       : $scope.objPessoa.cpf,
+				'sexo' 	    : sexo,
+				'login'     : $scope.objPessoa.login,
+				'senha'     : $scope.objPessoa.senha1,
+				'nome_mae'  : $scope.objPessoa.nome_mae,
+				'nome_pai'  : $scope.objPessoa.nome_pai,
+				'id_estado' : id_estado,
+				'id_cidade' : id_cidade,
 				'dt_nascimento' : data_nascimento_salvar
 			},
 			'arrEndereco' : {
-				'id_cidade'  : cidade,
+				'id_cidade'  : cidadeEndereco,
 				'bairro'  : $scope.objPessoa.bairro,
 				'rua'     : $scope.objPessoa.rua,
 				'numero'  : $scope.objPessoa.nr_rua,
@@ -318,7 +345,17 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http, PessoaCartao){
 	});
 
 
-	// Chama metodos que vão preencher algo em tela
-	$scope.getListaPais();
-	$scope.obj  = {src:"", selection: [], thumbnail: true};
+	// Chama metodos que vão preencher algo em tela	
+	$scope.getListaEstadoNascimento();
+	$scope.getListaEstadoEndereco();
+	$scope.obj  = {src:"", selection: [], thumbnail: false};
+
+    // $scope.$watch(
+    //   'arrListaCidadeNascimento',
+    //   function(ds_novo, ds_velho) {
+    //      $timeout(function(argument) {
+  		// 	$('select').material_select();
+    //      });
+    //   }
+    // );
 });
