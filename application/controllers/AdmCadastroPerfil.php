@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AdmCadastroCategorias extends CI_Controller {
+class AdmCadastroPerfil extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -10,10 +10,10 @@ class AdmCadastroCategorias extends CI_Controller {
 
     public function index() {
         $arrTitulo = array(
-        'titulo_tela' => 'Cadastro&nbsp;de&nbsp;Categorias'
+        'titulo_tela' => 'Cadastro&nbsp;de&nbsp;Perfil'
          );
 
-         $this->load->view('AdmCadastroCategorias', $arrTitulo);
+         $this->load->view('AdmCadastroPerfil', $arrTitulo);
     }
 
     public function categorias() {

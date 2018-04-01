@@ -6,7 +6,7 @@
     ]
 );
 
-app.controller("ctrlrAdmCadastroCategoria", function($scope,$rootScope,$http) {
+app.controller("ctrlrAdmCadastroPerfil", function($scope,$rootScope,$http) {
 	
 	angular.element(document).ready(function () {
 		$scope.__construct();	
