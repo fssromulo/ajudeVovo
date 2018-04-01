@@ -23,12 +23,10 @@
               <li ng-repeat="lista in arrlistaPessoas">
                   <div class="collapsible-header" >
                       <!--<i class="large material-icons">-->
-                          <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+                          <img src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
                       <!--</i>-->
                           <p class="truncate"> {{lista.nome}}</p>
-                          <span ng-show="lista.ativo != 1" class="new badge red right" data-badge-caption="" >
-                                  Inativo! 
-                          </span>
+                          
                   
                        
                   </div>
@@ -37,6 +35,11 @@
                       Nome:{{lista.nome}}<br/>
                       Data de Nascimento:{{lista.dt_nascimento}} <br/>
                       CPF:{{lista.cpf}} <br/>
+                      Sexo: {{lista.sexo}} <br/>
+                      Nome do pai: {{lista.nome_pai}} <br/>
+                      Nome da mãe: {{lista.nome_mae}} <br/>
+                      imagem do documento (Frente): {{lista.imagem_frente_documento}} <br/>
+                      imagem do documento (Verso): {{lista.imagem_verso_documento}} <br/>
                       Situação: {{lista.situacao}} <br/>
 
                       <button 
