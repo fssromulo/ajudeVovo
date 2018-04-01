@@ -48,14 +48,14 @@
                   <td>{{lista.descricao}}</td>
                   <td>
                       <span style="cursor:pointer;" class="material-icons" ng-click="carregarAlterar(lista)">create</span>
-                      <button data-target="modal1" class="btn modal-trigger">
+                     
                         <span   style="cursor:pointer;"
                                 class="material-icons"
                                 data-toggle="modal"
                                 data-target="#modal_excluir"
                                 ng-click="carregarExcluir(lista)"> delete              
                         </span>
-                      </button> 
+                     
                       
                   </td>
               </tr>

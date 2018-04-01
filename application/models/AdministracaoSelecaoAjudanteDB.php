@@ -22,6 +22,7 @@ class AdministracaoSelecaoAjudanteDB extends CI_Model {
 					       epf.descricao as situacao');
 		$this->db->from('pessoa_fisica pf');
 		$this->db->join('estado_pessoa_fisica epf','epf.id_estado_pessoa_fisica = pf.id_estado_pessoa_fisica', 'inner');
+		$this->db->join('prestador p','p.id_pessoa = pf.id_pessoa_fisica', 'inner');
 		$this->db->where('epf.id_estado_pessoa_fisica = 3'); // 
 		return $query = $this->db->get();
 	}
