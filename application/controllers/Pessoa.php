@@ -8,7 +8,7 @@
 		public function __construct() {
 			parent::__construct();
 			$this->load->library('session');
-			$this->load->library('controleacesso');
+			$this->load->library('ControleAcesso');
 			$this->load->helper('url');
 			$this->load->helper('removecaracteres');
 			$this->load->helper('formatardatas');
