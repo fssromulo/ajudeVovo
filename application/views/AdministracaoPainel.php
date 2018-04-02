@@ -2,13 +2,6 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
-
-  <!-- CSS  -->
-<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
-
-
 </head>
 <body>
   <header>
@@ -34,16 +27,12 @@
           <li><a href="#">Cadastro de necessidades especiais do vovo ou ajudante</a></li>
     </ul>
   </header>
-  
-
   <?php
-        // Importa o cabeçalho rodape padrao a todas as telas
-        $this->load->view('nucleo/footer.php');
-    ?> 
+      // Importa o cabeçalho rodape padrao a todas as telas
+      $this->load->view('nucleo/footer.php');
+    ?>
     <script type="text/javascript">
-                
         $( document ).ready(function() {
-
           $('.button-collapse').sideNav();
           $('.parallax').parallax();
         });

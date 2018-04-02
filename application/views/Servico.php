@@ -4,10 +4,7 @@
 ?>
 
 </head>
-
-
     <body>  
-
         <div
             ng-app="appAngular"
             ng-controller="controllerServico">
@@ -16,19 +13,14 @@
                 // Importa o cabeçalho padrao a todas as telas
                 $this->load->view('MenuPrestador.php');
             ?>
-
             <input type="hidden" name="is_edicao" ng-model="id_servico" 
                 ng-init="id_servico=<?php echo $id_servico?>">
-
             <div class="container">
-
                 <div class="row">
                     <div class="col-sm-10">
                         &nbsp;
                     </div>
                 </div>
-
-                    
                 <div class="col-sm-10 col-lg-offset-1"> 
 
                     <form class="form-group" name="form_servico">
@@ -40,7 +32,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col s12">
                                 <div class="form-group">
@@ -188,10 +179,6 @@
                                         href="../ListarServico/">
                                     <i class="material-icons left">block</i>Cancelar</a>
                                 </div>
-                                <!-- <button type="button" ng-click="cancelar()" class="btn btn-danger">
-                                    Cancelar
-                                </button> -->
-
                                 <button
                                     type="submit"
                                     data-ng-click="alterarServico()"
@@ -200,10 +187,6 @@
                                 >
                                     <i class="material-icons right">check</i>Atualizar
                                 </button>
-                                <!-- <button type="submit" ng-click="alterarServico()" class="btn btn-success" ng-show="is_alterar">
-                                    Alterar
-                                </button> -->
-
                                 <button
                                     type="submit"
                                     data-ng-click="salvarServico()"
@@ -212,15 +195,11 @@
                                 >
                                     <i class="material-icons right">check</i>Salvar
                                 </button>
-
-                                <!-- <button type="submit" ng-click="salvarServico()" class="btn btn-success" ng-show="!is_alterar">
-                                    Salvar
-                                </button> -->
                             </div>
                         </div>
                     </form>
                     <br/>
-                </div> <!-- Fim da container principal do bootstrap -->
+                </div>
             </div>
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -239,9 +218,9 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -251,7 +230,6 @@
             $this->load->view('nucleo/footer.php');
         ?> 
  
-        <!-- MY App -->
         <script type="text/javascript" src="../includes/js/servico.js"></script>
         <script type="text/javascript" src="../includes/js/MenuPrestador.controller.js"></script>
     </body>

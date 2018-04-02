@@ -142,16 +142,8 @@
 
                <div class="col s12 center-align">
 
-               <div class="col s6">
-               <!--     <button
-                        type="button" ng-click="cancelar()" 
-                        class="waves-effect waves-light btn red darken-1 col s12" 
-                     ><i class="material-icons left">arrow_back</i>Voltar
-                     </button> -->
-                 </div>
-               <div class="col s6">
-
-                     <button
+               <div class="col s6">&nbsp;
+               <button
                         type="button"
                         class="waves-effect waves-light btn light-blue darken-2 col s12"
                        data-ng-click="trocarAba('tab_endereco')"
