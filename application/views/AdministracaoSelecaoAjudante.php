@@ -14,7 +14,10 @@
            <ul  class="collapsible" data-collapsible="accordion"  >
               <li ng-repeat="lista in arrlistaPessoas">
                   <div class="collapsible-header" >
-                          <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+
+                     
+                          <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">&nbsp;
+                    
                           <p class="truncate"> {{lista.nome}}</p>
                   </div>
                   <div class="collapsible-body" >                        
