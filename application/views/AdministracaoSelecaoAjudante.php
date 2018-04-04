@@ -23,7 +23,7 @@
               <li ng-repeat="lista in arrlistaPessoas">
                   <div class="collapsible-header" >
                       <!--<i class="large material-icons">-->
-                          <img src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+                          <img src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">&nbsp;
                       <!--</i>-->
                           <p class="truncate"> {{lista.nome}}</p>
                           
