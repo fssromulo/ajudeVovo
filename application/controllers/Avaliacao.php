@@ -14,7 +14,7 @@ class Avaliacao extends CI_Controller {
 		$this->perfil = null;
 		$this->CI =& get_instance();
 		$this->load->library('session');
-		$this->load->library('controleacesso');
+		$this->load->library('ControleAcesso');
 		$this->load->model('AvaliacaoDB');	
 		$this->load->helper('url');			
 	}

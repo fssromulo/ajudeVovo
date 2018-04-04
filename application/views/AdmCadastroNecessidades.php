@@ -2,19 +2,11 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
-
-  <!-- CSS  -->
-<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
-
 </head>
 <body>
    <?php
-        // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('MenuAdministracao.php');
-    ?>
-
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('MenuAdministracao.php');?>
   <div class="user-view">
     <div ng-app="appAngular" ng-controller="ctrlrAdmCadastroNecessidades">
       
@@ -77,27 +69,21 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
                             <button type="button" class="btn btn-success" ng-click="excluirPerfil()">Sim</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->        
-       
+                    </div>
+                </div>
+            </div>       
       </div>
     </div>
   </div>  
-
-
   <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
-
     <script type="text/javascript" src="../includes/js/AdmCadastroNecessidades.js"></script>
-
     <script type="text/javascript">
       $(document).ready(function(){
         $('.modal').modal();
       });
     </script>
-
   </body>
 </html>

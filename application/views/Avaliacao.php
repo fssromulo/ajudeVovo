@@ -12,11 +12,10 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-sm-4">
-				<label for="comentario">Comentário:</label>
-				<textarea style="resize:none ;" ng-model="comentario" class="form-control" id="comentario" placeholder="Comentário..."></textarea>
+			<label for="comentario">Comentário:</label>
+			<textarea style="resize:none ;" ng-model="comentario" class="form-control" id="comentario" placeholder="Comentário..."></textarea>
 		</div>
 	</div>  
-
 	<div class="row">
 		<div class="col-sm-4">
 			<button type="button" ng-click="salvarAvaliacao()" class="btn btn-success">

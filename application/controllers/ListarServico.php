@@ -6,7 +6,7 @@ class ListarServico extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('ServicoDB');
-        $this->load->library('controleacesso');
+        $this->load->library('ControleAcesso');
         $this->load->helper('url');
     }
 
