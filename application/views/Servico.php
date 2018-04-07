@@ -32,19 +32,6 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-
-                        <!-- <div input-field class="session col s12 m6">
-                        <select
-                           ng-options="listaSexo.descricao for listaSexo in arrListaSexo.options"
-                           ng-model="arrListaSexo.sexoSelected"
-                           name="sexo"
-                           id="sexo"
-                           material-select watch
-                        > -->
-
-=======
->>>>>>> master
                         <div class="row">
                             <div class="col s12">
                                 <div>
