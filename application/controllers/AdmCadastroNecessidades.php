@@ -29,6 +29,8 @@ class AdmCadastroNecessidades extends CI_Controller {
         
         unset($dados['id_necessidade_especial']);
 
+        var_dump($dados);
+        
         $this->AdmCadastroNecessidadesDB->inserir_necessidade($dados);
 
         $this->necessidades_especiais();
@@ -37,24 +39,24 @@ class AdmCadastroNecessidades extends CI_Controller {
     public function alterar() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_perfil = isset($dados['id_perfil']) ? $dados['id_perfil'] : null;
+        $id_necessidade_especial = isset($dados['id_necessidade_especial']) ? $dados['id_necessidade_especial'] : null;
         
-        unset($dados['id_perfil']);
+        unset($dados['id_necessidade_especial']);
 
-        $this->AdmCadastroPerfilDB->alterar_perfil($dados, $id_perfil);
+        $this->AdmCadastroNecessidadesDB->alterar_necessidade($dados, $id_necessidade_especial);
 
-        $this->perfil();
+        $this->necessidades_especiais();
     }
 
     public function excluir() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_perfil = $dados['id_perfil'];
+        $id_necessidade_especial = $dados['id_necessidade_especial'];
 
-        $this->AdmCadastroPerfilDB->excluir_perfil(
-            $id_perfil
+        $this->AdmCadastroNecessidadesDB->excluir_necessidade(
+            $id_necessidade_especial
         );
 
-        $this->perfil();
+        $this->necessidades_especiais();
     }
 }

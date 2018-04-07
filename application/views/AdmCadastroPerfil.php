@@ -43,7 +43,7 @@
                       <span style="cursor:pointer;" class="material-icons" ng-click="carregarAlterar(lista)">create</span>
                      
                        
-                        <i class="material-icons" ng-click="carregarExcluir(lista)">
+                        <i style="cursor:pointer;" class="material-icons" ng-click="carregarExcluir(lista)">
                             delete
                         </i>
                      
