@@ -27,16 +27,6 @@ class Servico extends CI_Controller {
         $this->load->view('Servico', $arrDados);
     }
 
-    public function editarServico()  {
-        $dados = $this->input->get('id_servico', true);
-
-        $arrDados = array(
-            "id_servico" => $dados
-        );
-
-        $this->load->view('Servico', $arrDados);
-    }
-
     public function getServicoParaEdicao() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
@@ -95,41 +85,36 @@ class Servico extends CI_Controller {
         $this->ServicoDB->inserir_horario_disponivel($arrHorariosDisponiveis);
     }
 
-    public function alterar() {
-        (array)$dados = json_decode(file_get_contents("php://input"), true);
-        
-        $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
-        $descricao = isset($dados['descricao']) ? $dados['descricao'] : null;
-        $valor = isset($dados['valor']) ? $dados['valor'] : null;
-        $id_categoria = isset($dados['id_categoria']) ? $dados['id_categoria'] : null;
+    public function editarServico()  {
+        $dados = $this->input->get('id_servico', true);
 
-        $this->ServicoDB->alterar_servico($dados, $id_servico);
+        $arrDados = array("id_servico" => $dados);
 
-        $this->getServicos();
+        $this->load->view('Servico', $arrDados);
     }
 
-    public function excluir() {
+    public function atualizarServico() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        $id_servico = isset($dados['id_servico']) ? $dados['id_servico'] : null;
-
-        $this->ServicoDB->excluir_servico(
-            $id_servico
-        );
-
-        $this->getServicos();
+        $this->ServicoDB->atualizar_servico($dados);
+        $this->salvarDiaDisponivel($dados['id_servico'], $dados['listaAtendimento']);
     }
 
     public function buscarDiaAtendimentoServico() {
 
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        // (array)$diasDeAtendimentoDoServico = 
-        //     $this->ServicoDB->buscar_dia_atendimento_servico($dados)->result_array();
-
         (array)$diasDeAtendimentoDoServico = 
             $this->ServicoDB->buscar_dia_atendimento_servico($dados)->result_array();
 
         echo json_encode($diasDeAtendimentoDoServico);
+    }
+
+    public function excluirDiasAtendimentoEditados() {
+        (array)$dados = json_decode(file_get_contents("php://input"), true);
+
+        $dias = implode(',', $dados);
+
+        $this->ServicoDB->excluir_dia_atendimento_editado($dias);
     }
 }

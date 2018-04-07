@@ -32,9 +32,22 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
+
+                        <!-- <div input-field class="session col s12 m6">
+                        <select
+                           ng-options="listaSexo.descricao for listaSexo in arrListaSexo.options"
+                           ng-model="arrListaSexo.sexoSelected"
+                           name="sexo"
+                           id="sexo"
+                           material-select watch
+                        > -->
+
+=======
+>>>>>>> master
                         <div class="row">
                             <div class="col s12">
-                                <div class="form-group">
+                                <div>
                                     <label for="categoria">Categoria:</label>
                                     <select 
                                         ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
@@ -43,7 +56,7 @@
                                         id="categoria"
                                         class="form-control"
                                         material-select
-                                        required
+                                        required 
                                     >
                                         <option value="" disabled selected>Selecione uma categoria...</option>
                                     </select>
@@ -151,7 +164,7 @@
                                                 </td>
                                                 <td>
                                                     <i class="material-icons red-text left"
-                                                        ng-click="removerDiaAtendimento($index)"/>delete</i>
+                                                        ng-click="removerDiaAtendimento($index, lista.id_dia_disponivel)"/>delete</i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -181,8 +194,10 @@
                                 </div>
                                 <button
                                     type="submit"
-                                    data-ng-click="alterarServico()"
+                                    data-ng-click="!id_servico ? salvarServico() : atualizarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+<<<<<<< HEAD
+=======
                                     ng-show="is_alterar"
                                 >
                                     <i class="material-icons right">check</i>Atualizar
@@ -192,6 +207,7 @@
                                     data-ng-click="salvarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
                                     ng-show="!is_alterar"
+>>>>>>> master
                                 >
                                     <i class="material-icons right">check</i>Salvar
                                 </button>
