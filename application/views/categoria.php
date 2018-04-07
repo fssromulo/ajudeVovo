@@ -1,12 +1,10 @@
 <html lang="pt_BR">
     <head>
         <title>Opa! Ajude o Vovô</title>
-        <!-- jQuery & Bootstrap -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../includes/bootstrap-3.3.7/css/bootstrap-theme.min.css"  type="text/css" rel="stylesheet" />
         <link href="../includes/bootstrap-3.3.7/css/bootstrap.min.css"  type="text/css" rel="stylesheet" />
     </head>
-
     <body>
         <div ng-app="appAngular" ng-controller="controllerCategoria"s>
             <div class="container-fluid">
@@ -52,10 +50,8 @@
                         </div>
                     </div>
                 </form>
-
-                <br>
-            </div> <!-- Fim da container principal do bootstrap -->
-
+                <br/>
+            </div>
             <table class="table table-stripped">
                 <tr>
                     <th> Codigo </th>
@@ -96,24 +92,15 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
                             <button type="button" class="btn btn-success" ng-click="excluirCategoria()">Sim</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
         </div>
-
         <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
-
-        <!-- Compiled and minified JavaScript -->
-        <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>  
-
-        <!-- Angular JS -->
+        <script type="text/javascript" src="../includes/bootstrap-3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../includes/angular/angular.min.js"></script>  
-
         <link rel='stylesheet' href='../includes/js/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
         <script type='text/javascript' src='../includes/js/angular-loading-bar/build/loading-bar.min.js'></script>
-
-        <!-- MY App -->
         <script type="text/javascript" src="../includes/js/categoria.js"></script>
-
     </body>
 </html>

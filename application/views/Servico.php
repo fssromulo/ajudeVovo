@@ -4,10 +4,7 @@
 ?>
 
 </head>
-
-
     <body>  
-
         <div
             ng-app="appAngular"
             ng-controller="controllerServico">
@@ -16,19 +13,14 @@
                 // Importa o cabeçalho padrao a todas as telas
                 $this->load->view('MenuPrestador.php');
             ?>
-
             <input type="hidden" name="is_edicao" ng-model="id_servico" 
                 ng-init="id_servico=<?php echo $id_servico?>">
-
             <div class="container">
-
                 <div class="row">
                     <div class="col-sm-10">
                         &nbsp;
                     </div>
                 </div>
-
-                    
                 <div class="col-sm-10 col-lg-offset-1"> 
 
                     <form class="form-group" name="form_servico">
@@ -40,6 +32,7 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
 
                         <!-- <div input-field class="session col s12 m6">
                         <select
@@ -50,6 +43,8 @@
                            material-select watch
                         > -->
 
+=======
+>>>>>>> master
                         <div class="row">
                             <div class="col s12">
                                 <div>
@@ -201,6 +196,18 @@
                                     type="submit"
                                     data-ng-click="!id_servico ? salvarServico() : atualizarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+<<<<<<< HEAD
+=======
+                                    ng-show="is_alterar"
+                                >
+                                    <i class="material-icons right">check</i>Atualizar
+                                </button>
+                                <button
+                                    type="submit"
+                                    data-ng-click="salvarServico()"
+                                    class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+                                    ng-show="!is_alterar"
+>>>>>>> master
                                 >
                                     <i class="material-icons right">check</i>Salvar
                                 </button>
@@ -208,7 +215,7 @@
                         </div>
                     </form>
                     <br/>
-                </div> <!-- Fim da container principal do bootstrap -->
+                </div>
             </div>
 
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -227,9 +234,9 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-success" ng-click="excluirServico()">Excluir</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -239,7 +246,6 @@
             $this->load->view('nucleo/footer.php');
         ?> 
  
-        <!-- MY App -->
         <script type="text/javascript" src="../includes/js/servico.js"></script>
         <script type="text/javascript" src="../includes/js/MenuPrestador.controller.js"></script>
     </body>

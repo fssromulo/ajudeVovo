@@ -6,7 +6,7 @@
     ]
 );
 
-app.controller("ctrlrAdmCadastroCategoria", function($scope, $http) {
+app.controller("ctrlrAdmCadastroCategoria", function($scope,$rootScope,$http) {
 	
 	angular.element(document).ready(function () {
 		$scope.__construct();	
@@ -75,10 +75,18 @@ app.controller("ctrlrAdmCadastroCategoria", function($scope, $http) {
             '../AdmCadastroCategorias/excluir',
             arrCategoriaExcluir
         ).success(function (data) {
-            $('#modal_excluir').modal('toggle');
             $scope.arrCategorias = data;
+            $scope.categorias(); 
         });
+
+        $scope.fecharModalExcluir();
     }
+
+    
+    $scope.fecharModalExcluir = function() {
+        $("#modal_excluir").modal();
+        $("#modal_excluir").modal('close');
+    };
 
     $scope.cancelar = function () {
         $scope.is_alterar = false;
@@ -95,8 +103,12 @@ app.controller("ctrlrAdmCadastroCategoria", function($scope, $http) {
     };
 
     $scope.carregarExcluir = function(categoria) {
+        $("#modal_excluir").modal();
+        $("#modal_excluir").modal('open');
         $scope.id_categoria = categoria.id_categoria;
     };
+
+    
 
     angular.element(document).ready(function () {
 		$scope.__construct();	

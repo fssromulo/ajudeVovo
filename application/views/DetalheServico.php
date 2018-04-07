@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <div class="col s12">
                         <label for="dia">Dia:</label>
-                        <div class="input-group date" data-provider="datepicker">
+                        <div >
                             <input type="date" id="vlData" class="form-control" ng-model="dia_solicitacao">
                         </div>
                     </div>                    
@@ -92,18 +92,16 @@
 
             <div class="row">
                 <div class="col s12">
-                    <div class="form-group">
-                        <div class="col s12 col m6 text-center">
-                            <div class="col m12">&nbsp;</div>
-                            <button
-                                name="btn_servico"
-                                id="btn_servico"
-                                ng-click="salvarServico()"
-                                class="waves-effect waves-light btn light-blue darken-2 col s12"
-                                ng-disabled="bloquear_btn_servico"
-                            >Confirmar Solicitação
-                            </button>
-                        </div>
+                    <div class="col s12 col m12 text-center">
+                        <div class="col m6">&nbsp;</div>
+                        <button
+                            name="btn_servico"
+                            id="btn_servico"
+                            ng-click="salvarServico()"
+                            class="waves-effect waves-light btn light-blue darken-2 col s12"
+                            ng-disabled="bloquear_btn_servico"
+                        >Confirmar Solicitação
+                        </button>
                     </div>
                 </div>
             </div>

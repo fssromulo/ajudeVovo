@@ -3,11 +3,6 @@
     $this->load->view('nucleo/header.php');
 ?>
 
-  <!-- CSS  -->
-<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
-
 </head>
 <body>
 <header>
@@ -45,7 +40,7 @@
 
       </div>
     </div>
-    <div class="parallax"><img src="../includes/imagens/inicial/maos.png" alt="maos"></div>
+    <div class="parallax"><img alt="ajude o vovo" src="../includes/imagens/inicial/maos.png" alt="maos"></div>
   </div>
 
 
@@ -85,55 +80,11 @@
     </div>
   </div>
 
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Venha fazer parte!</h2>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="../includes/imagens/inicial/idosos_banner2.png" alt="Unsplashed background img 2"></div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Entre em contato</h4>
-          <p class="left-align light">Estamos nas redes sociais!!</p>
-          
-
-          
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><!-- <img src="background3.jpg" alt="Unsplashed background img 3"> --></div>
-  </div>
-
   <footer class="page-footer teal">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
          <h5 class="white-text">Venha fazer parte desse time!</h5>
-           <!--<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>-->
-
-
         </div>
         <div class="col l3 s12">
           <h5 class="white-text">Redes sociais</h5>
@@ -159,12 +110,9 @@
       </div>
     </div>
   </footer>
-
-
   <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
-    ?> 
-
+    ?>
   </body>
 </html>

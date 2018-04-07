@@ -5,7 +5,7 @@ class AdmCadastroCategorias extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('CategoriaDB');
+        $this->load->model('AdmCadastroCategoriasDB');
     }
 
     public function index() {
@@ -17,7 +17,7 @@ class AdmCadastroCategorias extends CI_Controller {
     }
 
     public function categorias() {
-        $listar = $this->CategoriaDB->buscar_categorias()->result_array();
+        $listar = $this->AdmCadastroCategoriasDB->buscar_categorias()->result_array();
 
         echo json_encode($listar);
     }
@@ -29,7 +29,7 @@ class AdmCadastroCategorias extends CI_Controller {
         
         unset($dados['id_categoria']);
 
-        $this->CategoriaDB->inserir_categoria($dados);
+        $this->AdmCadastroCategoriasDB->inserir_categoria($dados);
 
         $this->categorias();
     }
@@ -41,7 +41,7 @@ class AdmCadastroCategorias extends CI_Controller {
         
         unset($dados['id_categoria']);
 
-        $this->CategoriaDB->alterar_categoria($dados, $id_categoria);
+        $this->AdmCadastroCategoriasDB->alterar_categoria($dados, $id_categoria);
 
         $this->categorias();
     }
@@ -51,7 +51,7 @@ class AdmCadastroCategorias extends CI_Controller {
 
         $id_categoria = $dados['id_categoria'];
 
-        $this->CategoriaDB->excluir_categoria(
+        $this->AdmCadastroCategoriasDB->excluir_categoria(
             $id_categoria
         );
 
