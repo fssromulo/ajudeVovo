@@ -86,6 +86,13 @@
 					$arrPessoa['id_perfil'] = 3;
 		   	} else if ( isset($dados['is_contratante']) == true ) {
 					$this->perfil = 'contratante';
+					
+					// Se não for ajudante não deve salvar esses dados
+					unset($arrPessoa['id_cidade']);
+					unset($arrPessoa['id_estado']);
+					unset($arrPessoa['nome_mae']);
+					unset($arrPessoa['nome_pai']);
+					
 					$arrPessoa['id_estado_pessoa_fisica'] = 1;
 					$arrPessoa['id_perfil'] = 2;
 		   	}
