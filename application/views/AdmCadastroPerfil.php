@@ -42,37 +42,36 @@
                   <td>
                       <span style="cursor:pointer;" class="material-icons" ng-click="carregarAlterar(lista)">create</span>
                      
-                        <span   style="cursor:pointer;"
-                                class="material-icons"
-                                data-toggle="modal"
-                                data-target="#modal_excluir"
-                                ng-click="carregarExcluir(lista)"> delete              
-                        </span>
+                       
+                        <i class="material-icons" ng-click="carregarExcluir(lista)">
+                            delete
+                        </i>
                      
                       
                   </td>
               </tr>
           </table>
           
-          <div class="modal" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+          <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!!</h4>
-                        </div>
-                        
-                        <div class="modal-content">
+                            <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!</h4>
+                        </div>                        
+                        <div class="modal-body">
                                 Deseja excluir este registro?                            
                         </div>
-
+                        <br><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
-                            <button type="button" class="btn btn-success" ng-click="excluirPerfil()">Sim</button>
+                            <button type="button" class="btn-flat blue-text" ng-click="fecharModalExcluir()">Não</button>
+                            <button type="button" class="btn-flat blue-text" ng-click="excluirPerfil()">Sim</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            
        
       </div>
     </div>
