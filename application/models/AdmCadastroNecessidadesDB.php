@@ -21,15 +21,15 @@ class AdmCadastroNecessidadesDB extends CI_Model {
         );
     }
 
-    public function alterar_necessidade($arrNecessidadeAlterar, $id_necessidade_especial) {
+    public function alterar_necessidade($arrNecessidades, $id_necessidade_especial) {
         $this->db->update(
             'necessidade_especial',
-            $arrNecessidadeAlterar,
+            $arrNecessidades,
             array('id_necessidade_especial' => $id_necessidade_especial)
         );
     }
 
-    public function excluir_perfil($id_necessidade_especial) {
+    public function excluir_necessidade($id_necessidade_especial) {
         $this->db->delete(
             'necessidade_especial',
             array('id_necessidade_especial' => $id_necessidade_especial)

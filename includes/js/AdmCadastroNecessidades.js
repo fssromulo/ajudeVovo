@@ -39,7 +39,8 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
         var arrNecessidadesSalvar = {
             'descricao' : $scope.descricao
             
-        }        
+        }  
+        console.log(arrNecessidadesSalvar);      
 
         $http.post(
             '../AdmCadastroNecessidades/salvar',
@@ -65,6 +66,13 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
         });
     };
 
+
+    $scope.carregarExcluir = function(necessidades_especiais) {
+        $("#modal_excluir").modal();
+        $("#modal_excluir").modal('open');
+        $scope.id_necessidade_especial = necessidades_especiais.id_necessidade_especial;
+    };
+
     $scope.excluirNecessidade = function() {
         var arrNecessidadesExcluir = {
             "id_necessidade_especial" : $scope.id_necessidade_especial
@@ -74,10 +82,16 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
             '../AdmCadastroNecessidades/excluir',
             arrNecessidadesExcluir
         ).success(function (data) {
-            $('#modal_excluir').modal('toggle');
             $scope.arrNecessidadesEspeciais = data;
+            $scope.necessidades_especiais();
         });
+        $scope.fecharModalExcluir();
     }
+
+    $scope.fecharModalExcluir = function() {
+        $("#modal_excluir").modal();
+        $("#modal_excluir").modal('close');
+    };
 
     $scope.cancelar = function () {
         $scope.is_alterar = false;
@@ -92,9 +106,6 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
         $scope.descricao = necessidades_especiais.descricao;
     };
 
-    $scope.carregarExcluir = function(perfil) {
-        $scope.id_necessidade_especial = necessidades_especiais.id_necessidade_especial;
-    };
 
     angular.element(document).ready(function () {
 		$scope.__construct();	
