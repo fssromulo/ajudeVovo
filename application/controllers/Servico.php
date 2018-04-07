@@ -97,6 +97,7 @@ class Servico extends CI_Controller {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
         $this->ServicoDB->atualizar_servico($dados);
+        $this->salvarDiaDisponivel($dados['id_servico'], $dados['listaAtendimento']);
     }
 
     public function buscarDiaAtendimentoServico() {
@@ -112,7 +113,8 @@ class Servico extends CI_Controller {
     public function excluirDiasAtendimentoEditados() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
-        var_dump($dados);
-        die();
+        $dias = implode(',', $dados);
+
+        $this->ServicoDB->excluir_dia_atendimento_editado($dias);
     }
 }

@@ -148,5 +148,12 @@ class ServicoDB extends CI_Model {
             where 
                 d.id_servico=".$id_servico);
     }
+
+    public function excluir_dia_atendimento_editado($id_dia_atendimento) {
+        return $this->db->query(
+            'delete from dia_disponivel 
+            where id_dia_disponivel in ('.$id_dia_atendimento.')'
+        );
+    }
 }
 ?>
