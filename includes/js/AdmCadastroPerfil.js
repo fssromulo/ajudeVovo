@@ -65,19 +65,32 @@ app.controller("ctrlrAdmCadastroPerfil", function($scope,$rootScope,$http) {
         });
     };
 
+   $scope.carregarExcluir = function(perfil) {
+       
+            $("#modal_excluir").modal();
+            $("#modal_excluir").modal('open');
+            $scope.id_perfil = perfil.id_perfil;
+    };
+
     $scope.excluirPerfil = function() {
-        var arrPerfilExcluir = {
+       var arrPerfilExcluir = {
             "id_perfil" : $scope.id_perfil
         }
+        $http
+            .post('../AdmCadastroPerfil/excluir', arrPerfilExcluir)
+            .success(function(data) {
+                $scope.arrPerfilExcluir = data;
+                $scope.perfil();
+            });
 
-        $http.post(
-            '../AdmCadastroPerfil/excluir',
-            arrPerfilExcluir
-        ).success(function (data) {
-            $('#modal_excluir').modal('toggle');
-            $scope.arrPerfil = data;
-        });
-    }
+        $scope.fecharModalExcluir();
+
+    };
+
+    $scope.fecharModalExcluir = function() {
+        $("#modal_excluir").modal();
+        $("#modal_excluir").modal('close');
+    };
 
     $scope.cancelar = function () {
         $scope.is_alterar = false;
@@ -92,9 +105,7 @@ app.controller("ctrlrAdmCadastroPerfil", function($scope,$rootScope,$http) {
         $scope.descricao = perfil.descricao;
     };
 
-    $scope.carregarExcluir = function(perfil) {
-        $scope.id_perfil = perfil.id_perfil;
-    };
+    
 
     angular.element(document).ready(function () {
 		$scope.__construct();	
