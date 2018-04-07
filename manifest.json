@@ -24,9 +24,6 @@
     }],
   "start_url": "./Home/",
   "display": "standalone",
-  "related_applications": [{
-    "platform": "web"
-  }],
   "background_color": "#1889ff",
   "theme_color": "#1889ff"
 }

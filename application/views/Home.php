@@ -91,12 +91,12 @@
           <ul>
             <li>
               <a class="white-text" href="https://www.facebook.com/ajudeOvovo/">@AjudeOvovo
-               <img src="../includes/imagens/icon-facebook.png" width="50px">
+               <img alt="" src="../includes/imagens/icon-facebook.png" width="50px">
               </a>
             </li>
             <li>
               <a class="white-text" href="https://www.instagram.com/?hl=pt-br">@Ajudeovovo
-                <img src="../includes/imagens/icon-instagram.png" width="60">
+                <img alt="" src="../includes/imagens/icon-instagram.png" width="60">
                 
               </a>
             </li>

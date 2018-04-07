@@ -195,8 +195,13 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		let cidadeEndereco  = $scope.arrListaCidadeEndereco.cidade['id_cidade'];
 		
 		// codigos do estado e da cidade de nascimento
-		let id_estado  = $scope.arrListaEstadoNascimento.estado['id_estado'];
-		let id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];
+		let id_estado  = '';
+		let id_cidade  = '';
+		
+		if ( $scope.is_ajudante ) {
+			id_estado  = $scope.arrListaEstadoNascimento.estado['id_estado'];
+			id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];		
+		}
 
 		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;	
 		// Verifica se deve pegar a data do campo referente ao mobile ou do campo do referente ao site
