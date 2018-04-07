@@ -82,45 +82,47 @@
                   </div>
 
 
-                 <div class="row">
-                    <div input-field class="session col s12 m6">
-                       <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" class="validate">
-                       <label for="nome_mae">Nome da m&atilde;e</label>                                       
-                    </div>
-                    
-                    <div input-field class="session col s12 m6">
-                       <input autocomplete="off" name="nome_pai" ng-model="objPessoa.nome_pai" id="nome_pai" type="text" class="validate">
-                       <label for="nome_pai">Nome do pai</label>                  
-                    </div>
-                 </div>
+                 <div ng-show="is_ajudante">
+                   <div class="row">
+                      <div input-field class="session col s12 m6">
+                         <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" class="validate">
+                         <label for="nome_mae">Nome da m&atilde;e</label>                                       
+                      </div>
+                      
+                      <div input-field class="session col s12 m6">
+                         <input autocomplete="off" name="nome_pai" ng-model="objPessoa.nome_pai" id="nome_pai" type="text" class="validate">
+                         <label for="nome_pai">Nome do pai</label>                  
+                      </div>
+                   </div>
 
 
-                  <div class="row">
-                     <div input-field class="session col s12 m6">
-                        <select
-                           ng-options="listaEstadoNascimento.descricao for listaEstadoNascimento in arrListaEstadoNascimento.options track by listaEstadoNascimento.id_estado"
-                           ng-model="arrListaEstadoNascimento.estado"
-                           name="estadoNascimento"
-                           id="estadoNascimento"
-                           ng-change="getListaCidadeNascimento()"
-                           material-select watch
-                        >
-                           <option value="">Estado de nascimento...</option>
-                        </select>
-                     </div>                     
+                    <div class="row">
+                       <div input-field class="session col s12 m6">
+                          <select
+                             ng-options="listaEstadoNascimento.descricao for listaEstadoNascimento in arrListaEstadoNascimento.options track by listaEstadoNascimento.id_estado"
+                             ng-model="arrListaEstadoNascimento.estado"
+                             name="estadoNascimento"
+                             id="estadoNascimento"
+                             ng-change="getListaCidadeNascimento()"
+                             material-select watch
+                          >
+                             <option value="">Estado de nascimento...</option>
+                          </select>
+                       </div>                     
 
 
-                     <div input-field class="session col s12 m6">
-                        <select
-                           ng-options="listaCidade.descricao for listaCidade in arrListaCidadeNascimento.options"
-                           ng-model="arrListaCidadeNascimento.cidade"
-                           name="cidadeNascimento"
-                           id="cidadeNascimento"
-                           material-select watch
-                        >
-                           <option value="">Cidade de nascimento...</option>
-                        </select>
-                     </div>  
+                       <div input-field class="session col s12 m6">
+                          <select
+                             ng-options="listaCidade.descricao for listaCidade in arrListaCidadeNascimento.options"
+                             ng-model="arrListaCidadeNascimento.cidade"
+                             name="cidadeNascimento"
+                             id="cidadeNascimento"
+                             material-select watch
+                          >
+                             <option value="">Cidade de nascimento...</option>
+                          </select>
+                       </div>  
+                    </div>  
                   </div>  
 
                    <div class="row">
