@@ -16,6 +16,6 @@ class Prestador {
 	public function getPrestador( $id_servico_solicitacao ) {
 		$arrDados = $this->CI->PrestadorDB->getPrestador( $id_servico_solicitacao )->result_array();
 		return $arrDados[0];
-   }
+   	}
 
 }
