@@ -183,18 +183,6 @@
                                     type="submit"
                                     data-ng-click="!id_servico ? salvarServico() : atualizarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
-<<<<<<< HEAD
-=======
-                                    ng-show="is_alterar"
-                                >
-                                    <i class="material-icons right">check</i>Atualizar
-                                </button>
-                                <button
-                                    type="submit"
-                                    data-ng-click="salvarServico()"
-                                    class="waves-effect waves-light btn light-blue darken-2 col s5 right"
-                                    ng-show="!is_alterar"
->>>>>>> master
                                 >
                                     <i class="material-icons right">check</i>Salvar
                                 </button>
