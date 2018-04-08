@@ -18,11 +18,11 @@
 	</div>  
 	<div class="row">
 		<div class="col-sm-4">
-			<button type="button" ng-click="salvarAvaliacao()" class="btn btn-success">
-				Salvar
-			</button>
 			<button type="button" ng-click="cancelar()" class="btn btn-danger">
 				Cancelar
+			</button>
+			<button type="button" ng-click="salvarAvaliacao()" class="btn btn-success">
+				Salvar
 			</button>
 		</div>
 	</div>
