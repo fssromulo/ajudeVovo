@@ -25,7 +25,7 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->library('controleacesso');
+		$this->load->library('ControleAcesso');
 		$this->load->helper('url');	
 
 		$this->load->model('LoginDB');

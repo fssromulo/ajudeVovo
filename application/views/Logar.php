@@ -52,7 +52,6 @@
                                           <a class="left-align" href="#" data-ng-click="novoCadastro()">Novo por aqui? Cadastre-se!</a>
                                         </div>
                                   </div>
-                                  <!-- <div class="row"> -->
                                     <div class="col s12 center-align">
 
                                     <div class="col s6">
@@ -67,14 +66,12 @@
                                           <i class="material-icons right">arrow_forward</i>Entrar</button>
                                       </div>
                                     </div>
-                                  <!-- </div> -->
                             </form>
                           </div>
                         </div>
 
                     </div>
-              </div>
-        
+              </div>        
     </div>
     </div>
     <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
@@ -82,9 +79,7 @@
     <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
-    ?> 
-
+    ?>
 	<script type="text/javascript" src="../includes/js/home.js?<?php echo date('YmdHis');?>"></script>
 </body>
-
 </html>

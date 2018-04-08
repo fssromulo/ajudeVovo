@@ -5,7 +5,7 @@ class Categoria extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->library('controleacesso');
+        $this->load->library('ControleAcesso');
         $this->load->model('CategoriaDB');
         $this->load->helper('url');        
     }

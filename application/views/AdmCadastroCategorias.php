@@ -2,19 +2,11 @@
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
 ?>
-
-  <!-- CSS  -->
-<!--   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
-
 </head>
 <body>
    <?php
-        // Importa o cabeçalho padrao a todas as telas
-        $this->load->view('MenuAdministracao.php');
-    ?>
-
+    // Importa o cabeçalho padrao a todas as telas
+    $this->load->view('MenuAdministracao.php'); ?>
   <div class="user-view">
     <div ng-app="appAngular" ng-controller="ctrlrAdmCadastroCategoria">
     
@@ -44,12 +36,8 @@
                         </button>
                     </div>
                 </form>
-            </div>
-                        
-
-                <br>
-            
-
+            </div>                    
+            <br>
             <table class="responsive-table">
                 <tr>
                     <th> Codigo </th>
@@ -72,13 +60,10 @@
                 </tr>
             </table>
         </div>
-        
-
             <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!!</h4>
                         </div>
                         
@@ -87,22 +72,21 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Não</button>
-                            <button type="button" class="btn btn-success" ng-click="excluirCategoria()">Sim</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="fecharModalExcluir()">
+                                Não
+                            </button>
+                            <button type="button" class="btn btn-success" ng-click="excluirCategoria()">
+                                Sim
+                            </button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
         </div>  
-       
-
-
-  <?php
+    <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?> 
-
     <script type="text/javascript" src="../includes/js/AdmCadastroCategorias.js"></script>
-
   </body>
 </html>

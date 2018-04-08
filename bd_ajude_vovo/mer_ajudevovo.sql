@@ -523,8 +523,8 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `ajudevovo`.`estado_pessoa_fisica`;
 
 CREATE TABLE IF NOT EXISTS `ajudevovo`.`estado_pessoa_fisica` (
-	id_estado_pessoa_fisica int primary key auto_increment,
-	descricao varchar(100)
+  id_estado_pessoa_fisica int primary key auto_increment,
+  descricao varchar(100)
 ) Engine=innoDB;
 
 ALTER TABLE `pessoa_fisica`
@@ -535,6 +535,11 @@ ALTER TABLE `pessoa_fisica`
 
 ALTER TABLE `contato`
   ADD CONSTRAINT `fk_contato_pessoa_fisica` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoa_fisica` (`id_pessoa_fisica`) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE `horario_disponivel`
+DROP FOREIGN KEY `horario_disponivel_ibfk_1`;
+ALTER TABLE `horario_disponivel`
+ADD CONSTRAINT `horario_disponivel_ibfk_1` FOREIGN KEY (`id_dia_disponivel`) REFERENCES `dia_disponivel` (`id_dia_disponivel`) ON DELETE CASCADE;
 
 USE `ajudevovo` ;
 
@@ -549,54 +554,54 @@ DELIMITER $$
 USE `ajudevovo`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `get_telefone`( id_pessoa_fisica int) RETURNS varchar(255) CHARSET latin1
 BEGIN
-	
-	DECLARE fone1 varchar(255);
-	DECLARE fone2 varchar(255);
-	DECLARE fone3 varchar(255);		
+  
+  DECLARE fone1 varchar(255);
+  DECLARE fone2 varchar(255);
+  DECLARE fone3 varchar(255);   
 
-	SELECT
-		ct.descricao
-	INTO
-		fone1
-	FROM
-		contato ct
-	WHERE
-		ct.id_pessoa = id_pessoa_fisica
-		AND ct.id_tipo_contato = 1;
+  SELECT
+    ct.descricao
+  INTO
+    fone1
+  FROM
+    contato ct
+  WHERE
+    ct.id_pessoa = id_pessoa_fisica
+    AND ct.id_tipo_contato = 1;
 
-	SELECT
-		ct.descricao
-	INTO
-		fone2
-	FROM
-		contato ct
-	WHERE
-		ct.id_pessoa = id_pessoa_fisica
-		AND ct.id_tipo_contato = 2;
+  SELECT
+    ct.descricao
+  INTO
+    fone2
+  FROM
+    contato ct
+  WHERE
+    ct.id_pessoa = id_pessoa_fisica
+    AND ct.id_tipo_contato = 2;
 
-	SELECT
-		ct.descricao
-	INTO
-		fone3
-	FROM
-		contato ct
-	WHERE
-		ct.id_pessoa = id_pessoa_fisica
-		AND ct.id_tipo_contato = 3;
-	
-	if (fone1 is not null OR fone1 <> '') then
-		return fone1;
-	end if;
+  SELECT
+    ct.descricao
+  INTO
+    fone3
+  FROM
+    contato ct
+  WHERE
+    ct.id_pessoa = id_pessoa_fisica
+    AND ct.id_tipo_contato = 3;
+  
+  if (fone1 is not null OR fone1 <> '') then
+    return fone1;
+  end if;
 
-	if (fone2 is not null OR fone2 <> '') then
-		return fone2;
-	end if;	
-	
-	if (fone3 is not null OR fone3 <> '') then
-		return fone3;
-	end if;	
-	
-	return 'Erro - nenhum telefone cadastrado';
+  if (fone2 is not null OR fone2 <> '') then
+    return fone2;
+  end if; 
+  
+  if (fone3 is not null OR fone3 <> '') then
+    return fone3;
+  end if; 
+  
+  return 'Erro - nenhum telefone cadastrado';
 END$$
 
 DELIMITER ;
@@ -612,23 +617,23 @@ DELIMITER $$
 USE `ajudevovo`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao`(`id_servico_p` INT) RETURNS float
 BEGIN
-	DECLARE retorno float;
-	
-	select
-		avg(a.nota)
-	into
-		retorno
-	from
-		avaliacao a,
-		servico_avaliacao sa
-	where a.id_avaliacao = sa.id_avaliacao
-	and sa.id_servico = id_servico_p;
-	
-	if (retorno is null) then
-		set retorno = 0;
-	end if;
-	
-	return retorno;
+  DECLARE retorno float;
+  
+  select
+    avg(a.nota)
+  into
+    retorno
+  from
+    avaliacao a,
+    servico_avaliacao sa
+  where a.id_avaliacao = sa.id_avaliacao
+  and sa.id_servico = id_servico_p;
+  
+  if (retorno is null) then
+    set retorno = 0;
+  end if;
+  
+  return retorno;
 END$$
 
 DELIMITER ;
@@ -644,23 +649,23 @@ DELIMITER $$
 USE `ajudevovo`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `obter_se_pode_excluir`(`id_prestador_p` INT) RETURNS varchar(1)
 BEGIN
-	DECLARE retorno varchar(1);
-	
-	select
-		case
-			when count(1) = 0 then 'S'
-			else 'N'
-		end
-	into
-		retorno
-	from
-		servico_solicitado ss,
-		servico s
-	where ss.id_servico = s.id_servico
-	and s.id_prestador = id_prestador_p
-	and ss.id_estado_operacao in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
-	
-	return retorno;
+  DECLARE retorno varchar(1);
+  
+  select
+    case
+      when count(1) = 0 then 'S'
+      else 'N'
+    end
+  into
+    retorno
+  from
+    servico_solicitado ss,
+    servico s
+  where ss.id_servico = s.id_servico
+  and s.id_prestador = id_prestador_p
+  and ss.id_estado_operacao in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
+  
+  return retorno;
 END$$
 
 DELIMITER ;
@@ -676,17 +681,17 @@ DELIMITER $$
 USE `ajudevovo`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `obter_quantidade_servicos`(`id_servico_p` INT) RETURNS int(11)
 BEGIN
-	DECLARE retorno INT;
-	
-	select
-		count(*)
-	into
-		retorno
-	from
-		servico_solicitado ss
-	where ss.id_servico = id_servico_p;
-	
-	return retorno;
+  DECLARE retorno INT;
+  
+  select
+    count(*)
+  into
+    retorno
+  from
+    servico_solicitado ss
+  where ss.id_servico = id_servico_p;
+  
+  return retorno;
 END$$
 
 DELIMITER ;

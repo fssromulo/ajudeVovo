@@ -51,7 +51,7 @@ class AdmCadastroCategorias extends CI_Controller {
 
         $id_categoria = $dados['id_categoria'];
 
-        $this->CategoriaDB->excluir_categoria(
+        $this->AdmCadastroCategoriasDB->excluir_categoria(
             $id_categoria
         );
 

@@ -1,26 +1,22 @@
 <?php
     // Importa o cabeçalho padrao a todas as telas
     $this->load->view('nucleo/header.php');
-?>
-   
+?>   
 </head>
-
-
 <body>
-
     <?php
         // Importa o cabeçalho padrao a todas as telas
         $this->load->view('MenuPrestador.php');
     ?>
-
     <div ng-app="appAngular" ng-controller="controllerControlePrestador">  
+
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     <div class="container">
          <ul  class="collapsible" data-collapsible="accordion"  >
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
                     
-                    <img src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
+                    <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
                     <!--<div class="col s6 col m6 flow-text" >-->
                         <p class="truncate">{{lista.descricao}}</p> 
                         <div class="right-align">
@@ -37,8 +33,9 @@
                         {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação:  {{lista.ds_estado_atual}} <br/>
 
-                    <div   ng-show="{{lista.id_estado_operacao}} == 3">
-                       
+
+                        <div ng-show="{{lista.id_estado_operacao}} == 3">
+                           
                             <button 
                                 title="Negar"
                                 ng-click="negar(lista.id_servico)"
@@ -49,17 +46,17 @@
                                     </span>
                             </button>
 
-                             <a 
-                            title="Aceitar" 
-                            ng-click="aceitar(lista.id_servico)"
-                            class="waves-effect waves-light btn light darken-1"
-                            style="font-size: 16px;">
-                            <span class="thumbs-up" >
-                                <i class="material-icons">thumb_up</i>
-                            </span>
-                        </a>
-                    </div>
-                    
+                            <a 
+                                title="Aceitar" 
+                                ng-click="aceitar(lista.id_servico)"
+                                class="waves-effect waves-light btn light darken-1"
+                                style="font-size: 16px;">
+                                <span class="thumbs-up" >
+                                    <i class="material-icons">thumb_up</i>
+                                </span>
+                            </a>
+                        </div>
+                        
                         <div ng-show="{{lista.id_estado_operacao}} == 4">
                             <button 
                                 title="Finalizar Serviço" 
@@ -68,15 +65,11 @@
                                 style="font-size: 14px;">Finalizar Serviço
                                     <span class="material-icons">check</span>
                             </button>
-                        </div>
-                   
-                </div>
-            </li>
-            
-        </ul>
-    </div>
-
-        <!-- Modal -->
+                        </div>                
+                    </div>
+                </li>            
+            </ul>
+        </div>
         <div class="modal fade" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="modalAvaliacaoLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -93,7 +86,6 @@
             </div>
           </div>
         </div>
-        <!-- Modal -->
     </div>
 
     <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
@@ -101,7 +93,6 @@
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?>
-
     <script type="text/javascript" src="../includes/js/RealizarAvaliacao.service.js"></script>
     <script type="text/javascript" src="../includes/js/ConsultaControlePrestador.js"></script>
     <script type="text/javascript" src="../includes/js/Avaliacao.controller.js"></script>

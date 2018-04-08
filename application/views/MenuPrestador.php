@@ -34,7 +34,7 @@
           <div class="background blue #1889ff">
             <div class="blue lighten-1"></div>
           </div>
-          <a href="#!user"><img class="circle" src="../includes/imagens/<?php echo $this->session->userdata('imagem_pessoa');?>"></a>
+          <a href="#!user"><img alt="<?php echo $this->session->userdata('nome');?>" class="circle" src="../includes/imagens/<?php echo $this->session->userdata('imagem_pessoa');?>"></a>
           <a href="#!name"><span class="white-text name"><?php echo $this->session->userdata('nome');?></span></a>
           <a href="#!email"><span class="white-text email"><?php echo $this->session->userdata('login');?></span></a>
           </div>
@@ -61,8 +61,7 @@
                   <button type="button" class="btn btn-success" ng-click="excluir()">Sim</button>
                   <button type="button" class="btn btn-danger" ng-click="fechar()">Não</button>
               </div>
-          </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
+          </div>
+      </div>
+  </div>
 </div>

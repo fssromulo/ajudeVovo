@@ -51,14 +51,6 @@ class ServicoDB extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function alterar_servico($arrServicoAlterar, $id_servico) {
-        $this->db->update(
-            'servico',
-            $arrServicoAlterar,
-            array('id_servico' => $id_servico)
-        );
-    }
-
     public function inativar_servico($id_servico) {
         $data = array('ativo' => 0);
         $this->db->where('id_servico', $id_servico);
@@ -139,6 +131,19 @@ class ServicoDB extends CI_Model {
         );
     }
 
+
+    public function atualizar_servico($arrServicoAtualizar) {
+        $data = array (
+            'id_categoria' => $arrServicoAtualizar['id_categoria'],
+            'descricao' => $arrServicoAtualizar['descricao'],
+            'valor' => $arrServicoAtualizar['valor'],
+            'detalhe' => $arrServicoAtualizar['detalhe']
+        );
+
+        $this->db->where('id_servico', $arrServicoAtualizar['id_servico']);
+        $this->db->update('servico', $data);
+    }
+    
     public function buscar_dia_atendimento_servico($id_servico) {
         return $this->db->query(
             "select 
@@ -155,6 +160,13 @@ class ServicoDB extends CI_Model {
                 d.id_dia_disponivel = h.id_dia_disponivel
             where 
                 d.id_servico=".$id_servico);
+    }
+
+    public function excluir_dia_atendimento_editado($id_dia_atendimento) {
+        return $this->db->query(
+            'delete from dia_disponivel 
+            where id_dia_disponivel in ('.$id_dia_atendimento.')'
+        );
     }
 }
 ?>

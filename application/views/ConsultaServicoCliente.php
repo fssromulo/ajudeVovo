@@ -4,7 +4,6 @@
 ?>
 <link href="http://next.materializecss.com/extras/noUiSlider/nouislider.css"  type="text/css" rel="stylesheet"/>
 </head>
-
 <body>  
     <?php
         // Importa o cabeçalho padrao a todas as telas
@@ -47,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-<div>
+	<div>
 		<div 
 			ng-repeat="servico in arrServicos" 
 			after-load-services-directive>
@@ -127,8 +126,6 @@
   	</div>
 
 	</div>
-
-	  
 	<?php
 		// Importa o cabeçalho rodape padrao a todas as telas
 		$this->load->view('nucleo/footer.php');
@@ -139,11 +136,9 @@
 	<script type="text/javascript" src="http://next.materializecss.com/extras/noUiSlider/nouislider.js"></script>  
 	<!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/v0.100.2/dist/js/materialize.min.js"></script> -->
 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-	<!-- MY App -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>
 	<script type="text/javascript" src="../includes/js/DetalheServico.js"></script>
-
 	<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 </body>
 </html>
