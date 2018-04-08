@@ -96,8 +96,16 @@ class Servico extends CI_Controller {
     public function atualizarServico() {
         (array)$dados = json_decode(file_get_contents("php://input"), true);
 
+        $listaAtendimento = $dados['listaAtendimento'];
+
+        foreach ($listaAtendimento as $chave1 => $value) {
+            if (isset($value['id_dia_disponivel'])) {
+                unset($listaAtendimento[$chave1]);
+            }
+        }
+
         $this->ServicoDB->atualizar_servico($dados);
-        $this->salvarDiaDisponivel($dados['id_servico'], $dados['listaAtendimento']);
+        $this->salvarDiaDisponivel($dados['id_servico'], $listaAtendimento);
     }
 
     public function buscarDiaAtendimentoServico() {
