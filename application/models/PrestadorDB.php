@@ -73,7 +73,21 @@ class PrestadorDB extends CI_Model{
 		);
 	}
 
-	  
+	public function getPrestadores() {
+		return 
+			$this->db->query("
+				select
+					p.id_prestador,
+					pf.nome,
+					pf.imagem_pessoa
+				from
+					prestador p,
+					pessoa_fisica pf
+				where
+					p.id_pessoa = pf.id_pessoa_fisica
+			", false);
+	}
+
 	public function getDadosServicosSolicitados($id_prestador) {
 		return $this->db->query("
 			select

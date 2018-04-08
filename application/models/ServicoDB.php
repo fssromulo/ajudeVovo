@@ -96,7 +96,7 @@ class ServicoDB extends CI_Model {
         return $query->num_rows();
     }
 
-    public function get_servicos_cliente() {
+    public function get_servicos_cliente($filter, $order) {
         return $this->db->query("
         select
             s.id_servico id_servico,
@@ -123,7 +123,20 @@ class ServicoDB extends CI_Model {
 			pf.id_estado_pessoa_fisica = 1
         and		
             s.id_categoria = c.id_categoria 
-        ", FALSE);
+        and		
+            c.id_categoria = coalesce(?, c.id_categoria)
+        and		
+            RPAD(concat_ws(' - ', s.descricao, s.detalhe), 255, ' ') like lower('%' ? '%') 
+        and		
+            lower(pf.nome) like lower('%' ? '%') 
+        order by
+            ".$order."
+        ", array(
+                $filter['categoria'],
+                $filter['descricao'],
+                $filter['ajudante'],
+            )
+        );
     }
 
     public function buscar_dia_atendimento_servico($id_servico) {

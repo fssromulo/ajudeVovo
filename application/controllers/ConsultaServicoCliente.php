@@ -31,7 +31,9 @@ class ConsultaServicoCliente extends CI_Controller {
 	}
 
 	public function getServicosCliente() {
-        $listar = $this->ServicoDB->get_servicos_cliente()->result_array();
+		(array)$dados = json_decode(file_get_contents("php://input"), true);   
+
+        $listar = $this->ServicoDB->get_servicos_cliente($dados[0], $dados[1])->result_array();
 
         echo json_encode($listar);
     }

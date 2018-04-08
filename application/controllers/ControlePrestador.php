@@ -38,6 +38,11 @@ class ControlePrestador extends CI_Controller {
 		)->result_array();
 
 		echo json_encode($obterSePodeExcluir);
+	}
+
+	public function getPrestadores() {
+		$listar = $this->PrestadorDB->getPrestadores()->result_array();
+		echo json_encode($listar);
 	}	
 
 	/*

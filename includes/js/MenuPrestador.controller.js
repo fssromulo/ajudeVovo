@@ -26,8 +26,7 @@ app.controller(
 
 	$scope.excluir = () => {
 		$http.post(
-			'../Pessoa/inativarPessoa',
-			[]
+			'../Pessoa/inativarPessoa'
 		).success((data) => {
 			$scope.fechar();
 			location.href = "../home/";
@@ -36,8 +35,7 @@ app.controller(
 
 	$scope.podeExcluirConta = () => {
 		$http.post(
-			'../ControlePrestador/obterSePodeExcluir',
-			[]
+			'../ControlePrestador/obterSePodeExcluir'
 		).success((data) => {
 			$scope.podeExcluirContaRetorno = data[0].pode == "S";
 		});
