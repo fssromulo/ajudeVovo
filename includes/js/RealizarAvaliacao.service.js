@@ -47,5 +47,13 @@ app.service(
 		this.getIdServicoSolicitado = function() {
 			return this.id_servico;
 		}
+
+		this.setMetodoAtualizar = (metodoAtualizar) => {
+			this.metodoAtualizar = metodoAtualizar;
+		}
+
+		this.atualizar = () => {
+			this.metodoAtualizar && this.metodoAtualizar();
+		}
 	}
 );

@@ -19,12 +19,12 @@ app.controller(
 	    		'../avaliacao/salvar',
 	    		arrAvaliacao
 	    	).success(function (data) {
-
-
 	   			RealizaAvaliacao.atualizarEstadoService();	    		
 
 	    		$scope.arrAvaliacao = data;
-	    		$scope.cancelar();
+				$scope.cancelar();
+				
+				RealizaAvaliacao.atualizar();
 		});
 	};
 

@@ -18,10 +18,10 @@
                   <a href="../ControlePrestador/">Serviços solicitados</a>
               </li>
               <li>
-                <a href="../Login/sairSistema">Sair</a>
+                  <a ng-show="podeExcluirContaRetorno" id="delete_forever_header">Excluir minha conta</a>
               </li>
               <li>
-                  <a ng-show="podeExcluirContaRetorno" id="delete_forever_header">Excluir minha conta</a>
+                <a href="../Login/sairSistema">Sair</a>
               </li>
             </ul>
 
@@ -42,8 +42,8 @@
         <li><a href="#perfil_implementar"><i class="material-icons">face</i>Perfil</a></li>
         <li><a href="../ListarServico/"><i class="material-icons">room_service</i>Meus serviços</a></li>
         <li><a href="../ControlePrestador/"><i class="material-icons">history</i>Serviços solicitados</a></li>
-        <li><a href="../Login/sairSistema"><i class="material-icons">rowing</i>Sair</a></li>
         <li><a ng-show="podeExcluirContaRetorno" id="delete_forever"><i class="material-icons">delete_forever</i>Excluir minha conta</a></li>
+        <li><a href="../Login/sairSistema"><i class="material-icons">rowing</i>Sair</a></li>
       </ul>
   </header>
 
