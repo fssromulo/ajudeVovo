@@ -14,7 +14,7 @@
          <ul  class="collapsible" data-collapsible="accordion"  >
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
-                    <img alt="" src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+                    <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"/>&nbsp;
                     <p class="truncate"> {{lista.servico}}</p>
                     <span ng-show="lista.ativo != 1" class="new badge red right" data-badge-caption="" >
                         Inativo! 
