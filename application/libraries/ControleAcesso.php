@@ -12,6 +12,7 @@ class ControleAcesso {
 		$this->CI =& get_instance();
 
 		$this->CI->load->library('session');
+		$this->CI->load->helper('url');
 	}
 
 	/**
@@ -32,16 +33,27 @@ class ControleAcesso {
    	$this->CI->session->sess_destroy();
    }
    
+   public function getDiretorioArquivos(){ 
+   	$arrDiretorios = array();
+
+   	// Pega a URL BASE DO SISTEMA para usar na sessão
+   	// Assim se precisarmos usar a url de qualquer diretorio(Imagens) estará na sessao
+		$base_url = $this->CI->config->base_url();
+
+		$arrDiretorios = array(
+			'DIR_DOCS_PESSOAS'   => $base_url . 'includes/imagens/documentos_pessoas/', 
+			'DIR_FOTOS_PESSOAS'  => $base_url . 'includes/imagens/fotos_pessoas/'
+		);
+
+   	return $arrDiretorios;
+   }
 
    public function verificaImagemPessoa( $img_pessoa = '' ) { 						
-		
 		// SETA UMA IMAGEM PADRÃO se vazio
 		if ( empty($img_pessoa) ) {			
-			$img_pessoa = 'pwa_icons/android-chrome-192x192.png';
-			return $img_pessoa;
+			$img_pessoa = 'ajudevovo_padrao.png';
 		}
-	
-		return 'fotos_pessoas/' . $img_pessoa;	
+		return $img_pessoa;	
    }
 
 }

@@ -83,6 +83,47 @@
 
 
                  <div ng-show="is_ajudante">
+                  <div class="row">
+                      <div class="session col s12 m12">
+                        <span><strong>Insira a foto(imagem) de um documento seu. Exemplo: Identidade ou CNH.</strong></span>
+                     </div>
+                  </div>
+                  <div class="row">
+                      <div input-field class="session col s12 m6">
+                         <div class="file-field input-field">
+                           <div class="btn">
+                             <span>Imagem Frente</span>
+                              <input
+                                 type="file"
+                                 accept="image/jpg, image/jpeg, image/png"
+                                 id="img_frente"
+                                 onchange="angular.element(this).scope().getImgFrente(event)" 
+                              />
+                           </div>
+                           <div class="file-path-wrapper">
+                             <input class="file-path validate" type="text">
+                           </div>
+                         </div>
+                      </div>
+                      
+                      <div input-field class="session col s12 m6">
+                         <div class="file-field input-field">
+                           <div class="btn">
+                             <span>Imagem Verso</span>
+                              <input
+                                 type="file"
+                                 accept="image/jpg, image/jpeg, image/png"
+                                 id="img_verso"
+                                 onchange="angular.element(this).scope().getImgVerso(event)" 
+                              />
+                           </div>
+                           <div class="file-path-wrapper">
+                             <input class="file-path validate" type="text">
+                           </div>
+                         </div>
+                      </div>
+                   </div>
+
                    <div class="row">
                       <div input-field class="session col s12 m6">
                          <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" class="validate">
@@ -95,7 +136,6 @@
                       </div>
                    </div>
 
-
                     <div class="row">
                        <div input-field class="session col s12 m6">
                           <select
@@ -106,7 +146,7 @@
                              ng-change="getListaCidadeNascimento()"
                              material-select watch
                           >
-                             <option value="">Estado de nascimento...</option>
+                             <option value="">Estado de origem...</option>
                           </select>
                        </div>                     
 
@@ -131,10 +171,10 @@
                          <div class="file-field input-field">
                            <div class="btn">
                              <span>Foto perfil</span>
-                              <input type="file" ng-jcrop-input="upload" />
+                              <input type="file" accept="image/jpg, image/jpeg, image/png" ng-jcrop-input="upload" id="foto_perfil" />
                            </div>
                            <div class="file-path-wrapper">
-                             <input class="file-path validate" type="text">
+                             <input class="file-path validate" type="text" id="ds_foto_perfil">
                            </div>
                          </div>
 
@@ -144,11 +184,12 @@
 
                <div class="col s12 center-align">
 
+               <div class="col s6">&nbsp;</div>
                <div class="col s6">&nbsp;
                <button
                         type="button"
                         class="waves-effect waves-light btn light-blue darken-2 col s12"
-                       data-ng-click="trocarAba('tab_endereco')"
+                       data-ng-click="teste123();trocarAba('tab_endereco')"
                      >
                      <i class="material-icons right">arrow_forward</i>
                         Avan&ccedil;ar
@@ -190,7 +231,6 @@
                      </select>
                   </div>                  
                </div>
-      
 
                <div class="row">                
                   <div input-field class="session col s12 m6">
@@ -207,8 +247,8 @@
 
                <div class="row">
                   <div input-field class="session col s12 m6">
-                     <input autocomplete="off" id="nr_rua" ng-model="objPessoa.nr_rua" id="nr_rua" type="tel" class="validate">
-                     <label for="nr_rua">Número da rua</label>                  
+                     <input autocomplete="off" id="nr_casa" ng-model="objPessoa.nr_casa" id="nr_casa" type="tel" class="validate">
+                     <label for="nr_casa">Número da casa</label>                  
                   </div>
                   
                   <div input-field class="session col s12 m6">
