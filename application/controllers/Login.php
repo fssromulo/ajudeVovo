@@ -22,6 +22,8 @@ class Login extends CI_Controller {
 
 	*/
 
+	private $arrDiretorios;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('session');
@@ -29,6 +31,8 @@ class Login extends CI_Controller {
 		$this->load->helper('url');	
 
 		$this->load->model('LoginDB');
+
+		$this->arrDiretorios = $this->controleacesso->getDiretorioArquivos();
 	}
 
 	public function index() {}
@@ -51,10 +55,14 @@ class Login extends CI_Controller {
 				switch ($arrRetornoPessoa['id_estado_pessoa_fisica']) {
 					case 1: { //Ativo
 
-					// Trata para apresentar uma no menu da pessoa
-					$arrRetornoPessoa['imagem_pessoa'] =
-						$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
-					 					 						
+						// Trata para apresentar uma no menu da pessoa
+						$arrRetornoPessoa['imagem_pessoa'] =
+							$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
+
+	 					if ( !empty($this->arrDiretorios) ) {
+							$arrRetornoPessoa['DIR_DOCS_PESSOAS']   = $this->arrDiretorios['DIR_DOCS_PESSOAS'];
+							$arrRetornoPessoa['DIR_FOTOS_PESSOAS']  = $this->arrDiretorios['DIR_FOTOS_PESSOAS']; 						
+	 					}					 					 						
 						$this->session->set_userdata($arrRetornoPessoa);
 
 						echo 'true';
@@ -85,7 +93,13 @@ class Login extends CI_Controller {
 					// Trata para apresentar uma no menu da pessoa
 					$arrRetornoPessoa['imagem_pessoa'] =
 						$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
- 						
+ 				
+ 					if ( !empty($this->arrDiretorios) ) {
+						$arrRetornoPessoa['DIR_DOCS_PESSOAS']   = $this->arrDiretorios['DIR_DOCS_PESSOAS'];
+						$arrRetornoPessoa['DIR_FOTOS_PESSOAS']  = $this->arrDiretorios['DIR_FOTOS_PESSOAS']; 						
+ 					}
+
+
 					$this->session->set_userdata($arrRetornoPessoa);
 
 					echo 'true';

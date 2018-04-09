@@ -20,12 +20,7 @@ app.config(function(ngJcropConfigProvider){
 
 });
 
-// function getImageSrc(src) {
-//     // return window.isLocal ? '/demo/' + src : src;
-// }
-
 app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaCartao){
-
 	$scope.objPessoa = {
 		nome : '',
 		dt_nascimento : null,
@@ -38,7 +33,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		cidade : '',
 		bairro : '',
 		rua : '',
-		nr_rua : '',
+		nr_casa : '',
 		complemento : '',
 		fone_comercial : '',
 		fone_residencial : '',
@@ -54,6 +49,9 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		imagem_frente_documento : '',
 		imagem_verso_documento : ''
 	};
+
+	$scope.img_frente = '';
+   	$scope.img_verso  = '';
 
 	$scope.__construct = function() {
 
@@ -100,23 +98,19 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 				'valor' : 'M'
 			}]
 		};
-
 		angular.element('.modal').modal();
  		angular.element('ul.tabs').tabs();
 	};
 
 	$scope.getListaPais = function() {
-
 	    $http.post(
 	    		'../Gerais/Geral/getListaPais/'
 	    	).success(function (data) {
 	    		$scope.arrListaPaisEndereco = data;
-
 		});
 	}
 
 	$scope.getListaEstadoEndereco = function( ) {
-
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
@@ -126,7 +120,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	}
 
 	$scope.getListaEstadoNascimento = function( ) {
-
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
@@ -136,7 +129,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	}
 
 	$scope.getListaCidadeEndereco = function() {
-
 		$scope.objPessoa.estado = $scope.arrListaEstadoEndereco.estado;
 		
 	    $http.post(
@@ -148,7 +140,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	}
 
 	$scope.getListaCidadeNascimento = function() {
-		
 		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.estado;
 		
 	    $http.post(
@@ -164,7 +155,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			return false;
 		}
 
-		if ( valor1.length < 1 || valor2.length  < 1 ) {
+		if ( valor1.length < 1 || valor2.length < 1 ) {
 			return false;
 		}
 
@@ -173,13 +164,14 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			valor2.trim()
 		);
 	};
+	$scope.teste123 = function() {
+		console.log( $scope.obj.src );
+	}
 
 	$scope.validaSalvar = function() {
-
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
         	Coordenadas do corte da foto!!                
-        */
-            
+        */            
         let x = $scope.obj.selection[0];
         let y = $scope.obj.selection[1];
         let w = $scope.obj.selection[4];
@@ -216,7 +208,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	            + objData.getFullYear();
 		}
 
-
 		let arrPessoaSalvar =
 		{
 			'is_alterar' : $scope.is_alterar,
@@ -243,7 +234,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 				'id_cidade'  : cidadeEndereco,
 				'bairro'  : $scope.objPessoa.bairro,
 				'rua'     : $scope.objPessoa.rua,
-				'numero'  : $scope.objPessoa.nr_rua,
+				'numero'  : $scope.objPessoa.nr_casa,
 				'cep'     : $scope.objPessoa.cep,
 				'complemento' : $scope.objPessoa.complemento
 			},
@@ -266,7 +257,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 				}
 			],
 		};
-
 
 		if (($scope.is_ajudante == 1) && ( ($scope.is_contratante == 0) ||
 		  	($scope.is_contratante == undefined) ||
@@ -294,30 +284,76 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			arrPessoaSalvar['id_pessoa_fisica'] = $scope.id_pessoa_fisica;
 		}
 
+		if ( $scope.is_ajudante ) {
+			arrPessoaSalvar['imagem_frente_documento'] = $scope.img_frente;
+			arrPessoaSalvar['imagem_verso_documento']  = $scope.img_verso;
+		}
 
 		angular.element('#modalCartaoCredito').modal('open');
-
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
-		// if ($scope.is_ajudante != 1)  {
-		// 	PessoaCartao.salvarPessoaCartao();
-		// }
 	};
+
+	$scope.getImgFrente = function( evento_recebido ) {
+		$scope.getImagemDocPessoa(evento_recebido, true);
+	}
+	
+	$scope.getImgVerso = function( evento_recebido ) {
+	   	$scope.getImagemDocPessoa(evento_recebido,false);
+	}
+
+	$scope.IsExtensaoValida = function( imagem_conteudo ) {
+      	if (!( /\.(jpe?g|png)$/i.test(imagem_conteudo) )) {
+			return false;
+		}
+		return true;
+	}
+
+	$scope.getImagemDocPessoa = function (event, is_frente) {
+	  // define reader
+	  let reader = new FileReader();
+
+	  $scope.sn_salvar = true;
+	  // A handler for the load event (just defining it, not executing it right now)
+	  reader.onload = function(e) {
+	      $scope.$apply(function() {
+
+	      	if (!($scope.IsExtensaoValida(imgFile.name))) {
+				$.notify('Extensão não permitida!'); 
+				// $scope.sn_salvar = false;
+				return;
+			}
+
+	         if ( is_frente ) {
+	         	$scope.img_frente = reader.result;	         	
+	         } else {
+	         	$scope.img_verso  = reader.result;	         	
+	         }
+	      });
+	  };
+
+	  // get <input> element and the selected file 
+	  let imgInputFile = '';
+
+	  if ( is_frente ) {
+	  		imgInputFile = document.getElementById('img_frente');    
+	  } else {
+	  		imgInputFile = document.getElementById('img_verso');   
+	  }
+
+	  let imgFile = imgInputFile.files[0];
+	  // use reader to read the selected file
+	  // when read operation is successfully finished the load event is triggered
+	  // and handled by our reader.onload function
+	  reader.readAsDataURL(imgFile);
+	};
+
  
     /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
 	$scope.verificaAcao = function () {
 		$scope.validaSalvar();
 	}
 
-	$scope.cancelar = function () {
-		$scope.is_alterar = false;
-		$scope.id_pessoa_fisica = null;
-		$scope.nome_pessoa = null;
-		$scope.email = null;
-		$scope.fone = null;
-	}
-
 	$scope.carregarAlterar = function( pessoa ) {
-	
 		$scope.is_alterar = true;
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 		$scope.nome = pessoa.nome;
@@ -335,7 +371,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	}
 
 	$scope.excluir = function() {
-
 	    $http.post(
 	    		'../teste/excluir',
 	    		$scope.cd_pessoa
@@ -344,23 +379,12 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	};	
 
-	angular.element(document).ready(function () {
-	
+	angular.element(document).ready(function () {	
 		$scope.__construct();	
 	});
-
 
 	// Chama metodos que vão preencher algo em tela	
 	$scope.getListaEstadoNascimento();
 	$scope.getListaEstadoEndereco();
 	$scope.obj  = {src:"", selection: [], thumbnail: false};
-
-    // $scope.$watch(
-    //   'arrListaCidadeNascimento',
-    //   function(ds_novo, ds_velho) {
-    //      $timeout(function(argument) {
-  		// 	$('select').material_select();
-    //      });
-    //   }
-    // );
 });
