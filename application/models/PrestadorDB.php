@@ -127,13 +127,14 @@ class PrestadorDB extends CI_Model{
 
 	public function atualizarEstado($params) {
 		
-		$id_servico = $params["id_servico"];
+		$id_servico_solicitacao = $params["id_servico_solicitacao"];
+		unset($params["id_servico_solicitacao"]);
 
 		$this->db->update(
 			'servico_solicitado', 
 			$params, 
 			array(
-				'id_servico' => $id_servico
+				'id_servico_solicitacao' => $id_servico_solicitacao
 			)
 		);
 	}

@@ -63,8 +63,8 @@ class ControlePrestador extends CI_Controller {
 		
 	 	if ( $sn_pag_seguro ) {
 			$arrIntegraPagSeguro = array(
-				'id_servico'			 => $dados['id_servico'],
-				'tokenCartaoVovo' 	 => $tokenCartaoVovo
+				'id_servico_solicitado'	 => $dados['id_servico_solicitado'],
+				'tokenCartaoVovo' 	    => $tokenCartaoVovo
 			);
 			
 			$this->pagsegurolib->realizaPagamentoPagSeguro( $arrIntegraPagSeguro );		
