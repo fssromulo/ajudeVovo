@@ -164,10 +164,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			valor2.trim()
 		);
 	};
-	$scope.teste123 = function() {
-		console.log( $scope.obj.src );
-	}
-
+	
 	$scope.validaSalvar = function() {
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
         	Coordenadas do corte da foto!!                
