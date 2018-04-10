@@ -114,7 +114,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
-            console.log("NaN: " + $scope.valorConvertido);
             return false;
         }
 
@@ -124,7 +123,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
-            console.log("< 1: " + $scope.valorConvertido);
             return false;
         }
         
@@ -134,7 +132,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
-            console.log("> 250: " + $scope.valorConvertido);
             return false;
         }
 
