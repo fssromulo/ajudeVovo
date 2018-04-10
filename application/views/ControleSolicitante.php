@@ -43,21 +43,17 @@
             
         </ul>
     </div>
-        <div class="modal fade" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="modalAvaliacaoLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="modalAvaliacaoLabel">Realizar Avaliação </h4>
-              </div>
-              <div class="modal-body" >
-                <?php
-                    $this->load->view('Avaliacao.php');?>  
-              </div>
-            </div>
-          </div>
+
+     <!-- Modal Structure -->
+      <div id="modalAvaliacao" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Realizar avaliação </h4>
+              <?php
+            $this->load->view('Avaliacao.php');?> 
         </div>
-    </div>
+        <div class="modal-footer"></div>
+      </div>
+         
 
    <!-- <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>     -->
     <?php

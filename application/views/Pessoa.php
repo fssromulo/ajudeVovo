@@ -189,7 +189,7 @@
                <button
                         type="button"
                         class="waves-effect waves-light btn light-blue darken-2 col s12"
-                       data-ng-click="teste123();trocarAba('tab_endereco')"
+                       data-ng-click="trocarAba('tab_endereco')"
                      >
                      <i class="material-icons right">arrow_forward</i>
                         Avan&ccedil;ar
