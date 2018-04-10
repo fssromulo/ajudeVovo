@@ -104,9 +104,16 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     };
 
     $scope.valorServicoValido = function () {
-        $scope.valorConvertido  = $("#valor").val().replace('.', '');
+        console.log("valor: " + $scope.valor);
+
+        $scope.valorConvertido = $("#valor").val().replace('R$', '').replace('.', '');
+        console.log("valor convertido: " + $scope.valorConvertido);
+        
         $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
+        console.log("valor convertido 2: " + $scope.valorConvertido);
+
         $scope.valorConvertido = parseFloat($scope.valorConvertido);
+        console.log("valor convertido 3: " + $scope.valorConvertido);
         
         if (isNaN($scope.valorConvertido)) {
             $("#valor")
@@ -114,6 +121,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
+            console.log("NaN: " + $scope.valorConvertido);
             return false;
         }
 
@@ -123,6 +131,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
+            console.log("< 1: " + $scope.valorConvertido);
             return false;
         }
         
@@ -132,6 +141,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
                 .val("")
                 .focus();
 
+            console.log("> 250: " + $scope.valorConvertido);
             return false;
         }
 
@@ -301,7 +311,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         var arrServicoEditado = {
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'descricao' : $scope.descricao,
-            'valor' : $scope.valor,
+            'valor' : $scope.valorConvertido,
             'detalhe' : $scope.detalhe,
             'listaAtendimento': $scope.arrListaAtendimento,
         }
