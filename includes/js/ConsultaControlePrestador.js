@@ -48,7 +48,9 @@ app.controller(
 			'../ControlePrestador/atualizarEstado',
 			arrDados
         ).success(() => {
-        	$('#modalAvaliacao').modal('hide');
+			const modalAval = $('#modalAvaliacao');
+			modalAval.modal();
+			modalAval.modal('close');
             $scope.carregarServicosSolicitados();
         });
 	}	
