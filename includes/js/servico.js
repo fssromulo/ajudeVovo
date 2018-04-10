@@ -90,7 +90,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             'descricao' : $scope.descricao,
             'valor' : $scope.valorConvertido,
             'detalhe' : $scope.detalhe,
-            'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'listaAtendimento': $scope.arrListaAtendimento,
             'id_categoria' : $scope.categoriaSelected['id_categoria']
         }
@@ -105,17 +104,37 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     };
 
     $scope.valorServicoValido = function () {
-        console.log("js:valorServicoValido");
-        $scope.valorConvertido  = $("#valor").val().replace('.', '');
+        $scope.valorConvertido = $("#valor").val().replace('R$', '').replace('.', '');
         $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
         $scope.valorConvertido = parseFloat($scope.valorConvertido);
+        
+        if (isNaN($scope.valorConvertido)) {
+            $("#valor")
+                .notify("O valor mínimo para serviços é de R$1,00", "error")
+                .val("")
+                .focus();
 
-        if ($scope.valorConvertido > 250 ) {
+            console.log("NaN: " + $scope.valorConvertido);
+            return false;
+        }
+
+        if ($scope.valorConvertido < 1) {
+            $("#valor")
+                .notify("O valor mínimo para serviços é de R$1,00", "error")
+                .val("")
+                .focus();
+
+            console.log("< 1: " + $scope.valorConvertido);
+            return false;
+        }
+        
+        if ($scope.valorConvertido > 250) {
             $("#valor")
                 .notify("O valor máximo para serviços é de R$ 250,00", "error")
                 .val("")
                 .focus();
 
+            console.log("> 250: " + $scope.valorConvertido);
             return false;
         }
 
@@ -123,9 +142,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     }
 
     $scope.informacoesServicoValidas = function() {
-        console.log("js:informacoesServicoValidas");
-        console.log("categoria:" + $scope.categoriaSelected);
-
         if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
             $.notify("As informações do serviço são inválidas", "error");
             return false;
@@ -220,7 +236,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
 
       $scope.temAtendimentoInserido = function() {
         if ($scope.arrListaAtendimento == 0) {
-            $.notify("Nenhuma data de atendimento foi inserida");
+            $.notify("Nenhuma data de atendimento foi inserida", "error");
             return false;
         }
         
@@ -262,7 +278,12 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         $scope.descricao = servico['descricao'];
         $scope.valor = servico['valor'];
         $scope.detalhe = servico['detalhe'];
-        $scope.categoriaSelected.id_categoria = servico['id_categoria'];
+
+        for (var i = $scope.arrListaCategoria.length - 1; i >= 0; i--) {
+            if ($scope.arrListaCategoria[i].id_categoria == servico['id_categoria']) {
+                $scope.categoriaSelected = $scope.arrListaCategoria[i];
+            }
+        }
 
         $scope.getDiasAtendimento(servico['id_servico']);
     }
@@ -283,7 +304,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         var arrServicoEditado = {
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'descricao' : $scope.descricao,
-            'valor' : $scope.valor,
+            'valor' : $scope.valorConvertido,
             'detalhe' : $scope.detalhe,
             'listaAtendimento': $scope.arrListaAtendimento,
         }
@@ -296,6 +317,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         ).success(function (data) {
             $scope.excluirDiasAtendimentoEditados();
             $scope.arrListaServico = data;
+            $.notify("Serviço alterado com sucesso!", "success");
         });
     }
 
@@ -307,9 +329,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         $http.post(
             '../Servico/excluirDiasAtendimentoEditados',
             $scope.arrListaAtendimentoExcluidos
-        ).success(function(data){
-            $.notify("Serviço alterado com sucesso!", "success")
-        });
+        );
     }
 
     angular.element(document).ready(function () {
