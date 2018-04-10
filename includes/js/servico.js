@@ -104,16 +104,9 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     };
 
     $scope.valorServicoValido = function () {
-        console.log("valor: " + $scope.valor);
-
         $scope.valorConvertido = $("#valor").val().replace('R$', '').replace('.', '');
-        console.log("valor convertido: " + $scope.valorConvertido);
-        
         $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
-        console.log("valor convertido 2: " + $scope.valorConvertido);
-
         $scope.valorConvertido = parseFloat($scope.valorConvertido);
-        console.log("valor convertido 3: " + $scope.valorConvertido);
         
         if (isNaN($scope.valorConvertido)) {
             $("#valor")
@@ -324,7 +317,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         ).success(function (data) {
             $scope.excluirDiasAtendimentoEditados();
             $scope.arrListaServico = data;
-            $.notify("Serviço alterado com sucesso!", "success")
+            $.notify("Serviço alterado com sucesso!", "success");
         });
     }
 
