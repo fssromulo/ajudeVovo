@@ -38,7 +38,7 @@
                            
                             <button 
                                 title="Negar"
-                                ng-click="negar(lista.id_servico)"
+                                ng-click="negarServico(lista.id_servico_solicitacao)"
                                 class="waves-effect waves-light btn red darken-1"
                                 style="font-size: 16px;">
                                     <span class="thumbs-up" >
@@ -48,7 +48,7 @@
 
                             <a 
                                 title="Aceitar" 
-                                ng-click="aceitar(lista.id_servico)"
+                                ng-click="aceitarServico(lista.id_servico_solicitacao)"
                                 class="waves-effect waves-light btn light darken-1"
                                 style="font-size: 16px;">
                                 <span class="thumbs-up" >
