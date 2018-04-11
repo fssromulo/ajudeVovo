@@ -21,24 +21,21 @@ app.controller("controllerListarServico", function($scope, $http) {
     };
 
     $scope.carregarInativar = function(servico) {
-        if ($scope.servicoPodeSerInativado(servico.id_servico)) {
-            $("#modal_excluir").modal();
-            $("#modal_excluir").modal('open');
+        var registrosEncontrados = 0;
+        $http
+            .post('../ListarServico/servicoPodeSerInativado', servico.id_servico)
+            .success(function(data) {
+                registrosEncontrados = data;
+            });
+
+        if (registrosEncontrados == 0) {
+            $("#modal_excluir_servico").modal();
+            $("#modal_excluir_servico").modal('open');
             $scope.id_servico = servico.id_servico;
         } else {
             $.notify("Este serviço não pode ser excluído!", "error");
         }
     };
-
-    $scope.servicoPodeSerInativado = function(id_servico) {
-        $http
-            .post('../ListarServico/servicoPodeSerInativado', id_servico)
-            .success(function(data) {
-                $scope.registrosEncontrados = data;
-            });
-
-        return $scope.registrosEncontrados == 0;
-    }
 
     $scope.inativarServico = function() {
         $http
@@ -48,16 +45,16 @@ app.controller("controllerListarServico", function($scope, $http) {
             });
 
         $scope.fecharModalExcluir();
-    }
+    };
 
     $scope.fecharModalExcluir = function() {
-        $("#modal_excluir").modal();
-        $("#modal_excluir").modal('close');
+        $("#modal_excluir_servico").modal();
+        $("#modal_excluir_servico").modal('close');
     };
 
     $scope.editarServico = function(servico) {
-        location.href = '../Servico/?id_servico=' + servico.id_servico
-    }
+        location.href = '../Servico/?id_servico=' + servico.id_servico;
+    };
 
 	angular.element(document).ready(function () {
 		$scope.__construct();	
