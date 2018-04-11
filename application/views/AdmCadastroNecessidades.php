@@ -15,8 +15,8 @@
           <form class="col s12" name="form_necessidade">
             <div class="row">
               <div class="input-field col s6">
-                <input placeholder="Descrição do perfil" id="descricao" type="text" ng-model="descricao" class="validate">
                 <label for="descricao">Descrição</label>
+                <input id="descricao" type="text" ng-model="descricao" class="validate">
               </div>
             </div>
             <div class="row">
@@ -53,7 +53,7 @@
               </tr>
           </table>
           
-          <div class="modal" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+          <div class="modal" id="modal_excluir_necessidade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
