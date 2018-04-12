@@ -30,7 +30,7 @@
                     Data/Horário:
                         {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação:  {{lista.ds_estado_atual}} <br/>
-                    <strong>Necess. Especiais: {{lista.necessidades_especiais}}</strong>
+                    <strong>Necess. Especiais: {{lista.necessidades_especiais}}</strong> <br/>
                     Avaliação: <br/>
                     <div id="starbox" class="starbox" data-button-count="{{lista.qt_estrela}}"></div>
 
