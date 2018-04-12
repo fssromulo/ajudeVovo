@@ -150,8 +150,11 @@
                                                     {{lista.horario_fim}}
                                                 </td>
                                                 <td>
-                                                    <i class="material-icons red-text left"
-                                                        ng-click="removerDiaAtendimento($index, lista.id_dia_disponivel)"/>delete</i>
+                                                    <i
+                                                        ng-disabled="desabilitarBotoes"
+                                                        class="material-icons red-text left"
+                                                        ng-click="removerDiaAtendimento($index, lista.id_dia_disponivel)"/>delete
+                                                    </i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -176,13 +179,16 @@
                                 <div>
                                     <a 
                                         class="waves-effect waves-light btn red darken-1 col s5 left" 
-                                        href="../ListarServico/">
+                                        href="../ListarServico/"
+                                        ng-disabled="desabilitarBotoes"
+                                    >
                                     <i class="material-icons left">block</i>Cancelar</a>
                                 </div>
                                 <button
                                     type="submit"
                                     data-ng-click="!id_servico ? salvarServico() : atualizarServico()"
                                     class="waves-effect waves-light btn light-blue darken-2 col s5 right"
+                                    ng-disabled="desabilitarBotoes"
                                 >
                                     <i class="material-icons right">check</i>Salvar
                                 </button>
