@@ -4,11 +4,11 @@
 ?>   
 </head>
 <body>
+    <div ng-app="appAngular" ng-controller="controllerControlePrestador">  
     <?php
         // Importa o cabeçalho padrao a todas as telas
         $this->load->view('MenuPrestador.php');
     ?>
-    <div ng-app="appAngular" ng-controller="controllerControlePrestador">  
 
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     <div class="container">

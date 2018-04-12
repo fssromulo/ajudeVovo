@@ -1,4 +1,4 @@
-var app = angular.module(
+let app = angular.module(
     "appAngular",
     [
         'ui.materialize',
@@ -33,6 +33,8 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         $scope.arrListaAtendimentoExcluidos = [];
 
         $("#valor").maskMoney({thousands:'.',decimal:','});
+
+        $scope.desabilitarBotoes = false;
 
         $scope.arrListaDiaAtendimento = 
 		[
@@ -86,7 +88,9 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             return;
         }
 
-        var arrServicoSalvar = {
+        $scope.desabilitarBotoes = true;
+
+        let arrServicoSalvar = {
             'descricao' : $scope.descricao,
             'valor' : $scope.valorConvertido,
             'detalhe' : $scope.detalhe,
@@ -99,7 +103,8 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             arrServicoSalvar
         ).success(function (data) {
             $scope.arrListaServico = data;
-             $.notify("Serviço salvo!", "success");
+            $.notify("Serviço salvo!", "success");
+            $scope.voltar();
         });
     };
 
@@ -136,7 +141,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         }
 
         return true;
-    }
+    };
 
     $scope.informacoesServicoValidas = function() {
         if ($scope.descricao === null || $scope.categoriaSelected == undefined || $scope.valor === null) {
@@ -160,7 +165,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             return false;
         }
 
-        var arrDiaAtendimento = {
+        let arrDiaAtendimento = {
             'dia': $scope.diaAtendimentoSelected['descricao'],
             'horario_inicio': $scope.formatarHorario($scope.horario_inicio),
             'horario_fim': $scope.formatarHorario($scope.horario_fim),
@@ -181,11 +186,11 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     };
 
     $scope.horarioInicioMenorQueHorarioFim = function() {
-        var horaInicio = $scope.horario_inicio.getHours();
-        var minutoInicio = $scope.horario_inicio.getMinutes();
+        let horaInicio = $scope.horario_inicio.getHours();
+        let minutoInicio = $scope.horario_inicio.getMinutes();
 
-        var horaFim = $scope.horario_fim.getHours();
-        var minutoFim = $scope.horario_fim.getMinutes();
+        let horaFim = $scope.horario_fim.getHours();
+        let minutoFim = $scope.horario_fim.getMinutes();
 
 
         if (horaInicio > horaFim) {
@@ -210,6 +215,10 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
     };
 
     $scope.removerDiaAtendimento = function(index, id_dia_disponivel) {        
+        if($scope.desabilitarBotoes) {
+            return;  
+        }
+
         if($scope.id_servico) {
             $scope.arrListaAtendimentoExcluidos.push(id_dia_disponivel);
         }
@@ -276,14 +285,14 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         $scope.valor = servico['valor'];
         $scope.detalhe = servico['detalhe'];
 
-        for (var i = $scope.arrListaCategoria.length - 1; i >= 0; i--) {
+        for (let i = $scope.arrListaCategoria.length - 1; i >= 0; i--) {
             if ($scope.arrListaCategoria[i].id_categoria == servico['id_categoria']) {
                 $scope.categoriaSelected = $scope.arrListaCategoria[i];
             }
         }
 
         $scope.getDiasAtendimento(servico['id_servico']);
-    }
+    };
 
     $scope.getDiasAtendimento = function(id_servico) {        
         $http.post(
@@ -291,14 +300,16 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         ).success(function (data) {
             $scope.arrListaAtendimento = data;
         });
-    }
+    };
 
     $scope.atualizarServico = function() {        
         if ((!$scope.informacoesServicoValidas()) || (!$scope.temAtendimentoInserido())) {
             return;
         }
 
-        var arrServicoEditado = {
+        $scope.desabilitarBotoes = true;
+
+        let arrServicoEditado = {
             'id_categoria' : $scope.categoriaSelected['id_categoria'],
             'descricao' : $scope.descricao,
             'valor' : $scope.valorConvertido,
@@ -314,9 +325,10 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         ).success(function (data) {
             $scope.excluirDiasAtendimentoEditados();
             $scope.arrListaServico = data;
-            $.notify("Serviço alterado com sucesso!", "success");
+            $.notify("Serviço alterado!", "success");
+            $scope.voltar();
         });
-    }
+    };
 
     $scope.excluirDiasAtendimentoEditados = function() {
         if ($scope.arrListaAtendimentoExcluidos == 0) {
@@ -327,11 +339,13 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             '../Servico/excluirDiasAtendimentoEditados',
             $scope.arrListaAtendimentoExcluidos
         );
-    }
+    };
 
-    angular.element(document).ready(function () {
-		$scope.__construct();
-	});
+    $scope.voltar = function() {
+        $timeout(function(argument) {
+            location.href = '../ListarServico/';
+        }, 3000);
+    };
 
     $scope.$watch('arrListaCategoria',
         function(ds_novo, ds_velho) {
@@ -340,4 +354,8 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             });
         }
     );
+
+    angular.element(document).ready(function () {
+		$scope.__construct();
+	});
 });
