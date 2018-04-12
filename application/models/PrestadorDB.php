@@ -97,6 +97,7 @@ class PrestadorDB extends CI_Model{
 				pf.imagem_pessoa,
 				s.descricao,
 				s.ativo,
+				obter_avaliacao('C', c.id_contratante) qt_estrela, 
 				DATE_FORMAT(ss.dia_solicitacao, '%d/%m/%Y') dia_solicitacao,
 				TIME_FORMAT(ss.horario_inicio,'%H:%i') as horario_inicio, 
 				TIME_FORMAT(ss.horario_fim,'%H:%i') as horario_fim,		

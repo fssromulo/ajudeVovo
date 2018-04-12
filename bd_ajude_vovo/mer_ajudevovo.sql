@@ -305,7 +305,7 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `ajudevovo`.`contratante_necessidade_especial` ;
 
 CREATE TABLE IF NOT EXISTS `ajudevovo`.`contratante_necessidade_especial` (
-  `id_contratante_necessidade_especial` INT(11) NOT NULL,
+  `id_contratante_necessidade_especial` INT(11) NOT NULL AUTO_INCREMENT,
   `necessidade_especial_id_necessidade_especial` INT(11) NOT NULL,
   `contratante_id_contratante` INT(11) NOT NULL,
   PRIMARY KEY (`id_contratante_necessidade_especial`),
@@ -607,6 +607,70 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- function obter_avaliacao_servico
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP function IF EXISTS `ajudevovo`.`obter_avaliacao_servico`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao_servico`(`id_servico_p` INT) RETURNS float
+BEGIN
+	DECLARE retorno float;
+	
+	select
+		avg(a.nota)
+	into
+		retorno
+	from
+		avaliacao a,
+		servico_avaliacao sa
+	where a.id_avaliacao = sa.id_avaliacao
+	and sa.id_servico = id_servico_p;
+	
+	if (retorno is null) then
+		set retorno = 0;
+	end if;
+	
+	return retorno;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- function obter_avaliacao_contratante
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP function IF EXISTS `ajudevovo`.`obter_avaliacao_contratante`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao_contratante`(`id_contratante_p` INT) RETURNS float
+BEGIN
+DECLARE retorno float;
+	
+	select
+		avg(a.nota)
+	into
+		retorno
+	from
+		avaliacao a,
+		contratante_avaliacao ca
+	where a.id_avaliacao = ca.id_avaliacao
+	and ca.id_contratante = id_contratante_p;
+	
+	if (retorno is null) then
+		set retorno = 0;
+	end if;
+	
+	return retorno;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- function obter_avaliacao
 -- -----------------------------------------------------
 
@@ -615,25 +679,21 @@ DROP function IF EXISTS `ajudevovo`.`obter_avaliacao`;
 
 DELIMITER $$
 USE `ajudevovo`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao`(`id_servico_p` INT) RETURNS float
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao`(`ie_opcao_p` CHAR, `id_opcao_p` INT) RETURNS float
 BEGIN
-  DECLARE retorno float;
-  
-  select
-    avg(a.nota)
-  into
-    retorno
-  from
-    avaliacao a,
-    servico_avaliacao sa
-  where a.id_avaliacao = sa.id_avaliacao
-  and sa.id_servico = id_servico_p;
-  
-  if (retorno is null) then
-    set retorno = 0;
-  end if;
-  
-  return retorno;
+	/*
+		S - Serviço
+		C - Contratante
+	*/		
+	return 
+		case (ie_opcao_p) 
+			when ('S') then
+				obter_avaliacao_servico(id_opcao_p)
+			when ('C') then
+				obter_avaliacao_contratante(id_opcao_p)
+			else
+				0
+		end;
 END$$
 
 DELIMITER ;

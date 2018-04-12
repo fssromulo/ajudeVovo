@@ -59,3 +59,26 @@ app.controller(
 		$scope.__construct();	
 	});
 });
+
+app.directive('afterLoadServicesDirective', () => {
+	return (scope, element, attrs) => {
+		if (scope.$last) {
+			setTimeout(() => {				
+				loadRating = (element) => {	
+					const starbox = $(element);
+					starbox.starbox({
+						average: starbox.attr('data-button-count') / 5,
+						changeable: false,
+					});
+				};
+
+				$('.collapsible-header').click((e) => {
+					const starbox = ($(e.target.parentElement.parentElement).find('.starbox')[0]);
+					setTimeout(() => {
+						loadRating(starbox);
+					}, 0, false);	
+				});
+			}, 0);
+		}
+	};
+});

@@ -13,18 +13,16 @@
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     <div class="container">
          <ul  class="collapsible" data-collapsible="accordion"  >
-            <li ng-repeat="lista in arrListaServico">
+            <li ng-repeat="lista in arrListaServico" after-load-services-directive>
                 <div class="collapsible-header" >
                     
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
-                    <!--<div class="col s6 col m6 flow-text" >-->
                         <p class="truncate">{{lista.descricao}}</p> 
                         <div class="right-align">
                             <span ng-show="lista.ativo != 1" class="new badge red right-align" data-badge-caption="">
                                 Inativo
                             </span>
                         </div>
-                    <!--</div>-->
                 </div>
                 <div class="collapsible-body" > 
                     Serviço:{{lista.descricao}}<br/>
@@ -33,7 +31,8 @@
                         {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação:  {{lista.ds_estado_atual}} <br/>
                     <strong>Necess. Especiais: {{lista.necessidades_especiais}}</strong>
-
+                    Avaliação: <br/>
+                    <div id="starbox" class="starbox" data-button-count="{{lista.qt_estrela}}"></div>
 
                         <div ng-show="{{lista.id_estado_operacao}} == 3">
                            
