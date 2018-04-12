@@ -20,6 +20,7 @@ class ControleSolicitanteDB extends CI_Model {
 			f.id_estado_operacao,
 			f.id_servico_solicitacao,
 			s.id_servico,
+			s.ativo,
 			pf.imagem_pessoa '
 		);
 

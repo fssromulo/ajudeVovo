@@ -14,12 +14,6 @@ app.controller(
         $scope.bloquear_btn_servico = false;
         $scope.arrDadosParam = [];
 
-        $('.date').datepicker({
-            language: "pt-BR",
-            autoclose: true,
-            keyboardNavigation: false
-        });
-
         // $scope.carregaTelaSolicitacao();
 	};
 

@@ -10,7 +10,7 @@ class AdministracaoSelecaoAjudanteDB extends CI_Model {
     
 	public function getBuscaPessoasInativas() {
  		$this->db->select('pf.nome, 
-				 		   pf.dt_nascimento, 
+				 		   DATE_FORMAT(pf.dt_nascimento, "%d/%m/%Y") as dt_nascimento, 
 				 		   pf.cpf, 
 				 		   pf.sexo,
 					       pf.imagem_pessoa,

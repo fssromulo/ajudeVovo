@@ -14,7 +14,7 @@
          <ul  class="collapsible" data-collapsible="accordion"  >
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
-                    <img alt="" src="{{lista.imagem_pessoa}}" class="circle " width="50" height="50">
+                    <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"/>&nbsp;
                     <p class="truncate"> {{lista.servico}}</p>
                     <span ng-show="lista.ativo != 1" class="new badge red right" data-badge-caption="" >
                         Inativo! 
@@ -32,7 +32,7 @@
                     <div ng-show="{{lista.id_estado_operacao}} == 5">
                         <button 
                             title="Finalizar Serviço" 
-                            ng-click="abrirTelaAvaliacao(lista.id_servico)"
+                            ng-click="abrirTelaAvaliacao(lista.id_servico_solicitacao)"
                             class="waves-effect waves-light btn light darken-1"
                             style="font-size: 16px;"> Finalizar Serviço
                             <span class="material-icons">check</span>
@@ -43,20 +43,17 @@
             
         </ul>
     </div>
-        <div class="modal fade" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="modalAvaliacaoLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" id="modalAvaliacaoLabel">Realizar Avaliação </h4>
-              </div>
-              <div class="modal-body" >
-                <?php
-                    $this->load->view('Avaliacao.php');?>  
-              </div>
-            </div>
-          </div>
+
+    <!-- Modal Structure -->
+      <div id="modalAvaliacao" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Realizar avaliação </h4>
+              <?php
+            $this->load->view('Avaliacao.php');?> 
         </div>
-    </div>
+        <div class="modal-footer"></div>
+      </div>
+         
 
    <!-- <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>     -->
     <?php

@@ -16,7 +16,7 @@
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
                     
-                    <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
+                    <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
                     <!--<div class="col s6 col m6 flow-text" >-->
                         <p class="truncate">{{lista.descricao}}</p> 
                         <div class="right-align">
@@ -38,7 +38,7 @@
                            
                             <button 
                                 title="Negar"
-                                ng-click="negar(lista.id_servico)"
+                                ng-click="negarServico(lista.id_servico_solicitacao)"
                                 class="waves-effect waves-light btn red darken-1"
                                 style="font-size: 16px;">
                                     <span class="thumbs-up" >
@@ -48,7 +48,7 @@
 
                             <a 
                                 title="Aceitar" 
-                                ng-click="aceitar(lista.id_servico)"
+                                ng-click="aceitarServico(lista.id_servico_solicitacao)"
                                 class="waves-effect waves-light btn light darken-1"
                                 style="font-size: 16px;">
                                 <span class="thumbs-up" >
@@ -70,21 +70,15 @@
                 </li>            
             </ul>
         </div>
-        <div class="modal fade" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="modalAvaliacaoLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" id="modalAvaliacaoLabel">Realizar Avaliação </h4>
-              </div>
-              <div class="modal-body" >
 
-                <?php
-                    $this->load->view('Avaliacao.php');
-                ?>  
-              </div>
+           <!-- Modal Structure -->
+          <div id="modalAvaliacao" class="modal modal-fixed-footer">
+            <div class="modal-content">
+              <h4>Realizar avaliação </h4>
+                  <?php
+                $this->load->view('Avaliacao.php');?> 
             </div>
           </div>
-        </div>
     </div>
 
     <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    

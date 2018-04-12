@@ -4,6 +4,7 @@
 	class Pessoa extends CI_Controller {
 
 		private $perfil;
+		private $arrDiretorios;
 
 		public function __construct() {
 			parent::__construct();
@@ -12,6 +13,8 @@
 			$this->load->helper('url');
 			$this->load->helper('removecaracteres');
 			$this->load->helper('formatardatas');
+
+			$this->arrDiretorios = $this->controleacesso->getDiretorioArquivos();
 
 			$arrModelsImportar = array(
 				'PessoaDB',
@@ -67,12 +70,16 @@
 	   	$arrContatos = $dados['arrContatos'];
 	   	$arrCartaoCredito = $dados['cartaoCredito'];
 	   	unset( $arrCartaoCredito['is_alterar'] );
+	   	unset( $dados['arrPessoa'] );
+	   	unset( $dados['arrContatos'] );
+	   	unset( $dados['arrEndereco'] );
+	   	unset( $dados['cartaoCredito'] );
 
 	   	// Ajusta os valores para salvar no banco
 	   	$arrPessoa['cpf']   = removeCaracteres($arrPessoa['cpf']);
 	   	$arrEndereco['cep'] = removeCaracteres($arrEndereco['cep']);
 	   	$arrPessoa['dt_nascimento'] = formatarDatas($arrPessoa['dt_nascimento'], 'Y-m-d');
-   	
+
    		if ( !$is_alterar ) { 
 				
 				/*
@@ -100,23 +107,49 @@
 				// Salvar pessoa
 	      	$cd_pessoa = $this->PessoaDB->inserirPessoa($arrPessoa);
 
+	      	$ds_imagem = '';
+
 	      	// Salva a imagem no servidor e dpois registra o caminho no banco
 				if ( !empty($arrDadosImagem['urlFoto']) ) {				
+					print_r('imagem 1--');
 					$ds_imagem = $this->salvarImagemPessoa(
 						$arrDadosImagem,
 						$cd_pessoa
 					);
 				}
 
-				if ( !empty($ds_imagem)) {
+				$imagem_frente_documento = '';
+				$imagem_verso_documento  = '';
+
+				if ( !empty($dados['imagem_frente_documento']) ) {				
+					$imagem_frente_documento = $this->salvarImagemDocumentos(
+						$dados['imagem_frente_documento'],
+						$cd_pessoa,
+						'img_frente'
+					);
+				}
+
+				if ( !empty($dados['imagem_verso_documento']) ) {				
+					$imagem_verso_documento = $this->salvarImagemDocumentos(
+						$dados['imagem_verso_documento'],
+						$cd_pessoa,
+						'img_verso'
+					);
+				}
+
+				
+				if ( !empty($ds_imagem) || !empty($imagem_frente_documento) || !empty($imagem_verso_documento) ) {
 
 					$arrPessoaAlterar = array(
-						'imagem_pessoa' => $ds_imagem
+						'imagem_pessoa' => $ds_imagem,
+						'imagem_frente_documento' => $imagem_frente_documento,
+						'imagem_verso_documento' => $imagem_verso_documento
 					);
 
 					$this->PessoaDB->alterarPessoa( $arrPessoaAlterar, $cd_pessoa );
 				}
 
+				
 	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
 	      	// Inserir Perfil
@@ -167,6 +200,8 @@
    				$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
 				$this->session->set_userdata($arrRetornoPessoa);
 
+
+				die('teseteeee !!!');
 	      	echo $this->perfil;
  			}	
 		}
@@ -198,7 +233,6 @@
 
 		public function getPessoas() {
 		   $listar = $this->PessoaDB->getPessoasFisica()->result_array();
-
 	     	echo json_encode($listar);
 		}
 
@@ -211,6 +245,20 @@
 				$this->session->userdata('id_pessoa_fisica'),
 				$arrPessoaAlterar
 			);
+		}
+
+		public function getExtensaoArquivo( $ds_imagem = null) {
+
+			if ( empty($ds_imagem) ) {
+				return null;
+			}
+
+			// Pega a extensão do arquivo para salva com a extensão correta 
+			$pos_inicio = strpos($ds_imagem, '/')+1;
+			$pos_fim    = strpos($ds_imagem, ';');
+			$extensao   = substr($ds_imagem,$pos_inicio, ($pos_fim - $pos_inicio) );
+
+			return $extensao;
 		}
 
 		public function salvarImagemPessoa(
@@ -226,24 +274,26 @@
 			$ds_imagem = $arrDadosImagem['urlFoto'];
 
 			$arrExtensaoPermitidas = array(
-				'jpeg', 'jpg'
+				'jpeg', 'jpg', 'png'
 			);
 
-			// Pega a extensão do arquivo para salva com a extensão correta 
-			$pos_inicio = strpos($ds_imagem, '/')+1;
-			$pos_fim    = strpos($ds_imagem, ';');
-			$extensao   = substr($ds_imagem,$pos_inicio, ($pos_fim - $pos_inicio) );
+			$extensao = $this->getExtensaoArquivo( $ds_imagem );
 
 			// Se não for um extensão permitida, retorna erro!!
 			if (!in_array($extensao, $arrExtensaoPermitidas)) {
-				echo 'Extensão não aceita! Transfira um arquivo jpeg ou jpg';    
+				echo 'Extensão não aceita! Transfira um arquivo JPG, JPEG ou PNG';    
 				die;
 			}
 
 			// limpar o buffer de imagem
 			ob_clean(); 
 			ob_start();
-			$img_r = imagecreatefromjpeg($ds_imagem);
+			if ( $extensao == 'png' ){
+				$img_r = imagecreatefrompng($ds_imagem);				
+			} else{ 
+				$img_r = imagecreatefromjpeg($ds_imagem);				
+			}
+
 			$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
 			imagecopyresampled(
@@ -261,7 +311,7 @@
 
 			$nome_imagem =  $id_pessoa_fisica .  '.' . $extensao ;
 
-			$ds_pasta_salvar = './includes/imagens/fotos_pessoas/'. $nome_imagem; 
+			$ds_pasta_salvar = './includes/imagens/fotos_pessoas/' . $nome_imagem;	
 
 			imagejpeg($dst_r, $ds_pasta_salvar, $img_quality);
 
@@ -269,4 +319,40 @@
 
 			return $nome_imagem;
 		}
+
+		public function salvarImagemDocumentos(
+			$ds_imagem = null, 
+			$id_pessoa_fisica = null,
+			$nm_documento
+		) { 
+
+			$extensao = $this->getExtensaoArquivo( $ds_imagem );
+
+			switch ($extensao) {
+				case 'jpg':
+				case 'jpeg':
+					$img = str_replace('data:image/jpeg;base64,', '', $ds_imagem);
+				break;
+			
+				case 'png':
+					$img = str_replace('data:image/png;base64,', '', $ds_imagem);
+				break;
+				
+				default:
+					return null;
+				break;
+			}
+			// gera um codigo de unico --> uniqid()
+
+
+			$img = str_replace(' ', '+', $img);
+			$data = base64_decode($img);
+			// monta o nomed do documento com o codigo da pessoa e se é frente ou verso
+			$nome_imagem = $id_pessoa_fisica . '_' . $nm_documento . '.' . $extensao;
+			$file = './includes/imagens/documentos_pessoas/' . $nome_imagem; 
+			$success = file_put_contents($file, $data);
+
+			return $success ? $nome_imagem : null;
+		}
+
 	}

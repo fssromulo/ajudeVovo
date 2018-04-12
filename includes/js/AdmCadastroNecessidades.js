@@ -17,7 +17,7 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
 
         $scope.id_necessidade_especial = null;
         $scope.is_alterar = false;
-        $scope.arrListaNecessidadesEspeciais = [];
+        $scope.arrNecessidadesEspeciais = [];
 
         $scope.necessidades_especiais();
     };
@@ -27,20 +27,36 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
             '../AdmCadastroNecessidades/necessidades_especiais'
         ).success(function (data) {
             $scope.arrNecessidadesEspeciais = data;
-            $scope.cancelar;
+            $scope.cancelar();
         });
     };
 
     $scope.salvarNecessidade = function() {
+        if ($scope.descricao == undefined) {
+            $("#descricao")
+            .notify("Não pode ser vazio", "error")
+            .val("")
+            .focus();
+
+            return;
+        }
+
         if ($scope.form_necessidade.$invalid) {
             return;
         }
 
+        if($scope.necessidadeCadastrada($scope.descricao)) {
+            $("#descricao")
+            .notify("Necessidade já cadastrada", "error")
+            .val("")
+            .focus();
+
+            return;
+        }
+
         var arrNecessidadesSalvar = {
-            'descricao' : $scope.descricao
-            
+            'descricao' : $scope.descricao            
         }  
-        console.log(arrNecessidadesSalvar);      
 
         $http.post(
             '../AdmCadastroNecessidades/salvar',
@@ -49,6 +65,16 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
             $scope.arrNecessidadesEspeciais = data;
             $scope.cancelar();
         });
+    };
+
+    $scope.necessidadeCadastrada = function(descricao) {
+        for (var i = $scope.arrNecessidadesEspeciais.length - 1; i >= 0; i--) {
+            if ($scope.arrNecessidadesEspeciais[i].descricao == descricao) {
+                return true;
+            }
+        }
+        
+        return false;
     };
 
     $scope.alterarNecessidade = function() {
@@ -66,10 +92,9 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
         });
     };
 
-
     $scope.carregarExcluir = function(necessidades_especiais) {
-        $("#modal_excluir").modal();
-        $("#modal_excluir").modal('open');
+        $("#modal_excluir_necessidade").modal();
+        $("#modal_excluir_necessidade").modal('open');
         $scope.id_necessidade_especial = necessidades_especiais.id_necessidade_especial;
     };
 
@@ -83,21 +108,20 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
             arrNecessidadesExcluir
         ).success(function (data) {
             $scope.arrNecessidadesEspeciais = data;
+            $scope.fecharModalExcluir();
             $scope.necessidades_especiais();
         });
-        $scope.fecharModalExcluir();
     }
 
     $scope.fecharModalExcluir = function() {
-        $("#modal_excluir").modal();
-        $("#modal_excluir").modal('close');
+        $("#modal_excluir_necessidade").modal();
+        $("#modal_excluir_necessidade").modal('close');
     };
 
     $scope.cancelar = function () {
         $scope.is_alterar = false;
         $scope.id_necessidade_especial = null;
         $scope.descricao = null;
-        
     }
 
     $scope.carregarAlterar = function(necessidades_especiais) {
@@ -105,7 +129,6 @@ app.controller("ctrlrAdmCadastroNecessidades", function($scope,$rootScope,$http)
         $scope.id_necessidade_especial = necessidades_especiais.id_necessidade_especial;
         $scope.descricao = necessidades_especiais.descricao;
     };
-
 
     angular.element(document).ready(function () {
 		$scope.__construct();	

@@ -36,23 +36,18 @@
 		
 		<div class="col s12 center-align">
 			<div class="row">
-				<div class="col s4">
+				<div class="col s6">
+					<button type="submit" ng-click="cancelar()" class="btn btn-danger waves-effect waves-light btn red darken-1 col s12">
+						Cancelar
+					</button>
+				</div>
+
+				<div class="col s6">
 					<button type="submit" ng-click="salvarCartao()" class="waves-effect waves-light btn light-blue darken-2 col s12" ng-show="!is_alterar">
 						Salvar
 					</button>
 				</div>
 
-				<div class="col s4">
-					<button type="submit" ng-click="salvarCartao()" class="btn btn-success waves-effect waves-light btn light-blue darken-2 col s12" ng-show="is_alterar">
-						Alterar
-					</button>
-				</div>
-				<div class="col s4">
-					<button type="submit" ng-click="cancelar()" class="btn btn-danger waves-effect waves-light btn red darken-1 col s12">
-						Cancelar
-					</button>
-
-				</div>
 			</div>
 		</div>
 	</form>

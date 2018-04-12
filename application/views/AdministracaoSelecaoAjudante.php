@@ -16,7 +16,7 @@
                   <div class="collapsible-header" >
 
                      
-                          <img alt="" src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">&nbsp;
+                          <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50">&nbsp;
                     
                           <p class="truncate"> {{lista.nome}}</p>
                   </div>
