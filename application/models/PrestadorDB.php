@@ -90,7 +90,7 @@ class PrestadorDB extends CI_Model{
 
 	public function getDadosServicosSolicitados($id_prestador) {
 		return $this->db->query("
-			select
+			SELECT
 				ss.id_servico_solicitacao,
 				s.id_servico,
 				pf.nome,
@@ -101,7 +101,9 @@ class PrestadorDB extends CI_Model{
 				TIME_FORMAT(ss.horario_inicio,'%H:%i') as horario_inicio, 
 				TIME_FORMAT(ss.horario_fim,'%H:%i') as horario_fim,		
 				eo.id_estado_operacao,
-				eo.descricao ds_estado_atual
+				eo.descricao ds_estado_atual,
+			  (SELECT COALESCE(GROUP_CONCAT(ne.descricao), 'Nenhuma' ) FROM contratante_necessidade_especial cne LEFT JOIN necessidade_especial ne ON (ne.id_necessidade_especial = cne.necessidade_especial_id_necessidade_especial) WHERE  cne.contratante_id_contratante = c.id_contratante ) necessidades_especiais
+
 			FROM
 				pessoa_fisica pf,
 				contratante c,
