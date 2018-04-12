@@ -46,7 +46,7 @@ app.controller(
 			'../ControlePrestador/atualizarEstado',
 			arrDados
         ).success(function (data) {
-            $('#modalAvaliacao').modal('hide');
+            $('#modalAvaliacao').modal('close');
             $scope.carregarDetalheServico();
             $.notify("Serviço finalizado!", "success");
         });

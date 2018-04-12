@@ -44,7 +44,7 @@
         </ul>
     </div>
 
-     <!-- Modal Structure -->
+    <!-- Modal Structure -->
       <div id="modalAvaliacao" class="modal modal-fixed-footer">
         <div class="modal-content">
           <h4>Realizar avaliação </h4>
