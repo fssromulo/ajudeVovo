@@ -79,6 +79,20 @@
                            <option value="" selected>Selecione um sexo...</option>
                         </select>
                      </div>
+                     <div input-field class="session col s12 m6">
+                        <select multiple
+                           name="necessidades"
+                           id="necessidades"
+                           ng-options="listaNecessidades.descricao for listaNecessidades in arrListaNecessidades"
+                           ng-model="arrListaNecessidades.necessidade"
+                           material-select watch
+                        >
+                           <option value=""  disabled selected>Selecione uma necessidade especial...</option>
+                        </select>
+                     </div>
+
+                     
+                       
                   </div>
 
 

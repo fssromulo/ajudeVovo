@@ -100,6 +100,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		};
 		angular.element('.modal').modal();
  		angular.element('ul.tabs').tabs();
+
+
 	};
 
 	$scope.getListaPais = function() {
@@ -150,6 +152,15 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	}
 
+	$scope.getListaNecessidadesEspeciais = function(){
+
+		$http.post(
+	    		'../AdmCadastroNecessidades/necessidades_especiais/'
+	    	).success(function (data) {
+	    		$scope.arrListaNecessidades = data;
+		});
+	}
+
 	$scope.comparaValores = function(valor1, valor2) {
 		if ( valor1 == undefined || valor2 == undefined ) {
 			return false;
@@ -165,6 +176,10 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		);
 	};
 	
+	$scope.testeNecessidade = function(){
+		console.log($scope.arrListaNecessidades.necessidade);
+	}
+
 	$scope.validaSalvar = function() {
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
         	Coordenadas do corte da foto!!                
@@ -204,6 +219,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	            + (objData.getMonth() + 1) + "/"
 	            + objData.getFullYear();
 		}
+
 
 		let arrPessoaSalvar =
 		{
@@ -253,6 +269,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 					'id_tipo_contato'  : 4
 				}
 			],
+			'arrNecessidade': $scope.arrListaNecessidades.necessidade
 		};
 
 		if (($scope.is_ajudante == 1) && ( ($scope.is_contratante == 0) ||
@@ -285,6 +302,8 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			arrPessoaSalvar['imagem_frente_documento'] = $scope.img_frente;
 			arrPessoaSalvar['imagem_verso_documento']  = $scope.img_verso;
 		}
+
+		console.log(arrPessoaSalvar);
 
 		angular.element('#modalCartaoCredito').modal('open');
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
@@ -383,5 +402,14 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	// Chama metodos que vão preencher algo em tela	
 	$scope.getListaEstadoNascimento();
 	$scope.getListaEstadoEndereco();
+	$scope.getListaNecessidadesEspeciais();
 	$scope.obj  = {src:"", selection: [], thumbnail: false};
+
+	$scope.$watch('arrListaNecessidades',
+        function(ds_novo, ds_velho) {
+            $timeout(function(argument) {
+                $('select').material_select();
+            });
+        }
+    );
 });

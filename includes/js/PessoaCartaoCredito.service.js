@@ -42,9 +42,11 @@ app.service(
 
 		this.salvarPessoaCartao = function () {
 
-			var arrDados = [];
+			let arrDados = [];
 
 			arrDados = this.getArrPessoa();
+
+			console.log(arrDados);
 
 			if (
 				(this.getCartao() != undefined) ||

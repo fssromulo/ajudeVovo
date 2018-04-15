@@ -21,7 +21,8 @@
 				'ContatoDB',
 				'EnderecoDB',
 				'CartaoCreditoDB',
-				'LoginDB'
+				'LoginDB',
+				'AdmCadastroNecessidadesDB'
 			);
 
 			foreach ( $arrModelsImportar as $chave => $modelImportar ) {
@@ -53,7 +54,6 @@
 
 		public function salvar() {
 			(array)$dados = json_decode(file_get_contents("php://input"), true);   
-
 	   	$is_alterar = $dados['is_alterar'];
 	   	$cd_pessoa  = isset($dados['cd_pessoa']) ? $dados['cd_pessoa'] : null;
 
@@ -63,12 +63,14 @@
 	   	unset( $dados['is_alterar'] );
 	   	unset( $dados['arrDadosImagem'] );
 
+
 	   	// $dados
 	   	$arrPessoa   = $dados['arrPessoa'];
 	   	$arrPessoa['senha'] =  md5($arrPessoa['senha']);
 	   	$arrEndereco = $dados['arrEndereco'];
 	   	$arrContatos = $dados['arrContatos'];
 	   	$arrCartaoCredito = $dados['cartaoCredito'];
+	   	$arrNecessidade = $dados['arrNecessidade'];
 	   	unset( $arrCartaoCredito['is_alterar'] );
 	   	unset( $dados['arrPessoa'] );
 	   	unset( $dados['arrContatos'] );
@@ -153,11 +155,17 @@
 	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
 	      	// Inserir Perfil
-	      	$this->inserirPerfil( $cd_pessoa );
+	      	$id_perfil = $this->inserirPerfil( $cd_pessoa );
 
 	   		$arrEndereco['id_pessoa'] = $cd_pessoa;
 
 	      	$this->EnderecoDB->inserirEndereco($arrEndereco);
+
+	      	//Inserir Necessidades se for um vovo
+				if ( isset($dados['is_contratante']) == true ) {
+					$this->inserir_necessidade_contratante($arrNecessidade, $id_perfil);			
+				}
+
 	      	
 	      	// Salvar dados do cartao da pessoa
 	      	if ( !empty($arrCartaoCredito) ) {
@@ -170,54 +178,53 @@
 		      	);
 
 		      	$this->CartaoCreditoDB->inserir_cartao($arrCartaoCredito);      		
-	      	}
+
 	      	
-	      	foreach ( $arrContatos as $chave => $contato ) {
-	   			$contato['id_pessoa'] = $cd_pessoa;
+	      		foreach ( $arrContatos as $chave => $contato ) {
+	   				$contato['id_pessoa'] = $cd_pessoa;
 
-	   			if ( $contato['id_tipo_contato'] != 4 && !empty($contato['descricao']) ) {
-	   				$contato['descricao'] = removeCaracteres($contato['descricao']);
-	   			}
+	   				if ( $contato['id_tipo_contato'] != 4 && !empty($contato['descricao']) ) {
+	   					$contato['descricao'] = removeCaracteres($contato['descricao']);
+	   				}
 
-	      		$this->ContatoDB->inserirContato($contato);
-	      	}
+	      			$this->ContatoDB->inserirContato($contato);
+	      		}
 
-	      	if ( $this->perfil == 'ajudante') {
-	    	 		$arrRetornoPessoa = $this->LoginDB->getAjudante(
-	    	 			$arrCondicaoPessoa,
-	    	 			'cadastro_pessoa'
-	    	 		)->result_array();
-	      	} else {
-	    	 		$arrRetornoPessoa = $this->LoginDB->getContratante(
-	    	 			$arrCondicaoPessoa,
-	    	 			'cadastro_pessoa'
-	    	 		)->result_array();	      		
-	      	}
+		      	if ( $this->perfil == 'ajudante') {
+		    	 		$arrRetornoPessoa = $this->LoginDB->getAjudante(
+		    	 			$arrCondicaoPessoa,
+		    	 			'cadastro_pessoa'
+		    	 		)->result_array();
+		      	} else {
+		    	 		$arrRetornoPessoa = $this->LoginDB->getContratante(
+		    	 			$arrCondicaoPessoa,
+		    	 			'cadastro_pessoa'
+		    	 		)->result_array();	      		
+		      	}
 	      	
    			$arrRetornoPessoa = $arrRetornoPessoa[0];
 
    			$arrRetornoPessoa['imagem_pessoa'] = 
    				$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
-				$this->session->set_userdata($arrRetornoPessoa);
+					$this->session->set_userdata($arrRetornoPessoa);
 
-
-				die('teseteeee !!!');
 	      	echo $this->perfil;
  			}	
 		}
+	}
 		   
 		public function inserirPerfil( $cd_pessoa) {
 			$arrPerfil['id_pessoa'] = $cd_pessoa;
 
 			if ($this->perfil == 'ajudante') {
 				$arrPerfil['is_ajudante'] = true;
-				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-	   	}
+				return $this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
+	   		}
 	   	
-	   	if ( $this->perfil == 'contratante' ) {
+	   		if ( $this->perfil == 'contratante' ) {
 				$arrPerfil['is_contratante'] = true;
-				$this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
-	   	}
+				return $this->PessoaDB->inserirPerfilPessoa( $arrPerfil );
+	   		}
 		}
 	   
 		public function excluir() {
@@ -353,6 +360,28 @@
 			$success = file_put_contents($file, $data);
 
 			return $success ? $nome_imagem : null;
+		}
+
+		public function inserir_necessidade_contratante($arrNecessidade = null, $id_perfil) {
+			if ( is_null($arrNecessidade) ) {
+				return null;
+			}
+
+			/*
+				arrNecessidade =>
+					[0] => [id_necessidade_especial] - 1,  [descricao]  - descricao2
+					[1] => [id_necessidade_especial] - 2,  [descricao] - descricao2  
+			*/
+
+			foreach ($arrNecessidade as $chaveArray => $necessidade) {
+				$arrInserirNecessidade = array(
+					'necessidade_especial_id_necessidade_especial' => $necessidade['id_necessidade_especial'],
+					'contratante_id_contratante' => $id_perfil
+				);
+
+				$this->AdmCadastroNecessidadesDB
+					->inserir_necessidade_contratante($arrInserirNecessidade);
+			}
 		}
 
 	}
