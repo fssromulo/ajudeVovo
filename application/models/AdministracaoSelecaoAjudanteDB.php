@@ -16,8 +16,8 @@ class AdministracaoSelecaoAjudanteDB extends CI_Model {
 					       pf.imagem_pessoa,
 					       pf.nome_pai,
 					       pf.nome_mae,
-					       pf.imagem_frente_documento,
-					       pf.imagem_verso_documento,
+					       coalesce(pf.imagem_frente_documento, "") imagem_frente_documento,
+					       coalesce(pf.imagem_verso_documento, "") imagem_verso_documento,
 					       pf.id_pessoa_fisica,
 					       epf.descricao as situacao');
 		$this->db->from('pessoa_fisica pf');

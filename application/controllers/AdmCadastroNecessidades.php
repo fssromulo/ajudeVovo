@@ -18,7 +18,6 @@ class AdmCadastroNecessidades extends CI_Controller {
 
     public function necessidades_especiais() {
         $listar = $this->AdmCadastroNecessidadesDB->buscar_necessidades()->result_array();
-
         echo json_encode($listar);
     }
 

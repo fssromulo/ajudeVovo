@@ -21,6 +21,13 @@ class AdmCadastroNecessidadesDB extends CI_Model {
         );
     }
 
+     public function inserir_necessidade_contratante($arrNecessidades) {
+        $this->db->insert(
+            'contratante_necessidade_especial',
+            $arrNecessidades
+        );
+    }
+
     public function alterar_necessidade($arrNecessidades, $id_necessidade_especial) {
         $this->db->update(
             'necessidade_especial',

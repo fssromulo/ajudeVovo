@@ -60,7 +60,8 @@ class PessoaDB extends CI_Model{
 	 			$arrDados
 	 		);
 	 	}
-
+	 	
+	 	return $this->db->insert_id();
   	}
 
 	public function inativarPessoa($id_pessoa_fisica, $arrPessoaAlterar) {

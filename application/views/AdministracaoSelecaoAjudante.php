@@ -27,8 +27,23 @@
                       Sexo: {{lista.sexo}} <br/>
                       Nome do pai: {{lista.nome_pai}} <br/>
                       Nome da mãe: {{lista.nome_mae}} <br/>
-                      imagem do documento (Frente): {{lista.imagem_frente_documento}} <br/>
-                      imagem do documento (Verso): {{lista.imagem_verso_documento}} <br/>
+                      imagem do documento (Frente): 
+                        <a ng-show="lista.imagem_frente_documento != '' " 
+                           href="../includes/imagens/documentos/{{lista.imagem_frente_documento}}" download>
+                           <i class="material-icons">cloud_download</i> 
+                        </a>
+                        <span ng-show="lista.imagem_frente_documento == '' " >
+                          Imagem não disponível!
+                        </span>
+                      <br/>
+                      imagem do documento (Verso): 
+                      <a ng-show="lista.imagem_verso_documento != '' " 
+                           href="../includes/imagens/documentos/{{lista.imagem_verso_documento}}" download> 
+                          <i class="material-icons">cloud_download</i> 
+                      </a>
+                      <span ng-show="lista.imagem_verso_documento == '' " >
+                          Imagem não disponível!
+                      </span> <br/>
                       Situação: {{lista.situacao}} <br/>
                       <button 
                         title="Negar"
