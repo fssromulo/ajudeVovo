@@ -70,7 +70,7 @@
 	   	$arrEndereco = $dados['arrEndereco'];
 	   	$arrContatos = $dados['arrContatos'];
 	   	$arrCartaoCredito = $dados['cartaoCredito'];
-	   	$arrNecessidade = $dados['arrNecessidade'];
+	   	$arrNecessidade = isset($dados['arrNecessidade']) ? $dados['arrNecessidade'] : null ;
 	   	unset( $arrCartaoCredito['is_alterar'] );
 	   	unset( $dados['arrPessoa'] );
 	   	unset( $dados['arrContatos'] );
@@ -204,10 +204,15 @@
 	      	
    			$arrRetornoPessoa = $arrRetornoPessoa[0];
 
-   			$arrRetornoPessoa['imagem_pessoa'] = 
+   			$arrRetornoPessoa['imagem_pessoa'] =	 
    				$this->controleacesso->verificaImagemPessoa($arrRetornoPessoa['imagem_pessoa']);
-					$this->session->set_userdata($arrRetornoPessoa);
+				
+				if ( !empty($this->arrDiretorios) ) {
+					$arrRetornoPessoa['DIR_DOCS_PESSOAS']   = $this->arrDiretorios['DIR_DOCS_PESSOAS'];
+					$arrRetornoPessoa['DIR_FOTOS_PESSOAS']  = $this->arrDiretorios['DIR_FOTOS_PESSOAS']; 						
+				}				
 
+				$this->session->set_userdata($arrRetornoPessoa);
 	      	echo $this->perfil;
  			}	
 		}
