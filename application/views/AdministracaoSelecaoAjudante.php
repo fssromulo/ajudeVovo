@@ -29,7 +29,7 @@
                       Nome da mãe: {{lista.nome_mae}} <br/>
                       imagem do documento (Frente): 
                         <a ng-show="lista.imagem_frente_documento != '' " 
-                           href="../includes/imagens/documentos/{{lista.imagem_frente_documento}}" download>
+                           href="../includes/imagens/documentos_pessoas/{{lista.imagem_frente_documento}}" download>
                            <i class="material-icons">cloud_download</i> 
                         </a>
                         <span ng-show="lista.imagem_frente_documento == '' " >
@@ -38,7 +38,7 @@
                       <br/>
                       imagem do documento (Verso): 
                       <a ng-show="lista.imagem_verso_documento != '' " 
-                           href="../includes/imagens/documentos/{{lista.imagem_verso_documento}}" download> 
+                           href="../includes/imagens/documentos_pessoas/{{lista.imagem_verso_documento}}" download> 
                           <i class="material-icons">cloud_download</i> 
                       </a>
                       <span ng-show="lista.imagem_verso_documento == '' " >
