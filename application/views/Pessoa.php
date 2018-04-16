@@ -79,7 +79,7 @@
                            <option value="" selected>Selecione um sexo...</option>
                         </select>
                      </div>
-                     <div input-field class="session col s12 m6">
+                     <div data-ng-show="is_contratante" input-field class="session col s12 m6">
                         <select multiple
                            name="necessidades"
                            id="necessidades"
@@ -309,22 +309,21 @@
                <div class="section">
                   <h5>Contatos</h5>
                   <div class="divider"></div> 
-
                   <div class="row">
                      <div input-field class="session col s12 m6">
-                        <input autocomplete="off" id="fone_residencial" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" class="validate">
+                        <input autocomplete="off" class="cls-mascara-fone" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" class="validate">
                         <label for="fone_residencial">Telefone residencial</label>                                       
                      </div>
                      
                      <div input-field class="session col s12 m6">
-                        <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" id="fone_comercial" type="tel" class="validate">
+                        <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" class="cls-mascara-fone" type="tel" class="validate">
                         <label for="fone_comercial">Telefone comercial</label>                  
                      </div>
                   </div>
 
                   <div class="row">
                      <div input-field class="session col s12 m6">
-                        <input autocomplete="off" id="celular" ng-model="objPessoa.celular" id="celular" type="tel" class="validate">
+                        <input autocomplete="off" id="celular" ng-model="objPessoa.celular" class="cls-mascara-fone" type="tel" class="validate">
                         <label for="celular">Celular</label>                                       
                      </div>
                      

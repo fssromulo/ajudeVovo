@@ -39,7 +39,7 @@ app.controller(
     });
 
 	$scope.atualizarEstado = (estado) => {
-		var arrDados = {
+		let arrDados = {
 			'id_servico_solicitacao': $scope.id_servico_solicitacao,
 			'id_estado_operacao': estado
 		};

@@ -14,7 +14,7 @@ app.service(
 		this.iniciaComponenteAvaliacao = function() {
 			$(() => {
 				$('.starbox').each(function() {
-					var starbox = jQuery(this);
+					let starbox = jQuery(this);
 					starbox.starbox({
 						average: 0,
 						ghosting: true,
