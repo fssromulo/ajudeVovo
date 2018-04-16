@@ -4,7 +4,6 @@ app.controller(
 		$scope,
 		$rootScope,
 		$http,
-		$timeout,
 		ServicoClienteDetalhe
 	){
 	
@@ -17,9 +16,9 @@ app.controller(
 	}
 
 	$scope.openFilter = () => {
-		const modalFilter = $('#modalFilter');
-		modalFilter.modal();	
-		modalFilter.modal('open');
+		$scope.isFilter = true;
+		$scope.modalFilterOrder.modal();	
+		$scope.modalFilterOrder.modal('open');
 		loadHelperAutoComplete();
 		
 		if ($scope.firstActivation) {
@@ -27,37 +26,56 @@ app.controller(
 			$scope.firstActivation = false;
 		}
 
-		$scope.openDlg = 'open';
+		$scope.openDlg = !$scope.openDlg;
 	}
 
 	$scope.openOrder = () => {
-		const modalOrder = $('#modalOrder');
-		modalOrder.modal();	
-		modalOrder.modal('open');
-		$scope.openDlg = 'open';
+		$scope.isFilter = false;
+		$scope.modalFilterOrder.modal();	
+		$scope.modalFilterOrder.modal('open');
+		$scope.openDlg = !$scope.openDlg;
 	}
 
 	$scope.filtrar = () => {
-		$('#modalFilter').modal('close');
-		$scope.openDlg = 'close';
+		$scope.modalFilterOrder.modal('close');
+		$scope.openDlg = !$scope.openDlg;
 
 		$scope.filter.categoria = 
-			$scope.arrCategorias.id_categoria ? 
-				$scope.arrCategorias.id_categoria.id_categoria : 
+			$scope.arrCategorias.selectedCategory ? 
+				$scope.arrCategorias.selectedCategory.id_categoria : 
 					null;
+
+		$scope.filter.ajudante = $("#ajudante").val() || '';
+		$scope.filter.descricao = $("#descricao").val() || '';
+
+		const estrelas = $("#estrelas")[0].noUiSlider;
+		$scope.filter.minEstrela = estrelas.get()[0];
+		$scope.filter.maxEstrela = estrelas.get()[1];
+
+		const valores = $("#valor")[0].noUiSlider;
+		$scope.filter.minValor = valores.get()[0];
+		$scope.filter.maxValor = valores.get()[1];
 
 		$scope.getServicos();
 	}
 
 	$scope.ordenar = () => {
-		$('#modalOrder').modal('close');
-		$scope.openDlg = 'close';
+		$scope.modalFilterOrder.modal('close');
+		$scope.openDlg = !$scope.openDlg;
+
+		const field = $scope.orderFieldOptions.selectedFieldOrder ?
+			$scope.orderFieldOptions.selectedFieldOrder.model : 'qt_estrela';
+		const order =  $scope.orderOptions.selectedOrder ? 
+			$scope.orderOptions.selectedOrder.model : 'desc';
+
+		$scope.order =  field + ' ' + order;
 		$scope.getServicos();
 	}
 
 	$scope.limparItemFiltro = (item) => {
 		switch (item) {
 			case 'categoria':
+				$scope.arrCategorias.selectedCategory = {};
 				$scope.filter.categoria = null;
 				break;
 			case 'descricao':
@@ -83,7 +101,7 @@ app.controller(
 	$scope.$watch(
     	'openDlg',
     	() => {
-        	$timeout(
+        	setTimeout(
 				() => {
 					$('select').material_select();
 				}, 0
@@ -92,25 +110,30 @@ app.controller(
    	);
 
 	loadHelperAutoComplete = () => {
-		$('#ajudante').autocomplete({
-			data: $scope.arrAjudantes,
-			limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
-			onAutocomplete: (val) => {}, // Callback function when value is autcompleted.
-			minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-		});
+		setTimeout(() => {
+			$('#ajudante').autocomplete({
+				data: $scope.arrAjudantes,
+				limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+				minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+			});
+		}, 0);
 	}
 
 	loadSliders = () => {
-		loadSlider($('#valor')[0], 0, 100);
-		loadSlider($('#estrelas')[0], 0, 5);
+		setTimeout(() => {
+			loadSlider('valor', 0, 100);
+			loadSlider('estrelas', 0, 5);
+		}, 0);
 	}
 
-	loadSlider = (slider, start, end) => {
+	loadSlider = (sliderName, start, end) => {
+		const slider = $('#' + sliderName)[0];
 		noUiSlider.create(slider, 
 			{
 				start: [start, end],
 				connect: true,
 				step: 1,
+		//		tooltips: [ true, true ],
 				orientation: 'horizontal', // 'horizontal' or 'vertical'
 				range: {
 					'min': start,
@@ -120,7 +143,7 @@ app.controller(
 					decimals: 0
 				})
 			}
-		);
+		);		
 	}
 
 	getCategorias = () => {
@@ -147,30 +170,47 @@ app.controller(
 			descricao: '', 
 			ajudante: '',
 			categoria: null,
+			minValor: null,
+			maxValor: null,
+			minEstrela: null,
+			maxEstrela: null,
 		};
 
 		$scope.arrAjudantes = {};
 	
-		$scope.orderOptions = [
+		$scope.orderFieldOptions = [
 			{ 
-				model: 'qt_estrela desc',
+				model: 'qt_estrela',
 				description: 'Estrelas'
 			},
 			{ 
-				model: 'ds_categoria desc',
+				model: 'ds_categoria',
 				description: 'Categorias'
 			},
 			{ 
-				model: 'qt_servicos desc',
+				model: 'qt_servicos',
 				description: 'Quantidade de serviços prestados'
 			},
 			{ 
-				model: 'valor desc',
+				model: 'valor',
 				description: 'Valor'
 			}
 		];
 
+		$scope.orderOptions = [
+			{ 
+				model: 'desc',
+				description: 'Maior para o menor'
+			},
+			{ 
+				model: 'asc',
+				description: 'Menor para o maior'
+			},
+		];
+
 		$scope.firstActivation = true;
+
+		$scope.modalFilterOrder = $('#modalFilterOrder');
 
 		$scope.getServicos();
 		getCategorias();
