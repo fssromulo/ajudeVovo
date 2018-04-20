@@ -25,9 +25,14 @@ class AdministracaoPainel extends CI_Controller {
 		
 	}
 
-	public function index()
-	{
-		$this->load->view('AdministracaoPainel');
-	}
+	public function index() {
+	    $arrTitulo = array(
+	    'titulo_tela' => 'Painel&nbsp;de&nbsp;Administração'
+	     );
+
+	     $this->load->view('AdministracaoPainel', $arrTitulo);
+    }
+
+	
 
 }
