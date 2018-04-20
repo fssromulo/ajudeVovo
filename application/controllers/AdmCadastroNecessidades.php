@@ -10,7 +10,7 @@ class AdmCadastroNecessidades extends CI_Controller {
 
     public function index() {
         $arrTitulo = array(
-        'titulo_tela' => 'Cadastro&nbsp;de&nbsp;Necessidades&nbsp;Especiais'
+        'titulo_tela' => 'Necessidades&nbsp;Especiais'
          );
 
          $this->load->view('AdmCadastroNecessidades', $arrTitulo);
