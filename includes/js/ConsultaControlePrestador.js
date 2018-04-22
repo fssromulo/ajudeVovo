@@ -27,14 +27,15 @@ app.controller(
 		$scope.atualizarEstado(2);
 	};
 
-	$scope.abrirTelaAvaliacao = (id_servico_solicitacao) => {
-		RealizaAvaliacao.setIdServicoSolicitado(id_servico_solicitacao);
+	$scope.abrirTelaAvaliacao = (servico_solicitado) => {
+		RealizaAvaliacao.setServicoSolicitado(servico_solicitado);
+		RealizaAvaliacao.setUsaServico(false);
 		RealizaAvaliacao.setMetodoAtualizar($scope.carregarServicosSolicitados);
 		RealizaAvaliacao.abrirModal();
 	};
 
     $scope.$on('finalizar_servico', function(e) {  
-    	$scope.id_servico_solicitacao = RealizaAvaliacao.getIdServicoSolicitado();
+    	$scope.id_servico_solicitacao = RealizaAvaliacao.getServicoSolicitado().id_servico_solicitacao;
         $scope.atualizarEstado(5);  
     });
 

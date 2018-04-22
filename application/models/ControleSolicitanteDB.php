@@ -21,6 +21,8 @@ class ControleSolicitanteDB extends CI_Model {
 			f.id_servico_solicitacao,
 			s.id_servico,
 			s.ativo,
+			f.id_contratante,
+			s.id_prestador,
 			pf.imagem_pessoa '
 		);
 
