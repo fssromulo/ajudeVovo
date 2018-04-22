@@ -31,9 +31,11 @@
                                 <span>Valor do serviço: {{servico.valor}}</span>
                                 <br><br><br>
                                 <div class="col s12">
-                                    <i class="material-icons right blue-text"
+                                    <i style="cursor: pointer" 
+                                        class="material-icons right blue-text"
                                         ng-click="editarServico(servico)"/>edit</i>
-                                    <i class="material-icons right red-text darken-2"
+                                    <i style="cursor: pointer"
+                                        class="material-icons right red-text darken-2"
                                         ng-click="carregarInativar(servico)"/>delete</i>
                                 </div>
                                 <br>

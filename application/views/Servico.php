@@ -16,17 +16,11 @@
             <input type="hidden" name="is_edicao" ng-model="id_servico" 
                 ng-init="id_servico=<?php echo $id_servico?>">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-10">
-                        &nbsp;
-                    </div>
-                </div>
-                <div class="col-sm-10 col-lg-offset-1"> 
-
+                <div class="col s10 col-lg-offset-1">
                     <form class="form-group" name="form_servico">
                         <div class="row">
                             <div class="col s12">
-                                <div class="form-group">
+                                <div class="input-field">
                                     <label for="descricao">Descrição:</label>
                                     <input type="text" ng-model="descricao" class="form-control" id="descricao" required/>
                                 </div>
@@ -104,7 +98,7 @@
                                             <input type="time" ng-model="horario_fim" id="horario_fim" name="horario_fim" class="form-control"/>
                                         </div>
 
-                                        <div class="col s12 col m6 text-center">
+                                        <div class="col m12 col s12 text-center">
                                             <div class="col m12">&nbsp;</div>
                                             <button
                                                 type="button"
@@ -119,7 +113,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col s12">
                                 <div class="form-group">
                                     <table class="table table-stripped">
                                         <thead>
@@ -166,9 +160,9 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="col s12">
-                                    <div class="form-group">
+                                    <div class="input-field">
                                         <label for="detalhe">Detalhes do Serviço:</label>
-                                        <textarea style="resize: none;" class="form-control" ng-model="detalhe" name="detalhe" id="detalhe" cols="30" rows="10"></textarea>
+                                        <textarea style="resize: none;" class="materialize-textarea" ng-model="detalhe" name="detalhe" id="detalhe"></textarea>
                                     </div>
                                 </div>
                             </div>
