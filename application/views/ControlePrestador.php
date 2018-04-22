@@ -60,7 +60,7 @@
                         <div ng-show="{{lista.id_estado_operacao}} == 4">
                             <button 
                                 title="Finalizar Serviço" 
-                                ng-click="abrirTelaAvaliacao(lista.id_servico_solicitacao)"
+                                ng-click="abrirTelaAvaliacao(lista)"
                                 class="waves-effect waves-light btn light darken-1"
                                 style="font-size: 14px;">Finalizar Serviço
                                     <span class="material-icons">check</span>

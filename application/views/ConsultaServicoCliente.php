@@ -20,7 +20,7 @@
 					<div class="form-group">
 						<div ng-if="filter.categoria">
 							<div class="chip">
-								Categoria: {{arrCategorias.id_categoria.descricao}}
+								Categoria: {{arrCategorias.selectedCategory.descricao}}
 								<i class="close material-icons" ng-click="limparItemFiltro('categoria')">close</i>
 							</div>
 						</div>
@@ -107,20 +107,10 @@
 		</div>
   	</div>
 
-	<div id="modalFilter" class="modal">
+	<div id="modalFilterOrder" class="modal">
 	    <div class="modal-content">
-	      <h5 class="modal-title center">Filtros</h5>
 	      <?php
-	      		$this->load->view('FiltrarServicoCliente.php');
-	      	?> 	
-		</div>
-  	</div>
-
-	<div id="modalOrder" class="modal">
-	    <div class="modal-content">
-	      <h5 class="modal-title center">Ordenação</h5>
-	      <?php
-	      		$this->load->view('OrdernarServicosCliente.php');
+	      		$this->load->view('FiltrarOrdenarServicoCliente.php');
 	      	?> 	
 		</div>
   	</div>
@@ -135,7 +125,7 @@
 	<!-- <script type="text/javascript" src="http://next.materializecss.com/bin/materialize.js"></script>    -->
 	<script type="text/javascript" src="http://next.materializecss.com/extras/noUiSlider/nouislider.js"></script>  
 	<!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/v0.100.2/dist/js/materialize.min.js"></script> -->
-	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+<!-- 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script> -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>
 	<script type="text/javascript" src="../includes/js/DetalheServico.js"></script>

@@ -33,15 +33,11 @@
        <div class="background blue #1889ff">
          <div class="blue lighten-1"></div>
        </div>
-       <a href="#!user"><img alt="imagem da pessoa" class="circle" src="../includes/imagens/pwa_icons/android-chrome-192x192.png"></a>
-       <a href="#!name"><span class="white-text name">Adalberto Azevedo</span></a>
-       <a href="#!email"><span class="white-text email">ajudevovo@gmail.com</span></a>
-       </div>
      </li>
-     <li><a href="#perfil_implementar"><i class="material-icons">face</i>Perfil</a></li>
-     <li><a href="../ConsultaServicoCliente/"><i class="material-icons">room_service</i>Serviços</a></li>
-     <li><a href="../ControleSolicitante/"><i class="material-icons">history</i>Serviços solicitados</a></li>
-     <li><a href="../Login/sairSistema"><i class="material-icons">rowing</i>Sair</a></li>
+     <li><a href="../AdmCadastroPerfil/">Perfil</a></li>
+     <li><a href="../AdmCadastroCategorias/">Categorias</a></li>
+     <li><a href="../AdministracaoSelecaoAjudante/">Seleção Ajudantes</a></li>
+     <li><a href="../AdmCadastroNecessidades/">Necessidades</a></li>
    </ul>
 
 </header>

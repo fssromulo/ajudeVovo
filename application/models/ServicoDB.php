@@ -90,43 +90,57 @@ class ServicoDB extends CI_Model {
 
     public function get_servicos_cliente($filter, $order) {
         return $this->db->query("
-        select
-            s.id_servico id_servico,
-            c.descricao ds_categoria, 
-            c.imagem_categoria url_img_categoria,
-            pf.nome nm_prestador,
-            pf.imagem_pessoa imagem_pessoa, 
-            obter_avaliacao('S', id_servico) qt_estrela, 
-            obter_quantidade_servicos(id_servico) qt_servico, 
-            RPAD(concat_ws(' - ', s.descricao, s.detalhe), 255, ' ') ds_detalhe, 
-            s.valor
-        from
-        	pessoa_fisica pf,
-            prestador p,
-            servico s,
-            categoria c
-        where	
-            pf.id_pessoa_fisica = p.id_pessoa
+        select 
+            *
+        from (
+            select
+                s.id_servico id_servico,
+                c.descricao ds_categoria, 
+                c.imagem_categoria url_img_categoria,
+                pf.nome nm_prestador,
+                pf.imagem_pessoa imagem_pessoa, 
+                obter_avaliacao('S', id_servico) qt_estrela, 
+                obter_quantidade_servicos(id_servico) qt_servico, 
+                RPAD(concat_ws(' - ', s.descricao, s.detalhe), 255, ' ') ds_detalhe, 
+                c.id_categoria,
+                s.valor
+            from
+                pessoa_fisica pf,
+                prestador p,
+                servico s,
+                categoria c
+            where	
+                pf.id_pessoa_fisica = p.id_pessoa
+            and		
+                p.id_prestador = s.id_prestador
+            and
+                s.ativo = 1
+            and
+                pf.id_estado_pessoa_fisica = 1
+            and		
+                s.id_categoria = c.id_categoria ) x
+        where
+            1=1
         and		
-            p.id_prestador = s.id_prestador
-        and
-            s.ativo = 1
-        and
-			pf.id_estado_pessoa_fisica = 1
+            x.id_categoria = coalesce(?, x.id_categoria)
         and		
-            s.id_categoria = c.id_categoria 
+            x.ds_detalhe like lower('%' ? '%') 
         and		
-            c.id_categoria = coalesce(?, c.id_categoria)
+            lower(x.nm_prestador) like lower('%' ? '%') 
         and		
-            RPAD(concat_ws(' - ', s.descricao, s.detalhe), 255, ' ') like lower('%' ? '%') 
+            x.valor between coalesce(?, x.valor) and coalesce(?, x.valor)
         and		
-            lower(pf.nome) like lower('%' ? '%') 
+            x.qt_estrela between coalesce(?, x.qt_estrela) and coalesce(?, x.qt_estrela)
         order by
             ".$order."
         ", array(
                 $filter['categoria'],
                 $filter['descricao'],
                 $filter['ajudante'],
+                $filter['minValor'],
+                $filter['maxValor'],
+                $filter['minEstrela'],
+                $filter['maxEstrela'],
             )
         );
     }

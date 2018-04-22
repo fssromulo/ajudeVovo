@@ -9,12 +9,13 @@ app.service(
 	'RealizaAvaliacao',
 	function($rootScope, $http, $q) {
 
-		this.id_servico = 0;
+		this.usa = true;
+		this.servico_solicitado = {};
 
 		this.iniciaComponenteAvaliacao = function() {
 			$(() => {
 				$('.starbox').each(function() {
-					var starbox = jQuery(this);
+					let starbox = jQuery(this);
 					starbox.starbox({
 						average: 0,
 						ghosting: true,
@@ -24,31 +25,39 @@ app.service(
 			});
 		}
 
-		this.setIdServicoSolicitado = function( id_servico ) {
-			this.id_servico = id_servico;
+		this.setUsaServico = usa => {
+			this.usa = usa;
+
+			if (!usa) {
+				this.servico_solicitado.id_servico = null;
+			}
 		}
 
-		this.salvarAvaliacaoService = function() {
+		this.setServicoSolicitado = servico_solicitado => {
+			this.servico_solicitado = servico_solicitado;
+		}
+
+		this.salvarAvaliacaoService = () => {
 			$rootScope.$broadcast('salvarAvaliacao');
 		}
 
-		this.atualizarEstadoService = function() {
+		this.atualizarEstadoService = () => {
 			$rootScope.$broadcast('finalizar_servico');
 		}
 
 		/* Mostrar Modal */
-		this.abrirModal = function() {
+		this.abrirModal = () => {
 			this.iniciaComponenteAvaliacao();
 			const modalAval = $('#modalAvaliacao');
 			modalAval.modal();	
 			modalAval.modal('open');	
 		}
 
-		this.getIdServicoSolicitado = function() {
-			return this.id_servico;
+		this.getServicoSolicitado = () => {
+			return this.servico_solicitado;
 		}
 
-		this.setMetodoAtualizar = (metodoAtualizar) => {
+		this.setMetodoAtualizar = metodoAtualizar => {
 			this.metodoAtualizar = metodoAtualizar;
 		}
 

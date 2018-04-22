@@ -11,7 +11,7 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="form-group">
 						<label for="dt_validade">Data de Validade:</label>
-						<input type="text" class="datepicker" ng-model="dt_validade" id="dt_validade" placeholder="" />
+						<input type="text" ng-model="dt_validade" id="dt_validade" placeholder="" />
 					</div>
 	   			</div>
 	   		</div>

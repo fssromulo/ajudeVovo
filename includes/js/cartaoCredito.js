@@ -38,7 +38,7 @@ app.controller(
 			$scope.nome_titular = null;
 			$scope.numero_cartao = null;
 			$scope.data_validade = null;
-			$('#modalCartaoCredito').modal('hide');
+			// $('#modalCartaoCredito').modal('hide');
 		}
 
 		$scope.carregarAlterar = function( cartao ) {
