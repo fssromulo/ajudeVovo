@@ -8,10 +8,15 @@ app.controller(
 	$scope.salvarAvaliacao = function() {
 		$scope.nota = $('#nota').starbox("getValue") * 5 | 0;
 
+		const servico_realizado = RealizaAvaliacao.getServicoSolicitado();
+
 		let arrAvaliacao = {
-			'nota'  		 : $scope.nota,
-			'comentario'     : $scope.comentario,
-			'id_servico'	 : RealizaAvaliacao.getIdServicoSolicitado()
+			'nota'  		        : $scope.nota,
+			'comentario'            : $scope.comentario,
+			'id_servico'            : servico_realizado.id_servico,
+			'id_servico_solicitado'	: servico_realizado.id_servico_solicitacao,
+			'id_contratante'        : servico_realizado.id_contratante,
+			'id_prestador'			: servico_realizado.id_prestador,
 		};
 
 

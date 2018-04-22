@@ -53,17 +53,21 @@ class Avaliacao extends CI_Controller {
 		(array)$dados = json_decode(file_get_contents("php://input"), true);   
    	
 		$id_servico = $dados['id_servico'];
-		$id_contratante = $this->session->userdata('id_contratante');
-		$id_prestador = $this->session->userdata('id_prestador');
+		$id_servico_solicitado = $dados['id_servico_solicitado'];
+		$id_contratante = $dados['id_contratante'];
+		$id_prestador = $dados['id_prestador']; 
 
 
-		if ( !empty($id_contratante) ) {
-			$this->perfil = CONTRATANTE;
-		} else if ( !empty($id_prestador) ) {
+		if ( empty($id_servico) ) {
 			$this->perfil = AJUDANTE;
+		} else {
+			$this->perfil = CONTRATANTE;
 		}
 
 		unset($dados['id_servico']);
+		unset($dados['id_servico_solicitado']);
+		unset($dados['id_contratante']);
+		unset($dados['id_prestador']);
 
 		$this->AvaliacaoDB->inserir_avaliacao($dados);
 
@@ -77,7 +81,7 @@ class Avaliacao extends CI_Controller {
 			$dados['id_servico'] = $id_servico;
 			$this->AvaliacaoDB->inserir_avaliacao_servico($dados);
 		} else if ($this->perfil == AJUDANTE ) {
-			$id_contratante = $this->getIdContratanteServico($id_servico);	
+			$id_contratante = $this->getIdContratanteServico($id_servico_solicitado);	
 			$dados['id_contratante'] = $id_contratante;
 			$this->AvaliacaoDB->inserir_avaliacao_contratante($dados);
 		}

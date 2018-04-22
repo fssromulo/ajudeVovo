@@ -93,6 +93,8 @@ class PrestadorDB extends CI_Model{
 			SELECT
 				ss.id_servico_solicitacao,
 				s.id_servico,
+				s.id_prestador,
+				ss.id_contratante,
 				pf.nome,
 				pf.imagem_pessoa,
 				s.descricao,
