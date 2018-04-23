@@ -18,9 +18,7 @@
                       <i class="material-icons">add</i></a>                      
                 </div>
 
-                <div class="col-sm-12">&nbsp;</div>                
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10">
+                <div class="s12">
                 <table class="table table-stripped">
                     <ul class="collapsible" data-collapsible="accordion">
                         <li ng-repeat="servico in arrListaServico">

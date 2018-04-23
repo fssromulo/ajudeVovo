@@ -63,5 +63,5 @@ footer.page-footer {
 .ng-jcrop-image-wrapper { display: inline-block; }
 .ng-jcrop-thumbnail-wrapper { display: inline-block; }
 
-[ng-controller] { margin-bottom: 48px; }
+/*[ng-controller] { margin-bottom: 48px; }*/
 caption { text-align: left; }
