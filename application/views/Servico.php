@@ -47,19 +47,16 @@
 
                         <div class="row">
                             <div class="col s12">
-                                <div class="form-group">
+                                <div class="input-field">
                                     <label for="valor">Valor:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">R$</span>
-                                        <input
-                                            type="text"
-                                            ng-model="valor"
-                                            class="form-control"
-                                            id="valor"
-                                            data-ng-blur="validaValorServico()"
-                                            required
-                                        />
-                                    </div>
+                                    <input
+                                        type="text"
+                                        ng-model="valor"
+                                        class="form-control"
+                                        id="valor"
+                                        data-ng-blur="validaValorServico()"
+                                        required
+                                    />
                                 </div>
                             </div>
                         </div>
