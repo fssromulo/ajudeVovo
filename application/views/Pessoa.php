@@ -3,11 +3,9 @@
     $this->load->view('nucleo/header.php');
 ?>
 <style type="text/css">
-  ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
-::-webkit-datetime-edit-month-field:not([aria-valuenow]),
-::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
-    color: transparent !important;
-}
+  .desabilitar_troca_abas {
+    pointer-events: none;
+  }
 
 </style>
 </head>
@@ -21,10 +19,10 @@
          <br/>
             <div class="col s12">
                <ul class="tabs">
-                  <li class="tab col s3"><a class="active" href="#tab_dados_pessoais"><i class="material-icons blue-text #1889ff">person</i></a></li>
-                  <li class="tab col s3"><a href="#tab_endereco"><i class="material-icons blue-text #1889ff">home</i></a></li>
-                  <li class="tab col s3 "><a href="#tab_contatos"><i class="material-icons blue-text #1889ff">local_phone</i> </a></li>
-                  <li class="tab col s3"><a href="#tab_dados_acesso"><i class="material-icons blue-text #1889ff">https</i></a></li>
+                  <li class="tab col s3"><a class="active desabilitar_troca_abas" href="#tab_dados_pessoais"><i class="material-icons blue-text #1889ff">person</i></a></li>
+                  <li class="tab col s3"><a href="#tab_endereco" class="desabilitar_troca_abas"><i class="material-icons blue-text #1889ff">home</i></a></li>
+                  <li class="tab col s3 "><a href="#tab_contatos" class="desabilitar_troca_abas"><i class="material-icons blue-text #1889ff">local_phone</i> </a></li>
+                  <li class="tab col s3"><a href="#tab_dados_acesso" class="desabilitar_troca_abas"><i class="material-icons blue-text #1889ff">https</i></a></li>
                </ul>
             </div>
          <!-- <br/> -->
