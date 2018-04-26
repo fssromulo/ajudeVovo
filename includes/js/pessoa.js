@@ -50,10 +50,19 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		imagem_verso_documento : ''
 	};
 
+
+	$scope.arrListaPaisEndereco = [];
+
+	$scope.arrListaEstadoEndereco = [];
+	$scope.arrListaCidadeEndereco = [];
+
+	$scope.arrListaEstadoNascimento = [];
+	$scope.arrListaCidadeNascimento = [];
+
 	$scope.img_frente = '';
    	$scope.img_verso  = '';
 
-	$scope.__construct = function() {
+	$scope.__construct = () => {
 
 		$(".dt_nascimento").mask("99/99/9999",  {placeholder:"_"});
 		$("#cpf").mask("999.999.999-99",  {placeholder:"_"});
@@ -72,14 +81,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		$scope.close = 'Fechar';
 		$scope.selectMonths = true;
 		$scope.selectYears = 100;
-
-		$scope.arrListaPaisEndereco = [];
-		
-		$scope.arrListaEstadoEndereco = [];
-		$scope.arrListaCidadeEndereco = [];
-		
-		$scope.arrListaEstadoNascimento = [];
-		$scope.arrListaCidadeNascimento = [];
 
 		// Inicializa variaveis
 		$scope.id_pessoa_fisica = null;
@@ -104,7 +105,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 
 	};
 
-	$scope.getListaPais = function() {
+	$scope.getListaPais = () => {
 	    $http.post(
 	    		'../Gerais/Geral/getListaPais/'
 	    	).success(function (data) {
@@ -112,7 +113,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	}
 
-	$scope.getListaEstadoEndereco = function( ) {
+	$scope.getListaEstadoEndereco = () => {
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
@@ -121,7 +122,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		);
 	}
 
-	$scope.getListaEstadoNascimento = function( ) {
+	$scope.getListaEstadoNascimento = () => {
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
@@ -130,7 +131,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		);
 	}
 
-	$scope.getListaCidadeEndereco = function() {
+	$scope.getListaCidadeEndereco = () => {
 		$scope.objPessoa.estado = $scope.arrListaEstadoEndereco.estado;
 		
 	    $http.post(
@@ -141,7 +142,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	}
 
-	$scope.getListaCidadeNascimento = function() {
+	$scope.getListaCidadeNascimento = () => {
 		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.estado;
 		
 	    $http.post(
@@ -152,7 +153,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	}
 
-	$scope.getListaNecessidadesEspeciais = function(){
+	$scope.getListaNecessidadesEspeciais = () => {
 
 		$http.post(
 	    		'../AdmCadastroNecessidades/necessidades_especiais/'
@@ -161,7 +162,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		});
 	}
 
-	$scope.comparaValores = function(valor1, valor2) {
+	$scope.comparaValores = (valor1, valor2) => {
 		if ( valor1 == undefined || valor2 == undefined ) {
 			return false;
 		}
@@ -176,24 +177,17 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		);
 	};
 	
-	$scope.testeNecessidade = function(){
-		console.log($scope.arrListaNecessidades.necessidade);
-	}
 
-	$scope.validaSalvar = function() {
+	$scope.validaSalvar = () => {
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
         	Coordenadas do corte da foto!!                
-        */            
+        */   
+
         let x = $scope.obj.selection[0];
         let y = $scope.obj.selection[1];
         let w = $scope.obj.selection[4];
         let h = $scope.obj.selection[5];
 
-		// Se as senhas não são iguais, então aborta o envio do formulário
-		if ( !$scope.comparaValores($scope.objPessoa.senha1, $scope.objPessoa.senha2) ) {
-			$.notify('Senhas não são iguais');
-			return false;
-		}
 
 		let sexo    = $scope.arrListaSexo.sexoSelected['valor'];
 		let cidadeEndereco  = $scope.arrListaCidadeEndereco.cidade['id_cidade'];
@@ -220,6 +214,16 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	            + objData.getFullYear();
 		}
 
+		$scope.objPessoa.sexo = sexo;
+ 		$scope.objPessoa.cidade = cidadeEndereco;
+		
+		$scope.objPessoa.sexo = sexo;
+
+		// Se as senhas não são iguais, então aborta o envio do formulário
+		if ( !$scope.comparaValores($scope.objPessoa.senha1, $scope.objPessoa.senha2) ) {
+			$.notify('Senhas não são iguais');
+			return false;
+		}
 
 		let arrPessoaSalvar =
 		{
@@ -303,39 +307,36 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			arrPessoaSalvar['imagem_verso_documento']  = $scope.img_verso;
 		}
 
-		console.log(arrPessoaSalvar);
-
 		angular.element('#modalCartaoCredito').modal('open');
 		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
 	};
 
-	$scope.getImgFrente = function( evento_recebido ) {
+	$scope.getImgFrente = (evento_recebido ) => {
 		$scope.getImagemDocPessoa(evento_recebido, true);
 	}
 	
-	$scope.getImgVerso = function( evento_recebido ) {
+	$scope.getImgVerso = (evento_recebido ) => {
 	   	$scope.getImagemDocPessoa(evento_recebido,false);
 	}
 
-	$scope.IsExtensaoValida = function( imagem_conteudo ) {
+	$scope.IsExtensaoValida = (imagem_conteudo ) => {
       	if (!( /\.(jpe?g|png)$/i.test(imagem_conteudo) )) {
 			return false;
 		}
 		return true;
 	}
 
-	$scope.getImagemDocPessoa = function (event, is_frente) {
+	$scope.getImagemDocPessoa = (event, is_frente) => {
 	  // define reader
 	  let reader = new FileReader();
 
 	  $scope.sn_salvar = true;
 	  // A handler for the load event (just defining it, not executing it right now)
-	  reader.onload = function(e) {
+	  reader.onload = (e) => {
 	      $scope.$apply(function() {
 
-	      	if (!($scope.IsExtensaoValida(imgFile.name))) {
+	      	if (!($scope.IsExtensaoValida(img_file.name))) {
 				$.notify('Extensão não permitida!'); 
-				// $scope.sn_salvar = false;
 				return;
 			}
 
@@ -348,28 +349,28 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	  };
 
 	  // get <input> element and the selected file 
-	  let imgInputFile = '';
+	  let img_input_file = '';
 
 	  if ( is_frente ) {
-	  		imgInputFile = document.getElementById('img_frente');    
+	  		img_input_file = document.getElementById('img_frente');    
 	  } else {
-	  		imgInputFile = document.getElementById('img_verso');   
+	  		img_input_file = document.getElementById('img_verso');   
 	  }
 
-	  let imgFile = imgInputFile.files[0];
-	  // use reader to read the selected file
-	  // when read operation is successfully finished the load event is triggered
-	  // and handled by our reader.onload function
-	  reader.readAsDataURL(imgFile);
+	  let img_file = img_input_file.files[0];
+	  
+	  if ( img_file ) {
+	  	reader.readAsDataURL(img_file);
+	  }
 	};
 
  
     /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
-	$scope.verificaAcao = function () {
+	$scope.verificaAcao = () => {
 		$scope.validaSalvar();
 	}
 
-	$scope.carregarAlterar = function( pessoa ) {
+	$scope.carregarAlterar = (pessoa) => {
 		$scope.is_alterar = true;
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 		$scope.nome = pessoa.nome;
@@ -378,22 +379,15 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		$scope.sexoSelected = { "valor" : pessoa.sexo };
 	}
 
-	$scope.carregaExcluir = function( pessoa ) {
+	$scope.carregaExcluir = ( pessoa ) => {
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 	}
 	
-	$scope.trocarAba = function(tab_selecionada) {
-		$('ul.tabs').tabs('select_tab', tab_selecionada);
+	$scope.trocarAba = ( aba_selecionada_param ) => {
+		// let aba_atual = $(".active").attr('href');
+		// aba_atual = aba_atual.replace("#", '');
+		$('ul.tabs').tabs('select_tab', aba_selecionada_param);
 	}
-
-	$scope.excluir = function() {
-	    $http.post(
-	    		'../teste/excluir',
-	    		$scope.cd_pessoa
-	    	).success(function (data) {
-	    		$scope.arrPessoas = data;
-		});
-	};	
 
 	angular.element(document).ready(function () {	
 		$scope.__construct();	
@@ -404,12 +398,4 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	$scope.getListaEstadoEndereco();
 	$scope.getListaNecessidadesEspeciais();
 	$scope.obj  = {src:"", selection: [], thumbnail: false};
-
-	$scope.$watch('arrListaNecessidades',
-        function(ds_novo, ds_velho) {
-            $timeout(function(argument) {
-                $('select').material_select();
-            });
-        }
-    );
 });
