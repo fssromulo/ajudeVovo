@@ -48,12 +48,11 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <h5 class="modal-title" id="modal_excluir_servico_label">Excluir serviço?</h5>
-                        <br><br>
                         <div class="modal-footer">
-                            <button class="waves-effect waves-light btn red darken-2 col s12" 
+                            <button class="waves-effect waves-light btn red darken-2 col s6" 
                                 ng-click="fecharModalExcluir()">Cancelar
                             </button>
-                            <button class="waves-effect waves-light btn blue darken-2 col s12"
+                            <button class="waves-effect waves-light btn blue darken-2 col s6"
                                 ng-click="inativarServico()">Excluir
                             </button>
                         </div>

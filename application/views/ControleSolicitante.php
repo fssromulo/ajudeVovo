@@ -45,15 +45,17 @@
     </div>
 
     <!-- Modal Structure -->
-      <div id="modalAvaliacao" class="modal modal-fixed-footer">
-        <div class="modal-content">
-          <h4>Realizar avaliação </h4>
-              <?php
-            $this->load->view('Avaliacao.php');?> 
-        </div>
-        <div class="modal-footer"></div>
-      </div>
-         
+    <!-- <div id="modalAvaliacao" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <?php
+           // $this->load->view('Avaliacao.php');
+        ?>
+    </div> -->
+    
+    <div id="modalAvaliacao" class="modal">
+        <?php
+            $this->load->view('Avaliacao.php');
+        ?>
+    </div>
 
    <!-- <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>     -->
     <?php

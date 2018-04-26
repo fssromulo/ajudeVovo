@@ -48,7 +48,6 @@ app.controller("controllerListarServico", function($scope, $http) {
     };
 
     $scope.fecharModalExcluir = function() {
-        $("#modal_excluir_servico").modal();
         $("#modal_excluir_servico").modal('close');
     };
 
