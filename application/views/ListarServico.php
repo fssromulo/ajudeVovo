@@ -43,24 +43,22 @@
                 </table>
                 </div>
             </div>
-
+        
             <div class="modal fade" id="modal_excluir_servico" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="gridSystemModalLabel">Ajude o vovo!</h4>
-                        </div>                        
-                        <div class="modal-body">
-                                Deseja excluir este registro?                            
-                        </div>
-                        <br><br>
+                        <h5 class="modal-title" id="modal_excluir_servico_label">Excluir serviço?</h5>
                         <div class="modal-footer">
-                            <button type="button" class="btn-flat blue-text" ng-click="fecharModalExcluir()">Não</button>
-                            <button type="button" class="btn-flat blue-text" ng-click="inativarServico()">Sim</button>
+                            <button class="waves-effect waves-light btn red darken-2 col s6" 
+                                ng-click="fecharModalExcluir()">Cancelar
+                            </button>
+                            <button class="waves-effect waves-light btn blue darken-2 col s6"
+                                ng-click="inativarServico()">Excluir
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
         <?php
             // Importa o cabeçalho rodape padrao a todas as telas

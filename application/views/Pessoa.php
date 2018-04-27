@@ -57,13 +57,10 @@
 
 
       <!-- Modal Structure -->
-      <div id="modalCartaoCredito" class="modal">
-          <div class="modal-content">
-              <h4  id="modalCartaoCreditoLabel" >Cadastro dos dados financeiros</h4>
-               <?php
-                 $this->load->view('CartaoCredito.php');
-               ?> 
-          </div>
+      <div id="modalCartaoCredito" class="modal modal-fixed-footer">  
+        <?php
+          $this->load->view('CartaoCredito.php');
+        ?>
       </div>
 
    </div>  
