@@ -107,12 +107,10 @@
 		</div>
   	</div>
 
-	<div id="modalFilterOrder" class="modal">
-	    <div class="modal-content">
-	      <?php
-	      		$this->load->view('FiltrarOrdenarServicoCliente.php');
-	      	?> 	
-		</div>
+	<div id="modalFilterOrder" ng-class='isFilter ? "modal modal-fixed-footer" : "modal"'>
+  		<?php
+      		$this->load->view('FiltrarOrdenarServicoCliente.php');
+      	?>
   	</div>
 
 	</div>
