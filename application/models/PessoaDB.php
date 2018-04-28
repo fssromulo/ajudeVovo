@@ -73,5 +73,24 @@ class PessoaDB extends CI_Model{
 			)
 		);
 	}
+
+	public function getLoginExistente($ds_login) {
+
+		// print_r($ds_login);
+
+			$ds_sql = 
+				"SELECT
+					COUNT(pf.id_pessoa_fisica) hasLogin
+				FROM
+					pessoa_fisica pf 
+				WHERE
+					pf.login = ?";
+
+       	return $this->db->query(
+				$ds_sql,
+				array($ds_login)
+			);		
+
+	}
 }
 ?>
