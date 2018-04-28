@@ -63,7 +63,6 @@
 	   	unset( $dados['is_alterar'] );
 	   	unset( $dados['arrDadosImagem'] );
 
-
 	   	// $dados
 	   	$arrPessoa   = $dados['arrPessoa'];
 	   	$arrPessoa['senha'] =  md5($arrPessoa['senha']);
@@ -378,7 +377,7 @@
 					[1] => [id_necessidade_especial] - 2,  [descricao] - descricao2  
 			*/
 
-			foreach ($arrNecessidade as $chaveArray => $necessidade) {
+			foreach ($arrNecessidade as $necessidade) {
 				$arrInserirNecessidade = array(
 					'necessidade_especial_id_necessidade_especial' => $necessidade['id_necessidade_especial'],
 					'contratante_id_contratante' => $id_perfil
@@ -388,5 +387,16 @@
 					->inserir_necessidade_contratante($arrInserirNecessidade);
 			}
 		}
+
+
+		/*
+			Verifica se já existe o login informado
+		*/
+	   public function getLoginExistente() {
+			(array)$dados = json_decode(file_get_contents("php://input"), true);   		  
+			$arrDados = $this->PessoaDB->getLoginExistente($dados['login'])->result_array();
+			echo json_encode($arrDados[0]);
+	   }
+
 
 	}

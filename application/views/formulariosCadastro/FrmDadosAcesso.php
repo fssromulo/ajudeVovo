@@ -5,20 +5,20 @@
 
       <div class="row">
          <div input-field class="session col s12">
-            <input autocomplete="off" id="login" ng-model="objPessoa.login" id="login" type="text"  required />
-            <label for="login">Login</label>                                       
+            <input autocomplete="off" id="login" ng-model="objPessoa.login" id="login" type="text" data-ng-blur="hasLogin()" required />
+            <label for="login">Login * </label>                                       
          </div>
       </div>
 
       <div class="row">
          <div input-field class="session col s12 m6">
             <input autocomplete="off" id="senha1" ng-model="objPessoa.senha1" id="senha1" type="password"  required />
-            <label for="senha1">Senha</label>                                       
+            <label for="senha1">Senha *</label>                                       
          </div>
          
          <div input-field class="session col s12 m6">
             <input autocomplete="off" id="senha2" ng-model="objPessoa.senha2" id="senha2" type="password"  required />
-            <label for="senha2">Repetir senha</label>                  
+            <label for="senha2">Repetir senha * </label>                  
          </div>
       </div>                
    </div>               

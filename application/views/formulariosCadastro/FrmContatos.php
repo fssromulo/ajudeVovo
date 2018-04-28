@@ -4,25 +4,25 @@
 	   <div class="divider"></div> 
 	   <div class="row">
 	      <div input-field class="session col s12 m6">
-	         <input autocomplete="off" class="cls-mascara-fone" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel"  required />
+	         <input autocomplete="off" class="cls-mascara-fone" ng-model="objPessoa.fone_residencial" id="fone_residencial" type="tel" />
 	         <label for="fone_residencial">Telefone residencial</label>                                       
 	      </div>
 	      
 	      <div input-field class="session col s12 m6">
-	         <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" class="cls-mascara-fone" type="tel"  required />
+	         <input autocomplete="off" id="fone_comercial" ng-model="objPessoa.fone_comercial" class="cls-mascara-fone" type="tel" />
 	         <label for="fone_comercial">Telefone comercial</label>                  
 	      </div>
 	   </div>
 
 	   <div class="row">
 	      <div input-field class="session col s12 m6">
-	         <input autocomplete="off" id="celular" ng-model="objPessoa.celular" class="cls-mascara-fone" type="tel"  required />
-	         <label for="celular">Celular</label>                                       
+	         <input autocomplete="off" id="celular" ng-model="objPessoa.celular" class="cls-mascara-fone" type="tel" required />
+	         <label for="celular">Celular * </label>                                       
 	      </div>
 	      
 	      <div input-field class="session col s12 m6">
 	         <input autocomplete="off" id="email" ng-model="objPessoa.email" id="email" type="email"  required />
-	         <label for="email">E-mail</label>                  
+	         <label for="email">E-mail * </label>                  
 	      </div>
 	   </div>
 		
