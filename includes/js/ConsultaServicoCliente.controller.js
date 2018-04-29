@@ -178,7 +178,7 @@ app.controller(
 				description: 'Categorias'
 			},
 			{ 
-				model: 'qt_servicos',
+				model: 'qt_servico',
 				description: 'Quantidade de serviços prestados'
 			},
 			{ 
