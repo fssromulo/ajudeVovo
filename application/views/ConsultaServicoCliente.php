@@ -2,7 +2,6 @@
 	// Importa o cabeçalho padrao a todas as telas
 	$this->load->view('nucleo/header.php');
 ?>
-<link href="http://next.materializecss.com/extras/noUiSlider/nouislider.css"  type="text/css" rel="stylesheet"/>
 </head>
 <body>  
     <?php
@@ -34,6 +33,18 @@
 							<div class="chip">
 								Descrição: {{filter.descricao}}
 								<i class="close material-icons" ng-click="limparItemFiltro('descricao')">close</i>
+							</div>
+						</div>
+						<div ng-if="filter.minValor && filter.maxValor">
+							<div class="chip">
+								Preço: {{filter.minValor}} até {{filter.maxValor}}
+								<i class="close material-icons" ng-click="limparItemFiltro('valor')">close</i>
+							</div>
+						</div>
+						<div ng-if="filter.minEstrela && filter.maxEstrela">
+							<div class="chip">
+								Estrelas: {{filter.minEstrela}} até {{filter.maxEstrela}}
+								<i class="close material-icons" ng-click="limparItemFiltro('estrela')">close</i>
 							</div>
 						</div>
 						<i ng-click="openOrder()" class="material-icons right">
@@ -121,7 +132,6 @@
 
 	 <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/9bc43a1199ad5dfb78d58ba47726ab039218a939/dist/js/materialize.min.js"></script>  -->
 	<!-- <script type="text/javascript" src="http://next.materializecss.com/bin/materialize.js"></script>    -->
-	<script type="text/javascript" src="http://next.materializecss.com/extras/noUiSlider/nouislider.js"></script>  
 	<!-- <script type="text/javascript" src="https://raw.githubusercontent.com/Dogfalo/materialize/v0.100.2/dist/js/materialize.min.js"></script> -->
 <!-- 	<script type="text/javascript" src="../includes/js/locales/bootstrap-datepicker.pt-BR.min.js"></script> -->
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>

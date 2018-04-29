@@ -1,6 +1,6 @@
 <div class="modal-content">
-    <h5 class="modal-title center" ng-if="isFilter">Filtro</h5>
-    <h5 class="modal-title center" ng-if="!isFilter">Ordenação</h5>
+    <h5 class="modal-title center" ng-if="isFilter">Filtrar serviços</h5>
+    <h5 class="modal-title center" ng-if="!isFilter">Ordenar serviços</h5>
     <div class="container-fluid">
         <div class="row">
     		<form autocomplete="off" ng-if="isFilter">
@@ -37,6 +37,7 @@
                         </div>
                     </div>
 
+                    <!-- Oculto por campo não fazer muito sentido
                     <div class="row">
                        <div class="col s12">
                            <div class="row">
@@ -48,22 +49,73 @@
                                         ng-model="descricao" 
                                         id="descricao" 
                                         />
-                                    <label for="descricao">Descrição do serviço</label>
+                                    <label for="descricao">Descrição</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <h6>Preço</h6>
+                    <div class="divider"></div> 
+                    <div class="row">
+                       <div class="col s6">
+                           <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">attach_money</i>
+                                    <input
+                                        id="minValor"
+                                        class="form-control" 
+                                        type="number" 
+                                        ng-model="minValor" 
+                                        />
+                                    <label for="minValor">De</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                           <div class="row">
+                                <div class="input-field col s12">
+                                    <input
+                                        id="maxValor"
+                                        class="form-control" 
+                                        type="number" 
+                                        ng-model="maxValor" 
+                                        />
+                                    <label for="maxValor">até</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <h6>Quantidade de estrelas</h6>
+                    <div class="divider"></div> 
                     <div class="row">
-                        <div class="col s8 center-align">
-                            <div id="valor"></div>
-                            <label for="valor">Preço R$</label>
+                       <div class="col s6">
+                           <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">star</i>
+                                    <input
+                                        id="minEstrela"
+                                        class="form-control" 
+                                        type="number" 
+                                        ng-model="minEstrela" 
+                                        />
+                                    <label for="minEstrela">De</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s8">
-                            <div id="estrelas"></div>
-                            <label for="estrelas">Estrelas</label>
+                        <div class="col s6">
+                           <div class="row">
+                                <div class="input-field col s12">
+                                    <input
+                                        id="maxEstrela"
+                                        class="form-control" 
+                                        type="number" 
+                                        ng-model="maxEstrela" 
+                                        />
+                                    <label for="maxEstrela">até</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +123,7 @@
             <form ng-if="!isFilter">
                 <div class="form-row">
                     <div class="row">
-                        <div input-field class="session col s12 m6">
+                        <div input-field class="session col s12">
                             <select 
                                 ng-options="option.description for option in orderFieldOptions"
                                 ng-model="orderFieldOptions.selectedFieldOrder"
@@ -80,20 +132,22 @@
                                 class="form-control"
                             >
                             </select> 
-                            <label for="ordenacao">Ordenação:</label>
+                            <label for="ordenacao">Ordenar por:</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div input-field class="session col s12 m6">
-                            <select 
-                                ng-options="option.description for option in orderOptions"
-                                ng-model="orderOptions.selectedOrder"
-                                name="ordenacao2"
-                                id="ordenacao2"
-                                class="form-control"
-                            >
-                            </select> 
-                        </div>
+                    <h6>Ordenar do:</h6>
+                    <div class="divider"></div> 
+                    <div class="row col s12">
+                        <ul class="segmented-control">
+                            <li class="segmented-control__item">
+                                <input class="segmented-control__input" type="radio" value="desc" ng-model="selectedOrder.selected" name="selectedOrder" id="selectedOrderDesc" checked>
+                                <label class="segmented-control__label" for="selectedOrderDesc">Maior para o menor</label>
+                            </li>
+                            <li class="segmented-control__item">
+                                <input class="segmented-control__input" type="radio" value="asc" ng-model="selectedOrder.selected" name="selectedOrder" id="selectedOrderAsc" >
+                                <label class="segmented-control__label" for="selectedOrderAsc">Menor para o maior</label>
+                            </li>
+                        </ul>
                     </div>   
                 </div>
 

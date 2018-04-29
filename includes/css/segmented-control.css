@@ -1,0 +1,52 @@
+.segmented-control {
+    display: table;
+    width: 100%;
+    margin: 2em 0;
+    padding: 0;
+}
+
+.segmented-control__item {
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.segmented-control__input {
+    position: absolute;
+    visibility: hidden !important;
+}
+
+.segmented-control__label::before {
+    display:none;
+}
+
+.segmented-control__label::after {
+    display:none;
+}
+
+.segmented-control__label {
+    display: block;
+    margin: 0 -1px -1px 0; /* -1px margin removes double-thickness borders between items */
+    padding: 1em .25em; 
+
+    border: 1px solid #ddd;
+
+    text-align: center;  
+
+    cursor: pointer;
+
+    padding-left: 0px !important;
+    height: 100% !important;
+    line-height: 100% !important;
+    width: 100% !important;
+}
+
+.segmented-control__label:hover {
+    background: #fafafa;
+}
+
+.segmented-control__input:checked + .segmented-control__label {
+    background: #eee;
+    color: #333;
+}
