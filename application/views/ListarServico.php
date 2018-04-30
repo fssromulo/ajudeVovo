@@ -10,6 +10,7 @@
                 $this->load->view('MenuPrestador.php');
             ?>
            <div class="container">
+
             <div class="row">
                 <div class="fixed-action-btn">
                     <a
@@ -18,9 +19,12 @@
                       <i class="material-icons">add</i></a>                      
                 </div>
 
+                
                 <div class="s12">
+                    <p ng-if="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços cadastrados!</p>
+                            
                 <table class="table table-stripped">
-                    <ul class="collapsible" data-collapsible="accordion">
+                    <ul class="collapsible" data-collapsible="accordion" ng-if="arrListaServico.length > 0">
                         <li ng-repeat="servico in arrListaServico">
                             <div class="collapsible-header">{{servico.descricao}}</div>
                             <div class="collapsible-body">
