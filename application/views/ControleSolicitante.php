@@ -10,8 +10,11 @@
     ?>
   <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
-    <div class="container">
-         <ul  class="collapsible" data-collapsible="accordion"  >
+    
+    <p ng-show="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços solicitados!</p>
+
+    <div class="container" ng-show="arrListaServico.length > 0">
+         <ul  class="collapsible" data-collapsible="accordion">
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"/>&nbsp;
