@@ -5,7 +5,7 @@
       <div class="row">
          <div input-field class="session col s12 m6">
             <input autocomplete="off" id="nome" ng-model="objPessoa.nome" name="nome" type="text"  required/>
-            <label for="nome">Nome*</label>
+            <label for="nome">Nome *</label>
          </div>
          <div input-field class="session col s12 m6">
             <!-- Mostra o este campo se estiver numa resolução de smartphones ou tablet para usar o calendário do proprio sistema operacional -->
@@ -37,8 +37,8 @@
       </div>
       <div class="row">
          <div input-field class="session col s12 m6">
-            <input autocomplete="off" id="cpf" ng-model="objPessoa.cpf" name="cpf" type="tel" >
-            <label for="cpf">CPF</label>
+            <input autocomplete="off" id="cpf" ng-model="objPessoa.cpf" name="cpf" type="tel" required />
+            <label for="cpf">CPF *</label>
          </div>
          <div input-field class="session col s12 m6">
             <select
@@ -49,7 +49,7 @@
                material-select watch
                required
             >
-               <option value="" selected>Selecione um sexo...</option>
+               <option value=""  disabled selected>Selecione um sexo *</option>
             </select>
          </div>
          <div data-ng-if="is_contratante" input-field class="session col s12 m6">
@@ -60,7 +60,7 @@
                ng-model="arrListaNecessidades.necessidade"
                material-select watch
             >
-               <option value=""  disabled selected>Selecione uma necessidade especial...</option>
+               <option value=""  disabled selected>Selecione uma necessidade especial *</option>
             </select>
          </div>                          
       </div>
@@ -114,7 +114,7 @@
          </div>
           <div input-field class="session col s12 m6">
              <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" required >
-             <label for="nome_mae">Nome da m&atilde;e</label>                                       
+             <label for="nome_mae">Nome da m&atilde;e *</label>                                       
           </div>
           
           <div input-field class="session col s12 m6">
@@ -133,7 +133,7 @@
                  ng-change="getListaCidadeNascimento()"
                  material-select watch
               >
-                 <option value="">Estado de origem...</option>
+                 <option value="">Estado de origem *</option>
               </select>
            </div>                     
 
@@ -146,7 +146,7 @@
                  id="cidadeNascimento"
                  material-select watch
               >
-                 <option value="">Cidade de nascimento...</option>
+                 <option value="">Cidade de nascimento *</option>
               </select>
            </div>  
         </div>  

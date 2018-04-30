@@ -13,7 +13,7 @@
 					material-select watch
 					required
 				>
-					<option value="">Selecione um estado...</option>
+					<option value="">Selecione um estado *</option>
 				</select>
 			</div>
 
@@ -26,7 +26,7 @@
 				material-select watch
 				required
 				>
-					<option value="">Selecione uma cidade...</option>
+					<option value="">Selecione uma cidade *</option>
 				</select>
 			</div>                  
 		</div>
@@ -34,31 +34,31 @@
 		<div class="row">                
 			<div input-field class="session col s12 m6">
 				<input autocomplete="off" id="bairro" ng-model="objPessoa.bairro"  type="text"  required/>
-				<label for="bairro">Bairro</label>  
+				<label for="bairro">Bairro * </label>  
 			</div>
 
 			<div input-field class="session col s12 m6">
 				<input autocomplete="off" id="rua" ng-model="objPessoa.rua" type="text"  required />
-				<label for="rua">Rua</label>                                       
+				<label for="rua">Rua * </label>                                       
 			</div>
 		</div>
 
 		<div class="row">
 			<div input-field class="session col s12 m6">
 				<input  type="tel" autocomplete="off" id="nr_casa" ng-model="objPessoa.nr_casa"  required>
-				<label for="nr_casa">Número da casa</label>                  
+				<label for="nr_casa">Número da casa * </label>                  
 			</div>
 
 			<div input-field class="session col s12 m6">
 				<input autocomplete="off" id="complemento" ng-model="objPessoa.complemento" type="text"  required>
-				<label for="complemento">Complemento</label>                                       
+				<label for="complemento">Complemento * </label>                                       
 			</div>
 		</div>
 
 		<div class="row">
 			<div input-field class="session col s12 m6">
 				<input autocomplete="off" id="cep" ng-model="objPessoa.cep" type="tel"  required/>
-				<label for="cep">CEP</label>                  
+				<label for="cep">CEP * </label>                  
 			</div>
 		</div>
 	

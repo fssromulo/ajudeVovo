@@ -20,12 +20,6 @@ app.controller(
 		$scope.modalFilterOrder.modal();	
 		$scope.modalFilterOrder.modal('open');
 		loadHelperAutoComplete();
-		
-		if ($scope.firstActivation) {
-			loadSliders();
-			$scope.firstActivation = false;
-		}
-
 		$scope.openDlg = !$scope.openDlg;
 	}
 
@@ -48,13 +42,11 @@ app.controller(
 		$scope.filter.ajudante = $("#ajudante").val() || '';
 		$scope.filter.descricao = $("#descricao").val() || '';
 
-		const estrelas = $("#estrelas")[0].noUiSlider;
-		$scope.filter.minEstrela = estrelas.get()[0];
-		$scope.filter.maxEstrela = estrelas.get()[1];
+		$scope.filter.minEstrela = $("#minEstrela").val() || null;
+		$scope.filter.maxEstrela = $("#maxEstrela").val() || null;
 
-		const valores = $("#valor")[0].noUiSlider;
-		$scope.filter.minValor = valores.get()[0];
-		$scope.filter.maxValor = valores.get()[1];
+		$scope.filter.minValor = $("#minValor").val() || null;
+		$scope.filter.maxValor = $("#maxValor").val() || null;
 
 		$scope.getServicos();
 	}
@@ -65,11 +57,22 @@ app.controller(
 
 		const field = $scope.orderFieldOptions.selectedFieldOrder ?
 			$scope.orderFieldOptions.selectedFieldOrder.model : 'qt_estrela';
-		const order =  $scope.orderOptions.selectedOrder ? 
-			$scope.orderOptions.selectedOrder.model : 'desc';
+		const selOption = getSelectedOption("selectedOrder");
+		const order =  selOption ? selOption : 'desc';
 
 		$scope.order =  field + ' ' + order;
 		$scope.getServicos();
+	}
+
+	getSelectedOption = (name) => {
+		const context = $("[name="+name+"]");
+
+		for (var i=0, n=context.toArray().length; i < n; i++) {
+			const option = context[i];
+			if (option.checked) {
+				return option.value;
+			}
+		}
 	}
 
 	$scope.limparItemFiltro = (item) => {
@@ -80,9 +83,23 @@ app.controller(
 				break;
 			case 'descricao':
 				$scope.filter.descricao = '';
+				$("#descricao").val(null);
 				break;
 			case 'ajudante':
 				$scope.filter.ajudante = '';
+				$("#ajudante").val(null);
+				break;
+			case 'valor':
+				$scope.filter.minValor = null;
+				$scope.filter.maxValor = null;
+				$("#minValor").val(null);
+				$("#maxValor").val(null);
+				break;
+			case 'estrela':
+				$scope.filter.minEstrela = null;
+				$scope.filter.maxEstrela = null;
+				$("#minEstrela").val(null);
+				$("#maxEstrela").val(null);
 				break;
 		}
 
@@ -117,33 +134,6 @@ app.controller(
 				minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 			});
 		}, 0);
-	}
-
-	loadSliders = () => {
-		setTimeout(() => {
-			loadSlider('valor', 0, 100);
-			loadSlider('estrelas', 0, 5);
-		}, 0);
-	}
-
-	loadSlider = (sliderName, start, end) => {
-		const slider = $('#' + sliderName)[0];
-		noUiSlider.create(slider, 
-			{
-				start: [start, end],
-				connect: true,
-				step: 1,
-		//		tooltips: [ true, true ],
-				orientation: 'horizontal', // 'horizontal' or 'vertical'
-				range: {
-					'min': start,
-					'max': end
-				},
-				format: wNumb({
-					decimals: 0
-				})
-			}
-		);		
 	}
 
 	getCategorias = () => {
@@ -188,7 +178,7 @@ app.controller(
 				description: 'Categorias'
 			},
 			{ 
-				model: 'qt_servicos',
+				model: 'qt_servico',
 				description: 'Quantidade de serviços prestados'
 			},
 			{ 
@@ -196,20 +186,7 @@ app.controller(
 				description: 'Valor'
 			}
 		];
-
-		$scope.orderOptions = [
-			{ 
-				model: 'desc',
-				description: 'Maior para o menor'
-			},
-			{ 
-				model: 'asc',
-				description: 'Menor para o maior'
-			},
-		];
-
-		$scope.firstActivation = true;
-
+		
 		$scope.modalFilterOrder = $('#modalFilterOrder');
 
 		$scope.getServicos();

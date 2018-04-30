@@ -383,6 +383,23 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 	}
 	
+	$scope.hasLogin = () => {
+		const arrDados = {
+			'login' : $scope.objPessoa.login			
+		};
+
+	    $http.post(
+	    		'../Pessoa/getLoginExistente/',
+	    		arrDados	    		
+	    	).success(function (data) {
+	    		if (data.hasLogin > 0) {
+	    			$.notify('Este login já existe!','error');
+	    			$scope.objPessoa.login = '';
+	    			angular.element("#login").focus();
+	    		}
+		});	
+	}
+
 	$scope.trocarAba = ( aba_selecionada_param ) => {
 		// let aba_atual = $(".active").attr('href');
 		// aba_atual = aba_atual.replace("#", '');

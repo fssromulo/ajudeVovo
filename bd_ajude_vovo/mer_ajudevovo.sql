@@ -157,6 +157,8 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`pessoa_fisica` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+ALTER TABLE `pessoa_fisica`
+  ADD UNIQUE INDEX `UX_LOGIN` (`login`);
 
 -- -----------------------------------------------------
 -- Table `ajudevovo`.`cartao_credito`

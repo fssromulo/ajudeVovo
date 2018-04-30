@@ -74,14 +74,12 @@
             </ul>
         </div>
 
-           <!-- Modal Structure -->
-          <div id="modalAvaliacao" class="modal modal-fixed-footer">
-            <div class="modal-content">
-              <h4>Realizar avaliação </h4>
-                  <?php
-                $this->load->view('Avaliacao.php');?> 
-            </div>
-          </div>
+        <!-- Modal Structure -->
+        <div id="modalAvaliacao" class="modal">
+            <?php
+                $this->load->view('Avaliacao.php');
+            ?>
+        </div>
     </div>
 
     <script type="text/javascript"  src="../includes/jQuery/jquery.js"></script>    
