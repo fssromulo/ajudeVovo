@@ -38,7 +38,7 @@
                             ng-click="abrirTelaAvaliacao(lista)"
                             class="waves-effect waves-light btn light darken-1"
                             style="font-size: 16px;"> Finalizar Serviço
-                            <span class="material-icons">check</span>
+                            <i style="font-size: 16pt;" class="material-icons right"/>check</i>
                         </button>
                     </div>
                 </div>
