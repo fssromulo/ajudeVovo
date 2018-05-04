@@ -347,14 +347,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         }, 3000);
     };
 
-    $scope.$watch('arrListaCategoria',
-        function(ds_novo, ds_velho) {
-            $timeout(function(argument) {
-                $('select').material_select();
-            });
-        }
-    );
-
     angular.element(document).ready(function () {
 		$scope.__construct();
 	});
