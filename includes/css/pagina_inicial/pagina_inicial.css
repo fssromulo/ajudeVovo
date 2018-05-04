@@ -65,3 +65,7 @@ footer.page-footer {
 
 /*[ng-controller] { margin-bottom: 48px; }*/
 caption { text-align: left; }
+
+i {
+  cursor: pointer;
+}
