@@ -50,8 +50,8 @@
 			</div>
 
 			<div input-field class="session col s12 m6">
-				<input autocomplete="off" id="complemento" ng-model="objPessoa.complemento" type="text"  required>
-				<label for="complemento">Complemento * </label>                                       
+				<input autocomplete="off" id="complemento" ng-model="objPessoa.complemento" type="text" />
+				<label for="complemento">Complemento</label>                                       
 			</div>
 		</div>
 
