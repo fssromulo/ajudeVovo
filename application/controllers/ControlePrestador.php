@@ -45,6 +45,7 @@ class ControlePrestador extends CI_Controller {
 		echo json_encode($listar);
 	}	
 
+
 	/*
 		Função que atualiza o status da solicitacao caso o PRESTADOR aceite ou não 
 	*/
@@ -59,11 +60,9 @@ class ControlePrestador extends CI_Controller {
 			unset($dados['tokenCartaoVovo']);		 		
 	 	}
 
-		$this->PrestadorDB->atualizarEstado($dados);
-		
 	 	if ( $sn_pag_seguro ) {
 			$arrIntegraPagSeguro = array(
-				'id_servico_solicitado'	 => $dados['id_servico_solicitado'],
+				'id_servico_solicitacao'	 => $dados['id_servico_solicitacao'],
 				'tokenCartaoVovo' 	    => $tokenCartaoVovo
 			);
 			

@@ -38,7 +38,7 @@ class PrestadorDB extends CI_Model{
 			. ' INNER JOIN pessoa_fisica pf ON ( '
 			. ' 	pf.id_pessoa_fisica = p.id_pessoa '
 			. ' ) '
-			. ' LEFT Join endereco e ON ( '
+			. ' LEFT JOIN endereco e ON ( '
 			. ' 	e.id_pessoa = pf.id_pessoa_fisica '
 			. ' ) '
 			. ' LEFT JOIN cidade c ON ( '
@@ -48,7 +48,7 @@ class PrestadorDB extends CI_Model{
 			. ' 	c.id_estado = es.id_estado '
 			. ' ) '
 			. ' WHERE '
-			. ' 	s.id_servico = ?';
+			. ' 	ss.id_servico_solicitacao= ?';
 
 			$arrCondicao = array(
 				$id_servico
