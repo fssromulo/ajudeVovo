@@ -63,12 +63,12 @@ class PagSeguroLib {
 		$arrPrestador = $this
 								->CI
 								->prestador
-								->getPrestador($arrCondicoes['id_servico']);
+								->getPrestador($arrCondicoes['id_servico_solicitacao']);
 		
 		$arrContratante = $this
 								->CI
 								->contratante
-								->getContratante($arrCondicoes['id_servico']);
+								->getContratante($arrCondicoes['id_servico_solicitacao']);
 
 		(array)$arrDadosPagSeguro = json_decode(file_get_contents("php://input"), true);   
 
@@ -148,7 +148,7 @@ class PagSeguroLib {
 
 		$xml_resposta = simplexml_load_string($xml_resposta);
 
-		echo('xml_resposta');
+		// echo('xml_resposta');
 		echo($xml_resposta);
 
 	}
