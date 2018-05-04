@@ -14,7 +14,7 @@
     <p ng-show="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços solicitados!</p>
 
     <div class="container" ng-show="arrListaServico.length > 0">
-         <ul  class="collapsible" data-collapsible="accordion">
+        <ul  class="collapsible" data-collapsible="expandable">
             <li ng-repeat="lista in arrListaServico">
                 <div class="collapsible-header" >
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"/>&nbsp;
@@ -23,7 +23,7 @@
                         Inativo! 
                     </span>
                 </div>
-                <div class="collapsible-body" > 
+                <div class="collapsible-body">
                      <span ng-show="lista.ativo != 1">
                         <strong>Este serviço está inativo!</strong>
                      </span><br/>
@@ -43,7 +43,6 @@
                     </div>
                 </div>
             </li>
-            
         </ul>
     </div>
 
