@@ -105,14 +105,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">&nbsp;</div>
-
-            <div class="row">
-                <div class="alert alert-info" role="alert">
-                    <a href="../ControleSolicitante/" class="alert-link">Clique aqui para acompanhar sua solicitação!</a>
-                </div>
-            </div>
         </form>
     </div>
 </div>
