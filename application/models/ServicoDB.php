@@ -39,7 +39,7 @@ class ServicoDB extends CI_Model {
     }
 
     public function get_categorias() {
-        return $this->db->query("select id_categoria, descricao from Categoria");
+        return $this->db->query("SELECT id_categoria, descricao FROM categoria");
     }
 
     public function inserir_servico($arrServico) {
