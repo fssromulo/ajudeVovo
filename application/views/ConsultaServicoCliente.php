@@ -62,52 +62,52 @@
 			ng-repeat="servico in arrServicos" 
 			after-load-services-directive>
 	<div class="card small">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" 
-			alt="{{servico.ds_categoria}}"
-			ng-src="{{servico.url_img_categoria}}" 
-			>
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">
-				{{servico.ds_categoria}}
-				<i class="material-icons right">
-					visibility
-				</i>
-			</span>
-      <p class="right">R$ {{servico.valor}}</p>
-			<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
-    </div>
-    <div class="card-reveal">
-      <span 
-				class="card-title grey-text text-darken-4">
-				{{servico.ds_categoria}}
-				<i class="material-icons right">
-					close
-				</i>
-			</span>
-				<div class="right"> 
-					<img 
-					width="128"
-					class="materialboxed responsive-img circle"
-					data-ng-src="../includes/imagens/fotos_pessoas/{{servico.imagem_pessoa}}"
-					alt="{{servico.nm_prestador}}"		
-					> 
-				</div>
-					<p>
-						Ajudante: {{servico.nm_prestador}} <br/>
-						{{servico.qt_servico}} pessoas atendidas.<br/>
-						Preço: R$ {{servico.valor}} <br/>
-						Avaliação:
-					</p>
-					<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
-					<button 
-						ng-click="goToDetail(servico.id_servico)"
-						class="btn right">Solicitar
-					</button>
-    </div>
-  </div>
-	</div>	
+	    <div class="card-image waves-effect waves-block waves-light">
+	      <img class="activator" 
+				alt="{{servico.ds_categoria}}"
+				ng-src="../includes/imagens/categorias/{{servico.url_img_categoria}}" 
+				>
+	    </div>
+	    <div class="card-content">
+	      <span class="card-title activator grey-text text-darken-4">
+					{{servico.ds_categoria}}
+					<i class="material-icons right">
+						visibility
+					</i>
+				</span>
+	      <p class="right">R$ {{servico.valor}}</p>
+				<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
+	    </div>
+	    <div class="card-reveal">
+	      <span 
+					class="card-title grey-text text-darken-4">
+					{{servico.ds_categoria}}
+					<i class="material-icons right">
+						close
+					</i>
+				</span>
+					<div class="right"> 
+						<img 
+						width="128"
+						class="materialboxed responsive-img circle"
+						data-ng-src="../includes/imagens/fotos_pessoas/{{servico.imagem_pessoa}}"
+						alt="{{servico.nm_prestador}}"		
+						> 
+					</div>
+						<p>
+							Ajudante: {{servico.nm_prestador}} <br/>
+							{{servico.qt_servico}} pessoas atendidas.<br/>
+							Preço: R$ {{servico.valor}} <br/>
+							Avaliação:
+						</p>
+						<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
+						<button 
+							ng-click="goToDetail(servico.id_servico)"
+							class="btn right">Solicitar
+						</button>
+	    </div>
+  	</div>
+</div>	
 		  <!-- Modal Structure -->
   	<div  id="modalDetalheServico" class="modal">
 	    <div class="modal-content">
