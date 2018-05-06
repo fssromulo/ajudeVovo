@@ -56,30 +56,48 @@ app.controller(
     
 	}
 
-    $scope.verificaDataExiste = function() {
-
-        var dia = $('#vlData').val();
-        var arrData = dia.split("-");
-        var objDate = new Date(arrData[0], arrData[1]-1, arrData[2]);
-        var dia_escolhido_solicitacao = objDate.getDay()+1;
-
-        // Variavel com retorno da funcao
-        var retorno = false;
+    validarDiaHorario = () => {
+        const dia = $('#vlData').val();
+        const arrData = dia.split("-");
+        const objDate = new Date(arrData[0], arrData[1]-1, arrData[2]);
+        const dia_escolhido_solicitacao = objDate.getDay()+1;
+        let retorno = {};
 
         // Laço "for" para varrer a lista de dias cadastrado no banco pra verificar se
         // a data que foi escolhida esta na lista
         for (var i = 0, len = $scope.arrListaDiaHorario.length; i < len; i++) {
 
             // Pega o numero dia do servico salvo no banco
-            var dia_na_lista = $scope.arrListaDiaHorario[i]['nr_dia'];
+            const dia_na_lista = $scope.arrListaDiaHorario[i];
 
             // verifica se o dia que a pessoa escolheu da solicitacao existe na lista 
-            if (dia_na_lista == dia_escolhido_solicitacao ){
-                retorno = true;
-                break;
+            if (dia_na_lista['nr_dia'] == dia_escolhido_solicitacao ){
+                const addTime = (dateObj, dateStr) => {
+                    const copy = new Date();
+                    const arrDate = dateStr.split(":");
+                    
+                    copy.setTime(dateObj.getTime());
+                    copy.setHours(arrDate[0]);
+                    copy.setMinutes(arrDate[1]);
+
+                    return copy; 
+                }
+
+                const inputedTimeStart = addTime(objDate, $("#horario_inicio").val());
+                const inputedTimeEnd = addTime(objDate, $("#horario_fim").val());
+                const serviceTimeStart = addTime(objDate, dia_na_lista.horario_inicio);
+                const serviceTimeEnd = addTime(objDate, dia_na_lista.horario_fim);
+
+                if ((inputedTimeStart < serviceTimeStart || inputedTimeStart > serviceTimeEnd) || 
+                    (inputedTimeEnd > serviceTimeEnd || inputedTimeEnd < serviceTimeStart) || 
+                    (inputedTimeEnd < inputedTimeStart)) {
+                    retorno = {horario: {}};
+                } else {
+                    retorno = undefined;
+                    break;
+                }
             }
         }
-
         return retorno;
     }
 
@@ -87,18 +105,27 @@ app.controller(
         return (horario.getHours() + ":" + horario.getMinutes());
     };
 
-    $scope.salvarServico = function() {
-        // Varre a lista de datas para verifica se data selecionada existe
-        if ($scope.verificaDataExiste() != true){
-            /* Componente externo ! Documentacao:  https://notifyjs.com */
-           $("#vlData").notify(
-                "Data Inválida!",
+    $scope.salvarServico = () => {
+        const validate = validarDiaHorario();
+        //Varre a lista de datas para verifica se data selecionada existe        
+        if (validate) {
+            /* Componente externo! Documentacao:  https://notifyjs.com */
+            let field = "vlData";
+            let msg = "Data inválida!";
+            
+            if (validate.horario) {
+                field = "horario_inicio";
+                msg = "Horário inválido!";
+            }
+
+            $("#" + field).notify(
+                msg,
                 {
-                    position:"top"
+                    position:"button"
                 },
                 "error"
             );
-            return false;
+            return;
         }
 
         var objData = new Date($scope.dia_solicitacao);
