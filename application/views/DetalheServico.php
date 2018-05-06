@@ -15,7 +15,8 @@
                     </div>
                 </div>
                                
-                <div class="row">
+                <!-- Comentado por ser redundante e para melhor aproveitamento da tel
+                    <div class="row">
                     <div class="col s12">
                         <label for="categoriaServico">Categoria:</label>
                         <input 
@@ -25,12 +26,13 @@
                             placeholder="Jardim" 
                             readonly/>
                     </div>
-                 </div>
+                 </div> 
+                 -->
             </div>
 
             </div>
 		    <div class="form-group">
-			 	<h5 class="center">Horários Disponíveis</h5>
+			 	<h5 class="center">Horários disponíveis</h5>
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <div class="form-group">
@@ -38,13 +40,10 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Dia da Semana
+                                            Dia da semana
                                         </th>
                                         <th>
-                                            Horário Início
-                                        </th>
-                                        <th>
-                                            Horário Fim
+                                           Horário
                                         </th>
                                     </tr>
                                 </thead>
@@ -54,10 +53,7 @@
                                             {{lista.dia}}
                                         </td>
                                         <td>
-                                            {{lista.horario_inicio}}
-                                        </td>
-                                        <td>
-                                            {{lista.horario_fim}}
+                                            {{lista.horario_inicio}} até {{lista.horario_fim}}
                                         </td>   
                                     </tr>
                                 </tbody>
@@ -70,7 +66,7 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col s12">
-                        <label for="dia">Dia:</label>
+                        <label for="dia">Data desejada:</label>
                         <div >
                             <input type="date" id="vlData" class="form-control" ng-model="dia_solicitacao">
                         </div>
@@ -80,12 +76,12 @@
 
             <div class="row col s12">
                 <div class="col s6">
-                    <label for="horario_inicio">Horário de Início </label>
+                    <label for="horario_inicio">Início desejado</label>
                     <input type="time" ng-model="horario_inicio" id="horario_inicio"  ng-model="horario_inicio" name="horario_inicio" class="form-control" required/>
                 </div>
                 
                 <div class="col s6">
-                    <label for="horario_fim">Horário de Fim </label> 
+                    <label for="horario_fim">Término desejado</label> 
                     <input type="time" ng-model="horario_fim" id="horario_fim"  ng-model="horario_fim" name="horario_fim" class="form-control" required/>
                 </div>
             </div>
