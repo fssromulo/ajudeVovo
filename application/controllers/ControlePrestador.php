@@ -60,6 +60,9 @@ class ControlePrestador extends CI_Controller {
 			unset($dados['tokenCartaoVovo']);		 		
 	 	}
 
+	 	// Método que altera o estado do serviço
+	 	$this->PrestadorDB->atualizarEstado($dados);
+
 	 	if ( $sn_pag_seguro ) {
 			$arrIntegraPagSeguro = array(
 				'id_servico_solicitacao'	 => $dados['id_servico_solicitacao'],
