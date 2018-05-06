@@ -99,10 +99,10 @@ INSERT INTO `cartao_credito` (`id_cartao`, `id_pessoa`, `numero_cartao`, `nome_t
 
 
 INSERT INTO `categoria` (`id_categoria`, `descricao`, `taxa`, `imagem_categoria`) VALUES
-	(1, 'Jardinagem', 10, 'https://image.flaticon.com/icons/svg/123/123932.svg'),
-	(2, 'Limpeza', 5, 'https://image.flaticon.com/icons/svg/290/290171.svg'),
-	(3, 'Compras', 7, 'https://image.flaticon.com/icons/svg/122/122931.svg'),
-	(4, 'Serviços elétricos', 11, 'https://image.flaticon.com/icons/svg/544/544021.svg');
+	(1, 'Jardinagem', 10, 'jardinagem.jpg'),
+	(2, 'Limpeza', 5, 'limpeza.jpg'),
+	(3, 'Compras', 7, 'compras.jpg'),
+	(4, 'Serviços elétricos', 11, 'eletricos.jpg');
 
 
 INSERT INTO `cidade`
