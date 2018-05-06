@@ -12,11 +12,12 @@ class DetalheServicoDB extends CI_Model {
  		// 	'cartao_credito'  
  		// );
 
- 		$this->db->select('d.descricao as dia, d.nr_dia, h.horario_inicio, h.horario_fim');
+ 		$this->db->select('d.descricao as dia, d.nr_dia, substr(h.horario_inicio,1,5) horario_inicio, substr(h.horario_fim,1,5) horario_fim');
 		$this->db->from('servico s');
 		$this->db->join('dia_disponivel d','d.id_servico = s.id_servico', 'left');
 		$this->db->join('horario_disponivel h', 'h.id_dia_disponivel = d.id_dia_disponivel', 'left');
 		$this->db->where('s.id_servico = '.$id_servico);
+		$this->db->order_by('d.nr_dia, h.horario_inicio');
 		return $query = $this->db->get();
 	}
 
