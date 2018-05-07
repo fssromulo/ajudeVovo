@@ -31,6 +31,7 @@
                     Ajudante:{{lista.ajudante}} <br/>
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação: {{lista.situacao}} <br/>
+                    Valor: {{lista.valor}} <br/>
 
                     <div ng-show="{{lista.id_estado_operacao}} == 5">
                         <button 
