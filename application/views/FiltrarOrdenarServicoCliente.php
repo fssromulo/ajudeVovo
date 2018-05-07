@@ -122,29 +122,28 @@
             </form>
             <form ng-if="!isFilter">
                 <div class="form-row">
-                    <div class="row">
-                        <div input-field class="session col s12">
-                            <select 
-                                ng-options="option.description for option in orderFieldOptions"
-                                ng-model="orderFieldOptions.selectedFieldOrder"
-                                name="ordenacao"
-                                id="ordenacao"
-                                class="form-control"
-                            >
-                            </select> 
-                            <label for="ordenacao">Ordenar por:</label>
-                        </div>
+                    <h6>Ordenar por:</h6>
+                    <div class="divider"></div> 
+                    <div class="row col s12">
+                        <select 
+                            ng-options="option.description for option in orderFieldOptions"
+                            ng-model="orderFieldOptions.selectedFieldOrder"
+                            name="ordenacao"
+                            id="ordenacao"
+                            class="form-control"
+                        >
+                        </select>
                     </div>
                     <h6>Ordenar do:</h6>
                     <div class="divider"></div> 
                     <div class="row col s12">
                         <ul class="segmented-control">
                             <li class="segmented-control__item">
-                                <input class="segmented-control__input" type="radio" value="desc" ng-model="selectedOrder.selected" name="selectedOrder" id="selectedOrderDesc" checked>
+                                <input class="segmented-control__input" type="radio" value="desc" name="selectedOrder" id="selectedOrderDesc" checked>
                                 <label class="segmented-control__label" for="selectedOrderDesc">Maior para o menor</label>
                             </li>
                             <li class="segmented-control__item">
-                                <input class="segmented-control__input" type="radio" value="asc" ng-model="selectedOrder.selected" name="selectedOrder" id="selectedOrderAsc" >
+                                <input class="segmented-control__input" type="radio" value="asc" name="selectedOrder" id="selectedOrderAsc" >
                                 <label class="segmented-control__label" for="selectedOrderAsc">Menor para o maior</label>
                             </li>
                         </ul>
