@@ -2,108 +2,147 @@ USE AJUDEVOVO;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-INSERT INTO perfil VALUES 
-	(NULL,'ADMINISTRADOR'),
-	(NULL,'CONTRATANTE'),
-	(NULL,'AJUDANTE');
+INSERT INTO pessoa_fisica
+( id_pessoa_fisica, nome, dt_nascimento, cpf, sexo, login, senha, imagem_pessoa, id_perfil,
+  id_estado_pessoa_fisica, id_cidade, id_estado, nome_pai, nome_mae,
+  imagem_frente_documento, imagem_verso_documento
+)
+VALUES
+(1, 'Vovô 1', '1955-12-05', '48153957643', 'M', 'vovo1', '202cb962ac59075b964b07152d234b70', 'dani.jpeg', 2, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'Kleberson Almeida', '1992-05-13', '75713345432', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg', 3, 1, 30, 2, '', 'Mathilde Almeida Cunha', NULL, NULL),
+(3, 'João Vítor', '1997-05-21', '52525719000', 'M', 'ajudante2', '202cb962ac59075b964b07152d234b70', 'joao.jpeg', 3, 1, 8286, 24, 'pai do joão vítor', 'mãe do joão vítor', NULL, NULL),
+(4, 'ajudante excluir', '1997-12-05', '08550724904', 'M', 'romulo', '202cb962ac59075b964b07152d234b70', NULL, 3, 1, 4222, 13, '', 'Mae desse caraaa', '4_img_frente.png', '4_img_verso.png');
+
+INSERT INTO prestador (id_prestador, id_pessoa, id_conta_bancaria) VALUES
+(1, 2, NULL),
+(2, 3, NULL),
+(3, 4, NULL);
+
+INSERT INTO servico (id_servico, id_prestador, id_categoria, descricao, valor, detalhe, ativo) VALUES
+(1, 1, 4, 'Inst. de Equipamentos', 30.35, 'Preciso apenas de uma escada para serviços em ambientes elevados.', 1),
+(2, 1, 2, 'Lavo carros', 15, 'Lavação com shampoo, cera e secagem do veículo.', 1),
+(3, 2, 3, 'Levo ao Giassi', 50, 'Levo e deixo em casa sem nenhum problema :D', 1),
+(4, 2, 1, 'Limpar terrenos', 35, 'Tenho todo o material necessário.', 1);
+
+INSERT INTO `servico_avaliacao` (`id_servico_avaliacao`, `id_servico`, `id_avaliacao`) VALUES (14, 4, 17);
+
+INSERT INTO servico_solicitado (id_servico_solicitacao, id_servico, id_contratante, id_forma_pagamento, id_estado_operacao, horario_inicio, horario_fim, dia_solicitacao) VALUES
+(1, 4, 1, 1, 6, '09:30:00', '10:10:00', '2018-05-12'),
+(2, 2, 1, 1, 3, '15:30:00', '15:50:00', '2018-05-13');
+
+INSERT INTO `horario_disponivel`
+  (`id_horario_disponivel`, `id_dia_disponivel`, `horario_inicio`, `horario_fim`) 
+VALUES
+(1, 1, '18:30:00', '21:22:00'),
+(2, 2, '16:20:00', '20:30:00'),
+(3, 3, '15:20:00', '19:50:00'),
+(4, 4, '08:30:00', '12:00:00'),
+(5, 5, '15:30:00', '17:00:00'),
+(6, 6, '08:30:00', '18:30:00'),
+(7, 7, '06:20:00', '12:30:00'),
+(8, 8, '15:30:00', '19:50:00'),
+(9, 9, '08:30:00', '11:45:00');
+
+INSERT INTO `endereco`
+  (`id_endereco`, `id_cidade`, `id_pessoa`, `bairro`, `rua`, `numero`, `complemento`, `cep`)
+VALUES
+(1, 1, 1, 'Bairro', 'Rua', 33, '', 89060012),
+(2, 2323, 2, 'bairro', 'rua nova', 55, '', 89044555),
+(3, 6662, 3, 'bairro no rio', 'Lap', 171, '', 89060606),
+(4, 6661, 4, 'bairro', 'ruaaaaaa', 33, '', 89066012);
+
+INSERT INTO `dia_disponivel` (`id_dia_disponivel`, `id_servico`, `nr_dia`, `descricao`) VALUES
+(1, 1, 2, 'Segunda-feira'),
+(2, 1, 3, 'Terça-feira'),
+(3, 1, 6, 'Sexta-feira'),
+(4, 2, 7, 'Sábado'),
+(5, 2, 1, 'Domingo'),
+(6, 3, 2, 'Segunda-feira'),
+(7, 3, 3, 'Terça-feira'),
+(8, 3, 4, 'Quarta-feira'),
+(9, 4, 7, 'Sábado');
+
+INSERT INTO `contratante_necessidade_especial`
+( `id_contratante_necessidade_especial`,
+  `necessidade_especial_id_necessidade_especial`,
+  `contratante_id_contratante`)
+VALUES
+(1, 1, 1),
+(2, 5, 1);
+
+INSERT INTO `contratante_avaliacao` (`id_contratante_avaliacao`, `id_contratante`, `id_avaliacao`) VALUES (3, 1, 5);
+
+INSERT INTO `contratante` (`id_contratante`, `id_pessoa`) VALUES (1, 1);
+
+INSERT INTO `contato` (`id_contato`, `id_pessoa`, `id_tipo_contato`, `descricao`)
+VALUES
+(1, 1, 1, ''),
+(2, 1, 2, ''),
+(3, 1, 3, '47991725457'),
+(4, 1, 4, 'meuemaillegal@gmail.com'),
+(5, 2, 1, ''),
+(6, 2, 2, ''),
+(7, 2, 3, '47889551231'),
+(8, 2, 4, 'email@email.com'),
+(9, 3, 1, ''),
+(10, 3, 2, ''),
+(11, 3, 3, '47988565123'),
+(12, 3, 4, 'joaozinhovidaloka@gmail.com'),
+(13, 4, 1, ''),
+(14, 4, 2, ''),
+(15, 4, 3, '47991725457'),
+(16, 4, 4, 'romulo@gmail.com');
 
 INSERT INTO `avaliacao` (`id_avaliacao`, `nota`, `comentario`) VALUES
-	(1, 4, 'muito bom'),
-	(2, 3, 'boom ! :)'),
-	(3, 3, 'sdvb'),
-	(4, 0, NULL),
-	(5, 3, 'SDFBN'),
-	(6, 0, 'SDFVBN'),
-	(7, 4, 'CDFDF'),
-	(8, 5, NULL),
-	(9, 3, '123321'),
-	(10, 3, '155'),
-	(11, 0, 'jhgfddfghj'),
-	(12, 2, 'hghgh'),
-	(13, 3, 'muito bom esse servico'),
-	(14, 2, 'fgfdfg'),
-	(15, 3, 'abc'),
-	(16, 3, 'ajudante realizando avaliação do VOVO'),
-	(17, 2, 'sdfsdf'),
-	(18, 2, 'sdfsdfsf'),
-	(19, 3, '123'),
-	(20, 3, '123'),
-	(21, 3, 'VovoZinho show de, bolaaa! Rolou até uma cuca com capilé'),
-	(22, 3, 'VovoZinho show de, bolaaa! Rolou até uma cuca com capilé'),
-	(23, 4, 'vovo Show de bola !!'),
-	(24, 3, 'fvdfv'),
-	(25, 3, 'Vovo showww'),
-	(26, 4, 'testeeeeeeeeeeeeee'),
-	(27, 3, '21321321'),
-	(28, 3, '13322'),
-	(29, 3, '13321'),
-	(30, 3, 'O vovo foi show, ate me deu cuca'),
-	(31, 3, 'dsfsdfsd'),
-	(32, 4, 'sdfsdfsdfsdf'),
-	(33, 4, 'sdfsdfsdf'),
-	(34, 3, 'FIIIIIIM'),
-	(35, 4, 'nova avaliacaooo'),
-	(36, 1, 'dfsdfsdfsdfsdfsdf'),
-	(37, 2, '123'),
-	(38, 3, '123'),
-	(39, 2, '3'),
-	(40, 2, 'zxczx'),
-	(41, 3, 'Finished'),
-	(42, 3, 'Finished'),
-	(43, 3, 'Finished'),
-	(44, 3, '123'),
-	(45, 3, '231'),
-	(46, 2, '123'),
-	(47, 3, 'dsfsdfsdf'),
-	(48, 4, '456'),
-	(49, 3, '123'),
-	(50, 3, '22'),
-	(51, 3, '123456'),
-	(52, 3, '132654'),
-	(53, 3, 'sdfsfsdf'),
-	(54, 4, 'qsdfghjklç'),
-	(55, 3, 'sdfsdfsfd'),
-	(56, 4, 'dfghjkl'),
-	(57, 3, '321'),
-	(58, 2, 'cvcvc'),
-	(59, 3, 'dsdfssdfsdf'),
-	(60, 4, 'cvcvcvcv'),
-	(61, 4, 'sdfsdfsdf'),
-	(62, 4, '465'),
-	(63, 4, 'sdfsdfsdf'),
-	(64, 4, 'sdfsdfsdfs'),
-	(65, 4, 'dcsdf'),
-	(66, 4, 'fsdfsdf'),
-	(67, 3, 'dfsdfsdf'),
-	(68, 3, 'sfdsfsdfsdf'),
-	(69, 3, 'fsdfsdfsdfsdfsdfsdfsd'),
-	(70, 3, 'sdfsdfsdfsdfsf'),
-	(71, 3, 'sdfsdfsdfsdf'),
-	(72, 3, 'sdfsdfsdfsdfsdf'),
-	(73, 3, 'fdfsdf'),
-	(74, 3, '32132132'),
-	(75, 4, 'dfkgjdlfkgjdfg'),
-	(76, 3, '1232132');
+(5, 5, '100%'),
+(17, 4, 'fim');
+
+
+INSERT INTO perfil VALUES 
+  (NULL,'ADMINISTRADOR'),
+  (NULL,'CONTRATANTE'),
+  (NULL,'AJUDANTE');
 
 INSERT INTO `banco` (`id_banco`, `numero_banco`, `descricao`) VALUES
-	(1, 1, 'VIACREDI');
-INSERT INTO `cartao_credito` (`id_cartao`, `id_pessoa`, `numero_cartao`, `nome_titular`, `dt_validade`, `codigo_seguranca`) VALUES
-	(1, 1, 4111111111111111, 'Ajudante 1', '2017-12-05 00:00:00', 123),
-	(2, 2, 4556176340147675, 'Ajudante 2', '2018-08-30 00:00:00', 800),
-	(4, 8, 4024007101464989, 'Vovo da quebrada', '2019-01-30 00:00:00', 289),
-	(5, 9, 4313455141559542, 'Ajudante tres', '2019-07-30 00:00:00', 262),
-	(6, 10, 4716343654837856, 'Vovo da quebrada 2', '2019-05-30 00:00:00', 615),
-	(7, 11, 4485854174142980, 'Adasmastor Pereira', '2018-10-25 00:00:00', 235),
-	(8, 12, 4556989754910747, 'ajudante 3', '2018-10-02 00:00:00', 498),
-	(9, 13, 4024007168075934, 'TESTEee', '2018-09-02 00:00:00', 315);
-
+  (1, 1, 'VIACREDI');
 
 INSERT INTO `categoria` (`id_categoria`, `descricao`, `taxa`, `imagem_categoria`) VALUES
-	(1, 'Jardinagem', 10, 'jardinagem.jpg'),
-	(2, 'Limpeza', 5, 'limpeza.jpg'),
-	(3, 'Compras', 7, 'compras.jpg'),
-	(4, 'Serviços elétricos', 11, 'eletricos.jpg');
+  (1, 'Jardinagem', 10, 'jardinagem.jpg'),
+  (2, 'Limpeza', 5, 'limpeza.jpg'),
+  (3, 'Compras', 7, 'compras.jpg'),
+  (4, 'Serviços elétricos', 11, 'eletricos.jpg');
 
+INSERT INTO `pais` (`id_pais`, `descricao`, `sigla`) VALUES
+  (1, 'Brasil', 'BR');
+
+INSERT INTO `estado` (`id_estado`, `id_pais`, `descricao`, `uf`) VALUES
+  (1, 1, 'Acre', 'AC'),
+  (2, 1, 'Alagoas', 'AL'),
+  (3, 1, 'Amazonas', 'AM'),
+  (4, 1, 'Amapá', 'AP'),
+  (5, 1, 'Bahia', 'BA'),
+  (6, 1, 'Ceará', 'CE'),
+  (7, 1, 'Distrito Federal', 'DF'),
+  (8, 1, 'Espírito Santo', 'ES'),
+  (9, 1, 'Goiás', 'GO'),
+  (10, 1, 'Maranhão', 'MA'),
+  (11, 1, 'Minas Gerais', 'MG'),
+  (12, 1, 'Mato Grosso do Sul', 'MS'),
+  (13, 1, 'Mato Grosso', 'MT'),
+  (14, 1, 'Pará', 'PA'),
+  (15, 1, 'Paraíba', 'PB'),
+  (16, 1, 'Pernambuco', 'PE'),
+  (17, 1, 'Piauí', 'PI'),
+  (18, 1, 'Paraná', 'PR'),
+  (19, 1, 'Rio de Janeiro', 'RJ'),
+  (20, 1, 'Rio Grande do Norte', 'RN'),
+  (21, 1, 'Rondônia', 'RO'),
+  (22, 1, 'Roraima', 'RR'),
+  (23, 1, 'Rio Grande do Sul', 'RS'),
+  (24, 1, 'Santa Catarina', 'SC'),
+  (25, 1, 'Sergipe', 'SE'),
+  (26, 1, 'São Paulo', 'SP'),
+  (27, 1, 'Tocantins', 'TO');
 
 INSERT INTO `cidade`
     ( id_cidade, id_estado, descricao ) 
@@ -9825,251 +9864,68 @@ INSERT INTO `cidade`
 
 
 INSERT INTO `tipo_contato`  VALUES
-	(1, 'Telefone Residencial'),
-	(2, 'Telefone Comercial'),
-	(3, 'Celular'),
-	(4, 'E-mail');
+  (1, 'Telefone Residencial'),
+  (2, 'Telefone Comercial'),
+  (3, 'Celular'),
+  (4, 'E-mail');
 
-
-INSERT INTO `contato` (`id_contato`, `id_pessoa`, `id_tipo_contato`, `descricao`) VALUES
-	(1, 1, 1, '47919199119'),
-	(2, 1, 2, '47997254547'),
-	(3, 1, 3, NULL),
-	(4, 1, 4, 'romulo@unimestre.com'),
-	(5, 2, 1, '47991725457'),
-	(6, 2, 2, '47999172545'),
-	(7, 2, 3, '47991725457'),
-	(8, 2, 4, 'teste@gmail.com'),
-	(21, 8, 1, NULL),
-	(22, 8, 2, NULL),
-	(23, 8, 3, '47991752566'),
-	(24, 8, 4, 'fssromulo@gmail.com'),
-	(25, 9, 1, '47917254577'),
-	(26, 9, 2, '47911961333'),
-	(27, 9, 3, NULL),
-	(28, 9, 4, 'fssromulo@gmail.com'),
-	(29, 10, 1, '47911155222'),
-	(30, 10, 2, NULL),
-	(31, 10, 3, NULL),
-	(32, 10, 4, 'fssromulo@gmail.com'),
-	(33, 11, 1, '47991725454'),
-	(34, 11, 2, '74444561656'),
-	(35, 11, 3, '47919725457'),
-	(36, 11, 4, 'romulo@unimestre.com'),
-	(37, 12, 1, '47991755757'),
-	(38, 12, 2, '47991755757'),
-	(39, 12, 3, '47991725457'),
-	(40, 12, 4, 'romulo@unimestre.com'),
-	(41, 13, 1, '47999999999'),
-	(42, 13, 2, '47999999999'),
-	(43, 13, 3, '47999999999'),
-	(44, 13, 4, 'romulo@unimestre.com');
-
-INSERT INTO `contratante` (`id_contratante`, `id_pessoa`) VALUES
-	(4, 8),
-	(5, 10),
-	(6, 11),
-	(7, 13);
-
-INSERT INTO `contratante_avaliacao` (`id_contratante_avaliacao`, `id_contratante`, `id_avaliacao`) VALUES
-	(1, 4, 48);
-
-
-INSERT INTO `dia_disponivel` (`id_dia_disponivel`, `id_servico`, `nr_dia`, `descricao`) VALUES
-	(1, 1, 2, 'Segunda-feira'),
-	(2, 1, 3, 'Terça-feira'),
-	(3, 1, 5, 'Quinta-feira'),
-	(4, 2, 2, 'Segunda-feira'),
-	(5, 2, 3, 'Terça-feira'),
-	(6, 2, 6, 'Sexta-feira'),
-	(7, 3, 7, 'Sábado'),
-	(8, 3, 5, 'Quinta-feira'),
-	(9, 4, 3, 'Terça-feira'),
-	(10, 4, 4, 'Quarta-feira'),
-	(11, 5, 2, 'Segunda-feira'),
-	(12, 5, 3, 'Terça-feira'),
-	(13, 5, 4, 'Quarta-feira'),
-	(14, 5, 5, 'Quinta-feira'),
-	(15, 5, 6, 'Sexta-feira'),
-	(16, 6, 7, 'Sábado'),
-	(17, 7, 3, 'Terça-feira'),
-	(18, 7, 4, 'Quarta-feira'),
-	(19, 8, 2, 'Segunda-feira'),
-	(20, 9, 3, 'Terça-feira'),
-	(21, 10, 2, 'Segunda-feira'),
-	(22, 11, 2, 'Segunda-feira');
-
-
-INSERT INTO `endereco` (`id_endereco`, `id_cidade`, `id_pessoa`, `bairro`, `rua`, `numero`, `complemento`, `cep`) VALUES
-	(1, 8138, 1, 'Velha Central', 'Rua da velha', 33, 'Lado do terminal', 89060112),
-	(2, 2, 2, 'Teste', 'teste rua', 222, 'Acre ali do lado', 89060012),
-	(8, 8082, 8, 'bairro teste', 'teste rua', 188, 'compl teste', 12354546),
-	(9, 1, 9, 'teste', 'teste', 0, 'testeee', 89060645),
-	(10, 8152, 10, 'teste bairro', 'teste rua', 57, 'teste complemento', 89060657),
-	(11, 8138, 11, 'Fidélis', 'Santa catari', 33, 'Cohabzoan', 89060000),
-	(12, 8138, 12, 'Fidélis', 'Rua Mara Apa', 333, 'teste', 89060112),
-	(13, 8080, 13, 'teste', 'teste', 333, 'tetete', 89060012);
-
-INSERT INTO `estado` (`id_estado`, `id_pais`, `descricao`, `uf`) VALUES
-	(1, 1, 'Acre', 'AC'),
-	(2, 1, 'Alagoas', 'AL'),
-	(3, 1, 'Amazonas', 'AM'),
-	(4, 1, 'Amapá', 'AP'),
-	(5, 1, 'Bahia', 'BA'),
-	(6, 1, 'Ceará', 'CE'),
-	(7, 1, 'Distrito Federal', 'DF'),
-	(8, 1, 'Espírito Santo', 'ES'),
-	(9, 1, 'Goiás', 'GO'),
-	(10, 1, 'Maranhão', 'MA'),
-	(11, 1, 'Minas Gerais', 'MG'),
-	(12, 1, 'Mato Grosso do Sul', 'MS'),
-	(13, 1, 'Mato Grosso', 'MT'),
-	(14, 1, 'Pará', 'PA'),
-	(15, 1, 'Paraíba', 'PB'),
-	(16, 1, 'Pernambuco', 'PE'),
-	(17, 1, 'Piauí', 'PI'),
-	(18, 1, 'Paraná', 'PR'),
-	(19, 1, 'Rio de Janeiro', 'RJ'),
-	(20, 1, 'Rio Grande do Norte', 'RN'),
-	(21, 1, 'Rondônia', 'RO'),
-	(22, 1, 'Roraima', 'RR'),
-	(23, 1, 'Rio Grande do Sul', 'RS'),
-	(24, 1, 'Santa Catarina', 'SC'),
-	(25, 1, 'Sergipe', 'SE'),
-	(26, 1, 'São Paulo', 'SP'),
-	(27, 1, 'Tocantins', 'TO');
 
 INSERT INTO `estado_operacao` (`id_estado_operacao`, `descricao`) VALUES
-	(1, 'Aprovado'),
-	(2, 'Reprovado'),
-	(3, 'Aguardando Aprovação'),
-	(4, 'Em execução'),
-	(5, 'Executado'),
-	(6, 'Finalizado');
+  (1, 'Aprovado'),
+  (2, 'Reprovado'),
+  (3, 'Aguardando Aprovação'),
+  (4, 'Em execução'),
+  (5, 'Executado'),
+  (6, 'Finalizado');
 
 
 INSERT INTO `forma_pagamento` (`id_forma_pagamento`, `descricao`) VALUES
-	(1, 'Cartao de Crédito');
+  (1, 'Cartao de Crédito');
 
-
-INSERT INTO `horario_disponivel` (`id_horario_disponivel`, `id_dia_disponivel`, `horario_inicio`, `horario_fim`) VALUES
-	(1, 1, '13:15:00', '16:25:00'),
-	(2, 2, '17:30:00', '20:10:00'),
-	(3, 3, '12:30:00', '14:45:00'),
-	(4, 4, '08:30:00', '10:30:00'),
-	(5, 5, '09:00:00', '11:15:00'),
-	(6, 6, '13:00:00', '17:00:00'),
-	(7, 7, '08:30:00', '17:00:00'),
-	(8, 8, '18:00:00', '20:30:00'),
-	(9, 9, '18:00:00', '19:30:00'),
-	(10, 10, '19:45:00', '21:30:00'),
-	(11, 11, '18:00:00', '21:30:00'),
-	(12, 12, '18:00:00', '21:30:00'),
-	(13, 13, '18:00:00', '21:30:00'),
-	(14, 14, '18:00:00', '21:30:00'),
-	(15, 15, '18:00:00', '21:30:00'),
-	(16, 16, '08:30:00', '12:00:00'),
-	(17, 17, '15:00:00', '18:00:00'),
-	(18, 18, '15:30:00', '18:12:00'),
-	(19, 19, '12:02:00', '13:00:00'),
-	(20, 20, '10:00:00', '10:30:00'),
-	(21, 21, '10:00:00', '12:20:00'),
-	(22, 22, '12:00:00', '13:00:00');
-
-INSERT INTO `pais` (`id_pais`, `descricao`, `sigla`) VALUES
-	(1, 'Brasil', 'BR');
-
-INSERT INTO `pessoa_fisica` (`id_pessoa_fisica`, `nome`, `dt_nascimento`, `cpf`, `sexo`, `login`, `senha`, `imagem_pessoa`,`id_perfil`) VALUES
-	(1, 'Ajudante 1', '1997-06-17', '08550724904', 'M', 'ajudante', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',3),
-	(2, 'Ajudante 2', '1979-09-16', '67884233690', 'F', 'ajudante2', '202cb962ac59075b964b07152d234b70', 'joao.jpeg',3),
-	(8, 'Vovo da quebrada', '1953-12-12', '25862711147', 'F', 'vovo1', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',2),
-	(9, 'Ajudante tres', '1997-12-05', '31163984884', 'F', 'ajudante_oi', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',3),
-	(10, 'Vovo da quebrada 2', '1958-03-03', '51638824495', 'M', 'vovo2', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',2),
-	(11, 'Adamastor Pereira', '1962-03-12', '35587573516', 'M', 'vovoAda', '202cb962ac59075b964b07152d234b70', 'joao.jpeg',2),
-	(12, 'Ajudante 3', '1991-08-08', '72707163155', 'F', 'ajudante3', '202cb962ac59075b964b07152d234b70', 'nutela.jpeg',3),
-	(13, 'Vovo 3', '1955-01-01', '36040375906', 'M', 'vovo3', '202cb962ac59075b964b07152d234b70', 'dani.jpeg',2);
-
-
-INSERT INTO `prestador` (`id_prestador`, `id_pessoa`, `id_conta_bancaria`) VALUES
-	(1, 1, NULL),
-	(2, 2, NULL),
-	(3, 9, NULL),
-	(4, 12, NULL);
-
-
-INSERT INTO `servico` (`id_servico`, `id_prestador`, `id_categoria`, `descricao`, `valor`, `detalhe`) VALUES
-	(1, 1, 1, 'Jardinagem com carinho', 15, 'Jardinagem com carinho para vc e suas plantinhas'),
-	(2, 2, 1, 'Jardinagem Semi-profissional', 19, 'Cuidos dos maiores jardins do Garcia'),
-	(3, 2, 2, 'Limpeza geral de casas', 50, 'Limpeza geral de casas com até 5 comôdos'),
-	(4, 4, 4, 'Troco lâmpadas', 25, 'Troco lâmpadas e demais serviços elétricos'),
-	(5, 2, 3, 'Auxilio com compras em diversos lugares', 15, 'Auxilio com compras em diversos lugares após o horário comercial de segunda a sexta'),
-	(6, 2, 1, 'Limpeza de terrenos', 30, 'mais informacoes em 47 8895511155'),
-	(7, 1, 1, 'Testando validacoes', 230000, ''),
-	(8, 4, 1, 'Teste', 20.2, 'Nova descricao de servicos'),
-	(9, 1, 4, 'Meu servico.com', 50.05, 'Ola, meu servico é muito bem feito!'),
-	(10, 4, 2, 'Cuido de idoso durante a semana', 50, 'Cuido de idoso durante a semana'),
-	(11, 1, 2, 'Levo a cooper', 10, 'descrição certa?!');
-
-
-INSERT INTO `servico_avaliacao` (`id_servico_avaliacao`, `id_servico`, `id_avaliacao`) VALUES
-	(1, 4, 71),
-	(2, 4, 72),
-	(3, 2, 73),
-	(4, 2, 74),
-	(5, 1, 75),
-	(6, 4, 76);
-
-INSERT INTO `servico_solicitado` (`id_servico_solicitacao`, `id_servico`, `id_contratante`, `id_forma_pagamento`, `id_estado_operacao`, `horario_inicio`, `horario_fim`, `dia_solicitacao`) VALUES
-	(33, 1, 6, 1, 5, '13:15:00', '14:20:00', '2017-11-25'),
-	(34, 5, 6, 1, 3, '18:20:00', '18:49:00', '2017-11-28'),
-	(35, 2, 4, 1, 2, '08:30:00', '23:20:00', '2017-11-30'),
-	(36, 1, 4, 1, 5, '17:30:00', '18:00:00', '2017-11-07'),
-	(37, 1, 4, 1, 5, '17:30:00', '18:00:00', '2017-11-07'),
-	(38, 10, 7, 1, 3, '10:00:00', '11:11:00', '2017-12-04'),
-	(39, 10, 7, 1, 3, '03:02:00', '03:23:00', '2017-12-11'),
-	(40, 3, 4, 1, 1, '08:50:00', '13:00:00', '2017-12-16'),
-	(41, 4, 4, 1, 6, '19:50:00', '20:00:00', '2017-12-20'),
-	(42, 6, 4, 1, 4, '08:50:00', '09:15:00', '2017-12-23'),
-	(43, 4, 4, 1, 6, '18:21:00', '19:00:00', '2017-12-05'),
-	(44, 3, 4, 1, 1, '08:30:00', '09:21:00', '2017-12-09'),
-	(45, 2, 4, 1, 2, '09:10:00', '10:00:00', '2017-12-04');
+INSERT INTO `cartao_credito`
+  (`id_cartao`, `id_pessoa`, `numero_cartao`, `nome_titular`, `dt_validade`, `codigo_seguranca`)
+VALUES
+  (1, 1, 4371180997833127, 'Titular do cartão', '2019-11-07 00:00:00', 915),
+  (2, 2, 4539711768527438, 'Kleberson Almeida', '2018-10-07 00:00:00', 772),
+  (3, 3, 4929305959654198, 'Adailton Batista Correia', '2020-06-07 00:00:00', 354),
+  (4, 4, 4485130163157960, 'Rômulo Fernando', '2019-07-07 00:00:00', 896);
 
 INSERT INTO
-	necessidade_especial 
-		(id_necessidade_especial, descricao)
+  necessidade_especial 
+    (id_necessidade_especial, descricao)
 VALUES
-	(1, 'Autismo' ),
-	(2, 'Cegueira' ),
-	(3, 'Dificuldade de aprendizado' ),
-	(4, 'Dificuldade de locomoção' ),
-	(5, 'Dificuldade física' ),
-	(6, 'Dificuldade de fala' ),
-	(7, 'Distúrbios da fala e da linguagem' ),
-	(8, 'Doença crônica' ),
-	(9, 'Perda auditiva' ),
-	(10, 'Perda de memória' ),
-	(11, 'Perda de visão' ),
-	(12, 'Surdez' );
+  (1, 'Autismo' ),
+  (2, 'Cegueira' ),
+  (3, 'Dificuldade de aprendizado' ),
+  (4, 'Dificuldade de locomoção' ),
+  (5, 'Dificuldade física' ),
+  (6, 'Dificuldade de fala' ),
+  (7, 'Distúrbios da fala e da linguagem' ),
+  (8, 'Doença crônica' ),
+  (9, 'Perda auditiva' ),
+  (10, 'Perda de memória' ),
+  (11, 'Perda de visão' ),
+  (12, 'Surdez' );
 
 
-Insert into estado_pessoa_fisica
-values 
-	(1, 'Ativo'),
-	(2, 'Inativo'),
-	(3, 'Aguardando Aprovação');
+INSERT INTO estado_pessoa_fisica
+VALUES 
+  (1, 'Ativo'),
+  (2, 'Inativo'),
+  (3, 'Aguardando Aprovação');
 
 
 -- Copiando estrutura para evento ajudevovo.setServicoEmExecucao
 DELIMITER //
 CREATE EVENT `setServicoEmExecucao` ON SCHEDULE EVERY 1 MINUTE STARTS '2017-11-24 23:15:02' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE 
-		servico_solicitado ss
-	SET
-		ss.id_estado_operacao = 4
-	WHERE 
-			ss.id_estado_operacao = 1 AND ss.dia_solicitacao = CURDATE()
-		AND (
-			TIME(NOW()) BETWEEN ss.horario_inicio AND ss.horario_fim
-		)//
+    servico_solicitado ss
+  SET
+    ss.id_estado_operacao = 4
+  WHERE 
+      ss.id_estado_operacao = 1 AND ss.dia_solicitacao = CURDATE()
+    AND (
+      TIME(NOW()) BETWEEN ss.horario_inicio AND ss.horario_fim
+    )//
 DELIMITER ;
 
 SET FOREIGN_KEY_CHECKS = 1;

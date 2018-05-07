@@ -591,15 +591,15 @@ BEGIN
     ct.id_pessoa = id_pessoa_fisica
     AND ct.id_tipo_contato = 3;
   
-  if (fone1 is not null OR fone1 <> '') then
+  if (fone1 is not null AND fone1 <> '') then
     return fone1;
   end if;
 
-  if (fone2 is not null OR fone2 <> '') then
+  if (fone2 is not null AND fone2 <> '') then
     return fone2;
   end if; 
   
-  if (fone3 is not null OR fone3 <> '') then
+  if (fone3 is not null AND fone3 <> '') then
     return fone3;
   end if; 
   

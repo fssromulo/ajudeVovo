@@ -20,7 +20,7 @@ class Servico extends CI_Controller {
         $dados = $this->input->get('id_servico', true);
 
         $arrDados = array(
-            "id_servico" => !empty($dados) ? $dados : "", 
+            "id_servico" => !empty($dados) ? $dados : 0, 
             'titulo_tela' => 'Cadastro&nbsp;de&nbsp;Serviços'
         );
 

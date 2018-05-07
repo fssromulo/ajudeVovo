@@ -100,7 +100,8 @@ class ServicoDB extends CI_Model {
                 pf.nome nm_prestador,
                 pf.imagem_pessoa imagem_pessoa, 
                 obter_avaliacao('S', id_servico) qt_estrela, 
-                obter_quantidade_servicos(id_servico) qt_servico, 
+                obter_quantidade_servicos(id_servico) qt_servico,
+                SUBSTRING(s.descricao, 1, 22) ds_servico, 
                 RPAD(concat_ws(' - ', s.descricao, s.detalhe), 255, ' ') ds_detalhe, 
                 c.id_categoria,
                 s.valor

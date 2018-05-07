@@ -14,7 +14,7 @@
         <p ng-show="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços solicitados!</p>
     </div>
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
-    <div class="container">
+    <div class="container" data-ng-show="arrListaServico.length > 0">
          <ul  class="collapsible" data-collapsible="accordion" >
             <li ng-repeat="lista in arrListaServico" after-load-services-directive>
                 <div class="collapsible-header" >
