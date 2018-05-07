@@ -22,13 +22,13 @@
                             <div class="col s12">
                                 <div class="input-field">
                                     <label for="descricao">Descrição:</label>
-                                    <input type="text" ng-model="descricao" class="form-control" id="descricao" required/>
+                                    <input type="text" ng-model="descricao" class="form-control" id="descricao" maxlength="22" required/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s12">
-                                <div>
+                                
                                     <label for="categoria">Categoria:</label>
                                     <select 
                                         ng-options="listaCategoria.descricao for listaCategoria in arrListaCategoria"
@@ -36,14 +36,14 @@
                                         name="categoria"
                                         id="categoria"
                                         class="form-control"
-                                        material-select
+                                        material-select watch
                                         required 
                                     >
                                         <option value="" disabled selected>Selecione uma categoria...</option>
                                     </select>
-                                </div>
+                                
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="row">
                             <div class="col s12">

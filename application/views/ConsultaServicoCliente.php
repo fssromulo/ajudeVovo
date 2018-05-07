@@ -70,7 +70,7 @@
 	    </div>
 	    <div class="card-content">
 	      <span class="card-title activator grey-text text-darken-4">
-					{{servico.ds_categoria}}
+					{{servico.ds_servico}}
 					<i class="material-icons right">
 						visibility
 					</i>

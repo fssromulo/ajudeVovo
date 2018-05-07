@@ -8,6 +8,8 @@ let app = angular.module(
 
 app.controller("controllerServico", function($scope, $http, $timeout) {
 
+    $scope.arrListaCategoria = [];
+
     $scope.__construct = function() {
 
         $scope.arrServico = {
@@ -24,7 +26,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         
         $scope.valorConvertido = 0;
         $scope.arrListaAtendimento = [];
-        $scope.arrListaCategoria = [];
         $scope.categoriaSelected = {
             'id_categoria': null
         };
@@ -69,18 +70,6 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
 		];
 
         $scope.getCategorias();
-    };
-
-    $scope.getCategorias = function() {
-        $http.post(
-            '../Servico/getCategorias'
-        ).success(function (data){
-            $scope.arrListaCategoria = data;
-
-            if ($scope.id_servico) {
-                $scope.getServicoParaEdicao();
-            }
-        });
     };
 
     $scope.salvarServico = function() {
@@ -347,7 +336,31 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         }, 3000);
     };
 
+    $scope.getCategorias = () => {
+        $http.post(
+            '../Servico/getCategorias'
+        ).success(function (data){
+            $scope.arrListaCategoria = data;
+
+            if ($scope.id_servico) {
+                $scope.getServicoParaEdicao();
+            }
+        });
+    };
+
     angular.element(document).ready(function () {
 		$scope.__construct();
 	});
+
+    $scope.$watch(
+        'arrListaCategoria',
+        () => {
+            setTimeout(
+                () => {
+                    $('select').material_select();
+                }, 0
+            );
+        }
+    );
+
 });

@@ -58,8 +58,8 @@
               </div>
 
               <div class="modal-footer">
-                  <button type="button" class="btn btn-success" ng-click="excluir()">Sim</button>
-                  <button type="button" class="btn btn-danger" ng-click="fechar()">Não</button>
+                  <button type="button" class="waves-effect waves-light btn light-blue darken-2 col s6" ng-click="excluir()">Sim</button>
+                  <button type="button" class="waves-effect waves-light btn red darken-2 col s6" ng-click="fechar()">Não</button>
               </div>
           </div>
       </div>
