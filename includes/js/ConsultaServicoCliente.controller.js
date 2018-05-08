@@ -65,12 +65,27 @@ app.controller(
 	}
 
 	getSelectedOption = (name) => {
-		const context = $("[name="+name+"]");
+		const context = getFieldByName(name);
 
 		for (var i=0, n=context.toArray().length; i < n; i++) {
 			const option = context[i];
 			if (option.checked) {
 				return option.value;
+			}
+		}
+	}
+
+	getFieldByName = (name) => {
+		return $("[name="+name+"]");
+	}
+
+	setSelectedOption = (name, val) => {
+		const context = getFieldByName(name);
+
+		for (var i=0, n=context.toArray().length; i < n; i++) {
+			const option = context[i];
+			if (option.value == val) {
+				option.checked = true;
 			}
 		}
 	}
@@ -121,6 +136,17 @@ app.controller(
         	setTimeout(
 				() => {
 					$('select').material_select();
+
+					const orderArr = $scope.order.split(' ');
+
+					const changeValSelect = (selector, value) => {
+						selector.val(value).closest('.select-wrapper').find('li').removeClass("active").closest('.select-wrapper').find('.select-dropdown').val(value).find('span:contains(' + value + ')').parent().addClass('selected active');
+					}
+
+					if (!$scope.orderFieldOptions.selectedFieldOrder) {
+						changeValSelect($("#ordenacao"), "Estrelas");
+					}
+					setSelectedOption("selectedOrder", orderArr[1]);					
 				}, 0
 			);
      	}
