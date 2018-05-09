@@ -138,9 +138,9 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             return false;
         }
 
-        if(!$scope.valorServicoValido()) {
-            return false;
-        }
+        // if(!$scope.valorServicoValido()) {
+        //     return false;
+        // }
 
         return true;
     };
