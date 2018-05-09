@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <!-- Oculto por campo não fazer muito sentido
+                    <!-- Apresentado novamente pois agora o campo aparece na tela volta a fazer sentido -->
                     <div class="row">
                        <div class="col s12">
                            <div class="row">
@@ -46,14 +46,14 @@
                                     <input 
                                         class="form-control" 
                                         type="text" 
-                                        ng-model="descricao" 
-                                        id="descricao" 
+                                        ng-model="descricao_filtro" 
+                                        id="descricao_filtro" 
                                         />
-                                    <label for="descricao">Descrição</label>
+                                    <label for="descricao_filtro">Descrição</label>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
                     <h6>Preço</h6>
                     <div class="divider"></div> 

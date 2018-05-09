@@ -40,7 +40,7 @@ app.controller(
 					null;
 
 		$scope.filter.ajudante = $("#ajudante").val() || '';
-		$scope.filter.descricao = $("#descricao").val() || '';
+		$scope.filter.descricao = $("#descricao_filtro").val() || '';
 
 		$scope.filter.minEstrela = $("#minEstrela").val() || null;
 		$scope.filter.maxEstrela = $("#maxEstrela").val() || null;
@@ -98,7 +98,7 @@ app.controller(
 				break;
 			case 'descricao':
 				$scope.filter.descricao = '';
-				$("#descricao").val(null);
+				$("#descricao_filtro").val(null);
 				break;
 			case 'ajudante':
 				$scope.filter.ajudante = '';
