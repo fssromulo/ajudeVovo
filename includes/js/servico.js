@@ -97,11 +97,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         });
     };
 
-    $scope.valorServicoValido = function () {
-        $scope.valorConvertido = $("#valor").val().replace('R$', '').replace('.', '');
-        $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
-        $scope.valorConvertido = parseFloat($scope.valorConvertido);
-        
+    $scope.valorServicoValido = function () {        
         if (isNaN($scope.valorConvertido)) {
             $("#valor")
                 .notify("O valor mínimo para serviços é de R$1,00", "error")
@@ -137,6 +133,11 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
             $.notify("As informações do serviço são inválidas", "error");
             return false;
         }
+
+        $scope.valorConvertido = $("#valor").val().replace('R$', '').replace('.', '');
+        $scope.valorConvertido = $scope.valorConvertido.replace(',', '.');
+        $scope.valorConvertido = parseFloat($scope.valorConvertido);
+        $scope.valorConvertido = isNaN($scope.valorConvertido) ? 0 : $scope.valorConvertido;
 
         // if(!$scope.valorServicoValido()) {
         //     return false;
