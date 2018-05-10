@@ -56,7 +56,7 @@ app.controller(
         $http.post(
             '../PagSeguro/PagSeguro/getSessaoPagSeguroFromLibrary'
         ).success(function (data) {
-            PagSeguroDirectPayment.setSessionId(data);
+            PagSeguroDirectPayment.setSessionId(data.trim());
             PagSeguroDirectPayment.getPaymentMethods({
                 success: function(response) {
                     $scope.getDadosCartao();
