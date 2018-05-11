@@ -35,7 +35,7 @@ app.controller(
 		$scope.openDlg = !$scope.openDlg;
 
 		$scope.filter.categoria = 
-			$scope.arrCategorias.selectedCategory ? 
+			$scope.arrCategorias.selectedCategory && $scope.arrCategorias.selectedCategory.id_categoria ? 
 				$scope.arrCategorias.selectedCategory.id_categoria : 
 					null;
 
