@@ -154,7 +154,7 @@ app.controller(
             $scope.bloquear_btn_servico = false;
             
             const modalAval = $('#modalDetalheServico');
-            modalAval.modal();  
+            // modalAval.modal();  
             modalAval.modal('close');
 
             $.notify("Salvo com sucesso!", "success");
