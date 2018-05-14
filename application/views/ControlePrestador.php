@@ -16,9 +16,8 @@
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     <div class="container" data-ng-show="arrListaServico.length > 0">
          <ul  class="collapsible" data-collapsible="accordion" >
-            <li ng-repeat="lista in arrListaServico" after-load-services-directive>
-                <div class="collapsible-header" >
-                    
+            <li ng-repeat="lista in arrListaServico">
+                <div class="collapsible-header" ng-click="openServiceClick($event)">
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
                         <p class="truncate">{{lista.descricao}}</p> 
                         <div class="right-align">
@@ -27,7 +26,7 @@
                             </span>
                         </div>
                 </div>
-                <div class="collapsible-body" > 
+                <div class="collapsible-body"> 
                     Serviço:{{lista.descricao}}<br/>
                     Idoso:{{lista.nome}} <br/>
                     Data/Horário:
