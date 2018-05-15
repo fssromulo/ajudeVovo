@@ -123,6 +123,8 @@ class PrestadorDB extends CI_Model{
 				ss.id_servico = s.id_servico
 		  	AND
 				s.id_prestador = ? 
+			ORDER BY
+				dia_solicitacao desc, horario_inicio desc
 			",
 			array(
 				$id_prestador
