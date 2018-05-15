@@ -609,6 +609,37 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- function obter_avaliacao_prestador
+-- -----------------------------------------------------
+USE `ajudevovo`;
+DROP function IF EXISTS `ajudevovo`.`obter_avaliacao_prestador`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_avaliacao_prestador`(`id_prestador_p` INT) RETURNS float
+BEGIN
+	DECLARE retorno float;
+	
+	select
+		avg(a.nota)
+	into
+		retorno
+	from
+		avaliacao a,
+		servico_avaliacao sa
+	where a.id_avaliacao = sa.id_avaliacao
+	and sa.id_servico in (select id_servico from servico where id_prestador = id_prestador_p);
+	
+	if (retorno is null) then
+		set retorno = 0;
+	end if;
+	
+	return retorno;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- function obter_avaliacao_servico
 -- -----------------------------------------------------
 
@@ -686,6 +717,7 @@ BEGIN
 	/*
 		S - Serviço
 		C - Contratante
+    P - Prestador
 	*/		
 	return 
 		case (ie_opcao_p) 
@@ -693,6 +725,8 @@ BEGIN
 				obter_avaliacao_servico(id_opcao_p)
 			when ('C') then
 				obter_avaliacao_contratante(id_opcao_p)
+      when ('P') then
+        obter_avaliacao_prestador(id_opcao_p)
 			else
 				0
 		end;

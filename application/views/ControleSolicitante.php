@@ -16,7 +16,7 @@
     <div class="container" ng-show="arrListaServico.length > 0">
         <ul  class="collapsible" data-collapsible="expandable">
             <li ng-repeat="lista in arrListaServico">
-                <div class="collapsible-header" >
+                <div class="collapsible-header" ng-click="openServiceClick($event)">
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"/>&nbsp;
                     <p class="truncate"> {{lista.servico}}</p>
                     <span ng-show="lista.ativo != 1" class="new badge red right" data-badge-caption="" >
@@ -32,6 +32,8 @@
                     Data/Horário:{{lista.dia}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação: {{lista.situacao}} <br/>
                     Valor: {{lista.valor}} <br/>
+                    Avaliação média do ajudante: <br/>
+                    <div id="starbox" class="starbox" data-button-count="{{lista.qt_estrela}}"></div>
 
                     <div ng-show="{{lista.id_estado_operacao}} == 5">
                         <button 

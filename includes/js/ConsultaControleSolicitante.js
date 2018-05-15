@@ -109,4 +109,21 @@ app.controller(
 		$scope.__construct();	
 	});
 
+    $scope.openServiceClick = (event) => {		
+		loadRating = (element) => {	
+			const starbox = $(element);
+			starbox.starbox({
+				average: starbox.attr('data-button-count') / 5,
+				changeable: false,
+			});
+		};
+
+		setTimeout(() => {
+			const starbox = ($(event.currentTarget.parentElement).find('.starbox')[0]);
+
+			setTimeout(() => {
+				loadRating(starbox);
+			}, 0, false);
+		}, 0, false);
+	}
 });

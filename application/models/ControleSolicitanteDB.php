@@ -24,6 +24,7 @@ class ControleSolicitanteDB extends CI_Model {
 			s.ativo,
 			f.id_contratante,
 			s.id_prestador,
+			obter_avaliacao("P",s.id_prestador) qt_estrela,
 			pf.imagem_pessoa '
 		);
 
