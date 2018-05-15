@@ -33,7 +33,7 @@
                         {{lista.dia_solicitacao}} - {{lista.horario_inicio}}&nbsp;até&nbsp;{{lista.horario_fim}} <br/>
                     Situação:  {{lista.ds_estado_atual}} <br/>
                     <strong>Necess. Especiais: {{lista.necessidades_especiais}}</strong> <br/>
-                    Avaliação: <br/>
+                    Avaliação do idoso: <br/>
                     <div id="starbox" class="starbox" data-button-count="{{lista.qt_estrela}}"></div>
 
                         <div ng-show="{{lista.id_estado_operacao}} == 3">
