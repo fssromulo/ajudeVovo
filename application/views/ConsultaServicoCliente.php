@@ -75,7 +75,10 @@
 						visibility
 					</i>
 				</span>
-	      <p class="right">R$ {{servico.valor}}</p>
+	      <p class="right">		  	
+		  	<span ng-if="servico.valor != 0">R$ {{servico.valor}}</span>
+			<span ng-if="servico.valor == 0">Gratuito</span>
+		  </p>
 				<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
 	    </div>
 	    <div class="card-reveal">
@@ -97,7 +100,13 @@
 						<p>
 							{{servico.ds_categoria}} <br/>
 							{{servico.qt_servico}} pessoas atendidas.<br/>
-							Preço: R$ {{servico.valor}} <br/>
+							<span ng-if="servico.valor != 0">
+								Preço: R$ {{servico.valor}}
+							</span>
+							<span ng-if="servico.valor == 0">
+								Gratuito
+							</span>
+							<br/>
 							Avaliação:
 						</p>
 						<div id="starbox" class="starbox" data-button-count="{{servico.qt_estrela}}"></div>
