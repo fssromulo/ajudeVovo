@@ -81,7 +81,7 @@
 	    <div class="card-reveal">
 	      <span 
 					class="card-title grey-text text-darken-4">
-					{{servico.ds_categoria}}
+					{{servico.nm_prestador}}
 					<i class="material-icons right">
 						close
 					</i>
@@ -95,7 +95,7 @@
 						> 
 					</div>
 						<p>
-							Ajudante: {{servico.nm_prestador}} <br/>
+							{{servico.ds_categoria}} <br/>
 							{{servico.qt_servico}} pessoas atendidas.<br/>
 							Preço: R$ {{servico.valor}} <br/>
 							Avaliação:
