@@ -152,14 +152,21 @@ app.controller(
             arrServicoSalvar
         ).success(function(data) {
             $scope.bloquear_btn_servico = false;
-            
+
             const modalAval = $('#modalDetalheServico');
-            // modalAval.modal();  
             modalAval.modal('close');
 
-            $.notify("Salvo com sucesso!", "success");
+            $scope.limparCamposDaModal();
+
+            $.notify("Salvo com sucesso!", "success");     
         });
     };
+
+    $scope.limparCamposDaModal = function() {
+        $scope.dia_solicitacao = "";
+        $scope.horario_inicio = "";
+        $scope.horario_fim = "";
+    }
 
     $scope.iniciaSessaoPagSeguro = function() {
         $http.post(
