@@ -12,14 +12,14 @@
 
                 <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=<?php echo $contratante;?>" />
 
-                    <div class="center col s12 m7 offset-m3 l7 offset-l3"> 
+                    <div class="center col s12 m7 offset-m3 l7 offset-l3">
                         <div id="frm_login">
                            <div class="row">
                             <div class="row"> &nbsp;</div>
                             <form class="center col s12">
                                 <div class="">
                                     <img
-                                        class=" center-align responsive-img" 
+                                        class=" center-align responsive-img"
                                         src="../includes/imagens/logo_login.png"
                                         alt="logo_ajude_vovo"
                                     />
@@ -31,7 +31,7 @@
                                       <input
                                         value=""
                                         type="text"
-                                        class="validate" 
+                                        class="validate"
                                         data-ng-model="usuario_logar"/>
                                       <label for="disabled">Usuário/E-mail</label>
                                     </div>
@@ -55,8 +55,8 @@
                                     <div class="col s12 center-align">
 
                                     <div class="col s6">
-                                      <a 
-                                        class="waves-effect waves-light btn red darken-1 col s12" href="../home/"><i class="material-icons left">arrow_back</i>Voltar</a>
+                                      <a
+                                        class="waves-effect waves-light btn red darken-1 col s12" href="../perfil/"><i class="material-icons left">arrow_back</i>Voltar</a>
                                       </div>
                                     <div class="col s6">
                                       <button
@@ -71,7 +71,7 @@
                         </div>
 
                     </div>
-              </div>        
+              </div>
     </div>
     </div>
     <script type="text/javascript" src="../includes/jQuery/jquery-3.2.1.js"></script>
