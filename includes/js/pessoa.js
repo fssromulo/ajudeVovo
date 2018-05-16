@@ -1,6 +1,6 @@
 app.config(function(ngJcropConfigProvider){
 
-	/* Configurações do componente de corte de imagens */ 
+	/* Configurações do componente de corte de imagens */
     ngJcropConfigProvider.setJcropConfig({
         bgColor: 'black',
         bgOpacity: .4,
@@ -87,7 +87,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		$scope.is_alterar = false;
 
 		// Define array com sexos para listagem
-		$scope.arrListaSexo = 
+		$scope.arrListaSexo =
 		{
 			sexoSelected : 'sexoSelected',
 			options : [{
@@ -133,7 +133,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 
 	$scope.getListaCidadeEndereco = () => {
 		$scope.objPessoa.estado = $scope.arrListaEstadoEndereco.estado;
-		
+
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
 	    		$scope.objPessoa.estado
@@ -144,7 +144,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 
 	$scope.getListaCidadeNascimento = () => {
 		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.estado;
-		
+
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
 	    		$scope.objPessoa.id_estado
@@ -176,12 +176,12 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 			valor2.trim()
 		);
 	};
-	
+
 
 	$scope.validaSalvar = () => {
  		/* $scope.obj.selection valores [x, y, x2, y2, w, h]
-        	Coordenadas do corte da foto!!                
-        */   
+        	Coordenadas do corte da foto!!
+        */
 
         let x = $scope.obj.selection[0];
         let y = $scope.obj.selection[1];
@@ -191,32 +191,32 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 
 		let sexo    = $scope.arrListaSexo.sexoSelected['valor'];
 		let cidadeEndereco  = $scope.arrListaCidadeEndereco.cidade['id_cidade'];
-		
+
 		// codigos do estado e da cidade de nascimento
 		let id_estado  = '';
 		let id_cidade  = '';
-		
+
 		if ( $scope.is_ajudante ) {
 			id_estado  = $scope.arrListaEstadoNascimento.estado['id_estado'];
-			id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];		
+			id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];
 		}
 
-		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;	
+		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;
 		// Verifica se deve pegar a data do campo referente ao mobile ou do campo do referente ao site
-		if ( $scope.objPessoa.dt_nascimento != null || 
-			$scope.objPessoa.dt_nascimento == undefined ) { 			
+		if ( $scope.objPessoa.dt_nascimento != null ||
+			$scope.objPessoa.dt_nascimento == undefined ) {
 
 			let objData = new Date($scope.objPessoa.dt_nascimento_mobile);
 
-	        data_nascimento_salvar = 
-	            objData.getDate() + "/" 
+	        data_nascimento_salvar =
+	            objData.getDate() + "/"
 	            + (objData.getMonth() + 1) + "/"
 	            + objData.getFullYear();
 		}
 
 		$scope.objPessoa.sexo = sexo;
  		$scope.objPessoa.cidade = cidadeEndereco;
-		
+
 		$scope.objPessoa.sexo = sexo;
 
 		// Se as senhas não são iguais, então aborta o envio do formulário
@@ -308,13 +308,13 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		}
 
 		angular.element('#modalCartaoCredito').modal('open');
-		PessoaCartao.setArrPessoa(arrPessoaSalvar);			
+		PessoaCartao.setArrPessoa(arrPessoaSalvar);
 	};
 
 	$scope.getImgFrente = (evento_recebido ) => {
 		$scope.getImagemDocPessoa(evento_recebido, true);
 	}
-	
+
 	$scope.getImgVerso = (evento_recebido ) => {
 	   	$scope.getImagemDocPessoa(evento_recebido,false);
 	}
@@ -336,35 +336,35 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	      $scope.$apply(function() {
 
 	      	if (!($scope.IsExtensaoValida(img_file.name))) {
-				$.notify('Extensão não permitida!'); 
+				$.notify('Extensão não permitida!');
 				return;
 			}
 
 	         if ( is_frente ) {
-	         	$scope.img_frente = reader.result;	         	
+	         	$scope.img_frente = reader.result;
 	         } else {
-	         	$scope.img_verso  = reader.result;	         	
+	         	$scope.img_verso  = reader.result;
 	         }
 	      });
 	  };
 
-	  // get <input> element and the selected file 
+	  // get <input> element and the selected file
 	  let img_input_file = '';
 
 	  if ( is_frente ) {
-	  		img_input_file = document.getElementById('img_frente');    
+	  		img_input_file = document.getElementById('img_frente');
 	  } else {
-	  		img_input_file = document.getElementById('img_verso');   
+	  		img_input_file = document.getElementById('img_verso');
 	  }
 
 	  let img_file = img_input_file.files[0];
-	  
+
 	  if ( img_file ) {
 	  	reader.readAsDataURL(img_file);
 	  }
 	};
 
- 
+
     /* Chama a modal para cadastro do cartão para o vovo e para o ajudante */
 	$scope.verificaAcao = () => {
 		$scope.validaSalvar();
@@ -382,22 +382,26 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	$scope.carregaExcluir = ( pessoa ) => {
 		$scope.id_pessoa_fisica = pessoa.id_pessoa_fisica;
 	}
-	
+
 	$scope.hasLogin = () => {
 		const arrDados = {
-			'login' : $scope.objPessoa.login			
+			'login' : $scope.objPessoa.login
 		};
 
 	    $http.post(
 	    		'../Pessoa/getLoginExistente/',
-	    		arrDados	    		
+	    		arrDados
 	    	).success(function (data) {
 	    		if (data.hasLogin > 0) {
 	    			$.notify('Este login já existe!','error');
 	    			$scope.objPessoa.login = '';
 	    			angular.element("#login").focus();
 	    		}
-		});	
+		});
+	}
+
+	$scope.redirecionaPerfil = () => {
+		window.location.href = '../perfil/';
 	}
 
 	$scope.trocarAba = ( aba_selecionada_param ) => {
@@ -406,11 +410,11 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		$('ul.tabs').tabs('select_tab', aba_selecionada_param);
 	}
 
-	angular.element(document).ready(function () {	
-		$scope.__construct();	
+	angular.element(document).ready(function () {
+		$scope.__construct();
 	});
 
-	// Chama metodos que vão preencher algo em tela	
+	// Chama metodos que vão preencher algo em tela
 	$scope.getListaEstadoNascimento();
 	$scope.getListaEstadoEndereco();
 	$scope.getListaNecessidadesEspeciais();

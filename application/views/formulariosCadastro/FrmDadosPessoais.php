@@ -1,7 +1,7 @@
 <form class="col s12" name="frmDadosPessoais" novalidate>
    <div class="section">
       <h5>Dados Pessoais</h5>
-      <div class="divider"></div> 
+      <div class="divider"></div>
       <div class="row">
          <div input-field class="session col s12 m6">
             <input autocomplete="off" id="nome" ng-model="objPessoa.nome" name="nome" type="text"  required/>
@@ -12,28 +12,28 @@
             <!-- <div  class="show-on-medium-and-down hide-on-large-only"> -->
             <div >
                <input
-                  type="date"                       
+                  type="date"
                   class="dt_nascimento_mobile"
                   ng-model="objPessoa.dt_nascimento_mobile"
                   id="dt_nascimento_mobile"
                   autocomplete="off"
                   required
                />
-               
+
             </div>
             <!-- <div class="hide-on-med-and-down show-on-large"> -->
-            <!-- Mostra o este campo se estiver numa resolução de computador para renderizar um calendário do materialize -->                           
+            <!-- Mostra o este campo se estiver numa resolução de computador para renderizar um calendário do materialize -->
                <!-- <input
                   autocomplete="off"
                   type="text"
                   class="dt_nascimento"
                   id="dt_nascimento"
                   ng-model="objPessoa.dt_nascimento"
-                                           
-               />  
+
+               />
                <label for="dt_nascimento">Data nascimento</label>
             </div> -->
-         </div>            
+         </div>
       </div>
       <div class="row">
          <div input-field class="session col s12 m6">
@@ -62,7 +62,7 @@
             >
                <option value=""  disabled selected>Selecione uma necessidade especial *</option>
             </select>
-         </div>                          
+         </div>
       </div>
 
      <div data-ng-if="is_ajudante">
@@ -80,7 +80,7 @@
                      type="file"
                      accept="image/jpg, image/jpeg, image/png"
                      id="img_frente"
-                     onchange="angular.element(this).scope().getImgFrente(event)" 
+                     onchange="angular.element(this).scope().getImgFrente(event)"
                      required
                   />
                </div>
@@ -89,7 +89,7 @@
                </div>
              </div>
           </div>
-          
+
           <div input-field class="session col s12 m6">
              <div class="file-field input-field">
                <div class="btn">
@@ -98,7 +98,7 @@
                      type="file"
                      accept="image/jpg, image/jpeg, image/png"
                      id="img_verso"
-                     onchange="angular.element(this).scope().getImgVerso(event)" 
+                     onchange="angular.element(this).scope().getImgVerso(event)"
                   />
                </div>
                <div class="file-path-wrapper">
@@ -114,12 +114,12 @@
          </div>
           <div input-field class="session col s12 m6">
              <input autocomplete="off" name="nome_mae" ng-model="objPessoa.nome_mae" id="nome_mae" type="text" required >
-             <label for="nome_mae">Nome da m&atilde;e *</label>                                       
+             <label for="nome_mae">Nome da m&atilde;e *</label>
           </div>
-          
+
           <div input-field class="session col s12 m6">
              <input autocomplete="off" name="nome_pai" ng-model="objPessoa.nome_pai" id="nome_pai" type="text" >
-             <label for="nome_pai">Nome do pai</label>                  
+             <label for="nome_pai">Nome do pai</label>
           </div>
        </div>
 
@@ -135,7 +135,7 @@
               >
                  <option value="">Estado de origem *</option>
               </select>
-           </div>                     
+           </div>
 
 
            <div input-field class="session col s12 m6">
@@ -148,9 +148,9 @@
               >
                  <option value="">Cidade de nascimento *</option>
               </select>
-           </div>  
-        </div>  
-      </div>  
+           </div>
+        </div>
+      </div>
 
        <div class="row">
          <div input-field class="session col s12 m6">
@@ -166,25 +166,34 @@
              </div>
 
               <div ng-jcrop="obj.src" ng-jcrop-config-name="upload" selection="obj.selection" thumbnail="obj.thumbnail"></div>
-         </div>            
+         </div>
       </div>
 
-   <div class="col s12 center-align">
+      <div class="row ">
+        <div class="col s12 ">
 
-   <div class="col s6">&nbsp;</div>
-   <div class="col s6">&nbsp;
-   <button
-            type="button"
-            class="waves-effect waves-light btn light-blue darken-2 col s12"
-           data-ng-click="trocarAba('tab_endereco')"
-           data-ng-disabled="!frmDadosPessoais.$valid"
-         >
-         <i class="material-icons right"  >arrow_forward</i>
-            Avan&ccedil;ar
-         </button>
+          <div class="col s6">
+            <button
+            type="button" ng-click="redirecionaPerfil()"
+            class="waves-effect waves-light btn red darken-1 col s12"
+            ><i class="material-icons left">arrow_back</i>Voltar
+            </button>
 
-     </div>
-   </div>
+          </div>
+        <div class="col s6">
+          <button
+          type="button"
+          class="waves-effect waves-light btn light-blue darken-2 col s12"
+          data-ng-click="trocarAba('tab_endereco')"
+          data-ng-disabled="!frmDadosPessoais.$valid"
+          >
+          <i class="material-icons right"  >arrow_forward</i>
+          Avan&ccedil;ar
+          </button>
+
+        </div>
+        </div>
+      </div>
 
    </div>
 </form>
