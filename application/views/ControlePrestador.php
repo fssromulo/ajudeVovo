@@ -20,11 +20,7 @@
                 <div class="collapsible-header" ng-click="openServiceClick($event)">
                     <img alt="" data-ng-src="../includes/imagens/fotos_pessoas/{{lista.imagem_pessoa}}" class="circle " width="50" height="50"> &nbsp;
                         <p class="truncate">{{lista.descricao}}</p> 
-                        <div class="right-align">
-                            <span ng-show="lista.ativo != 1" class="new badge red right-align" data-badge-caption="">
-                                Inativo
-                            </span>
-                        </div>
+                        <span ng-show="lista.ativo != 1" class="new badge red" data-badge-caption="Inativo" style="margin: auto; margin-right: 10px; font-size: 14px; padding: 1px 5px 1px 5px"></span>
                 </div>
                 <div class="collapsible-body"> 
                     Serviço:{{lista.descricao}}<br/>
