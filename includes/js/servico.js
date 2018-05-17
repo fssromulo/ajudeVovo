@@ -273,6 +273,7 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         
         $scope.descricao = servico['descricao'];
         $scope.valor = servico['valor'];
+        $scope.gratuito = servico['valor'] == 'R$ 0,00';
         $scope.detalhe = servico['detalhe'];
 
         for (let i = $scope.arrListaCategoria.length - 1; i >= 0; i--) {

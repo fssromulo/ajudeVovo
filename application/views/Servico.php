@@ -46,17 +46,40 @@
                         </div>                        
 
                         <div class="row">
-                            <div class="col s12">
+                            <div class="col s6">
+                                <p>
+                                    <input 
+                                        type="checkbox" 
+                                        id="gratuito" 
+                                        ng-model="gratuito"
+                                        ng-checked="valor == 'R$ 0,00'"
+                                        ng-click="valor = gratuito ? 'R$ 0,00' : valor"
+                                        />
+                                    <label for="gratuito">Voluntário</label>
+                                </p>
+                            </div>
+                            <div class="col s6">
                                 <div class="input-field">
                                     <label for="valor">Valor:</label>
                                     <input
                                         type="text"
                                         ng-model="valor"
+                                        ng-disabled="gratuito"
                                         class="form-control"
                                         id="valor"
                                         data-ng-blur="validaValorServico()"
-                                        required
                                     />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="col s12">
+                                    <div class="input-field">
+                                        <label for="detalhe">Detalhes do Serviço:</label>
+                                        <textarea style="resize: none;" class="materialize-textarea" ng-model="detalhe" name="detalhe" id="detalhe"></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -150,17 +173,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="col s12">
-                                    <div class="input-field">
-                                        <label for="detalhe">Detalhes do Serviço:</label>
-                                        <textarea style="resize: none;" class="materialize-textarea" ng-model="detalhe" name="detalhe" id="detalhe"></textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>
