@@ -12,7 +12,7 @@ class ControleSolicitanteDB extends CI_Model {
 		$this->db->select('
 			s.descricao as servico,
 			c.descricao as categoria, 
-			s.valor as valor,
+			f.valor as valor,
 			pf.nome as ajudante,
 			TIME_FORMAT(f.horario_inicio,"%H:%i") as horario_inicio, 
 			TIME_FORMAT(f.horario_fim,"%H:%i") as horario_fim,			
