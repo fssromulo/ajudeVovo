@@ -502,6 +502,7 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`servico_solicitado` (
   `horario_inicio` TIME NULL DEFAULT NULL,
   `horario_fim` TIME NULL DEFAULT NULL,
   `dia_solicitacao` DATE NULL DEFAULT NULL,
+  `valor` FLOAT NOT NULL,
   PRIMARY KEY (`id_servico_solicitacao`),
   INDEX `id_servico` (`id_servico` ASC),
   INDEX `id_contratante` (`id_contratante` ASC),
@@ -699,6 +700,32 @@ DECLARE retorno float;
 	end if;
 	
 	return retorno;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- trigger servico_solicitado_before_insert
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP TRIGGER IF EXISTS `ajudevovo`.`servico_solicitado_before_insert`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE TRIGGER `servico_solicitado_before_insert` BEFORE INSERT ON `servico_solicitado` FOR EACH ROW BEGIN
+	DECLARE novoValor Float;
+
+	select 
+		s.valor 
+	into
+		novoValor
+	from 
+		servico s 
+	where 
+		s.id_servico = new.id_servico;
+	
+	set new.valor = novoValor;
 END$$
 
 DELIMITER ;

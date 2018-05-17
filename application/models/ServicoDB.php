@@ -12,7 +12,7 @@ class ServicoDB extends CI_Model {
 			"select 
 				s.id_servico as id_servico, 
 				s.descricao as descricao, 
-			    CONCAT('R$ ',format(s.valor,2,'de_DE')) valor,
+			    CONCAT('R$ ',format(s.valor,2,'pt_BR')) valor,
 				s.detalhe as detalhe, 
 				(SELECT COUNT(ss.id_servico) FROM servico_solicitado ss WHERE ss.id_servico=s.id_servico) as solicitacoes
 			from 
@@ -29,7 +29,7 @@ class ServicoDB extends CI_Model {
                 s.id_servico as id_servico, 
                 s.id_categoria as id_categoria, 
                 s.descricao as descricao, 
-                CONCAT('R$ ',format(s.valor,2,'de_DE')) valor,
+                CONCAT('R$ ',format(s.valor,2,'pt_BR')) valor,
                 s.detalhe as detalhe,
                 s.ativo as ativo
             from 

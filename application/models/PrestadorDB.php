@@ -16,7 +16,7 @@ class PrestadorDB extends CI_Model{
 			. ' 	pf.nome, '
 			. ' 	pf.cpf, '
 			. ' 	DATE_FORMAT(pf.dt_nascimento,"%d/%m/%Y") dt_nascimento,  '
-			. ' 	FORMAT(ROUND(s.valor, 2),2) valor, '
+			. ' 	FORMAT(ROUND(ss.valor, 2),2) valor, '
 			. ' 	s.descricao descricao_servico, '
 			. ' 	c.descricao cidade, '
 			. ' 	e.bairro, '
