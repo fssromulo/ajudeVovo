@@ -786,7 +786,7 @@ BEGIN
     servico s
   where ss.id_servico = s.id_servico
   and s.id_prestador = id_prestador_p
-  and ss.id_estado_operacao in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
+  and ss.id_estado_operacao not in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
   
   return retorno;
 END$$
