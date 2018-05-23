@@ -705,6 +705,66 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure inativar_servicos_prestador
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP PROCEDURE IF EXISTS `ajudevovo`.`inativar_servicos_prestador`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inativar_servicos_prestador`(
+	IN `id_prestador_p` INT
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+BEGIN
+
+	update servico
+	set ativo = 0
+	where id_prestador = id_prestador_p;
+
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- trigger pessoa_fisica_after_update
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP TRIGGER IF EXISTS `ajudevovo`.`pessoa_fisica_after_update`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+
+CREATE TRIGGER `pessoa_fisica_after_update` AFTER UPDATE ON `pessoa_fisica` FOR EACH ROW BEGIN
+declare id_prestador_v int;
+
+	if (new.id_estado_pessoa_fisica = 2) then		
+		select
+			id_prestador
+		into
+			id_prestador_v
+		from
+			prestador p
+		where 
+			p.id_pessoa = new.id_pessoa_fisica;
+			
+		if (id_prestador_v > 0) then
+			call inativar_servicos_prestador(id_prestador_v);
+		end if;
+	end if;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- trigger servico_solicitado_before_insert
 -- -----------------------------------------------------
 
