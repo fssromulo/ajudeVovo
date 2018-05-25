@@ -34,6 +34,8 @@
 		      <i class="material-icons right">arrow_forward</i>
 		         Avan&ccedil;ar
 		      </button>
+
+		      
 		  	</div>
 		</div>
 	</div>
