@@ -109,7 +109,7 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	    $http.post(
 	    		'../Gerais/Geral/getListaPais/'
 	    	).success(function (data) {
-	    		$scope.arrListaPaisEndereco = data;
+				$scope.arrListaPaisEndereco = data;				
 		});
 	}
 
@@ -117,7 +117,18 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
-	    		$scope.arrListaEstadoEndereco   = data;
+				$scope.arrListaEstadoEndereco = data;
+				const estadosAutoComplete = {};
+
+				angular.forEach(data.options, (value, key) => {
+					estadosAutoComplete[value.descricao] = '';
+				});
+
+				$('#estado').autocomplete({
+					data: estadosAutoComplete,
+					limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+					minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+				});
 			}
 		);
 	}
@@ -126,30 +137,70 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 	    $http.post(
 	    		'../Gerais/Geral/getListaEstado/'
 	    	).success(function (data) {
-	    		$scope.arrListaEstadoNascimento = data;
+				$scope.arrListaEstadoNascimento = data;
+				
+				const estadosNascAutoComplete = {};
+
+				angular.forEach(data.options, (value, key) => {
+					estadosNascAutoComplete[value.descricao] = '';
+				});
+
+				$('#estadoNascimento').autocomplete({
+					data: estadosNascAutoComplete,
+					limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+					minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+				});
 			}
 		);
 	}
 
 	$scope.getListaCidadeEndereco = () => {
-		$scope.objPessoa.estado = $scope.arrListaEstadoEndereco.estado;
-
-	    $http.post(
-	    		'../Gerais/Geral/getListaCidade/',
-	    		$scope.objPessoa.estado
-	    	).success(function (data) {
-	    		$scope.arrListaCidadeEndereco = data;
+		const estado = $scope.arrListaEstadoEndereco.options.find((estado) => {
+			return estado.descricao === $('#estado').val()
 		});
+		if (estado) { 
+			$scope.objPessoa.estado = estado;
+			$http.post(
+					'../Gerais/Geral/getListaCidade/',
+					$scope.objPessoa.estado
+				).success(function (data) {
+					$scope.arrListaCidadeEndereco = data;
+					const cidadesAutoComplete = {};
+
+					angular.forEach(data.options, (value, key) => {
+						cidadesAutoComplete[value.descricao] = '';
+					});
+
+					$('#cidade').autocomplete({
+						data: cidadesAutoComplete,
+						limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+						minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+					});
+			});
+		}
 	}
 
 	$scope.getListaCidadeNascimento = () => {
-		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.estado;
+		$scope.objPessoa.id_estado = $scope.arrListaEstadoNascimento.options.find((estado) => {
+			return estado.descricao === $('#estadoNascimento').val()
+		});;
 
 	    $http.post(
 	    		'../Gerais/Geral/getListaCidade/',
 	    		$scope.objPessoa.id_estado
 	    	).success(function (data) {
-	    		$scope.arrListaCidadeNascimento = data;
+				$scope.arrListaCidadeNascimento = data;
+				const cidadesNascAutoComplete = {};
+
+				angular.forEach(data.options, (value, key) => {
+					cidadesNascAutoComplete[value.descricao] = '';
+				});
+
+				$('#cidadeNascimento').autocomplete({
+					data: cidadesNascAutoComplete,
+					limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+					minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+				});
 		});
 	}
 
@@ -190,15 +241,21 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 
 
 		let sexo    = $scope.arrListaSexo.sexoSelected['valor'];
-		let cidadeEndereco  = $scope.arrListaCidadeEndereco.cidade['id_cidade'];
+		let cidadeEndereco  = $scope.arrListaCidadeEndereco.options.find((cidade) => {
+			return cidade.descricao === $('#cidade').val()
+		}).id_cidade;
 
 		// codigos do estado e da cidade de nascimento
 		let id_estado  = '';
 		let id_cidade  = '';
 
 		if ( $scope.is_ajudante ) {
-			id_estado  = $scope.arrListaEstadoNascimento.estado['id_estado'];
-			id_cidade  = $scope.arrListaCidadeNascimento.cidade['id_cidade'];
+			id_estado  = $scope.arrListaEstadoNascimento.options.find((estado) => {
+				return estado.descricao === $('#estadoNascimento').val()
+			}).id_estado;
+			id_cidade  = $scope.arrListaCidadeNascimento.options.find((cidade) => {
+				return cidade.descricao === $('#cidadeNascimento').val()
+			}).id_cidade;
 		}
 
 		let data_nascimento_salvar = $scope.objPessoa.dt_nascimento;
