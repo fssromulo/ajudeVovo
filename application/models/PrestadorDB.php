@@ -76,15 +76,16 @@ class PrestadorDB extends CI_Model{
 	public function getPrestadores() {
 		return 
 			$this->db->query("
-				select
+				SELECT
 					p.id_prestador,
 					pf.nome,
 					pf.imagem_pessoa
-				from
+				FROM
 					prestador p,
 					pessoa_fisica pf
-				where
+				WHERE
 					p.id_pessoa = pf.id_pessoa_fisica
+				AND pf.id_estado_pessoa_fisica = 1
 			", false);
 	}
 

@@ -1,4 +1,4 @@
-<form class="col s12" name="frmDadosPessoais" novalidate>
+<form class="col s12" name="frmDadosPessoais" autocomplete="off" novalidate>
    <div class="section">
       <h5>Dados Pessoais</h5>
       <div class="divider"></div>
@@ -21,18 +21,6 @@
                />
 
             </div>
-            <!-- <div class="hide-on-med-and-down show-on-large"> -->
-            <!-- Mostra o este campo se estiver numa resolução de computador para renderizar um calendário do materialize -->
-               <!-- <input
-                  autocomplete="off"
-                  type="text"
-                  class="dt_nascimento"
-                  id="dt_nascimento"
-                  ng-model="objPessoa.dt_nascimento"
-
-               />
-               <label for="dt_nascimento">Data nascimento</label>
-            </div> -->
          </div>
       </div>
       <div class="row">
@@ -125,6 +113,7 @@
 
         <div class="row">
            <div input-field class="session col s12 m6">
+              <!-- 
               <select
                  ng-options="listaEstadoNascimento.descricao for listaEstadoNascimento in arrListaEstadoNascimento.options track by listaEstadoNascimento.id_estado"
                  ng-model="arrListaEstadoNascimento.estado"
@@ -133,12 +122,24 @@
                  ng-change="getListaCidadeNascimento()"
                  material-select watch
               >
-                 <option value="">Estado de origem *</option>
+                 <option value="">Estado de origem *</option> 
               </select>
+              -->
+
+              <input 
+                type="text" 
+                id="estadoNascimento" 
+                ng-model="estadoNascimento"
+                ng-change="getListaCidadeNascimento()"
+                class="autocomplete"
+                required
+                />
+              <label for="estadoNascimento">Estado de origem *</label>
            </div>
 
 
            <div input-field class="session col s12 m6">
+              <!--
               <select
                  ng-options="listaCidade.descricao for listaCidade in arrListaCidadeNascimento.options"
                  ng-model="arrListaCidadeNascimento.cidade"
@@ -147,7 +148,17 @@
                  material-select watch
               >
                  <option value="">Cidade de nascimento *</option>
-              </select>
+              </select> 
+              -->
+
+              <input 
+                type="text" 
+                id="cidadeNascimento" 
+                ng-model="cidadeNascimento"
+                class="autocomplete"
+                required
+                />
+              <label for="cidadeNascimento">Cidade de nascimento *</label>
            </div>
         </div>
       </div>
