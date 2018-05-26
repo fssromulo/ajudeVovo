@@ -60,11 +60,11 @@
       </div>
    </div>
 </div>
+
     <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
     ?>
-
    <!-- MY App -->
    <script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
    <script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
