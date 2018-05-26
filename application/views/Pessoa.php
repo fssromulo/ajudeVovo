@@ -69,5 +69,6 @@
    <script type="text/javascript" src="../includes/js/PessoaCartaoCredito.service.js?<?php echo date('YmdHis');?>"></script>
    <script type="text/javascript" src="../includes/js/cartaoCredito.js?<?php echo date('YmdHis');?>"></script>
    <script type="text/javascript" src="../includes/js/pessoa.js?1"></script>
+   <!-- <script type="text/javascript" src="../includes/dist/pessoa.min.js"></script> -->
 </body>
 </html>
