@@ -28,9 +28,10 @@
                         <li ng-repeat="servico in arrListaServico">
                             <div class="collapsible-header">{{servico.descricao}}</div>
                             <div class="collapsible-body">
-                                <span>Detalhes do serviço: {{servico.detalhe}}</span>
+                                <span>Detalhes: {{servico.detalhe}}</span>
                                 <br><br>
-                                <span>Valor do serviço: {{servico.valor}}</span>
+                                <span ng-if="servico.valor != 'R$ 0,00'">Valor: {{servico.valor}}</span>
+                                <span ng-if="servico.valor == 'R$ 0,00'">Serviço gratuito</span>
                                 <br><br><br>
                                 <div class="col s12">
                                     <i style="cursor: pointer" 

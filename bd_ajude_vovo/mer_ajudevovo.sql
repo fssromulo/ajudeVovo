@@ -502,6 +502,7 @@ CREATE TABLE IF NOT EXISTS `ajudevovo`.`servico_solicitado` (
   `horario_inicio` TIME NULL DEFAULT NULL,
   `horario_fim` TIME NULL DEFAULT NULL,
   `dia_solicitacao` DATE NULL DEFAULT NULL,
+  `valor` FLOAT NOT NULL,
   PRIMARY KEY (`id_servico_solicitacao`),
   INDEX `id_servico` (`id_servico` ASC),
   INDEX `id_contratante` (`id_contratante` ASC),
@@ -704,6 +705,92 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure inativar_servicos_prestador
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP PROCEDURE IF EXISTS `ajudevovo`.`inativar_servicos_prestador`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inativar_servicos_prestador`(
+	IN `id_prestador_p` INT
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+BEGIN
+
+	update servico
+	set ativo = 0
+	where id_prestador = id_prestador_p;
+
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- trigger pessoa_fisica_after_update
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP TRIGGER IF EXISTS `ajudevovo`.`pessoa_fisica_after_update`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+
+CREATE TRIGGER `pessoa_fisica_after_update` AFTER UPDATE ON `pessoa_fisica` FOR EACH ROW BEGIN
+declare id_prestador_v int;
+
+	if (new.id_estado_pessoa_fisica = 2) then		
+		select
+			id_prestador
+		into
+			id_prestador_v
+		from
+			prestador p
+		where 
+			p.id_pessoa = new.id_pessoa_fisica;
+			
+		if (id_prestador_v > 0) then
+			call inativar_servicos_prestador(id_prestador_v);
+		end if;
+	end if;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- trigger servico_solicitado_before_insert
+-- -----------------------------------------------------
+
+USE `ajudevovo`;
+DROP TRIGGER IF EXISTS `ajudevovo`.`servico_solicitado_before_insert`;
+
+DELIMITER $$
+USE `ajudevovo`$$
+CREATE TRIGGER `servico_solicitado_before_insert` BEFORE INSERT ON `servico_solicitado` FOR EACH ROW BEGIN
+	DECLARE novoValor Float;
+
+	select 
+		s.valor 
+	into
+		novoValor
+	from 
+		servico s 
+	where 
+		s.id_servico = new.id_servico;
+	
+	set new.valor = novoValor;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- function obter_avaliacao
 -- -----------------------------------------------------
 
@@ -759,7 +846,7 @@ BEGIN
     servico s
   where ss.id_servico = s.id_servico
   and s.id_prestador = id_prestador_p
-  and ss.id_estado_operacao in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
+  and ss.id_estado_operacao not in (2, 5, 6); /*Reprovado, Executado, Finalizado*/
   
   return retorno;
 END$$

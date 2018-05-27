@@ -1,9 +1,10 @@
-<form class="col s12" name="frmDadosEndereco" novalidate>
+<form class="col s12" name="frmDadosEndereco" autocomplete="off" novalidate>
 	<div class="section">
 		<h5>Endereço</h5>
 		<div class="divider"></div> 
 		<div class="row">
 			<div input-field class="session col s12 m6">
+				<!-- 
 				<select
 					ng-options="listaEstadoEndereco.descricao for listaEstadoEndereco in arrListaEstadoEndereco.options track by listaEstadoEndereco.id_estado"
 					ng-model="arrListaEstadoEndereco.estado"
@@ -14,10 +15,22 @@
 					required
 				>
 					<option value="">Selecione um estado *</option>
-				</select>
+				</select> 
+				-->
+
+				<input 
+					type="text" 
+					id="estado" 
+					ng-model="estado"
+					ng-change="getListaCidadeEndereco()" 
+					class="autocomplete"
+					required
+					/>
+				<label for="estado">Estado *</label>
 			</div>
 
 			<div input-field class="session col s12 m6">
+				<!-- 
 				<select
 				ng-options="listaCidade.descricao for listaCidade in arrListaCidadeEndereco.options"
 				ng-model="arrListaCidadeEndereco.cidade"
@@ -27,7 +40,17 @@
 				required
 				>
 					<option value="">Selecione uma cidade *</option>
-				</select>
+				</select> 
+				-->
+
+				<input 
+					type="text" 
+					id="cidade" 
+					ng-model="cidade"
+					class="autocomplete"
+					required
+					/>
+				<label for="cidade">Cidade *</label>
 			</div>                  
 		</div>
 
