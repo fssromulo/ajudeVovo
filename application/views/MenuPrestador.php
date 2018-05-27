@@ -50,16 +50,13 @@
   <div class="s12">&nbsp;</div>
 
   <div class="modal fade" id="modal_excluir_ajudante" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-
       <div class="modal-dialog" role="document">
           <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title" id="gridSystemModalLabel">Tem certeza que deseja excluir sua conta?</h4>
-              </div>
+              <h5 class="modal-title">Tem certeza que deseja excluir sua conta?</h5>
 
               <div class="modal-footer">
-                  <button type="button" class="waves-effect waves-light btn light-blue darken-2 col s6" ng-click="excluir()">Sim</button>
                   <button type="button" class="waves-effect waves-light btn red darken-2 col s6" ng-click="fechar()">Não</button>
+                  <button type="button" class="waves-effect waves-light btn light-blue darken-2 col s6" ng-click="excluir()">Sim</button>
               </div>
           </div>
       </div>
