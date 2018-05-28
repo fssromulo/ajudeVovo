@@ -4,11 +4,19 @@
 ?>   
 </head>
 <body>
-    <div ng-app="appAngular" ng-controller="controllerControlePrestador">  
+    <div
+        ng-app="appAngular"
+        ng-controller="controllerControlePrestador"
+        data-ng-cloak
+    >  
     <?php
         // Importa o cabeçalho padrao a todas as telas
         $this->load->view('MenuPrestador.php');
     ?>
+
+    <!-- componente de feedback para os usuários -->
+    <carregavovo data-ng-show="is_carregando_pagina"></carregavovo> 
+    <!-- componente de feedback para os usuários -->
 
     <div>
         <p ng-show="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços solicitados!</p>

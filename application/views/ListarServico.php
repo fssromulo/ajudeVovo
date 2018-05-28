@@ -4,11 +4,20 @@
 ?>
 </head>
     <body>
-        <div ng-app="appAngular" ng-controller="controllerListarServico">
+        <div 
+            data-ng-cloak 
+            ng-app="appAngular"
+            ng-controller="controllerListarServico"
+        >
             <?php
                 // Importa o cabeçalho padrao a todas as telas
                 $this->load->view('MenuPrestador.php');
             ?>
+
+            <!-- componente de feedback para os usuários -->
+            <carregavovo data-ng-show="is_carregando_pagina"></carregavovo> 
+            <!-- componente de feedback para os usuários -->
+
            <div class="container">
 
             <div class="row">
@@ -19,7 +28,6 @@
                       <i class="material-icons">add</i></a>                      
                 </div>
 
-                
                 <div class="s12">
                     <p ng-if="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços cadastrados!</p>
                             

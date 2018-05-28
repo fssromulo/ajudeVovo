@@ -4,15 +4,19 @@ app.controller(
 		$scope, $rootScope, $http, RealizaAvaliacao
 	){
 
+	$scope.is_carregando_pagina = 1;		
+
 	$scope.__construct = () => {
     	RealizaAvaliacao.iniciaComponenteAvaliacao();
 		$scope.carregarServicosSolicitados();
 	};
 
 	$scope.carregarServicosSolicitados = () => {
+		$scope.is_carregando_pagina = 1;
 		$http.post(
 			'../ControlePrestador/buscaServicos'
         ).success((data) => {
+        	$scope.is_carregando_pagina = 0;
             $scope.arrListaServico = data;
         });
     };
@@ -77,4 +81,14 @@ app.controller(
 			}, 0, false);
 		}, 0, false);
 	}
+});
+
+app.directive('carregavovo', function(){
+    return {
+        restrict: 'EA',
+        templateUrl: '../includes/js/componenteAjudeVovo/pre-loader-vovo.html',
+        scope: {
+           is_carregando_pagina: '=',            
+        }
+    };
 });

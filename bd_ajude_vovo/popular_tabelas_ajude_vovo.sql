@@ -9768,8 +9768,6 @@ INSERT INTO `cidade`
 
 
 INSERT INTO `tipo_contato`  VALUES
-  (1, 'Telefone Residencial'),
-  (2, 'Telefone Comercial'),
   (3, 'Celular'),
   (4, 'E-mail');
 
@@ -9968,40 +9966,32 @@ INSERT INTO `avaliacao` (`id_avaliacao`, `nota`, `comentario`) VALUES
 (10, 3, 'Muito bom serviço, porém se atrasou para iniciar a atividade');
 
 INSERT INTO `contato` (`id_contato`, `id_pessoa`, `id_tipo_contato`, `descricao`) VALUES
-(1, 1, 1, ''),(2, 1, 2, ''),(3, 1, 3, '47988541213'),(4, 1, 4, 'velozaodagalera@gmail.com'),(5, 2, 1, ''),
+(2, 1, 2, ''),(3, 1, 3, '47988541213'),(4, 1, 4, 'velozaodagalera@gmail.com'),
 (6, 2, 2, ''),(7, 2, 3, '47991725457'),(8, 2, 4, 'camargaoDaGalera@gmail.com'),
-(9, 3, 1, ''),(10, 3, 2, ''),
+(10, 3, 2, ''),
 (11, 3, 3, '47995258741'),
 (12, 3, 4, 'carmenserpa@gmail.com'),
-(13, 4, 1, ''),
 (14, 4, 2, ''),
 (15, 4, 3, '47991725457'),
 (16, 4, 4, 'diana@gmail.com'),
-(17, 5, 1, ''),
 (18, 5, 2, ''),
 (19, 5, 3, '47997546565'),
 (20, 5, 4, 'joaquim@gmail.com'),
-(21, 6, 1, ''),
 (22, 6, 2, ''),
 (23, 6, 3, '47987987897'),
 (24, 6, 4, 'emanuel@gmail.com'),
-(25, 7, 1, ''),
 (26, 7, 2, ''),
 (27, 7, 3, '47991725457'),
 (28, 7, 4, 'tercio@gmail.com'),
-(29, 8, 1, ''),
 (30, 8, 2, ''),
 (31, 8, 3, '47991725457'),
 (32, 8, 4, 'lariana@gmail.com'),
-(33, 9, 1, ''),
 (34, 9, 2, ''),
 (35, 9, 3, '47991725445'),
 (36, 9, 4, 'claudio@gmail.com'),
-(37, 10, 1, ''),
 (38, 10, 2, ''),
 (39, 10, 3, '47991725457'),
 (40, 10, 4, 'pedro@gmail.com'),
-(41, 11, 1, ''),
 (42, 11, 2, ''),
 (43, 11, 3, '47991725457'),
 (44, 11, 4, 'helcio@gmail.com');

@@ -8,15 +8,18 @@ var app = angular.module(
 
 app.controller("controllerListarServico", function($scope, $http) {
 
+    $scope.is_carregando_pagina = 1;    
 	$scope.__construct = function() {
 		$scope.getServicos();	
 	};
 
 	$scope.getServicos = function() {
+        $scope.is_carregando_pagina = 1;    
         $http
         	.post('../ListarServico/getServicos')
     		.success(function (data) {
             	$scope.arrListaServico = data;
+                $scope.is_carregando_pagina = 0;    
         	});
     };
 
@@ -58,4 +61,15 @@ app.controller("controllerListarServico", function($scope, $http) {
 	angular.element(document).ready(function () {
 		$scope.__construct();	
 	});
+});
+
+
+app.directive('carregavovo', function(){
+    return {
+        restrict: 'EA',
+        templateUrl: '../includes/js/componenteAjudeVovo/pre-loader-vovo.html',
+        scope: {
+           is_carregando_pagina: '=',            
+        }
+    };
 });

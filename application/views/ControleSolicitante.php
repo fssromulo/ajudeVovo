@@ -8,7 +8,12 @@
         // Importa o cabeçalho padrao a todas as telas
         $this->load->view('MenuContratante.php');
     ?>
-  <div ng-app="appAngular" ng-controller="controllerDetalheServico">	
+  <div ng-app="appAngular" ng-controller="controllerDetalheServico" data-ng-cloak>
+        
+    <!-- componente de feedback para os usuários -->
+    <carregavovo data-ng-show="is_carregando_pagina"></carregavovo> 
+    <!-- componente de feedback para os usuários -->
+
     <input type="hidden" ng-model="is_contratante" name="is_contratante" ng-init="is_contratante=1" />
     
     <p ng-show="arrListaServico.length < 1" style="font-size: 20px; text-align: center;">Você ainda não possui serviços solicitados!</p>
@@ -60,7 +65,6 @@
         ?>
     </div>
 
-   <!-- <script type="text/javascript" src="../includes/jQuery/jquery.js"></script>     -->
     <?php
         // Importa o cabeçalho rodape padrao a todas as telas
         $this->load->view('nucleo/footer.php');
@@ -69,6 +73,6 @@
     <script type="text/javascript" src="../includes/js/RealizarAvaliacao.service.js"></script>
     <script type="text/javascript" src="../includes/js/ConsultaControleSolicitante.js"></script>
     <script type="text/javascript" src="../includes/js/Avaliacao.controller.js"></script>
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js" async></script>
 </body>
 </html>

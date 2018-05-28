@@ -3,7 +3,7 @@ var app = angular.module(
  	[
  		'angular-loading-bar'
  	]
-);
+)
 
 app.service(
 	'RealizaAvaliacao',
