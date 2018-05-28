@@ -35,8 +35,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 		rua : '',
 		nr_casa : '',
 		complemento : '',
-		fone_comercial : '',
-		fone_residencial : '',
 		celular : '',
 		email : '',
 		login : '',
@@ -313,14 +311,6 @@ app.controller("ctrlPessoa", function($scope, $rootScope,$http,$timeout, PessoaC
 				'complemento' : $scope.objPessoa.complemento
 			},
 			'arrContatos' : [
-				{
-					'descricao'        : $scope.objPessoa.fone_residencial,
-					'id_tipo_contato'  : 1
-				},
-				{
-					'descricao'        : $scope.objPessoa.fone_comercial,
-					'id_tipo_contato'  : 2
-				},
 				{
 					'descricao'        : $scope.objPessoa.celular,
 					'id_tipo_contato'  : 3

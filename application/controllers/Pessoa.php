@@ -137,7 +137,6 @@
 						'img_verso'
 					);
 				}
-
 				
 				if ( !empty($ds_imagem) || !empty($imagem_frente_documento) || !empty($imagem_verso_documento) ) {
 
@@ -149,7 +148,6 @@
 
 					$this->PessoaDB->alterarPessoa( $arrPessoaAlterar, $cd_pessoa );
 				}
-
 				
 	      	$arrCondicaoPessoa['id_pessoa_fisica'] = $cd_pessoa;
 
@@ -177,15 +175,12 @@
 		      	);
 
 		      	$this->CartaoCreditoDB->inserir_cartao($arrCartaoCredito);      		
-
 	      	
 	      		foreach ( $arrContatos as $chave => $contato ) {
 	   				$contato['id_pessoa'] = $cd_pessoa;
-
 	   				if ( $contato['id_tipo_contato'] != 4 && !empty($contato['descricao']) ) {
 	   					$contato['descricao'] = removeCaracteres($contato['descricao']);
 	   				}
-
 	      			$this->ContatoDB->inserirContato($contato);
 	      		}
 

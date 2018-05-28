@@ -6,7 +6,8 @@ app.controller(
 		$http,
 		ServicoClienteDetalhe
 	){
-	
+
+	$scope.is_carregando_pagina = 1;	
 	$scope.goToDetail = (id_servico) => {
 		ServicoClienteDetalhe.setIdServico(id_servico);
 
@@ -122,11 +123,13 @@ app.controller(
 	}
 
 	$scope.getServicos = () => {
+		$scope.is_carregando_pagina = 1;
 		$http.post(
 			'../ConsultaServicoCliente/getServicosCliente',
 			[$scope.filter, $scope.order]
 		).success((data) => {
 			$scope.arrServicos = data;			
+			$scope.is_carregando_pagina = 0;
 		});
 	}
 
@@ -252,4 +255,14 @@ app.directive('afterLoadServicesDirective', () => {
 			},0, false);
 		}
 	}
+});
+
+app.directive('carregavovo', function(){
+    return {
+        restrict: 'EA',
+        templateUrl: '../includes/js/componenteAjudeVovo/pre-loader-vovo.html',
+        scope: {
+           is_carregando_pagina: '=',            
+        }
+    };
 });

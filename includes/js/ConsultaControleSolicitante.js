@@ -3,20 +3,24 @@ app.controller(
 	function(
 		$scope, $rootScope, $http, RealizaAvaliacao
 	) {
+    
+    $scope.is_carregando_pagina = 1;
 
-	$scope.__construct = function() {
-		$scope.tokenCartaoVovo = null;
-		
-		RealizaAvaliacao.iniciaComponenteAvaliacao();
-		$scope.carregarDetalheServico();
-		$scope.iniciaSessaoPagSeguro(); 		
-	};
+    $scope.__construct = function() {
+        $scope.tokenCartaoVovo = null;
+        
+        RealizaAvaliacao.iniciaComponenteAvaliacao();
+        $scope.carregarDetalheServico();
+        $scope.iniciaSessaoPagSeguro();         
+    };
 
-	$scope.carregarDetalheServico = function(){
+    $scope.carregarDetalheServico = function(){
+        $scope.is_carregando_pagina = 1;
 		$http.post(
             '../ControleSolicitante/buscaServico'
         ).success(function (data) {
             $scope.arrListaServico = data;
+            $scope.is_carregando_pagina = 0;
         });
     };
 
@@ -126,4 +130,13 @@ app.controller(
 			}, 0, false);
 		}, 0, false);
 	}
+})
+.directive('carregavovo', function(){
+    return {
+        restrict: 'EA',
+        templateUrl: '../includes/js/componenteAjudeVovo/pre-loader-vovo.html',
+        scope: {
+           is_carregando_pagina: '=',            
+        }
+    };
 });

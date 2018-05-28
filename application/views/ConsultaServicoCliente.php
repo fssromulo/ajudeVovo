@@ -12,7 +12,13 @@
 		ng-app="appAngular"
 		ng-controller="controllerAngular"
 		class="container"
+		data-ng-cloak
 	>
+
+    <!-- componente de feedback para os usuários -->
+    <carregavovo data-ng-show="is_carregando_pagina"></carregavovo> 
+    <!-- componente de feedback para os usuários -->
+    
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
 				<div class="col-sm-12 col-md-12">
@@ -146,6 +152,5 @@
 	<script type="text/javascript" src="../includes/js/ServicoClienteDetalhe.service.js"></script>
 	<script type="text/javascript" src="../includes/js/ConsultaServicoCliente.controller.js"></script>
 	<script type="text/javascript" src="../includes/js/DetalheServico.js"></script>
-	<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 </body>
 </html>
