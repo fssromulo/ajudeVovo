@@ -52,8 +52,7 @@
                                         type="checkbox" 
                                         id="gratuito" 
                                         ng-model="gratuito"
-                                        ng-checked="valor == 'R$ 0,00'"
-                                        ng-click="valor = gratuito ? 'R$ 0,00' : valor"
+                                        ng-click="valor = gratuito ? '' : valor"
                                         />
                                     <label for="gratuito">Voluntário</label>
                                 </p>
