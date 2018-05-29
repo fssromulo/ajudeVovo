@@ -33,7 +33,9 @@ app.controller("controllerServico", function($scope, $http, $timeout) {
         $scope.arrListaAtendimentoAdicionados = [];
         $scope.arrListaAtendimentoExcluidos = [];
 
-        $("#valor").maskMoney({thousands:'.',decimal:','});
+        // angular.element("#valor").maskMoney({thousands:'.',decimal:',', symbolStay: true});
+
+        angular.element("#valor").mask('#.##0,00', {reverse: true});
 
         $scope.desabilitarBotoes = false;
 

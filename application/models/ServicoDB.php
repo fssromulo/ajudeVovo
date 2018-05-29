@@ -29,7 +29,7 @@ class ServicoDB extends CI_Model {
                 s.id_servico as id_servico, 
                 s.id_categoria as id_categoria, 
                 s.descricao as descricao, 
-                CONCAT('R$ ',format(s.valor,2,'pt_BR')) valor,
+                format(s.valor,2,'pt_BR') valor,
                 s.detalhe as detalhe,
                 s.ativo as ativo
             from 
