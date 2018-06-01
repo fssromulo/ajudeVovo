@@ -48,7 +48,7 @@
                ng-model="arrListaNecessidades.necessidade"
                material-select watch
             >
-               <option value=""  disabled selected>Selecione uma necessidade especial *</option>
+               <option value=""  disabled selected>Selecione uma necessidade especial</option>
             </select>
          </div>
       </div>

@@ -51,7 +51,7 @@ class ControlePrestador extends CI_Controller {
 	*/
 	public function atualizarEstado() {
 		(array)$dados = json_decode(file_get_contents("php://input"), true);   
-	 	$this->load->library('PagSeguro/pagsegurolib');
+	 	$this->load->library('PagSeguro/PagSeguroLib');
 
 	 	$sn_pag_seguro = array_key_exists('tokenCartaoVovo', $dados);
 

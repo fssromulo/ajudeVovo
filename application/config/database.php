@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-/* alterar essa variavel abaixo para "producao" quando colocar o banco no HOSTINGER*/
+/* alterar essa variavel abaixo para "BancoHostinger" OU "BancoAWS" quando colocar o banco no HOSTINGER ou no AWS */
 $active_group = 'local';
 $query_builder = TRUE;
 
@@ -97,7 +97,7 @@ $db['local'] = array(
 	'save_queries' => TRUE
 );
 
-$db['producao'] = array(
+$db['BancoHostinger'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'id4837089_ajudevovo',
@@ -119,7 +119,7 @@ $db['producao'] = array(
 	'save_queries' => TRUE
 );
 
-$db['bancoProducaoAWS'] = array(
+$db['BancoAWS'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',

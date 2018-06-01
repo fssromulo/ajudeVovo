@@ -61,7 +61,7 @@
                                 <div class="input-field">
                                     <label for="valor">Valor:</label>
                                     <input
-                                        type="text"
+                                        type="tel"
                                         ng-model="valor"
                                         ng-disabled="gratuito"
                                         class="form-control"

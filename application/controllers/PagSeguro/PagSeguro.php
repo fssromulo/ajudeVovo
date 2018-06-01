@@ -11,13 +11,13 @@ class PagSeguro extends CI_Controller {
 	public function index() {}
 
 	public function getCartaoFromLibrary(){
-		$this->load->library('PagSeguro/pagsegurolib');
+		$this->load->library('PagSeguro/PagSeguroLib');
 		echo $this->pagsegurolib->getDadosCartao();
 	}
 	
 
 	public function getSessaoPagSeguroFromLibrary(){
-		$this->load->library('PagSeguro/pagsegurolib');
+		$this->load->library('PagSeguro/PagSeguroLib');
 		echo  $this->pagsegurolib->getSessaoPagSeguro();	
 	}	
 }
