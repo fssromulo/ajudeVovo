@@ -7,8 +7,8 @@
 
 var filesToCache = [];
 
-var cacheName = 'my-site-cache-v5';
-var dataCacheName = 'weatherData-v5';
+var cacheName = 'ajudeVovo-v1';
+var dataCacheName = 'ajudeVovoData-v1';
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
@@ -73,7 +73,7 @@ self.addEventListener('fetch', function(event) {
             // to clone it so we have two streams.
             var responseToCache = response.clone();
 
-            caches.open(cacheName)
+            caches.open(dataCacheName)
               .then(function(cache) {
                 event.request.method !== "POST" && cache.put(event.request, responseToCache);
               });
