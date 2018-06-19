@@ -112,7 +112,6 @@
 
 	      	// Salva a imagem no servidor e dpois registra o caminho no banco
 				if ( !empty($arrDadosImagem['urlFoto']) ) {				
-					print_r('imagem 1--');
 					$ds_imagem = $this->salvarImagemPessoa(
 						$arrDadosImagem,
 						$cd_pessoa
@@ -292,7 +291,11 @@
 			}
 
 			// limpar o buffer de imagem
-			ob_clean(); 
+			
+			if (ob_get_length()) {
+				ob_clean(); 
+			} 
+
 			ob_start();
 			if ( $extensao == 'png' ){
 				$img_r = imagecreatefrompng($ds_imagem);				

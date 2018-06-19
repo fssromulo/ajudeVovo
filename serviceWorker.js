@@ -7,8 +7,8 @@
 
 var filesToCache = [];
 
-var cacheName = 'ajudeVovo-v1';
-var dataCacheName = 'ajudeVovoData-v1';
+var cacheName = 'ajudeVovo-v2';
+var dataCacheName = 'ajudeVovoData-v2';
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
@@ -71,7 +71,7 @@ self.addEventListener('fetch', function(event) {
             // and because we want the browser to consume the response
             // as well as the cache consuming the response, we need
             // to clone it so we have two streams.
-            var responseToCache = response.clone();
+            var responseToCache = null;
 
             caches.open(dataCacheName)
               .then(function(cache) {
